@@ -1,6 +1,7 @@
 
-    $(function(){
-  
+     $(function(){
+    	
+    		
     		$(".visual #slideClick").click(function() {
     		    $(".visual .visualLeft").animate({
     		        width: "toggle"

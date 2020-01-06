@@ -162,5 +162,9 @@ public class TestController {
 		return "project/boardMain";
 	}
 	
+	@RequestMapping("/project/boardForm.do") 
+	public String boardForm() {
+		return "project/boardForm";
+	}
 
 }

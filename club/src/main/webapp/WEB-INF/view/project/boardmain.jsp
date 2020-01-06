@@ -21,7 +21,7 @@
 		
         	<div class="visualLeft">
         	<div class="visualLeftInner">
-	        		<div class="leftMenu">
+	        		<div class="leftM enu">
 		        		<ul>
 		        		<a href=""><h2>갤러리</h2></a> <!-- 위치수정가능하게 -->
 		        			<li><a href=""><h3>생일</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>

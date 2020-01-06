@@ -161,7 +161,12 @@ public class TestController {
 	public String boardMain() {
 		return "project/boardmain";
 	}
-	
+
+	@RequestMapping("/project/boardForm.do") 
+	public String boardForm() {
+		return "project/boardForm";
+	}
+
 	@RequestMapping("/project/admincategory.do")
 	public String adminCategory() {
 		return "project/adminCategory";

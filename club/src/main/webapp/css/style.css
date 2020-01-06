@@ -150,5 +150,10 @@
 		margin:20px;
 		}
 		
+		#tableForm{
+		text-align:center;
+		border:solid 1px red;
+		width:100%;
+		}
 		
 		        

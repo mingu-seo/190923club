@@ -39,7 +39,7 @@
         		<br>
         		<br>
         		<br>
-        		</div>
+        		</div> 
         		<div>
         		동아리 설정
         		<img src="/club/img/setting.png"><br>

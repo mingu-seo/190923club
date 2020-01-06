@@ -45,7 +45,7 @@
         		
         		<div>
         		동아리 설정
-        		<img src="img/setting.png"><br>
+        		<img src="/club/img/setting.png"><br>
         		</div>
         		<div>
         		가입신청
@@ -54,10 +54,10 @@
         	</div>
         	<div class="visualRight">
         	
-        		<h2>미리보기<a href=""><img src="img/setting.png"></a></h2>
+        		<h2>미리보기<a href=""><img src="/club/img/setting.png"></a></h2>
         		
         		<div class=rightBoard>
-        		<h2>갤러리<a href=""><img src="img/plus.png"></a></h2>
+        		<h2>갤러리<a href=""><img src="/club/img/plus.png"></a></h2>
         		<ul>
         			<a href=""><li>게시물1</li></a>
         			<a href=""><li>게시물2</li></a>
@@ -82,17 +82,10 @@
         			<a href=""><li>게시물3</li></a>
         		</ul>
         		</div>
-        	
         	</div>
-        	
-        	
-        	
         </div>
         
-        
         <%@ include file="footer.jsp" %>
-        
-   
         
     </div>
 </body>

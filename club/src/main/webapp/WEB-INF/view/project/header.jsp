@@ -3,10 +3,10 @@
     <div class="header">
         	<div class="size">
         	<div>
-        	 	<div id="logo"><a href="/main/"><img src="img/logo.png"></a></div>
+        	 	<div id="logo"><a href=""><img src="/club/img/logo.png"></a></div>
         	 </div>
         	 <div>
-        	 	<div id="myPage"><a href="/main/"><img src="img/myPage.png"></a></div>
+        	 	<div id="myPage"><a href=""><img src="/club/img/myPage.png"></a></div>
         	 </div>
         	 <!--	<div class="login">
         	 		<a href="">로그인</a> |

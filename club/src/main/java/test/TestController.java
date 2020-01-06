@@ -152,9 +152,14 @@ public class TestController {
 		return "redirect:/admin/login.do";
 	}
 	
-	@RequestMapping("/project/subMain.do")
+	@RequestMapping("/project/submain.do")
 	public String subMain() {
 		return "project/index";
+	}
+	
+	@RequestMapping("/project/boardmain.do") 
+	public String boardMain() {
+		return "project/boardMain";
 	}
 	
 

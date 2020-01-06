@@ -49,14 +49,16 @@
 	</bean>
 	
 	<!-- 인터셉터:가로채기 -->
-	<mvc:interceptors>
+<!-- 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**"/>
 			<mvc:exclude-mapping path="/admin/login.do"/>
 			<mvc:exclude-mapping path="/admin/loginProcess.do"/>
 			<bean class="interceptor.AdminInterceptor"/>
 		</mvc:interceptor>
+
 	</mvc:interceptors>
+ -->
 	
 	
 	

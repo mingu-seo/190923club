@@ -167,5 +167,10 @@ public class TestController {
 		return "project/adminCategory";
 	}
 	
+	//관리자 메인
+	@RequestMapping("/admin/adminmain.do") 
+	public String adminMain() {
+		return "admin/adminMain";
+	}
 
 }

@@ -162,7 +162,7 @@ public class TestController {
 		return "project/boardmain";
 	}
 	
-	@RequestMapping("/project/admin.do")
+	@RequestMapping("/project/admincategory.do")
 	public String adminCategory() {
 		return "project/adminCategory";
 	}

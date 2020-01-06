@@ -51,7 +51,7 @@
         	</div>
         	<div class="visualRight"></div>
         		<div class="visualRightInner">
-        			
+        			<h6>카테고리 설정</h6>
         		</div>
         </div>
         

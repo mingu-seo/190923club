@@ -154,12 +154,22 @@ public class TestController {
 	
 	@RequestMapping("/project/submain.do")
 	public String subMain() {
-		return "project/index";
+		return "project/submain";
 	}
 	
 	@RequestMapping("/project/boardmain.do") 
 	public String boardMain() {
-		return "project/boardMain";
+		return "project/boardmain";
+	}
+	
+
+	@RequestMapping("/project/boardForm.do") 
+	public String boardForm() {
+		return "project/boardForm";
+	}
+	@RequestMapping("/project/admin.do")
+	public String adminCategory() {
+		return "project/adminCategory";
 	}
 	
 	//관리자 메인

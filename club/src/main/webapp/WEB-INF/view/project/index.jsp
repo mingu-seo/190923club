@@ -24,7 +24,7 @@
         	<div class="visualLeftInner">
         		<div>
         		<br><br>동아리 소개 사진
-        		<img src="img/pic.jpg"><br>
+        		<img src="/club/img/pic.jpg"><br>
         		스키 동아리<br>
         		멤버 88명<br>
         		회장 김구디<br>
@@ -42,7 +42,7 @@
         		</div>
         		<div>
         		동아리 설정
-        		<img src="img/setting.png"><br>
+        		<img src="/club/img/setting.png"><br>
         		</div>
         		<div>
         		가입신청

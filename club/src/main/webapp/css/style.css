@@ -19,6 +19,9 @@
             padding:10px 0;
         }
         
+         
+        
+        
         .size{
         	position:relative;
         }
@@ -42,8 +45,11 @@
             width:25%;
             text-align:center;
             line-height: 40px;
+            
            
         }
+        
+       
         .footer {
             width:100%;
             background-color:#221f1f;
@@ -80,9 +86,13 @@
         	list-style:none;
         }
         
+      .depth1>li{
+        	background-color: #cccccc;
+        }
+        
+        
         .depth1>li>a{
        		 display:block;
-       		 border:1px solid #000000;
              box-sizing: border-box;
         }
         
@@ -123,7 +133,20 @@
 		padding: 10px;
 		}	
 		
-		.visual #slideClick{
-			text-align: left;
-		}	        
+		.leftMenu ul {
+		font-size: 20px;
+		padding:10px;
+		}
+		
+		.leftMenu ul li{
+		font-size : 15px;
+		color:#606060;
+		
+		}
+		
+		.rightBoard{
+		border:1px solid black;
+		padding : 10px;
+		margin:20px;
+		}
 		        

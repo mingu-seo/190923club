@@ -50,7 +50,12 @@
         		</div>
         	</div>
         	</div>
-        	<div class="visualRight"></div>
+        	<div class="visualRight">
+        	
+        		<h1><a href="boardWrite.do">게시판 글쓰기</a></h1>
+        		<h1><a href="gallaryWrite.do">갤러리 글쓰기</a></h1>
+        		
+        	</div>
         </div>
         
         

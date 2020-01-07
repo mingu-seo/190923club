@@ -14,7 +14,6 @@
           	background-color:#ffffff;
             width:1200px;
             color:#ffffff;
-            
             margin:0 auto;
             padding:10px 0;
         }
@@ -87,7 +86,7 @@
         }
         
       .depth1>li{
-        	background-color: #cccccc;
+        	background-color: #c2e3f4;
         	height:150px;
         }
         
@@ -109,14 +108,14 @@
        		
         }
 		 .visual .visualLeft{        
-        border:1px solid black;
+        
         width:20%;
         text-align:center;
 		position:absolute;
         height:auto;
         float:left; 
         overflow: hidden; 
-        background: #f0e68c;
+        background: #f2f4ef;
         }
         
         
@@ -191,6 +190,19 @@
 		}
 		
 		.boardAdd {
+		margin:10px;
+		}
+		
+		#clubName {
+		font-size:24px;
+		margin:10px;
+		}
+		
+		.clubInfo {
+		font-size:20px;
+		}
+		
+		#clubImage {
 		margin:10px;
 		}
 		

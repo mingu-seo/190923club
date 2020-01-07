@@ -17,9 +17,6 @@
        
       
         <div class="visual">
-         <div id="slideClick">동아리 숨기기</div>
-	
-		
         	<div class="visualLeft">
         	<div class="visualLeftInner">
         		<div>

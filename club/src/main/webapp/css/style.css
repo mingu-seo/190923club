@@ -213,6 +213,10 @@
 		margin:30px;
 		}
 		
+		#boardList{
+		margin:30px 0;
+		}
+		
 		.boardBox {
 		border:1px solid black;
 		text-align:left; 

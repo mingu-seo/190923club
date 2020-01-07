@@ -21,7 +21,7 @@
 		
         	<div class="visualLeft">
         	<div class="visualLeftInner">
-	        		<div class="leftM enu">
+	        		<div class="leftMenu">
 		        		<ul>
 		        		<a href=""><h2>갤러리</h2></a> <!-- 위치수정가능하게 -->
 		        			<li><a href=""><h3>생일</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>
@@ -47,7 +47,7 @@
 	        		</div>
         		<div>
         		동아리 설정
-        		<img src="/club/img/setting.png"><br>
+        		<img src="/club/img/set.png"><br>
         		</div>
         		<div>
         		가입신청
@@ -55,16 +55,22 @@
         	</div>
         	</div>
         	<div class="visualRight">
-        	
-        		<h2>미리보기<a href="admincategory.do"><img src="/club/img/setting.png"></a></h2>
+        		<div id="preview">
+        		미리보기<a href="admincategory.do"><img src="/club/img/set.png"></a>
+        		</div>
         		
         		<div class=rightBoard>
-        		<h2>갤러리<a href=""><img src="/club/img/plus.png"></a></h2>
-        		<ul>
-        			<a href=""><li>게시물1</li></a>
-        			<a href=""><li>게시물2</li></a>
-        			<a href=""><li>게시물3</li></a>
-        		</ul>
+        		
+        		갤러리<a href=""><img src="/club/img/plus.png"></a>
+        			<div class="pregalaryDiv">
+					<a href=""><img class="pregalary" src="/club/img/gal1.PNG"></a>
+					</div>
+        			<div class="pregalaryDiv">
+					<a href=""><img class="pregalary" src="/club/img/gal2.PNG"></a>
+					</div>
+        			<div class="pregalaryDiv">
+					<a href=""><img class="pregalary" src="/club/img/gal3.PNG"></a>
+					</div>
         		</div>
         	
         		<div class=rightBoard>

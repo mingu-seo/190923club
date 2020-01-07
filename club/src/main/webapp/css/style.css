@@ -126,6 +126,7 @@
         position:relative;
         height:1000px;
         float:right;
+        min-height:100%;
         }
         
 		.visualLeftInner{

@@ -162,9 +162,26 @@ public class TestController {
 		return "project/boardmain";
 	}
 
-	@RequestMapping("/project/boardForm.do") 
-	public String boardForm() {
-		return "project/boardForm";
+	@RequestMapping("/project/boardList.do") 
+	public String boardList() {
+		return "project/boardList";
+	}
+	
+	
+	
+	@RequestMapping("/project/boardWrite.do") 
+	public String boardWrite() {
+		return "project/boardWrite";
+	}
+	
+	@RequestMapping("/project/boardWriteView.do") 
+	public String boardWriteView() {
+		return "project/boardWriteView";
+	}
+	
+	@RequestMapping("/project/gallaryWrite.do") 
+	public String gallaryWrite() {
+		return "project/gallaryWrite";
 	}
 
 	@RequestMapping("/project/admincategory.do")

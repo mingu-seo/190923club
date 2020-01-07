@@ -49,13 +49,100 @@
         		</div>
         	</div>
         	</div>
-        	<div class="visualRight"></div>
+        	<div class="visualRight">
         		<div class="visualRightInner">
-        			<h6>카테고리 설정</h6>
+        			<div id="categorySet">카테고리 설정
+        			
+        			</div>
+        			
+        			<div class="boardTitle">
+        				<h1>▼ 갤러리</h1>
+        			</div>
+        			<div class="boardBox">
+        				<div>
+        				<a href=""><img class="add" src="/club/img/plus.png"></a><!-- 카데고리 추가 -->
+        				</div>
+        				
+        				<div class="boardAdd">
+        				<input class="addBox" type="text" placeholder="추가하세요!">
+        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
+        				</div> 
+        				
+        				<div class="boardAdd">
+        				<input class="addBox" type="text" placeholder="추가하세요!">
+        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
+        				</div>
+        				
+        				<div class="boardAdd">
+        				<input class="addBox" type="text" placeholder="추가하세요!">
+        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
+        				</div>
+        			</div>
+        		<hr>
+        		
+        		<div class="boardTitle">
+        				<h1>▼ 자유게시판</h1>
+        			</div>
+        			<div class="boardBox">
+        				<div>
+        				<a href=""><img class="add" src="/club/img/plus.png"></a><!-- 카데고리 추가 -->
+        				</div>
+        				
+        				<div class="boardAdd">
+        				<input class="addBox" type="text" placeholder="추가하세요!">
+        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
+        				</div> 
+        				
+        				<div class="boardAdd">
+        				<input class="addBox" type="text" placeholder="추가하세요!">
+        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
+        				</div>
+        				
+        				<div class="boardAdd">
+        				<input class="addBox" type="text" placeholder="추가하세요!">
+        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
+        				</div>
+        			</div>
+        		<hr>
+        		
+        		<div class="boardTitle">
+        				<h1>▼ 공지사항</h1>
+        			</div>
+        			<div class="boardBox">
+        				<div>
+        				<a href=""><img class="add" src="/club/img/plus.png"></a><!-- 카데고리 추가 -->
+        				</div>
+        				
+        				<div class="boardAdd">
+        				<input class="addBox" type="text" placeholder="추가하세요!">
+        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
+        				</div> 
+        				
+        				<div class="boardAdd">
+        				<input class="addBox" type="text" placeholder="추가하세요!">
+        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
+        				</div>
+        				
+        				<div class="boardAdd">
+        				<input class="addBox" type="text" placeholder="추가하세요!">
+        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
+        				</div>
+        			</div>
+        			
         		</div>
         </div>
         
         
+         
         <%@ include file="footer.jsp" %>
         
    

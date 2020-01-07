@@ -56,7 +56,7 @@
         	</div>
         	<div class="visualRight">
         	
-        		<h2>미리보기<a href=""><img src="/club/img/setting.png"></a></h2>
+        		<h2>미리보기<a href="admincategory.do"><img src="/club/img/setting.png"></a></h2>
         		
         		<div class=rightBoard>
         		<h2>갤러리<a href=""><img src="/club/img/plus.png"></a></h2>

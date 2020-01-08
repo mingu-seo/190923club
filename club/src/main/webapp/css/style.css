@@ -262,10 +262,17 @@
 		margin:20px;
 		}
 		
-		.pregalary {
+		.pregalary-img {
 		height:250px;
 		width:250px;
 		}
+		
+		.pregalary-title {
+		font-size:18px;
+		font-weight:bold;
+		}
+		
+	
 		
 		 
 		        

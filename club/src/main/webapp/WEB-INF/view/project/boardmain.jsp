@@ -6,6 +6,7 @@
 <head>
     <title></title>
    <%@ include file="head.jsp" %>
+   <link rel="stylesheet" type="text/css" href="/club/css/board/boardmain.css">
 </head>
 <body>
 

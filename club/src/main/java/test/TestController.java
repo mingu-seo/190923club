@@ -184,6 +184,13 @@ public class TestController {
 		return "project/gallaryWrite";
 	}
 
+	@RequestMapping("/project/gallaryList.do") 
+	public String gallaryList() {
+		return "project/gallaryList";
+	}
+	
+	
+	
 	@RequestMapping("/project/admincategory.do")
 	public String adminCategory() {
 		return "project/adminCategory";

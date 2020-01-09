@@ -68,7 +68,7 @@
         		</div>
         	
         		<div class=rightBoard>
-        		<h2>게시판<a href=""><img src="/club/img/plus.png"></a></h2>
+        		<h2>게시판<a href="boardList.do"><img src="/club/img/plus.png"></a></h2>
         		<ul>
         			<a href=""><li>게시물1</li></a>
         			<a href=""><li>게시물2</li></a>

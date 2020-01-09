@@ -63,7 +63,7 @@
 		<select id="boardAlign1">
 			 	<option value="최신순">최신순</option>
 			 	<option value="좋아요순">좋아요순</option>
-			 	<option value="작성자순">작성자순</option>
+			 	<option value="조회수순">조회수순</option>
 		</select>
 		<select id="boardAlign2">
 			 	<option value="오름차순">오름차순</option>

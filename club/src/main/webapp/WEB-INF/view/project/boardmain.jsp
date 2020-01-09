@@ -69,21 +69,21 @@
 					<a href=""><img  class="pregalary-img" src="/club/img/gal1.PNG"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
 					<div class="pregalary-title">드디어 블랙위도우··</div>
 					<div class="pregalary-writer">김길동</div>
-					<span class="pregalary-day">2020-01-08</span><span class="pregalary-num">|&nbsp;&nbsp;조회수&nbsp;&nbsp;285</span>
+					<span class="pregalary-day">2020-01-08</span><span class="pregalary-num">조회수&nbsp;&nbsp;285</span>
 					</div>
 					
 					<div class="pregalary-info">
 					<a href=""><img class="pregalary-img" src="/club/img/gal2.PNG"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
 					<div class="pregalary-title">이번에 홍천 비발디파크··</div>
 					<div class="pregalary-writer">홍길동</div>
-					<span class="pregalary-day">2020-12-28 </span><span class="pregalary-num">&nbsp;&nbsp;| 조회수&nbsp;&nbsp;285</span>
+					<span class="pregalary-day">2020-12-28 </span><span class="pregalary-num">조회수&nbsp;&nbsp;285</span>
 					</div> 
 					
 					<div class="pregalary-info">
 					<a href=""><img class="pregalary-img" src="/club/img/gal3.PNG"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
 					<div class="pregalary-title">엠티가서 찍은 사진··</div>
 					<div class="pregalary-writer">최길동</div>
-					<span class="pregalary-day">2020-01-22</span><span class="pregalary-num">|&nbsp;&nbsp;조회수&nbsp;&nbsp;285</span>
+					<span class="pregalary-day">2020-01-22</span><span class="pregalary-num">조회수&nbsp;&nbsp;285</span>
 					</div>
 					
         			</div>

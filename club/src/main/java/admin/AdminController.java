@@ -1,5 +1,7 @@
 package admin;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,16 +22,22 @@ public class AdminController {
 	public String adminIndex() {
 		return "admin/index";
 	}
-	@RequestMapping("/admin/login.do")
-	public String adminLogin() {
-		return "admin/login";
+	
+	@RequestMapping("/admin/logout.do")
+	public String logout(HttpSession session) {
+		//session.invalidate();
+		session.setAttribute("adminSession", null);
+		return "redirect:/admin/index.do";
 	}
 	
-	@RequestMapping("/admin/process.do")
+	
+	@RequestMapping("/admin/login.do")
 	public String adminProcess(Model model) {
 		//어떠어떠한 처리
 		model.addAttribute("msg","정상적으로 회원가입 되었습니다.");
-		model.addAttribute("url","/sampleEX/admin/index.do");
+		
+		//로그인되면
+		model.addAttribute("url","/admin/board/index.do");
 		return "admin/include/alert";
 	}
 	

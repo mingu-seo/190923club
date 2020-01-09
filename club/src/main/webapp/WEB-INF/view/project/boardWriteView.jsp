@@ -29,7 +29,7 @@ TestVO vo = (TestVO)request.getAttribute("vo");
         	<div class="visualLeftInner">
 	        		<div class="leftM enu">
 		        		<ul>
-		        		<a href=""><h2>갤러리</h2></a> <!-- 위치수정가능하게 -->
+		        		<a href="gallaryList.do"><h2>갤러리</h2></a> <!-- 위치수정가능하게 -->
 		        			<li><a href=""><h3>생일</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>
 		        			<li><a href=""><h3>대회</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>
 		        			<li><a href=""><h3>회식</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>
@@ -38,7 +38,7 @@ TestVO vo = (TestVO)request.getAttribute("vo");
 	        		</div>
         			<div class="leftMenu">
 		        		<ul>
-		        		<a href=""><h2>게시판</h2></a> <!-- 위치수정가능하게 -->
+		        		<a href="boardList.do"><h2>게시판</h2></a> <!-- 위치수정가능하게 -->
 		        			<li><a href=""><h3>공감해주셈</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>
 		        			<li><a href=""><h3>웃긴글</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>
 		        			<li><a href=""><h3>어쩌구</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>

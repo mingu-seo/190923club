@@ -56,4 +56,49 @@ public class AdminController {
 	public String adminBoardWrite() {
 		return "admin/board/write";
 	}
+	//관리자 기본 설정 
+	//hotspot 정버설정
+	@RequestMapping("/admin/board/hotspotInfo.do")
+	public String hotspotInfo() {
+		return "admin/board/hotspotInfo";
+	}
+	
+	//hotspot 꾸미기설정
+	@RequestMapping("/admin/board/hotspotSetting.do")
+	public String hotspotSetting() {
+		return "admin/board/hotspotSetting";
+	}
+	
+	//공지사항
+	@RequestMapping("/admin/board/notice.do")
+	public String adminNotice() {
+		return "admin/board/notice";
+	}
+	
+	//Q&A
+	@RequestMapping("/admin/board/qna.do")
+	public String adminQna() {
+		return "admin/board/qna";
+	}
+	
+	//게시글 관리 
+	@RequestMapping("/admin/board/post.do")
+	public String post() {
+		return "admin/board/post";
+	}
+	// spot 관리
+	@RequestMapping("/admin/board/club.do")
+	public String club() {
+		return "admin/board/club";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

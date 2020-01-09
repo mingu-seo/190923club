@@ -257,6 +257,13 @@
 		}
 		
 		/* 미리보기 페이지 css */
+
+		#gallaryClose{
+		color:white;
+		text-align:right;
+		}
+		
+
 		#preview {
 		font-size:48px;
 		font-weight:bold;
@@ -328,3 +335,8 @@
 		text-align:left;
 		}
 		        
+	
+		
+		 
+		        
+

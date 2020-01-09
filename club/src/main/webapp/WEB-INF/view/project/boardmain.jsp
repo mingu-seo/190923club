@@ -123,6 +123,7 @@
         				<td class="preboard-cnt">53</td>
         			</tr>
         		</table>
+        		
         		</div>
         	
         		<div class="preBoard-name">공지<a href=""><img src="/club/img/plus.png"></a></div>

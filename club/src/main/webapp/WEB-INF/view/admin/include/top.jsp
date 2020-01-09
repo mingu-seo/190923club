@@ -56,7 +56,7 @@ $(window).load(function(){
 </script>
 <div id="header">
 	<div class="header_inner">
-		<h1>SAMPLE</h1>
+		<h1>HOT SPOT</h1>
 		<p class="login_name"></p>
 		<!-- util : s -->
 		<div class="util">
@@ -69,17 +69,31 @@ $(window).load(function(){
 		
 		<div id="menu">
   			<ul class="menu">
-  				<li><a href="<%=request.getContextPath()%>/admin/member/index.do" class="parent"><span>회원관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>상품관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/board/index.do" class="parent"><span>게시판</span></a>
+  				<li><span>기본 설정</span>
 					<div class="standard_left">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>공지사항</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>Q&A</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/hotspotInfo.do"><span>HOTSPOT 정보</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/hotspotSetting.do"><span>꾸미기 설정</span></a></li>
 					</ul>
 					</div>
 				</li>
-				<li><a href="<%=request.getContextPath()%>/admin/admin/index.do" class="parent"><span>관리자관리</span></a></li>
+				<li><a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>회원관리</span></a></li>
+				<li><span>게시판</span>
+					<div class="standard_left">
+					<ul>
+						<li><a href="<%=request.getContextPath()%>/admin/board/notice.do"><span>공지사항</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/qna.do"><span>Q&A</span></a></li>
+					</ul>
+					</div>
+				</li>
+				<li><span>관리자관리</span>
+					<div class="standard_right">
+					<ul>
+						<li><a href="<%=request.getContextPath()%>/admin/board/post.do"><span>게시글</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/club.do"><span>동아리</span></a></li>
+					</ul>
+					</div>
+				</li>
 			</ul>
 		</div>
 		<!--//gnb-->

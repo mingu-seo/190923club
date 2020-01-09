@@ -1,15 +1,23 @@
 @charset "utf-8";	
+
+
 		#preview {
 			font-size:48px;
 			font-weight:bold;
 			margin:20px;
 		}
 		
+		.pre-board {
+			margin: 50px 0;
+		}		
 		.preBoard-name {
+			border:1px solid #eeeeee;
+			border-radius:5px;
 			font-size:32px;
 			text-align:left;
 			font-weight:bold;
 			margin:10px;
+			padding:0 5px;
 		}
 		
 		#mm {
@@ -23,7 +31,7 @@
 		}
 		
 		.pregalary-info {
-			border: 1px solid gray;
+			border: 1px solid #eeeeee;
 			display:inline-block;
 			margin:5px;		
 		}
@@ -77,4 +85,29 @@
 			border-radius: 12px;
 			margin:10px;
 			padding: 0 5px;
+		}
+		
+		.preboard-seq {
+			font-size:22px;
+			border: solid gray;
+			border-width: 0 0 1px 0 ;
+			
+		}
+		
+		.preboard-tt {
+			font-size:22px;
+			border: solid gray;
+			border-width: 0 0 1px 0 ;
+		}
+		
+		.preboard-cnt {
+			font-size:22px;
+			border: solid gray;
+			border-width: 0 0 1px 0 ;
+		}
+		
+		.preboard-writer {
+			font-size:22px;
+			border: solid gray;
+			border-width: 0 0 1px 0 ;
 		}

@@ -120,7 +120,7 @@
         
         
          .visual .visualRight{        
-        border:1px solid black;
+        
         width:80%;
         text-align:center;
         position:relative;
@@ -150,7 +150,8 @@
 		}
 		
 		.rightBoard{
-		border:1px solid black;
+		border:1px solid #eeeeee;
+		border-radius: 10px;
 		padding : 10px;
 		margin:10px;
 		}

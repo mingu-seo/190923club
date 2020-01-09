@@ -30,6 +30,7 @@
         		</div>
 	        	
         		<div><!-- 갤러리, 게시판, 공지 div를 감싸고 있음 -->
+        		<div class="pre-board">
         		<div class="preBoard-name">갤러리</div>
         		<div class=rightBoard>
         		
@@ -74,16 +75,20 @@
 					
         			</div>
         		</div>
+        		</div>
         		
+        		<div class="pre-board">
         		<div class="preBoard-name">게시판</div>
         		<div class=rightBoard>
         		<div id="mm"><button class="view-more">더보기</button></div>
         		<table class="preboard">
+					<div class="tddd">
         			<tr> <!-- 최대 갯수 지정 -->
         				<td class="preboard-seq">★</td>
         				<td class="preboard-tt">안녕~~</td>
         				<td class="preboard-cnt">35</td>
         			</tr>
+        			</div>
         			<tr>
         				<td class="preboard-seq">★</td>
         				<td class="preboard-tt">워크샵간다~</td>
@@ -95,9 +100,10 @@
         				<td class="preboard-cnt">53</td>
         			</tr>
         		</table>
-        		
         		</div>
-        	
+        		</div>
+
+        		<div class="pre-board">
         		<div class="preBoard-name">공지</div>
         		<div class=rightBoard>
         		<div id="mm"><button class="view-more">더보기</button></div>

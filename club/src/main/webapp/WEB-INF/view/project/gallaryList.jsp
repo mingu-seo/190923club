@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page import ="java.util.HashMap" %>
+<%@ page import ="java.util.ArrayList" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +11,8 @@
    
    
  		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-        <script src="jquery.imagesloaded.min.js"></script>
-        <script src="jquery.masonry.min.js"></script> 
+        <script src="/club/js/jquery.imagesloaded.min.js"></script>
+        <script src="/club/js/jquery.masonry.min.js"></script> 
 
 
         <script>
@@ -41,7 +43,7 @@
         			
                     
         
-                    $('#gallaryClose').click(function(){hideLightBox();});
+                    $('.gallaryClose').click(function(){hideLightBox();});
                     $('.paper').click(function(){showLightBox();});
                     $('#lightbox').click(function(event){event.stopPropagation();
                     });
@@ -239,6 +241,7 @@
         
       <!--라이트박스-->
        <div id="darken-background">
+       <p class="gallaryClose">X&nbsp&nbsp&nbsp&nbsp</p>
             <div id="lightbox">
                 <div class="user-information">
                     <a class="user-information-image" href="#">
@@ -306,7 +309,7 @@
 					<td><input type="text" name="reply" id="replyText"></td>
 					<td><input type="submit" value="작성"></td>
 			</table>
-			<p id="gallaryClose">[닫기]</p>     
+			<p class="gallaryClose">[닫기]</p>     
 			</div>
 			
             

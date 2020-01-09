@@ -31,7 +31,7 @@ TestVO vo = (TestVO)request.getAttribute("vo");
 
         	</div>
         	<div class="visualRight">
-        		<h1>자유게시판</h1>
+        		<h1>공지사항</h1>
         		<div>
 					<table id="boardTable">
 					<tr>
@@ -50,14 +50,12 @@ TestVO vo = (TestVO)request.getAttribute("vo");
 					</tr>
 					<tr>		
 						
-						<td colspan="2" id="boardTextarea">
+						<td colspan="2">
 							컨텐츠 내용 넣기
 							예시이미지
-							<img src="/club/img/pic.jpg">
+							<img src="/club/img/section1_1.png">
 						</td>
 					</tr>
-					<tr>
-						<td colspan="2" class="like">♥ 0명이 이 글을 좋아합니다</td>
 					</table>
 			</div>
 			
@@ -92,7 +90,7 @@ TestVO vo = (TestVO)request.getAttribute("vo");
 					<td><input type="submit" value="작성"></td>
 			</table>
 			</div>
-			<a href="boardList.do">게시글 목록으로 돌아가기</a>
+			<a href="noticeList.do">공지사항 목록으로 돌아가기</a>
         </div>
         
         

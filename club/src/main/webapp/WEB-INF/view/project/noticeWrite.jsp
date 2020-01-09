@@ -58,21 +58,11 @@
 
         	</div>
         	<div class="visualRight">
-        		<h1>자유게시판</h1>
+        		<h1>공지사항</h1>
         		<div>
 				<form action="" method="post" enctype="multipart/form-data" onsubmit="save();">
 			
 					<table id="boardTable">
-					<tr>
-						<th>카테고리</th>
-						<td>
-							<select name="category" id="tableRight">
-							<option value="공감해주셈">공감해주셈</option>
-							<option value="웃긴글">웃긴글</option>
-							<option value="어쩌구">어쩌구</option>
-							</select>
-						</td>
-					</tr>
 					<tr>		
 						<th>제목</th>
 						<td>

@@ -167,6 +167,8 @@
         		가입신청
         		</div>
         	</div>
+        	<%@ include file="boardLeft.jsp" %>
+
         </div>
         	
         	
@@ -284,6 +286,7 @@
                     <a href="">◀</a>
                     <img src="http://placekitten.com/700/700">
                     <a href="">▶</a>
+                    <div class="like">♥ 0명이 이 글을 좋아합니다.</div>
             </div>
             
        <h4>댓글 </h4>
@@ -356,11 +359,6 @@
 		</div>	
 
 
-		<div id="pageList">
-			[이전]&nbsp;
-			1&nbsp;2&nbsp;3&nbsp;4&nbsp;5&nbsp;6&nbsp;7&nbsp;8&nbsp;9&nbsp;
-			[다음]
-		</div>
         	
         </div>
    </div>

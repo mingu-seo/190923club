@@ -152,7 +152,7 @@
 		.rightBoard{
 		border:1px solid black;
 		padding : 10px;
-		margin:20px;
+		margin:10px;
 		}
 		
 		#content{
@@ -256,31 +256,67 @@
 		margin:10px;
 		}
 		
+		/* 미리보기 페이지 css */
 		#preview {
 		font-size:48px;
 		font-weight:bold;
 		margin:20px;
 		}
 		
+		.preBoard-name {
+		font-size:32px;
+		text-align:left;
+		font-weight:bold;
+		margin:10px;
+		}
+		
+		#mm {
+		text-align:right;
+		}
+		
+		.more {
+		width:100px;
+		height:50px;
+		margin:0 10px;
+		}
+		
+		.pregalary-info {
+		border: 1px solid gray;
+		display:inline-block;
+		margin:5px;		
+		
+		}
+		
 		.pregalary-img {
-		height:250px;
-		width:250px;
+		height:150px;
+		width:210px;
 		}
 		
 		.pregalary-title {
 		font-size:18px;
 		font-weight:bold;
 		margin-top:10px;
+		text-overflow: ellipsis; /*width, white-space, overflow 속성이 있어야 적용됨*/
+		overflow:hidden; /* 글자 수 넘쳤을 때 숨김 */
+		width:200px; 
+		white-space: nowrap; /* 테두리에 닿으면 자동으로 ...적용 */
+		padding:0 5px;
 		}
 		
 		.pregalary-writer {
 		font-size:16px;
-		
+		text-align: left;
+		padding:0 5px;
 		}
 		
+		.pregalary-dn {
+		text-align:left;
+		}
+				
 		.pregalary-day {
-		margin:10px;
+		padding:0 5px;
 		font-size:14px;
+		text-align:left;
 		}
 		
 		.pregalary-num {
@@ -288,7 +324,7 @@
 		font-size:14px;
 		}
 		
-	
-		
-		 
+		.preboard-tt {
+		text-align:left;
+		}
 		        

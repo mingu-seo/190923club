@@ -29,11 +29,11 @@
         		</div>
 	        	
         		<div><!-- 갤러리, 게시판, 공지 div를 감싸고 있음 -->
-        		<div class="preBoard-name">갤러리<a href=""><img src="/club/img/plus.png"></a></div>
+        		<div class="preBoard-name">갤러리</div>
         		<div class=rightBoard>
         		
         			<div class="galarybox">
-        				<div id="mm"><img class="more" src="/club/img/deo.PNG"></div>
+        				<div id="mm"><button class="view-more">더보기</button></div>
         			<div class="pregalary-info">
 					<a href=""><img  class="pregalary-img" src="https://via.placeholder.com/150"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
 					<div class="pregalary-title"><a href="">블랙위도우</a></div>
@@ -42,6 +42,7 @@
 					<span class="pregalary-day">2020-01-08</span><span class="pregalary-num">조회수&nbsp;&nbsp;285</span>
 					</div>
 					</div>
+					
 					
 					<div class="pregalary-info">
 					<a href=""><img class="pregalary-img" src="/club/img/gal2.PNG"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
@@ -73,8 +74,9 @@
         			</div>
         		</div>
         		
-        		<div class="preBoard-name">게시판<a href=""><img src="/club/img/plus.png"></a></div>
+        		<div class="preBoard-name">게시판</div>
         		<div class=rightBoard>
+        		<div id="mm"><button class="view-more">더보기</button></div>
         		<table class="preboard">
         			<tr> <!-- 최대 갯수 지정 -->
         				<td class="preboard-seq">★</td>
@@ -95,8 +97,9 @@
         		
         		</div>
         	
-        		<div class="preBoard-name">공지<a href=""><img src="/club/img/plus.png"></a></div>
+        		<div class="preBoard-name">공지</div>
         		<div class=rightBoard>
+        		<div id="mm"><button class="view-more">더보기</button></div>
         		<table class="preboard">
         			<tr> <!-- 최대 갯수 지정 -->
         				<td class="preboard-seq">★</td>

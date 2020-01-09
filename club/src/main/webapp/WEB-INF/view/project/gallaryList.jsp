@@ -134,39 +134,8 @@
        
         <div class="visual">
         	<div class="visualLeft">
-        	<div class="visualLeftInner">
-	        		<div class="leftM enu">
-		        		<ul>
-		        		<a href=""><h2>갤러리</h2></a> <!-- 위치수정가능하게 -->
-		        			<li><a href=""><h3>생일</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>
-		        			<li><a href=""><h3>대회</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>
-		        			<li><a href=""><h3>회식</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>
-		        		</ul>
-		        		<hr>
-	        		</div>
-        			<div class="leftMenu">
-		        		<ul>
-		        		<a href=""><h2>게시판</h2></a> <!-- 위치수정가능하게 -->
-		        			<li><a href=""><h3>공감해주셈</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>
-		        			<li><a href=""><h3>웃긴글</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>
-		        			<li><a href=""><h3>어쩌구</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>
-		        		</ul>
-		        		<hr> <!-- 게시판이 끝나는 시점에 있게 -->
-	        		</div>	
-        			<div class="leftMenu">
-						<ul>
-						<a href=""><h2>공지사항</h2></a>
-						</ul>
-						<hr>
-	        		</div>
-        		<div>
-        		동아리 설정
-        		<img src="/club/img/setting.png"><br>
-        		</div>
-        		<div>
-        		가입신청
-        		</div>
-        	</div>
+        	<%@ include file="boardLeft.jsp" %>
+
         </div>
         	
         	
@@ -284,6 +253,7 @@
                     <a href="">◀</a>
                     <img src="http://placekitten.com/700/700">
                     <a href="">▶</a>
+                    <div class="like">♥ 0명이 이 글을 좋아합니다.</div>
             </div>
             
        <h4>댓글 </h4>
@@ -356,11 +326,6 @@
 		</div>	
 
 
-		<div id="pageList">
-			[이전]&nbsp;
-			1&nbsp;2&nbsp;3&nbsp;4&nbsp;5&nbsp;6&nbsp;7&nbsp;8&nbsp;9&nbsp;
-			[다음]
-		</div>
         	
         </div>
    </div>

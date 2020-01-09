@@ -256,7 +256,7 @@
 		margin:10px;
 		}
 		
-		/* 미리보기 페이지 css */
+		/* 誘몃━蹂닿린 �럹�씠吏� css */
 
 		#gallaryClose{
 		color:white;
@@ -303,10 +303,10 @@
 		font-size:18px;
 		font-weight:bold;
 		margin-top:10px;
-		text-overflow: ellipsis; /*width, white-space, overflow 속성이 있어야 적용됨*/
-		overflow:hidden; /* 글자 수 넘쳤을 때 숨김 */
+		text-overflow: ellipsis; /*width, white-space, overflow �냽�꽦�씠 �엳�뼱�빞 �쟻�슜�맖*/
+		overflow:hidden; /* 湲��옄 �닔 �꽆爾ㅼ쓣 �븣 �닲源� */
 		width:200px; 
-		white-space: nowrap; /* 테두리에 닿으면 자동으로 ...적용 */
+		white-space: nowrap; /* �뀒�몢由ъ뿉 �떯�쑝硫� �옄�룞�쑝濡� ...�쟻�슜 */
 		padding:0 5px;
 		}
 		
@@ -336,7 +336,11 @@
 		}
 		        
 	
-		
+		#boardTextarea{
+		padding:30px;
+		}
 		 
 		        
-
+		.like{
+		text-align: right;
+		}

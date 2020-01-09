@@ -171,7 +171,22 @@ public class TestController {
 		return "project/gallaryList";
 	}
 	
+	@RequestMapping("/project/noticeList.do") 
+	public String noticeList() {
+		return "project/noticeList";
+	}
 	
+	
+	
+	@RequestMapping("/project/noticeWrite.do") 
+	public String noticeWrite() {
+		return "project/noticeWrite";
+	}
+	
+	@RequestMapping("/project/noticeWriteView.do") 
+	public String noticeWriteView() {
+		return "project/noticeWriteView";
+	}
 	
 	@RequestMapping("/project/admincategory.do")
 	public String adminCategory() {

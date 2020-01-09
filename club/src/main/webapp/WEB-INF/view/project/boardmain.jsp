@@ -21,7 +21,7 @@
 		
         	<div class="visualLeft">
         	<div class="visualLeftInner">
-	        		<div class="leftM enu">
+	        		<div class="leftMenu">
 		        		<ul>
 		        		<a href=""><h2>갤러리</h2></a> <!-- 위치수정가능하게 -->
 		        			<li><a href=""><h3>생일</h3></a><!-- 내용수정가능하게/추가삭제 가능하게 -->	</li>
@@ -47,26 +47,48 @@
 	        		</div>
         		<div>
         		동아리 설정
-        		<img src="/club/img/setting.png"><br>
+        		<img src="/club/img/set.png"><br>
         		</div>
         		<div>
         		가입신청
         		</div>
         	</div>
         	</div>
-        	<div class="visualRight">
-	        		<h1>미리보기<a href="admincategory.do"><img src="/club/img/setting.png"></a></h1>
+        	<div class="visualRight"> 
+        		<div id="preview">
+        		미리보기<a href="admincategory.do"><img src="/club/img/set.png"></a>
+        		</div>
 	        	
         		
         		<div class=rightBoard>
+        		
         		<h2>갤러리<a href=""><img src="/club/img/plus.png"></a></h2>
-        		<ul>
-        			<a href=""><li>게시물1</li></a>
-        			<a href=""><li>게시물2</li></a>
-        			<a href=""><li>게시물3</li></a>
-        		</ul>
+        			<div class="galarybox">
+        			
+        			<div class="pregalary-info">
+					<a href=""><img  class="pregalary-img" src="/club/img/gal1.PNG"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
+					<div class="pregalary-title">드디어 블랙위도우··</div>
+					<div class="pregalary-writer">김길동</div>
+					<span class="pregalary-day">2020-01-08</span><span class="pregalary-num">조회수&nbsp;&nbsp;285</span>
+					</div>
+					
+					<div class="pregalary-info">
+					<a href=""><img class="pregalary-img" src="/club/img/gal2.PNG"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
+					<div class="pregalary-title">이번에 홍천 비발디파크··</div>
+					<div class="pregalary-writer">홍길동</div>
+					<span class="pregalary-day">2020-12-28 </span><span class="pregalary-num">조회수&nbsp;&nbsp;285</span>
+					</div> 
+					
+					<div class="pregalary-info">
+					<a href=""><img class="pregalary-img" src="/club/img/gal3.PNG"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
+					<div class="pregalary-title">엠티가서 찍은 사진··</div>
+					<div class="pregalary-writer">최길동</div>
+					<span class="pregalary-day">2020-01-22</span><span class="pregalary-num">조회수&nbsp;&nbsp;285</span>
+					</div>
+					
+        			</div>
         		</div>
-        	
+        		
         		<div class=rightBoard>
         		<h2>게시판<a href="boardList.do"><img src="/club/img/plus.png"></a></h2>
         		<ul>
@@ -85,7 +107,6 @@
         		</ul>
         		</div>
         	</div>
-        </div>
         
        
         

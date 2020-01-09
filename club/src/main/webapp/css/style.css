@@ -256,8 +256,47 @@
 		margin:10px;
 		}
 		
+
 		#gallaryClose{
 		color:white;
 		text-align:right;
 		}
 		
+
+		#preview {
+		font-size:48px;
+		font-weight:bold;
+		margin:20px;
+		}
+		
+		.pregalary-img {
+		height:250px;
+		width:250px;
+		}
+		
+		.pregalary-title {
+		font-size:18px;
+		font-weight:bold;
+		margin-top:10px;
+		}
+		
+		.pregalary-writer {
+		font-size:16px;
+		
+		}
+		
+		.pregalary-day {
+		margin:10px;
+		font-size:14px;
+		}
+		
+		.pregalary-num {
+		margin:10px;
+		font-size:14px;
+		}
+		
+	
+		
+		 
+		        
+

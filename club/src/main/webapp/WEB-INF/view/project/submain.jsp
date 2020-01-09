@@ -46,7 +46,7 @@
         		</div>
         		<div class="clubInfo">
         		동아리 설정
-        		<a href=""><img src="/club/img/setting.png"></a>
+        		<a href=""><img src="/club/img/set.png"></a>
         		</div>
         	</div>
         	</div>

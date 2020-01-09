@@ -172,7 +172,7 @@
         	
         <div class="visualRight">
 	        		<h1>갤러리 목록</h1>
-			<h2><a href="boardWrite.do">갤러리글쓰기</a></h2>
+			<h2><a href="gallaryWrite.do">갤러리글쓰기</a></h2>
 			<div>
 				<select id="boardAlign1">
 					 	<option value="최신순">최신순</option>

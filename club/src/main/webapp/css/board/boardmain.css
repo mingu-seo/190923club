@@ -33,12 +33,13 @@
 		.pregalary-info {
 			border: 1px solid #eeeeee;
 			display:inline-block;
-			margin:5px;		
+			margin:10px 30px;
+			width:350px;	
 		}
 		
 		.pregalary-img {
 			height:150px;
-			width:210px;
+			width:100%;
 		}
 		
 		.pregalary-title {
@@ -86,28 +87,9 @@
 			margin:10px;
 			padding: 0 5px;
 		}
-		
-		.preboard-seq {
-			font-size:22px;
-			border: solid gray;
-			border-width: 0 0 1px 0 ;
-			
-		}
-		
-		.preboard-tt {
+		.preboard td {
 			font-size:22px;
 			border: solid gray;
 			border-width: 0 0 1px 0 ;
 		}
 		
-		.preboard-cnt {
-			font-size:22px;
-			border: solid gray;
-			border-width: 0 0 1px 0 ;
-		}
-		
-		.preboard-writer {
-			font-size:22px;
-			border: solid gray;
-			border-width: 0 0 1px 0 ;
-		}

@@ -35,7 +35,7 @@
         		<div class=rightBoard>
         		
         			<div class="galarybox">
-        				<div id="mm"><button class="view-more">더보기</button></div>
+        				<div id="mm"><a href="gallaryList.do"><button class="view-more">더보기</button></a></div>
         			<div class="pregalary-info">
 					<a href=""><img  class="pregalary-img" src="https://via.placeholder.com/150"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
 					<div class="pregalary-title"><a href="">블랙위도우</a></div>
@@ -80,15 +80,14 @@
         		<div class="pre-board">
         		<div class="preBoard-name">게시판</div>
         		<div class=rightBoard>
-        		<div id="mm"><button class="view-more">더보기</button></div>
+        		<div id="mm"><a href="boardList.do"><button class="view-more">더보기</button></a></div>
         		<table class="preboard">
-					<div class="tddd">
+					
         			<tr> <!-- 최대 갯수 지정 -->
         				<td class="preboard-seq">★</td>
         				<td class="preboard-tt">안녕~~</td>
         				<td class="preboard-cnt">35</td>
         			</tr>
-        			</div>
         			<tr>
         				<td class="preboard-seq">★</td>
         				<td class="preboard-tt">워크샵간다~</td>
@@ -106,7 +105,7 @@
         		<div class="pre-board">
         		<div class="preBoard-name">공지</div>
         		<div class=rightBoard>
-        		<div id="mm"><button class="view-more">더보기</button></div>
+        		<div id="mm"><a href="noticeList.do"><button class="view-more">더보기</button></a></div>
         		<table class="preboard">
         			<tr> <!-- 최대 갯수 지정 -->
         				<td class="preboard-seq">★</td>

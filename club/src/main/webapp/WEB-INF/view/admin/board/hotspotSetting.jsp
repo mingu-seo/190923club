@@ -16,13 +16,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>기본 설정</h2>
-				</div>
-				<div class="con_tit">
 					<h2>꾸미기 설정</h2>
-				</div>
-				<div>
-					<h2>프로필 선택</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">

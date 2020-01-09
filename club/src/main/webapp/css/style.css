@@ -256,7 +256,6 @@
 		margin:10px;
 		}
 		
-		/* 誘몃━蹂닿린 �럹�씠吏� css */
 
 		#gallaryClose{
 		color:white;
@@ -264,78 +263,6 @@
 		}
 		
 
-		#preview {
-		font-size:48px;
-		font-weight:bold;
-		margin:20px;
-		}
-		
-		.preBoard-name {
-		font-size:32px;
-		text-align:left;
-		font-weight:bold;
-		margin:10px;
-		}
-		
-		#mm {
-		text-align:right;
-		}
-		
-		.more {
-		width:100px;
-		height:50px;
-		margin:0 10px;
-		}
-		
-		.pregalary-info {
-		border: 1px solid gray;
-		display:inline-block;
-		margin:5px;		
-		
-		}
-		
-		.pregalary-img {
-		height:150px;
-		width:210px;
-		}
-		
-		.pregalary-title {
-		font-size:18px;
-		font-weight:bold;
-		margin-top:10px;
-		text-overflow: ellipsis; /*width, white-space, overflow �냽�꽦�씠 �엳�뼱�빞 �쟻�슜�맖*/
-		overflow:hidden; /* 湲��옄 �닔 �꽆爾ㅼ쓣 �븣 �닲源� */
-		width:200px; 
-		white-space: nowrap; /* �뀒�몢由ъ뿉 �떯�쑝硫� �옄�룞�쑝濡� ...�쟻�슜 */
-		padding:0 5px;
-		}
-		
-		.pregalary-writer {
-		font-size:16px;
-		text-align: left;
-		padding:0 5px;
-		}
-		
-		.pregalary-dn {
-		text-align:left;
-		}
-				
-		.pregalary-day {
-		padding:0 5px;
-		font-size:14px;
-		text-align:left;
-		}
-		
-		.pregalary-num {
-		margin:10px;
-		font-size:14px;
-		}
-		
-		.preboard-tt {
-		text-align:left;
-		}
-		        
-	
 		#boardTextarea{
 		padding:30px;
 		}
@@ -343,4 +270,74 @@
 		        
 		.like{
 		text-align: right;
+		}
+
+		#preview {
+			font-size:48px;
+			font-weight:bold;
+			margin:20px;
+		}
+		
+		.preBoard-name {
+			font-size:32px;
+			text-align:left;
+			font-weight:bold;
+			margin:10px;
+		}
+		
+		#mm {
+			text-align:right;
+		}
+		
+		.more {
+			width:100px;
+			height:50px;
+			margin:0 10px;
+		}
+		
+		.pregalary-info {
+			border: 1px solid gray;
+			display:inline-block;
+			margin:5px;		
+		}
+		
+		.pregalary-img {
+			height:150px;
+			width:210px;
+		}
+		
+		.pregalary-title {
+			font-size:18px;
+			font-weight:bold;
+			margin-top:10px;
+			text-overflow: ellipsis; /*width, white-space, overflow �냽�꽦�씠 �엳�뼱�빞 �쟻�슜�맖*/
+			overflow:hidden; /* 湲��옄 �닔 �꽆爾ㅼ쓣 �븣 �닲源� */
+			width:200px; 
+			white-space: nowrap; /* �뀒�몢由ъ뿉 �떯�쑝硫� �옄�룞�쑝濡� ...�쟻�슜 */
+			padding:0 5px;
+		}
+		
+		.pregalary-writer {
+			font-size:16px;
+			text-align: left;
+			padding:0 5px;
+		}
+		
+		.pregalary-dn {
+			text-align:left;
+		}
+				
+		.pregalary-day {
+			padding:0 5px;
+			font-size:14px;
+			text-align:left;
+		}
+		
+		.pregalary-num {
+			margin:10px;
+			font-size:14px;
+		}
+		
+		.preboard-tt {
+			text-align:left;
 		}

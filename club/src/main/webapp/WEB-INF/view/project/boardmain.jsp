@@ -63,7 +63,6 @@
         		<div class="preBoard-name">갤러리<a href=""><img src="/club/img/plus.png"></a></div>
         		<div class=rightBoard>
         		
-        		<h2>갤러리<a href="gallaryList.do"><img src="/club/img/plus.png"></a></h2>
         			<div class="galarybox">
         				<div id="mm"><img class="more" src="/club/img/deo.PNG"></div>
         			<div class="pregalary-info">

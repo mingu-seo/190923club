@@ -11,8 +11,8 @@
    
    
  		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-        <script src="jquery.imagesloaded.min.js"></script>
-        <script src="jquery.masonry.min.js"></script> 
+        <script src="/club/js/jquery.imagesloaded.min.js"></script>
+        <script src="/club/js/jquery.masonry.min.js"></script> 
 
 
         <script>

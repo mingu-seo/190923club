@@ -1,4 +1,4 @@
-* {
+		* {
             margin:0;
             padding:0;
         }
@@ -44,12 +44,14 @@
             float:left;
             width:25%;
             text-align:center;
-            line-height: 40px;
-            
-           
+            line-height: 40px; /*depth1의 높이와 비례 */
         }
         
-       
+      	.depth1{
+        	background-color: #c2e3f4;
+        	height:140px;
+        }
+
         .footer {
             width:100%;
             background-color:#221f1f;
@@ -87,10 +89,6 @@
         	list-style:none;
         }
         
-      .depth1>li{
-        	background-color: #c2e3f4;
-        	height:150px;
-        }
         
         
         .depth1>li>a{
@@ -258,13 +256,21 @@
 		}
 		
 		#clubName {
-		font-size:24px;
+		font-size:32px;
+		font-weight:bold;
 		margin:10px;
+		text-align:left;
 		}
 		
 		.clubInfo {
 		font-size:20px;
-		margin:5px;
+		margin:10px;
+		text-align:left;
+		}
+		
+		.clubIntro {
+		font-size:18px;
+		margin:10px;
 		}
 		
 		#clubImage {

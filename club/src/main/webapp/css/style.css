@@ -1,11 +1,13 @@
-* {
+		* {
             margin:0;
             padding:0;
         }
         
-        a{
+        a {
         	text-decoration:none;
         }
+        
+        
         .wrap {
             width:100%;
             margin:0 auto;
@@ -42,12 +44,14 @@
             float:left;
             width:25%;
             text-align:center;
-            line-height: 40px;
-            
-           
+            line-height: 40px; /*depth1의 높이와 비례 */
         }
         
-       
+      	.depth1{
+        	background-color: #c2e3f4;
+        	height:140px;
+        }
+
         .footer {
             width:100%;
             background-color:#221f1f;
@@ -85,10 +89,6 @@
         	list-style:none;
         }
         
-      .depth1>li{
-        	background-color: #c2e3f4;
-        	height:150px;
-        }
         
         
         .depth1>li>a{
@@ -120,7 +120,7 @@
         
         
          .visual .visualRight{        
-        border:1px solid black;
+        
         width:80%;
         text-align:center;
         position:relative;
@@ -129,35 +129,47 @@
         min-height: 800px;
         }
         
-        
-        
-        
-        
 		.visualLeftInner{
 		width: auto; 
 		padding: 10px;
 		}	
 		
-		.leftMenu ul {
-		font-size: 20px;
+		.board-title {
+		border-bottom:1px solid #e5e5e5;
+		border-top:3px solid #065093;
+		font-size:32px;
+		padding:5px;
+		text-align:left;
+		}
+		
+		.leftMenu  {
+		margin-top:20px;
+		}
+		
+		
+		.leftMenu ul li{
+		font-size : 24px;
+		color:#606060;
+		margin:5px;
+		text-align:left;
+		}
+		
+		.ctg-s {
+		font-size:20px;
 		padding:10px;
 		}
 		
-		.leftMenu ul li{
-		font-size : 15px;
-		color:#606060;
-		
-		}
 		
 		.rightBoard{
-		border:1px solid black;
+		border:1px solid #eeeeee;
+		border-radius: 10px;
 		padding : 10px;
-		margin:20px;
+		margin:10px;
 		}
 		
 		#content{
 		width:100%;
-		height:500px;
+		height:auto;
 		}
 		
 		#boardTable{
@@ -244,51 +256,77 @@
 		}
 		
 		#clubName {
-		font-size:24px;
+		font-size:32px;
+		font-weight:bold;
 		margin:10px;
+		text-align:left;
 		}
 		
 		.clubInfo {
 		font-size:20px;
+		margin:10px;
+		text-align:left;
+		}
+		
+		.clubIntro {
+		font-size:18px;
+		margin:10px;
 		}
 		
 		#clubImage {
 		margin:10px;
 		}
 		
-		#preview {
-		font-size:48px;
-		font-weight:bold;
-		margin:20px;
+
+		.gallaryClose{
+		color:white;
+		text-align:right;
 		}
 		
-		.pregalary-img {
-		height:250px;
-		width:250px;
+
+		#boardTextarea{
+		padding:30px;
 		}
-		
-		.pregalary-title {
-		font-size:18px;
-		font-weight:bold;
-		margin-top:10px;
-		}
-		
-		.pregalary-writer {
-		font-size:16px;
-		
-		}
-		
-		.pregalary-day {
-		margin:10px;
-		font-size:14px;
-		}
-		
-		.pregalary-num {
-		margin:10px;
-		font-size:14px;
-		}
-		
-	
-		
 		 
 		        
+		.like{
+		text-align: right;
+		}
+
+		#boardTable tr td div{
+		
+		min-height:300px;
+		width:100%;
+		background-color:#fff7ee;
+		}
+		
+		.visualRight .boardAlign{
+		float:right;
+		margin:0 30px;
+		}
+
+		.visualRight #gallarySearch{
+		float:right;
+		}
+		
+		#section{
+		padding: 10px;
+		margin:30px 0;
+		}
+		
+		#gallarySearchCategory{
+		height:auto;
+		}
+		
+		#boardSearchCategory{
+		height:auto;
+		}
+		
+		
+		#boardAlign1{
+		height:auto;
+		}
+		
+		#boardAlign2{
+		height:auto;
+		}

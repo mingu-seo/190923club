@@ -134,42 +134,7 @@ public class TestController {
 		}	
 	}
 	
-	@RequestMapping("/project/submain.do")
-	public String subMain() {
-		return "project/submain";
-	}
 	
-	@RequestMapping("/project/boardmain.do") 
-	public String boardMain() {
-		return "project/boardmain";
-	}
-
-	@RequestMapping("/project/boardList.do") 
-	public String boardList() {
-		return "project/boardList";
-	}
-	
-	
-	
-	@RequestMapping("/project/boardWrite.do") 
-	public String boardWrite() {
-		return "project/boardWrite";
-	}
-	
-	@RequestMapping("/project/boardWriteView.do") 
-	public String boardWriteView() {
-		return "project/boardWriteView";
-	}
-	
-	@RequestMapping("/project/gallaryWrite.do") 
-	public String gallaryWrite() {
-		return "project/gallaryWrite";
-	}
-
-	@RequestMapping("/project/admincategory.do")
-	public String adminCategory() {
-		return "project/adminCategory";
-	}
 	
 	// user category list 
 	

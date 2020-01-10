@@ -36,14 +36,7 @@
         		
         			<div class="galarybox">
         				<div id="mm"><a href="gallaryList.do"><button class="view-more">더보기</button></a></div>
-        			<div class="pregalary-info">
-					<a href=""><img  class="pregalary-img" src="https://via.placeholder.com/150"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
-					<div class="pregalary-title"><a href="">블랙위도우</a></div>
-					<div class="pregalary-writer">김길동</div>
-					<div class="pregalary-dn">
-					<span class="pregalary-day">2020-01-08</span><span class="pregalary-num">조회수&nbsp;&nbsp;285</span>
-					</div>
-					</div>
+        			
 					
 					
 					<div class="pregalary-info">

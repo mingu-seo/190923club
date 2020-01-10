@@ -166,6 +166,20 @@
 						 <input type="submit" value="검색">
 					
 				</div>	
+        <div class="visualRight">
+	        		<h1>게시판 목록</h1>
+		<h2><a href="boardWrite.do">게시판글쓰기</a></h2>
+		<div class="boardAlign">
+		<select id="boardAlign1">
+			 	<option value="최신순">최신순</option>
+			 	<option value="좋아요순">좋아요순</option>
+			 	<option value="조회수순">조회수순</option>
+		</select>
+		<select id="boardAlign2">
+			 	<option value="오름차순">오름차순</option>
+			 	<option value="내림차순">내림차순</option>
+		</select>
+		</div>
 	
 	
 				<div id="pageList">
@@ -181,5 +195,6 @@
         
     </div>
      <%@ include file="footer.jsp" %>
+</div>
 </body>
 </html>

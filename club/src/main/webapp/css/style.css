@@ -293,3 +293,34 @@
 		width:100%;
 		background-color:#fff7ee;
 		}
+		
+		.visualRight .boardAlign{
+		float:right;
+		margin:0 30px;
+		}
+
+		.visualRight #gallarySearch{
+		float:right;
+		}
+		
+		#section{
+		padding: 10px;
+		margin:30px 0;
+		}
+		
+		#gallarySearchCategory{
+		height:auto;
+		}
+		
+		#boardSearchCategory{
+		height:auto;
+		}
+		
+		
+		#boardAlign1{
+		height:auto;
+		}
+		
+		#boardAlign2{
+		height:auto;
+		}

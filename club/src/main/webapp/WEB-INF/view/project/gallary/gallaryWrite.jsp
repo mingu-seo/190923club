@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
     <title></title>
-   <%@ include file="head.jsp" %>
+   <%@ include file="../head.jsp" %>
 <script>
 function getThumbnailPrivew(html, $target) {
     if (html.files && html.files[0]) {
@@ -23,16 +23,16 @@ function getThumbnailPrivew(html, $target) {
 <body>
 
     <div class="wrap">
-    	<%@ include file="header.jsp" %>
+    	<%@ include file="../header.jsp" %>
        
-        <%@ include file="menu.jsp" %>
+        <%@ include file="../menu.jsp" %>
        
       
         <div class="visual">
 	
 		
         	<div class="visualLeft">
-        	<%@ include file="boardLeft.jsp" %>
+        	<%@ include file="../boardLeft.jsp" %>
         	
         	</div>
         	<div class="visualRight">
@@ -71,7 +71,7 @@ function getThumbnailPrivew(html, $target) {
         
         
     </div>
-    <%@ include file="footer.jsp" %>
+    <%@ include file="../footer.jsp" %>
   </div>
 </body>
 </html>

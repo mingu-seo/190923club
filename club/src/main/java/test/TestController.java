@@ -163,12 +163,12 @@ public class TestController {
 	
 	@RequestMapping("/project/gallaryWrite.do") 
 	public String gallaryWrite() {
-		return "project/gallaryWrite";
+		return "project/gallary/gallaryWrite";
 	}
 
 	@RequestMapping("/project/gallaryList.do") 
 	public String gallaryList() {
-		return "project/gallaryList";
+		return "project/gallary/gallaryList";
 	}
 	
 	@RequestMapping("/project/noticeList.do") 

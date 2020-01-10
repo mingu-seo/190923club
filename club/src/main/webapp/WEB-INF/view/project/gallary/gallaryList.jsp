@@ -7,7 +7,7 @@
 <html>
 <head>
     <title></title>
-   <%@ include file="head.jsp" %>
+   <%@ include file="../head.jsp" %>
    
    
  		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -130,13 +130,13 @@
 
 
     <div class="wrap">
-    	<%@ include file="header.jsp" %>
-        <%@ include file="menu.jsp" %>
+    	<%@ include file="../header.jsp" %>
+        <%@ include file="../menu.jsp" %>
        
        
         <div class="visual">
         	<div class="visualLeft">
-        <%@ include file="boardLeft.jsp" %>
+        <%@ include file="../boardLeft.jsp" %>
 
         </div>
         	
@@ -144,7 +144,8 @@
         <div class="visualRight">
 	        		<h1>갤러리 목록</h1>
 			<h2><a href="gallaryWrite.do">갤러리글쓰기</a></h2>
-			<div>
+			
+			<div class="boardAlign">
 				<select id="boardAlign1">
 					 	<option value="최신순">최신순</option>
 					 	<option value="좋아요순">좋아요순</option>
@@ -156,6 +157,20 @@
 				</select>
 			</div>
 		
+			<div id="gallarySearch">
+			 	<select id="gallarySearchCategory">
+			 	<option value="작성자">작성자</option>
+			 	<option value="제목">제목</option>
+			 	<option value="내용">내용</option>
+			 	</select>
+			 	
+				 <input type="text" name="boardSearch" id="boardSearch">
+				 
+				 <input type="submit" value="검색">
+			
+			</div>
+			
+	<div id=section>
 	 <section id="main-section">
         
         <div class="paper">
@@ -171,7 +186,7 @@
                      </div>
           </div>
             
-      <div class="paper">
+     	 <div class="paper">
                     <div class="paper-holder">
                         <a><img width="190" src="http://placekitten.com/130/206"></a>
                     </div>
@@ -191,10 +206,10 @@
                     </div>
                     <p class="paper-description">로렘 어쩌구</p>
                     <div class="paper-content">
-                      <a class="paper-link" href="#">
-                      <img src="http://placekitten.com/30/30">
-                      </a>
-                      <p class="paper-text">로렘 어쩌구</p>
+	                      <a class="paper-link" href="#">
+	                      <img src="http://placekitten.com/30/30">
+	                      </a>
+                      	  <p class="paper-text">로렘 어쩌구</p>
                      </div>
           </div>
           
@@ -205,10 +220,10 @@
                     </div>
                     <p class="paper-description">로렘 어쩌구</p>
                     <div class="paper-content">
-                      <a class="paper-link" href="#">
-                      <img src="http://placekitten.com/30/30">
-                      </a>
-                      <p class="paper-text">로렘 어쩌구</p>
+	                      <a class="paper-link" href="#">
+	                      <img src="http://placekitten.com/30/30">
+	                      </a>
+                     	 <p class="paper-text">로렘 어쩌구</p>
                      </div>
           </div>
           
@@ -311,22 +326,10 @@
 			</table>
 			<p class="gallaryClose">[닫기]</p>     
 			</div>
-			
-            
         </div>
-
-		 <div id="boardSearch">
-			 	<select id="boardSearchCategory">
-			 	<option value="작성자">작성자</option>
-			 	<option value="제목">제목</option>
-			 	<option value="내용">내용</option>
-			 	</select>
-			 	
-				 <input type="text" name="boardSearch" id="boardSearch">
-				 
-				 <input type="submit" value="검색">
-			
-		</div>	
+	</section>
+	</div>
+		 
 
 
         	
@@ -336,6 +339,6 @@
        
         
     </div>
-     <%@ include file="footer.jsp" %>
+     <%@ include file="../footer.jsp" %>
 </body>
 </html>

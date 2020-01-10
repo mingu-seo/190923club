@@ -27,7 +27,7 @@
         <div class="visualRight">
 	        		<h1>게시판 목록</h1>
 		<h2><a href="boardWrite.do">게시판글쓰기</a></h2>
-		<div>
+		<div class="boardAlign">
 		<select id="boardAlign1">
 			 	<option value="최신순">최신순</option>
 			 	<option value="좋아요순">좋아요순</option>

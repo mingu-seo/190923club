@@ -3,9 +3,11 @@
             padding:0;
         }
         
-        a{
+        a {
         	text-decoration:none;
         }
+        
+        
         .wrap {
             width:100%;
             margin:0 auto;
@@ -129,25 +131,36 @@
         min-height: 800px;
         }
         
-        
-        
-        
-        
 		.visualLeftInner{
 		width: auto; 
 		padding: 10px;
 		}	
 		
-		.leftMenu ul {
-		font-size: 20px;
+		.board-title {
+		border-bottom:1px solid #e5e5e5;
+		border-top:3px solid #065093;
+		font-size:32px;
+		padding:5px;
+		text-align:left;
+		}
+		
+		.leftMenu  {
+		margin-top:20px;
+		}
+		
+		
+		.leftMenu ul li{
+		font-size : 24px;
+		color:#606060;
+		margin:5px;
+		text-align:left;
+		}
+		
+		.ctg-s {
+		font-size:20px;
 		padding:10px;
 		}
 		
-		.leftMenu ul li{
-		font-size : 15px;
-		color:#606060;
-		
-		}
 		
 		.rightBoard{
 		border:1px solid #eeeeee;
@@ -251,6 +264,7 @@
 		
 		.clubInfo {
 		font-size:20px;
+		margin:5px;
 		}
 		
 		#clubImage {

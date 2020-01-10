@@ -34,11 +34,11 @@
 			border: 1px solid #eeeeee;
 			display:inline-block;
 			margin:10px 20px;
-			width:250px;	
+			width:180px;
 		}    
 		
 		.pregalary-img {
-			height:150px;
+			height:200px;
 			width:100%;
 		}
 		
@@ -48,7 +48,7 @@
 			margin-top:10px;
 			text-overflow: ellipsis; /*width, white-space, overflow �냽�꽦�씠 �엳�뼱�빞 �쟻�슜�맖*/
 			overflow:hidden; /* 湲��옄 �닔 �꽆爾ㅼ쓣 �븣 �닲源� */
-			width:200px; 
+			width:170px; 
 			white-space: nowrap; /* �뀒�몢由ъ뿉 �떯�쑝硫� �옄�룞�쑝濡� ...�쟻�슜 */
 			padding:0 5px;
 		}

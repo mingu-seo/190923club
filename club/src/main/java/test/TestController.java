@@ -147,6 +147,7 @@ public class TestController {
 	public String userSpotChoice() {
 		return "user/category/spotChoice";
 	}
+
 	
 	@RequestMapping("/user/category/spotRegist.do")
 	public String userSpotRegist() {
@@ -154,3 +155,5 @@ public class TestController {
 	}
 	
 }
+
+

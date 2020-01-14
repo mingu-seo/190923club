@@ -127,9 +127,12 @@
         float:right;
         height:100%;
         min-height: 800px;
+        padding: 0 10px;
+        box-sizing: border-box;
+        
         }
         
-		.visualLeftInner{
+		.visualLeftInner{ 
 		width: auto; 
 		padding: 10px;
 		}	
@@ -225,9 +228,6 @@
 		margin:30px;
 		}
 		
-		#boardList{
-		margin:30px 0;
-		}
 		
 		.boardBox {
 		border:1px solid black;
@@ -300,10 +300,6 @@
 		background-color:#fff7ee;
 		}
 		
-		.visualRight .boardAlign{
-		float:right;
-		margin:0 30px;
-		}
 
 		.visualRight #gallarySearch{
 		float:right;
@@ -318,15 +314,6 @@
 		height:auto;
 		}
 		
-		#boardSearchCategory{
-		height:auto;
-		}
 		
 		
-		#boardAlign1{
-		height:auto;
-		}
 		
-		#boardAlign2{
-		height:auto;
-		}

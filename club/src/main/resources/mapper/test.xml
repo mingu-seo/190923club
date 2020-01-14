@@ -47,4 +47,47 @@
 		SELECT * FROM spring5fs.member WHERE email=#{mail} AND password=#{pwd}
 	</select>
 	
+	
+	
+	
+	
+	
+	<select id="selectBoard" resultType="board.BoardVO" parameterType="board.BoardVO">
+		SELECT * FROM project.board
+		ORDER BY regdate DESC
+	</select>
+	
+	
+	<insert id="insertBoard" parameterType="board.BoardVO">
+		INSERT INTO project.board
+		(title, contents, regdate)
+		values
+		(#{title}, #{contents}, now())
+	</insert>
+	
+	<select id="detailBoard" parameterType="Integer" resultType="test.TestVO">
+		SELECT * FROM project.board WHERE id_post=#{id_post}
+	</select>
+	
+	<update id="updateBoard" parameterType="test.TestVO">
+		UPDATE project.board SET
+		title=#{title}, contents=#{contents}
+		<if test="picture != null">
+			, picture=#{picture}
+		</if>
+		WHERE id_post= #{id_post}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="Integer">
+		DELETE FROM project.board WHERE id_post=#{id_post}
+	</delete>
+	
+	
+	<insert id="insertGallery" parameterType="board.BoardVO">
+		INSERT INTO project.board
+		(image, contents, regdate)
+		values
+		(#{image}, #{contents}, now())
+	</insert>
+	
 </mapper>

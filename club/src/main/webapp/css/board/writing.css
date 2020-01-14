@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+	.board_ctg_name {
+		text-align:left;
+		font-size:32px;
+		margin:30px 10px; /* .visualLeftInner의 padding:10px; .leftMenu의 margin-top:20px;*/
+		padding:20px 0 10px 0;
+		border-top:3px solid #065093;
+		border-bottom:1px solid #e1dcd9;
+	}
+	
+	.board_writing {
+		text-align:right;
+		font-size:18px;
+		color:#5580a0;
+		padding:10px 0;
+	}
+	
+	.board_writing>a:hover {
+		color:#ffc2c3;
+	}
+	
+	.board_seq {
+		text-align:right;
+	}	
+	
+	.board_seq>select {
+		height:30px;
+	}
+	
+	.board_list_box {
+		margin-top:20px;
+		border:solid gray;
+		border-width: 3px 0 3px 0;
+	}
+	
+	#boardList {
+		margin-bottom: 50px;
+	}
+	
+	.board_top > th {
+		font-size:24px;
+		padding:5px 0;
+		border-bottom: 1px solid #e5e5e5;
+	}
+	
+	.board_art {
+		border-bottom: 1px solid #e5e5e5;
+	}
+	
+	.board_art > td {
+		font-size:18px;
+		padding:10px;
+	}
+	
+	.art_title {
+		text-align:left;
+		width:480px;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		white-space: nowrap;
+		display:inline-block;
+	}
+	
+	.boardSearch {
+		margin:20px;
+	}
+	
+	.search_ctg {
+		height:32px;
+	}
+	
+	#board_search_btn {
+			background-color:#9cb3c5;
+			color:white;
+			text-align:center;
+			font-size:20px;
+			border-radius: 12px;
+			margin:10px;
+			padding: 0 5px;
+	}
+	
+	#pageList {
+		margin:30px;
+	}
+	#pageList span {
+		margin:0 5px;
+		font-size: 16px;
+	}
+
+	#pageList span:hover {
+		text-decoration: underline;
+	}

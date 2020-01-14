@@ -45,5 +45,11 @@ public class BoardServiceImpl implements BoardService {
 		return r;
 	}
 
+	@Override
+	public int galleryInsert(BoardVO vo, MultipartFile file, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

@@ -64,20 +64,28 @@ public class BoardController {
 		
 	
 	
-	
 	@RequestMapping("/board/writing/boardWriteView.do") 
 	public String boardWriteView() {
 		return "board/writing/boardWriteView";
 	}
 	
-	@RequestMapping("/board/gallary/gallaryWrite.do") 
-	public String gallaryWrite() {
-		return "board/gallary/gallaryWrite";
+	@RequestMapping("/board/gallery/galleryWrite.do") 
+	public String galleryWrite() {
+		return "board/gallery/galleryWrite";
 	}
 
-	@RequestMapping("/board/gallary/gallaryList.do") 
-	public String gallaryList() {
-		return "board/gallary/gallaryList";
+	@RequestMapping("/board/writing/galleryInsert.do") 
+	public String galleryInsert(BoardVO vo, @RequestParam("image") MultipartFile file, HttpServletRequest request) {
+		
+		bService.galleryInsert(vo, file, request);
+		return "redirect://board/writing/galleryList.do";
+}
+	
+	
+	
+	@RequestMapping("/board/gallery/galleryList.do") 
+	public String galleryList() {
+		return "board/gallery/galleryList";
 	}
 	
 	@RequestMapping("/board/notice/noticeList.do") 

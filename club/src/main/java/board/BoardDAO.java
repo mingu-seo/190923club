@@ -3,9 +3,15 @@ package board;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import test.TestVO;
 
 @Repository
 public class BoardDAO {
@@ -36,10 +42,6 @@ public class BoardDAO {
 	public BoardVO loginCheck(HashMap hm) {
 		return sqlSession.selectOne("test.loginCheck", hm);
 	}
-	
-	
-	
-	
 	
 	
 	

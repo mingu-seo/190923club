@@ -70,7 +70,7 @@
 					<tr>
 						<th>카테고리</th>
 						<td>
-							<select name="category" id="tableRight">
+							<select name="category" class="tableRight">
 							<option value="공감해주셈">공감해주셈</option>
 							<option value="웃긴글">웃긴글</option>
 							<option value="어쩌구">어쩌구</option>
@@ -80,7 +80,7 @@
 					<tr>		
 						<th>제목</th>
 						<td>
-							<input type="text" name="title" id="tableRight">
+							<input type="text" name="title" class="tableRight">
 						</td>
 						
 					</tr>

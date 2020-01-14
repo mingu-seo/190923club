@@ -36,15 +36,22 @@ function getThumbnailPrivew(html, $target) {
         	
         	</div>
         	<div class="visualRight">
-        		<h1>자유게시판</h1>
+        		<h1>갤러리</h1>
 				<form action="" method="post" enctype="multipart/form-data" onsubmit="save();">
 			
 					<table id="boardTable">
 					<tr>
-						<td colspan="2"><h3>갤러리</h3></td>
+						<th>카테고리</th>
+						<td>
+						<select name="category" class="tableRight">
+							<option value="생일">생일</option>
+							<option value="대회">대회</option>
+							<option value="웃음">웃음</option>
+						</select>
+						</td>
 					</tr>
 					<tr>
-						<td><input type="file" name="image" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" ></td>
+						<td colspan="2"><input type="file" id="file" name="image" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" ></td>
 					</tr>
 					
 					<tr>

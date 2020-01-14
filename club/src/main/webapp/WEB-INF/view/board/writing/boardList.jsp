@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page import ="java.util.HashMap" %>
+<%@ page import ="board.BoardVO" %>
+<%@ page import ="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
-<head>
+
     <title></title>
    <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
 </head>
@@ -38,119 +45,39 @@
 			</select>
 			</div>
 		
-		
+			  				
 					<div>
 						<table id="boardList">
 							<tr id="tr_top">
-								<td>번호</td>
-								<td>카테고리</td>
-								<td>제목</td>
-								<td>작성자</td>
-								<td>날짜</td>
-								<td>조회수</td>
-							</tr>
-							
 							
 							<tr>
-								<td>번호 불러오기</td>
-								<td>카테고리 불러오기</td>
-								<td>제목 불러오기</td>
-								<td>작성자  불러오기</td>
-								<td>날짜  불러오기</td>
-								<td>조회수  불러오기</td>
+								<th>글번호</th>
+								<th>카테고리</th>
+								<th>제목 </th>
+								<th>작성자 </th>
+								<th>작성일</th>
+								<th>조회수</th>
 							</tr>
 							
+							
+							<%
+							for (int i=0; i<list.size(); i++) {
+							%>
 							<tr>
-								<td>번호 불러오기</td>
+								<td><a href="boardWriteView.do?id_post=<%=list.get(i).getId_post() %>"><%=list.get(i).getId_post()%></a></td>
 								<td>카테고리 불러오기</td>
-								<td>제목 불러오기</td>
+								<td ><%=list.get(i).getTitle() %></td>
 								<td>작성자  불러오기</td>
-								<td>날짜  불러오기</td>
+								<td><%=list.get(i).getRegdate() %></td>
 								<td>조회수  불러오기</td>
-							</tr>
-							
-							<tr>
-								<td>번호 불러오기</td>
-								<td>카테고리 불러오기</td>
-								<td>제목 불러오기</td>
-								<td>작성자  불러오기</td>
-								<td>날짜  불러오기</td>
-								<td>조회수  불러오기</td>
-							</tr>
-							
-							<tr>
-								<td>번호 불러오기</td>
-								<td>카테고리 불러오기</td>
-								<td>제목 불러오기</td>
-								<td>작성자  불러오기</td>
-								<td>날짜  불러오기</td>
-								<td>조회수  불러오기</td>
-							</tr>
-							
-							<tr>
-								<td>번호 불러오기</td>
-								<td>카테고리 불러오기</td>
-								<td>제목 불러오기</td>
-								<td>작성자  불러오기</td>
-								<td>날짜  불러오기</td>
-								<td>조회수  불러오기</td>
-							</tr>
-							
-							<tr>
-								<td>번호 불러오기</td>
-								<td>카테고리 불러오기</td>
-								<td>제목 불러오기</td>
-								<td>작성자  불러오기</td>
-								<td>날짜  불러오기</td>
-								<td>조회수  불러오기</td>
-							</tr>
-							
-							<tr>
-								<td>번호 불러오기</td>
-								<td>카테고리 불러오기</td>
-								<td>제목 불러오기</td>
-								<td>작성자  불러오기</td>
-								<td>날짜  불러오기</td>
-								<td>조회수  불러오기</td>
-							</tr>
-							
-							<tr>
-								<td>번호 불러오기</td>
-								<td>카테고리 불러오기</td>
-								<td>제목 불러오기</td>
-								<td>작성자  불러오기</td>
-								<td>날짜  불러오기</td>
-								<td>조회수  불러오기</td>
-							</tr>
-							
-							<tr>
-								<td>번호 불러오기</td>
-								<td>카테고리 불러오기</td>
-								<td>제목 불러오기</td>
-								<td>작성자  불러오기</td>
-								<td>날짜  불러오기</td>
-								<td>조회수  불러오기</td>
-							</tr>
-							
-							<tr>
-								<td>번호 불러오기</td>
-								<td>카테고리 불러오기</td>
-								<td>제목 불러오기</td>
-								<td>작성자  불러오기</td>
-								<td>날짜  불러오기</td>
-								<td>조회수  불러오기</td>
-							</tr>
-							
-							
-							<tr>
-								<td>번호 불러오기</td>
-								<td>카테고리 불러오기</td>
-								<td>제목 불러오기</td>
-								<td>작성자  불러오기</td>
-								<td>날짜  불러오기</td>
-								<td>조회수  불러오기</td>
-							</tr>
-							
+						
+							</tr>	
+							<%
+							}
+							%>
+			  				
+			  			
+										
 						</table>
 					</div>
 	
@@ -166,20 +93,6 @@
 						 <input type="submit" value="검색">
 					
 				</div>	
-        <div class="visualRight">
-	        		<h1>게시판 목록</h1>
-		<h2><a href="boardWrite.do">게시판글쓰기</a></h2>
-		<div class="boardAlign">
-		<select id="boardAlign1">
-			 	<option value="최신순">최신순</option>
-			 	<option value="좋아요순">좋아요순</option>
-			 	<option value="조회수순">조회수순</option>
-		</select>
-		<select id="boardAlign2">
-			 	<option value="오름차순">오름차순</option>
-			 	<option value="내림차순">내림차순</option>
-		</select>
-		</div>
 	
 	
 				<div id="pageList">

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="java.util.HashMap" %>
+<%@ page import ="board.BoardVO" %>
+<%@ page import ="java.util.ArrayList" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +19,7 @@
 					
 					nhn.husky.EZCreator.createInIFrame({
 						oAppRef: oEditors,
-						elPlaceHolder: "content", // textarea ID
+						elPlaceHolder: "contents", // textarea ID
 						sSkinURI: "/club/smarteditor/SmartEditor2Skin.html",	
 						htParams : {
 							bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -34,7 +38,7 @@
 				});
 				
 				function save(){
-					oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);//에디터의 내용을 textarea(id-content)에 적용
+					oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);//에디터의 내용을 textarea(id-content)에 적용
 				}
 				</script>
 
@@ -60,7 +64,7 @@
         	<div class="visualRight">
         		<h1>자유게시판</h1>
         		<div>
-				<form action="" method="post" enctype="multipart/form-data" onsubmit="save();">
+				<form action="boardInsert.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
 			
 					<table id="boardTable">
 					<tr>
@@ -83,7 +87,7 @@
 					<tr>		
 						
 						<td colspan="2">
-							<textarea name="content" id="content"></textarea>
+							<textarea name="contents" id="contents"></textarea>
 						</td>
 					</tr>
 					<tr>

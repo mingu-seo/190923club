@@ -41,12 +41,10 @@ function getThumbnailPrivew(html, $target) {
 			
 					<table id="boardTable">
 					<tr>
-						<td>사진</td>
-						<td>동영상</td>
+						<td colspan="2"><h3>갤러리</h3></td>
 					</tr>
 					<tr>
 						<td><input type="file" name="image" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" ></td>
-						<td><input type="file" name="video" ></td>
 					</tr>
 					
 					<tr>
@@ -57,7 +55,7 @@ function getThumbnailPrivew(html, $target) {
 					
 					<tr>		
 						<td colspan="2">
-							<textarea name="content" id="content" onfocus="this.value='';">내용을 입력하세요</textarea>
+							<textarea name="contents" id="contents" onfocus="this.value='';">내용을 입력하세요</textarea>
 						</td>
 					</tr>
 					<tr>

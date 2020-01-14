@@ -1,10 +1,29 @@
 package board;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import board.BoardDAO;
+import board.BoardService;
+import board.BoardVO;
+import test.TestVO;
 
 @Controller
 public class BoardController {
+	@Autowired
+	private BoardDAO boardDao;
+	
+	@Autowired
+	private BoardService bService;
+	
 	
 	@RequestMapping("/board/submain/submain.do")
 	public String subMain() {
@@ -22,7 +41,11 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/writing/boardList.do") 
-	public String boardList() {
+	public String boardList(Model model, 
+			HttpServletRequest req, 
+			BoardVO vo) {
+			List<BoardVO> list = boardDao.boardList(vo);
+			model.addAttribute("list", list); 
 		return "board/writing/boardList";
 	}
 	
@@ -30,6 +53,17 @@ public class BoardController {
 	public String boardWrite() {
 		return "board/writing/boardWrite";
 	}
+	
+	
+	@RequestMapping("/board/writing/boardInsert.do") 
+		public String boardInsert(BoardVO vo, HttpServletRequest request) {
+			
+			bService.boardInsert(vo, request);
+			return "redirect://board/writing/boardList.do";
+	}
+		
+	
+	
 	
 	@RequestMapping("/board/writing/boardWriteView.do") 
 	public String boardWriteView() {

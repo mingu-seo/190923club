@@ -9,9 +9,9 @@
 </head>
 <body>
 <div class="wrap">
-    <div class="header">
-        HEADER 
-    </div>
+	<!-- S T A R T :: headerArea-->
+	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
+	<!-- E N D :: headerArea-->
         <h3>카테고리 선택 후, 나만의 SPOT을 만들어보세요!</h3>
     <div class="categorycontainer">
         <div class="center">
@@ -45,9 +45,9 @@
         </div>
     </div>  
     <div class="container">
-        <div class="footer">
-            FOOTER
-        </div>
+		<!-- S T A R T :: footerArea-->
+		<%@ include file="/WEB-INF/view/user/include/bottom.jsp" %>
+		<!-- E N D :: footerArea-->
     </div>
 </div>
 </body>

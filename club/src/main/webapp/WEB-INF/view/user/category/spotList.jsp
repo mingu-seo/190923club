@@ -9,12 +9,13 @@
     <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/club/js/swiper.min.js"></script>
-    <link rel="stylesheet" href="swiper.css"/>
+    <link rel="stylesheet" href="/css/swiper.css"/>
       <script>
           $(function() {
-                var swiper = new Swiper('.swiper', {
+                var swiper = new Swiper('.banner-swiper', {
                     slidesPerView: 'auto',
                     loop: true,
+                    slidesPerView:6,
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
@@ -28,9 +29,9 @@
 </head>
 <body>
 <div class="wrap">
-    <div class="header">
-        HEADER 
-    </div>
+	<!-- S T A R T :: headerArea-->
+	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
+	<!-- E N D :: headerArea-->
     <div class="boxcontainer">
         <div class="center">
             <div class="button">
@@ -48,31 +49,40 @@
                         <div class="swiper-container banner-swiper">    
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <div class="circle">카테고리1</div>
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리1</div>
                                 </div>    
                                 <div class="swiper-slide">
-                                    <div class="circle">카테고리2</div>
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리2</div>
                                 </div>
                                 <div class="swiper-slide">      
-                                    <div class="circle">카테고리3</div>
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리3</div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <div class="circle">카테고리4</div>
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리4</div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <div class="circle">카테고리5</div>
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리5</div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <div class="circle">카테고리6</div>
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리6</div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <div class="circle">카테고리7</div>
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리7</div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <div class="circle">카테고리8</div>
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리0</div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <div class="circle">카테고리9</div>    
+                                    <div class="circle"></div> 
+                                    <div class="circle_title">카테고리9</div>   
                                 </div>
                             </div>
                             <div class="swiper-button-prev"></div>
@@ -98,9 +108,9 @@
         </div>
     </div>
     <div class="container">
-        <div class="footer">
-            FOOTER
-        </div>
+		<!-- S T A R T :: footerArea-->
+		<%@ include file="/WEB-INF/view/user/include/bottom.jsp" %>
+		<!-- E N D :: footerArea-->
     </div>
 </div>
 </body>

@@ -53,7 +53,7 @@ TestVO vo = (TestVO)request.getAttribute("vo");
 						<td colspan="2" id="boardTextarea">
 							컨텐츠 내용 넣기
 							예시이미지
-							<img src="/club/img/pic.jpg">
+							<img src="/img/pic.jpg">
 						</td>
 					</tr>
 					<tr>

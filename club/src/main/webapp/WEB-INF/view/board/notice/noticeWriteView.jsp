@@ -53,7 +53,7 @@ TestVO vo = (TestVO)request.getAttribute("vo");
 						<td colspan="2">
 							컨텐츠 내용 넣기
 							예시이미지
-							<img src="/club/img/section1_1.png">
+							<img src="/img/section1_1.png">
 						</td>
 					</tr>
 					</table>

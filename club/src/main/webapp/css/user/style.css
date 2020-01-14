@@ -72,8 +72,7 @@ div.content2{
 }
 div.circlecontainer{
     background-color: wheat;
-    height: 250px;
-    line-height: 250px;            
+    height: 250px;            
 }
 .categorycontainer > div.center{
     width: 510px;
@@ -110,13 +109,14 @@ div.circlecontainer{
 }
 /* category */
 .circle{
-    width:120px;
-    height:120px;
+    width:140px;
+    height:140px;
     background-color: rebeccapurple;
     margin : 30px;
-    padding : 30px;
     border-radius: 50%;
-    text-align: center;
+}
+.circle_title {
+	height:50px;
 }
 
 
@@ -127,25 +127,25 @@ div.circlecontainer{
     height: 400px;
     float: left;
     text-align: center;
-    line-height: 500px;
 }
 
 .spotResgistLeftbox{
     width:300px;
     height: 300px;
     background-color: white;
-    margin: 50px auto;
-    padding: 30px;
-    line-height: 200px;
+    margin: 15px auto;
+    line-height: 300px;
 }
 
+.spotResgistLeftInfo{
+	height: 70px;
+}
 .spotResgistContent{
     width: 65%;
     height: 400px;
     overflow: hidden;
     background-color: #a5c2a7;
     text-align: center;
-    line-height: 500px;
     border-bottom: 1px solid #c8c8c8;
 }
 .spotResgistContent > .center1{
@@ -171,9 +171,8 @@ div.circlecontainer{
 .spotResgistBox{
     width:150px;
     height: 150px;
-    background-color: orange;
+    background-color: beige;
     margin: 15px;
-
     float : left;
     line-height: 150px; 
 }
@@ -297,3 +296,25 @@ div.footer{
 
 }
 
+.spotResgistContent > .center1 > .title {
+	position: relative;
+	top: 10px;
+	text-align:left;
+	float:left;
+}
+
+.swiper-button-next {
+    box-sizing: border-box;
+    right: 5%;
+    /* margin-left: 730px; */
+    margin-top: -35px;
+    background: url(/club/img/visual_next.png) no-repeat center center !important ;
+}
+
+.swiper-button-prev {
+    box-sizing: border-box;
+    right: 5%;
+    /* margin-left: 730px; */
+    margin-top: -35px;
+    background: url(/club/img/visual_prev.png) no-repeat center center !important ;
+}

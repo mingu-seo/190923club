@@ -34,7 +34,7 @@
         		<div class=rightBoard>
         		
         			<div class="galarybox">
-        				<div id="mm"><a href="/club/board/gallary/gallaryList.do"><button class="view-more">더보기</button></a></div>
+        				<div id="mm"><a href="/club/board/gallery/galleryList.do"><button class="view-more">더보기</button></a></div>
         			
 					
 					

@@ -170,7 +170,7 @@
 		margin:10px;
 		}
 		
-		#content{
+		#contents{
 		width:100%;
 		height:auto;
 		}
@@ -187,31 +187,34 @@
 		background-color : #fff7ee;
 		}
 		
-		#boardTable #tableRight{
+		.tableRight{
 		width:100%;
 		margin : 10px 0;
 		height:auto;
 		
 		}
 		
-		#replyBox{
+		#file{
+		border:1px solid #d3d3d3;
+		}
+		.replyBox{
 		background: #f5f5f5;
 		}
 		
-		#reply{
+		.reply{
 		padding: 30px;
 		}
 		
-		#replyInput{
+		.replyInput{
 		margin:20px 0;
 		text-align: center;
 		}
 		
-		#replyInput th{
+		.replyInput th{
 		width:100px;
 		}
 		
-		#replyText{
+		.replyText{
 		width:100%;
 		background:#f2f2f2;
 		}
@@ -278,7 +281,7 @@
 		}
 		
 
-		.gallaryClose{
+		.galleryClose{
 		color:white;
 		text-align:right;
 		}
@@ -301,7 +304,7 @@
 		}
 		
 
-		.visualRight #gallarySearch{
+		.visualRight #gallerySearch{
 		float:right;
 		}
 		
@@ -310,10 +313,11 @@
 		margin:30px 0;
 		}
 		
-		#gallarySearchCategory{
+		#gallerySearchCategory{
 		height:auto;
 		}
 		
 		
 		
+
 		

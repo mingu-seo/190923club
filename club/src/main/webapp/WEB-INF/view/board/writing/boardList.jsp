@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page import ="java.util.HashMap" %>
+<%@ page import ="board.BoardVO" %>
+<%@ page import ="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
-<head>
+
     <title></title>
     <link rel="stylesheet" type="text/css" href="/club/css/board/writing.css">
    <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
@@ -43,6 +50,8 @@
 		
 		
 					<div class="board_list_box">
+			  				
+					<div>
 						<table id="boardList">
 							<tr class="board_top">
 								<th>번호</th>
@@ -61,7 +70,7 @@
 								<td>11</td>
 								<td>24</td>
 							</tr>
-							
+
 							<tr class="board_art">
 								<td>9</td>
 								<td class="art_title">오빠따라서 방콕을 갈까 말까 </td>
@@ -142,7 +151,7 @@
 								<td>1</td>
 								<td>575</td>
 							</tr>
-							
+
 						</table>
 					</div>
 	
@@ -157,6 +166,7 @@
 						 
 						<input id="board_search_btn" type="submit" value="검색">
 				</div>	
+
 	
 				<div id="pageList">
 					<span>[이전]</span>

@@ -27,10 +27,9 @@
       </script>     
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            HEADER 
-        </div>
+<div class="wrap">
+    <div class="header">
+        HEADER 
     </div>
     <div class="boxcontainer">
         <div class="center">
@@ -103,5 +102,6 @@
             FOOTER
         </div>
     </div>
+</div>
 </body>
 </html>

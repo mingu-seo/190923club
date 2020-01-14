@@ -43,7 +43,7 @@
         			
                     
         
-                    $('.gallaryClose').click(function(){hideLightBox();});
+                    $('.galleryClose').click(function(){hideLightBox();});
                     $('.paper').click(function(){showLightBox();});
                     $('#lightbox').click(function(event){event.stopPropagation();
                     });
@@ -143,7 +143,7 @@
         	
         <div class="visualRight">
 	        		<h1>갤러리 목록</h1>
-			<h2><a href="gallaryWrite.do">갤러리글쓰기</a></h2>
+			<h2><a href="galleryWrite.do">갤러리글쓰기</a></h2>
 			
 			<div class="boardAlign">
 				<select id="boardAlign1">
@@ -157,8 +157,8 @@
 				</select>
 			</div>
 		
-			<div id="gallarySearch">
-			 	<select id="gallarySearchCategory">
+			<div id="gallerySearch">
+			 	<select id="gallerySearchCategory">
 			 	<option value="작성자">작성자</option>
 			 	<option value="제목">제목</option>
 			 	<option value="내용">내용</option>
@@ -256,7 +256,7 @@
         
       <!--라이트박스-->
        <div id="darken-background">
-       <p class="gallaryClose">X&nbsp&nbsp&nbsp&nbsp</p>
+       <p class="galleryClose">X&nbsp&nbsp&nbsp&nbsp</p>
             <div id="lightbox">
                 <div class="user-information">
                     <a class="user-information-image" href="#">
@@ -324,7 +324,7 @@
 					<td><input type="text" name="reply" id="replyText"></td>
 					<td><input type="submit" value="작성"></td>
 			</table>
-			<p class="gallaryClose">[닫기]</p>     
+			<p class="galleryClose">[닫기]</p>     
 			</div>
         </div>
 	</section>

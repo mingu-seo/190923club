@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="java.util.HashMap" %>
+<%@ page import ="board.BoardVO" %>
+<%@ page import ="java.util.ArrayList" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -36,17 +40,21 @@ function getThumbnailPrivew(html, $target) {
         	
         	</div>
         	<div class="visualRight">
-        		<h1>자유게시판</h1>
-				<form action="" method="post" enctype="multipart/form-data" onsubmit="save();">
-			
+        		<h1>갤러리</h1>
+				<form action="galleryInsert.do" method="post" enctype="multipart/form-data" onsubmit="save();">
 					<table id="boardTable">
 					<tr>
-						<td>사진</td>
-						<td>동영상</td>
+						<th>카테고리</th>
+						<td>
+						<select name="category" class="tableRight">
+							<option value="생일">생일</option>
+							<option value="대회">대회</option>
+							<option value="웃음">웃음</option>
+						</select>
+						</td>
 					</tr>
 					<tr>
-						<td><input type="file" name="image" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" ></td>
-						<td><input type="file" name="video" ></td>
+						<td colspan="2"><input type="file" id="image" name="image_tmp" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" ></td>
 					</tr>
 					
 					<tr>
@@ -57,7 +65,7 @@ function getThumbnailPrivew(html, $target) {
 					
 					<tr>		
 						<td colspan="2">
-							<textarea name="content" id="content" onfocus="this.value='';">내용을 입력하세요</textarea>
+							<textarea name="contents" id="contents" onfocus="this.value='';">내용을 입력하세요</textarea>
 						</td>
 					</tr>
 					<tr>

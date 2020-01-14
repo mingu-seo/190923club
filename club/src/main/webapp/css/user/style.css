@@ -1,0 +1,121 @@
+@charset "UTF-8";
+/* CSS Document */
+
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Jua|Nanum+Gothic&display=swap');
+*{
+  font-family: 'Nanum Gothic', sans-serif; 
+  margin:0;
+  padding:0;
+}
+/* header */
+div.header{
+    height: 100px;
+    background-color: #273443;
+    color: white;
+    line-height: 100px;
+}
+/* body */
+body{
+   margin:0 auto;
+   text-align: center;
+   
+}
+
+.container{
+    width: 1200px;
+    margin:0 auto; 
+    overflow: hidden;
+}
+.boxcontainer{
+    margin:0 auto; 
+    width : 1200px;
+    background-color: grey;
+    overflow: hidden;
+}
+.boxcontainer > div.center{
+    width: 1160px;
+    margin: 0 auto;
+}
+
+div.lcontents1{
+    float: left;
+    background-color: #f5cfa8;
+    width: 30%; height: 300px;
+    line-height: 300px;
+}
+div.content1{
+    float: right;
+    background-color: #a5c2a7;
+    width: 70%; height: 300px;
+    line-height: 300px;
+}
+
+div.lcontents2{
+    float: left;
+    background-color: white;
+    width: 30%; height: 300px;
+    line-height: 300px;
+}
+div.content2{
+    float: right;
+    background-color: #a5c2a7;
+    width: 70%; height: 300px;
+    line-height: 300px;
+}
+div.circlecontainer{
+    background-color: wheat;
+    height: 250px;
+    line-height: 250px;            
+}
+.categorycontainer > div.center{
+    width: 700px;
+    margin: 0 auto;
+}
+/* make spot */
+.box1{
+    width:200px;
+    height: 200px;
+    background-color: white;
+    margin: 15px;
+    padding: 30px;
+    float : left;
+    line-height: 200px;
+}
+/* spot list */
+.box2{
+    width:200px;
+    height: 200px;
+    background-color: orange;
+    margin: 15px;
+    padding: 30px;
+    float : left;
+    line-height: 200px;
+}
+.categorybox{
+    width:130px;
+    height: 130px;
+    background-color: orange;
+    margin: 20px;
+    padding: 30px;
+    float : left;
+    line-height: 200px;
+}
+/* category */
+.circle{
+    width:120px;
+    height:120px;
+    background-color: rebeccapurple;
+    margin : 30px;
+    padding : 30px;
+    border-radius: 50%;
+    text-align: center;
+}
+ 
+/*footer*/
+div.footer{
+    background-color: #d1c3a7;
+    height: 80px;
+    line-height: 80px;
+    
+ 
+}

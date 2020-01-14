@@ -27,7 +27,7 @@ public class AdminController {
 	public String logout(HttpSession session) {
 		//session.invalidate();
 		session.setAttribute("adminSession", null);
-		return "redirect:/admin/index.do";
+		return "redirect:club/admin/index.do";
 	}
 	
 	

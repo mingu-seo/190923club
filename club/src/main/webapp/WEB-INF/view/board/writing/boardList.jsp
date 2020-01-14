@@ -64,7 +64,7 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 							for (int i=0; i<list.size(); i++) {
 							%>
 							<tr>
-								<td><a href="boardWriteView.do?id_post=<%=list.get(i).getId_post() %>"><%=list.get(i).getId_post()%></a></td>
+								<td><a href="<%=list.get(i).getId_post() %>"><%=list.get(i).getId_post()%></a></td>
 								<td>카테고리 불러오기</td>
 								<td ><%=list.get(i).getTitle() %></td>
 								<td>작성자  불러오기</td>

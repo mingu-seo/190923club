@@ -2,11 +2,17 @@
 /* CSS Document */
 
 @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Jua|Nanum+Gothic&display=swap');
+
 *{
   font-family: 'Nanum Gothic', sans-serif; 
   margin:0;
   padding:0;
 }
+.wrap{
+    width: 1200px;
+    margin: 0 auto;
+}
+
 /* header */
 div.header{
     height: 100px;
@@ -22,9 +28,11 @@ body{
 }
 
 .container{
-    width: 1200px;
-    margin:0 auto; 
+    width: 100%;
     overflow: hidden;
+    height: auto; /*값을 안줘도 되지만 길이가 얼마나 될지 모름*/
+    padding: 0px;
+   
 }
 .boxcontainer{
     margin:0 auto; 
@@ -68,7 +76,7 @@ div.circlecontainer{
     line-height: 250px;            
 }
 .categorycontainer > div.center{
-    width: 700px;
+    width: 510px;
     margin: 0 auto;
 }
 /* make spot */
@@ -98,7 +106,7 @@ div.circlecontainer{
     margin: 20px;
     padding: 30px;
     float : left;
-    line-height: 200px;
+    line-height: 130px;
 }
 /* category */
 .circle{
@@ -110,12 +118,182 @@ div.circlecontainer{
     border-radius: 50%;
     text-align: center;
 }
- 
+
+
+/*spotResgistForm --------------------*/
+.spotResgistLeftmenu{
+    width:35%;
+    background-color: #f5cfa8;
+    height: 400px;
+    float: left;
+    text-align: center;
+    line-height: 500px;
+}
+
+.spotResgistLeftbox{
+    width:300px;
+    height: 300px;
+    background-color: white;
+    margin: 50px auto;
+    padding: 30px;
+    line-height: 200px;
+}
+
+.spotResgistContent{
+    width: 65%;
+    height: 400px;
+    overflow: hidden;
+    background-color: #a5c2a7;
+    text-align: center;
+    line-height: 500px;
+    border-bottom: 1px solid #c8c8c8;
+}
+.spotResgistContent > .center1{
+    width: 720px;
+    height: 40px;
+    margin:0px auto;
+}
+.spotResgistContent > .center1 > .navi{
+    position: relative;
+    right: 0px;
+    top: 0px;
+    line-height: 40px;
+    float: right;
+    padding-bottom: 0px;
+}
+
+.spotResgistContent > .center2{
+    width: 720px;
+    height: 360px;
+    margin: 0px auto;
+}
+
+.spotResgistBox{
+    width:150px;
+    height: 150px;
+    background-color: orange;
+    margin: 15px;
+
+    float : left;
+    line-height: 150px; 
+}
+.footer{
+    width: 100%;
+    background-color: #d1c3a7;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+}
+* { box-sizing:border-box; }
+
+.spotRegistbutton{
+	min-width: 180px;
+    height: 44px;
+    padding: 10 30px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+	margin: 0 40px auto;
+	margin-bottom: 20px;
+}
+/* form starting stylings ------------------------------- */
+.group{ 
+   position:relative; 
+   margin-bottom:45px;
+   margin-top:15px; 
+   }
+.group > input{
+   font-size:18px;
+   padding:10px 10px 50px 1200px;
+   display:block;
+   width:300px;
+   border:none;
+   border-bottom:1px solid #757575;
+}
+.group > input:focus{outline:none;}
+
+/* LABEL ======================================= */
+label{
+   color:#999; 
+   font-size:40px;
+   font-weight:normal;
+   position:absolute;
+   pointer-events:none;
+   left:5px;
+   top:10px;
+   transition:0.2s ease all; 
+   -moz-transition:0.2s ease all; 
+   -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+ .group >   input:focus ~ label, input:valid ~ label{
+   top:-20px;
+   font-size:30px;
+   color:#5264AE;
+}
+
+/* BOTTOM BARS ================================= */
+.bar{ position:relative; display:block; width:600px; }
+.bar:before, .bar:after {
+   content:'';
+   height:2px; 
+   width:0;
+   bottom:1px; 
+   position:absolute;
+   background:#5264AE; 
+   transition:0.2s ease all; 
+   -moz-transition:0.2s ease all; 
+   -webkit-transition:0.2s ease all;
+}
+.bar:before {
+   left:50%;
+}
+.bar:after {
+   right:50%; 
+}
+
+/* active state */
+.group > input:focus ~ .bar:before, input:focus ~ .bar:after {
+   width:1210px;
+}
+
+/* HIGHLIGHTER ================================== */
+   .highlight {
+   position:absolute;
+   height:60%; 
+   width:100%; 
+   top:25%; 
+   left:0;
+   pointer-events:none;
+   opacity:0.5;
+}
+
+/* active state */
+ .group >   input:focus ~ .highlight {
+   -webkit-animation:inputHighlighter 0.3s ease;
+   -moz-animation:inputHighlighter 0.3s ease;
+   animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+   @-webkit-keyframes inputHighlighter {
+   from { background:#5264AE; }
+   to 	{ width:0; background:transparent; }
+   }
+   @-moz-keyframes inputHighlighter {
+   from { background:#5264AE; }
+   to 	{ width:0; background:transparent; }
+   }
+   @keyframes inputHighlighter {
+   from { background:#5264AE; }
+   to 	{ width:0; background:transparent; }
+   }
 /*footer*/
 div.footer{
     background-color: #d1c3a7;
     height: 80px;
     line-height: 80px;
-    
- 
+
 }
+

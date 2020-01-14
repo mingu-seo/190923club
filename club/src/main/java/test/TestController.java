@@ -148,4 +148,12 @@ public class TestController {
 		return "user/category/spotChoice";
 	}
 
+	
+	@RequestMapping("/user/category/spotRegist.do")
+	public String userSpotRegist() {
+		return "user/category/spotRegistForm";
+	}
+	
 }
+
+

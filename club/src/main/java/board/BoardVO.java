@@ -9,7 +9,7 @@ public class BoardVO {
 	private int id_category;
 	private String title;
 	private String contents;
-	private String picture;
+	private String image;
 	private int id_post;
 	private int like;
 	private int view;
@@ -44,11 +44,11 @@ public class BoardVO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public String getPicture() {
-		return picture;
+	public String getImage() {
+		return image;
 	}
-	public void setPicture(String picture) {
-		this.picture = picture;
+	public void setImage(String image) {
+		this.image = image;
 	}
 	public int getId_post() {
 		return id_post;

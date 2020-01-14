@@ -33,7 +33,7 @@ public class BoardServiceImpl implements BoardService {
 		FileUtil fu = new FileUtil();
 		fu.fileUpload(file, request.getRealPath("/upload/test/"));
 		if (fu.fileName != null && !"".equals(fu.fileName)) {
-			vo.setPicture(fu.fileName);
+			vo.setImage(fu.fileName);
 		}
 		int r = boardDao.boardUpdate(vo);
 		return r;
@@ -47,9 +47,14 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int galleryInsert(BoardVO vo, MultipartFile file, HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		FileUtil fu = new FileUtil();
+		fu.fileUpload(file, request.getRealPath("/upload"));
+		
+				vo.setImage(fu.fileName);
+				int r= boardDao.galleryInsert(vo);
+				
+				return r;
+		}
 
 
 }

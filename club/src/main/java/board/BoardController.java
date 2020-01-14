@@ -74,11 +74,11 @@ public class BoardController {
 		return "board/gallery/galleryWrite";
 	}
 
-	@RequestMapping("/board/writing/galleryInsert.do") 
-	public String galleryInsert(BoardVO vo, @RequestParam("image") MultipartFile file, HttpServletRequest request) {
+	@RequestMapping("/board/gallery/galleryInsert.do") 
+	public String galleryInsert(BoardVO vo, @RequestParam("image_tmp") MultipartFile file, HttpServletRequest request) {
 		
 		bService.galleryInsert(vo, file, request);
-		return "redirect://board/writing/galleryList.do";
+		return "redirect://board/gallery/galleryList.do";
 }
 	
 	

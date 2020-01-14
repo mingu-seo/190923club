@@ -39,6 +39,11 @@ public class BoardDAO {
 		return sqlSession.delete("test.deleteBoard", id);
 	}
 	
+	public int galleryInsert(BoardVO vo) {
+		return sqlSession.insert("test.insertGallery", vo);
+	}
+	
+	
 	public BoardVO loginCheck(HashMap hm) {
 		return sqlSession.selectOne("test.loginCheck", hm);
 	}

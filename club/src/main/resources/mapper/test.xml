@@ -82,4 +82,12 @@
 		DELETE FROM project.board WHERE id_post=#{id_post}
 	</delete>
 	
+	
+	<insert id="insertGallery" parameterType="board.BoardVO">
+		INSERT INTO project.board
+		(image, contents, regdate)
+		values
+		(#{image}, #{contents}, now())
+	</insert>
+	
 </mapper>

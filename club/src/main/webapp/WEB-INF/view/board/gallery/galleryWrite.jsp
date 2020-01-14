@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="java.util.HashMap" %>
+<%@ page import ="board.BoardVO" %>
+<%@ page import ="java.util.ArrayList" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -37,8 +41,7 @@ function getThumbnailPrivew(html, $target) {
         	</div>
         	<div class="visualRight">
         		<h1>갤러리</h1>
-				<form action="" method="post" enctype="multipart/form-data" onsubmit="save();">
-			
+				<form action="galleryInsert.do" method="post" enctype="multipart/form-data" onsubmit="save();">
 					<table id="boardTable">
 					<tr>
 						<th>카테고리</th>
@@ -51,7 +54,7 @@ function getThumbnailPrivew(html, $target) {
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="file" id="file" name="image" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" ></td>
+						<td colspan="2"><input type="file" id="image" name="image_tmp" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" ></td>
 					</tr>
 					
 					<tr>

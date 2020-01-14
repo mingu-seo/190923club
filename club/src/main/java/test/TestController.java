@@ -171,6 +171,11 @@ public class TestController {
 		return "project/gallary/gallaryList";
 	}
 	
+	@RequestMapping("/project/gallaryView.do") 
+	public String gallaryView() {
+		return "project/gallary/gallaryView";
+	}
+	
 	@RequestMapping("/project/noticeList.do") 
 	public String noticeList() {
 		return "project/noticeList";

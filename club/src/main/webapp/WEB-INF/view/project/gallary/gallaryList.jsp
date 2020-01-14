@@ -100,13 +100,11 @@
             #darken-background{
                 position:absolute;
                 top:0; left:0; right:0;
-                max-height:24%;
-
+				max-height:50%;
                 display:none;
                 background:rgba(0,0,0,0.9);
                 z-index:10000;
-                overflow-y:scroll;
-                width:100%;
+                overflow:scroll;
             }
 
             #lightbox{
@@ -172,10 +170,10 @@
 			
 	<div id=section>
 	 <section id="main-section">
-        
+    <!-- 나중에 여기부터 삭제 -->    
         <div class="paper">
                     <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/206"></a>
+                        <a><img width="190" src="http://placekitten.com/140/206"></a>
                     </div>
                     <p class="paper-description">로렘 어쩌구</p>
                     <div class="paper-content">
@@ -188,48 +186,7 @@
             
      	 <div class="paper">
                     <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/206"></a>
-                    </div>
-                    <p class="paper-description">로렘 어쩌구</p>
-                    <div class="paper-content">
-                      <a class="paper-link" href="#">
-                      <img src="http://placekitten.com/30/30">
-                      </a>
-                      <p class="paper-text">로렘 어쩌구</p>
-                     </div>
-          </div>
-          
-          
-          <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/206"></a>
-                    </div>
-                    <p class="paper-description">로렘 어쩌구</p>
-                    <div class="paper-content">
-	                      <a class="paper-link" href="#">
-	                      <img src="http://placekitten.com/30/30">
-	                      </a>
-                      	  <p class="paper-text">로렘 어쩌구</p>
-                     </div>
-          </div>
-          
-          
-          <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/206"></a>
-                    </div>
-                    <p class="paper-description">로렘 어쩌구</p>
-                    <div class="paper-content">
-	                      <a class="paper-link" href="#">
-	                      <img src="http://placekitten.com/30/30">
-	                      </a>
-                     	 <p class="paper-text">로렘 어쩌구</p>
-                     </div>
-          </div>
-          
-          <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/206"></a>
+                        <a><img width="190" src="http://placekitten.com/150/206"></a>
                     </div>
                     <p class="paper-description">로렘 어쩌구</p>
                     <div class="paper-content">
@@ -242,7 +199,7 @@
           
           <div class="paper">
                     <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/206"></a>
+                        <a><img width="190" src="http://placekitten.com/160/206"></a>
                     </div>
                     <p class="paper-description">로렘 어쩌구</p>
                     <div class="paper-content">
@@ -252,7 +209,141 @@
                       <p class="paper-text">로렘 어쩌구</p>
                      </div>
           </div>
-			
+          <div class="paper">
+                    <div class="paper-holder">
+                        <a><img width="190" src="http://placekitten.com/170/206"></a>
+                    </div>
+                    <p class="paper-description">로렘 어쩌구</p>
+                    <div class="paper-content">
+                      <a class="paper-link" href="#">
+                      <img src="http://placekitten.com/30/30">
+                      </a>
+                      <p class="paper-text">로렘 어쩌구</p>
+                     </div>
+          </div>
+          <div class="paper">
+                    <div class="paper-holder">
+                        <a><img width="190" src="http://placekitten.com/180/206"></a>
+                    </div>
+                    <p class="paper-description">로렘 어쩌구</p>
+                    <div class="paper-content">
+                      <a class="paper-link" href="#">
+                      <img src="http://placekitten.com/30/30">
+                      </a>
+                      <p class="paper-text">로렘 어쩌구</p>
+                     </div>
+          </div>
+          <div class="paper">
+                    <div class="paper-holder">
+                        <a><img width="190" src="http://placekitten.com/190/206"></a>
+                    </div>
+                    <p class="paper-description">로렘 어쩌구</p>
+                    <div class="paper-content">
+                      <a class="paper-link" href="#">
+                      <img src="http://placekitten.com/30/30">
+                      </a>
+                      <p class="paper-text">로렘 어쩌구</p>
+                     </div>
+          </div>
+          <div class="paper">
+                    <div class="paper-holder">
+                        <a><img width="190" src="http://placekitten.com/150/106"></a>
+                    </div>
+                    <p class="paper-description">로렘 어쩌구</p>
+                    <div class="paper-content">
+                      <a class="paper-link" href="#">
+                      <img src="http://placekitten.com/30/30">
+                      </a>
+                      <p class="paper-text">로렘 어쩌구</p>
+                     </div>
+          </div>
+          <div class="paper">
+                    <div class="paper-holder">
+                        <a><img width="190" src="http://placekitten.com/150/96"></a>
+                    </div>
+                    <p class="paper-description">로렘 어쩌구</p>
+                    <div class="paper-content">
+                      <a class="paper-link" href="#">
+                      <img src="http://placekitten.com/30/30">
+                      </a>
+                      <p class="paper-text">로렘 어쩌구</p>
+                     </div>
+          </div>
+          <div class="paper">
+                    <div class="paper-holder">
+                        <a><img width="190" src="http://placekitten.com/150/26"></a>
+                    </div>
+                    <p class="paper-description">로렘 어쩌구</p>
+                    <div class="paper-content">
+                      <a class="paper-link" href="#">
+                      <img src="http://placekitten.com/30/30">
+                      </a>
+                      <p class="paper-text">로렘 어쩌구</p>
+                     </div>
+          </div>
+          <div class="paper">
+                    <div class="paper-holder">
+                        <a><img width="190" src="http://placekitten.com/150/86"></a>
+                    </div>
+                    <p class="paper-description">로렘 어쩌구</p>
+                    <div class="paper-content">
+                      <a class="paper-link" href="#">
+                      <img src="http://placekitten.com/30/30">
+                      </a>
+                      <p class="paper-text">로렘 어쩌구</p>
+                     </div>
+          </div>
+          <div class="paper">
+                    <div class="paper-holder">
+                        <a><img width="190" src="http://placekitten.com/150/76"></a>
+                    </div>
+                    <p class="paper-description">로렘 어쩌구</p>
+                    <div class="paper-content">
+                      <a class="paper-link" href="#">
+                      <img src="http://placekitten.com/30/30">
+                      </a>
+                      <p class="paper-text">로렘 어쩌구</p>
+                     </div>
+          </div>
+          <div class="paper">
+                    <div class="paper-holder">
+                        <a><img width="190" src="http://placekitten.com/150/56"></a>
+                    </div>
+                    <p class="paper-description">로렘 어쩌구</p>
+                    <div class="paper-content">
+                      <a class="paper-link" href="#">
+                      <img src="http://placekitten.com/30/30">
+                      </a>
+                      <p class="paper-text">로렘 어쩌구</p>
+                     </div>
+          </div>
+          <div class="paper">
+                    <div class="paper-holder">
+                        <a><img width="190" src="http://placekitten.com/180/246"></a>
+                    </div>
+                    <p class="paper-description">로렘 어쩌구</p>
+                    <div class="paper-content">
+                      <a class="paper-link" href="#">
+                      <img src="http://placekitten.com/30/30">
+                      </a>
+                      <p class="paper-text">로렘 어쩌구</p>
+                     </div>
+          </div>
+          <div class="paper">
+                    <div class="paper-holder">
+                        <a><img width="190" src="http://placekitten.com/158/277"></a>
+                    </div>
+                    <p class="paper-description">로렘 어쩌구</p>
+                    <div class="paper-content">
+                      <a class="paper-link" href="#">
+                      <img src="http://placekitten.com/30/30">
+                      </a>
+                      <p class="paper-text">로렘 어쩌구</p>
+                     </div>
+          </div>
+          
+          
+	   <!-- 나중에 여기까지 삭제 -->    		
         
       <!--라이트박스-->
        <div id="darken-background">
@@ -274,9 +365,9 @@
                     <div class="like">♥ 0명이 이 글을 좋아합니다.</div>
             </div>
             
-       <h4>댓글 </h4>
-			<div id="replyBox">
-				<table id="reply">
+         <h4>댓글 </h4>
+			<div class="replyBox">
+				<table class="reply">
 					<tr>
 						<th> 홍길동</th>
 						<td> 어케 댓글창 만들지</td>
@@ -318,15 +409,16 @@
 			
 			<div>
 			
-			<table id="replyInput">
+			<table class="replyInput">
 				<tr>
 					<th> 이름</th>
-					<td><input type="text" name="reply" id="replyText"></td>
+					<td><input type="text" name="reply" class="replyText"></td>
 					<td><input type="submit" value="작성"></td>
 			</table>
 			<p class="gallaryClose">[닫기]</p>     
 			</div>
         </div>
+	
 	</section>
 	</div>
 		 

@@ -23,8 +23,8 @@
         	<!-- /왼쪽메뉴 -->
         	
         	<div class="visualRight">
-        		<h1><a href="/club/board/writing/boardWrite.do">게시판 글쓰기</a></h1>
-        		<h1><a href="/club/board/gallery/galleryWrite.do">갤러리 글쓰기</a></h1>
+        		<h1><a href="/board/writing/boardWrite.do">게시판 글쓰기</a></h1>
+        		<h1><a href="/board/gallary/gallaryWrite.do">갤러리 글쓰기</a></h1>
         	</div>
         	
         </div>

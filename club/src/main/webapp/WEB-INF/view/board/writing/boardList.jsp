@@ -12,7 +12,7 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 <html>
 
     <title></title>
-    <link rel="stylesheet" type="text/css" href="/club/css/board/writing.css">
+    <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
    <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
 </head>
 <body>

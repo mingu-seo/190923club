@@ -52,7 +52,7 @@ String board_type = request.getParameter("board_type");
 	        		
 	        		<div class="clubInfo">
 	        		동아리 설정
-	        		<a href=""><img src="/club/img/board/set.png"></a>
+	        		<a href=""><img src="/img/board/set.png"></a>
 	        		</div>
 	        		
 	</div>

@@ -11,7 +11,7 @@
         	<div class="visualLeftInner">
         		<div>
         			<!--<br><br>동아리 소개 사진  -->
-	        		<img id="clubImage" src="/club/img/board/pic.jpg"><br>
+	        		<img id="clubImage" src="/img/board/pic.jpg"><br>
 		        		<div id="clubName">
 			        		스키 동아리
 			        	</div>
@@ -35,7 +35,7 @@
         		</div>
         		<div class="clubInfo">
         		동아리 설정
-        		<a href=""><img src="/club/img/board/set.png"></a>
+        		<a href=""><img src="/img/board/set.png"></a>
         		</div>
         	</div>
         	</div>

@@ -10,9 +10,9 @@
           		<p>사업자 등록번호 111-00-22222</p>
           	</div>
           	<div class="sns_area">
-	          	<a href=""><img src="/club/img/board/facebook_ico.png"></a>
-	          	<a href=""><img src="/club/img/board/insta_ico.png"></a>
-	          	<a href=""><img src="/club/img/board/blog_ico.png"></a>
+	          	<a href=""><img src="/img/board/facebook_ico.png"></a>
+	          	<a href=""><img src="/img/board/insta_ico.png"></a>
+	          	<a href=""><img src="/img/board/blog_ico.png"></a>
           	</div>
           </div>
         </div>

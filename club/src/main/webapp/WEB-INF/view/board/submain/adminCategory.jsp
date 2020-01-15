@@ -74,13 +74,13 @@
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<img class="categorySeq" src="/club/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div>
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<img class="categorySeq" src="/club/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div>
         			</div>
@@ -91,24 +91,24 @@
         			</div>
         			<div class="boardBox">
         				<div>
-        				<a href=""><img class="add" src="/club/img/plus.png"></a><!-- 카데고리 추가 -->
+        				<a href=""><img class="add" src="/club/img/board/plus.png"></a><!-- 카데고리 추가 -->
         				</div>
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<img class="categorySeq" src="/club/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div> 
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<img class="categorySeq" src="/club/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div>
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<img class="categorySeq" src="/club/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div>
         			</div>
@@ -119,24 +119,24 @@
         			</div>
         			<div class="boardBox">
         				<div>
-        				<a href=""><img class="add" src="/club/img/plus.png"></a><!-- 카데고리 추가 -->
+        				<a href=""><img class="add" src="/club/img/board/plus.png"></a><!-- 카데고리 추가 -->
         				</div>
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<img class="categorySeq" src="/club/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div> 
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<img class="categorySeq" src="/club/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div>
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/club/img/up.PNG"><!-- 카테고리 순서변경 -->
+        				<img class="categorySeq" src="/club/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div>
         			</div>

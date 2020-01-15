@@ -9,9 +9,9 @@
 </head>
 <body>
 <div class="wrap">
-    <div class="header">
-        HEADER 
-    </div>
+	<!-- S T A R T :: headerArea-->
+	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
+	<!-- E N D :: headerArea-->
     <div class="container">
         <h2 style="padding : 10 0px;">HOT SPOT 생성페이지</h2>
     </div>
@@ -28,14 +28,13 @@
     
     <div class="container">
         <div class="spotResgistLeftmenu">
-        <div class="spotResgistLeftbox" img="#">선택한 프로필<br>프로필은 추후에 변경 가능합니다.</div>
+        <div class="spotResgistLeftbox" img="#">선택한 프로필</div>
+        <h3 class="spotResgistLeftInfo">프로필은 추후 변경가능합니다.</h3>
 
         </div>
         <div class="spotResgistContent">
             <div class="center1">
-                <h3 style="
-                position: absolute;
-                top: 60px; ">커버선택</h3>
+                <h3 class="title">커버선택</h3>
                 <div class="navi">
                     <span class="paging">1/3</span>
                     <span class="btnArea">
@@ -87,9 +86,9 @@
         <input type="submit" class="spotRegistbutton" value="확    인">        
     </div>
         <div class="container">
-        <div class="footer">
-            FOOTER
-        </div>
+		<!-- S T A R T :: footerArea-->
+		<%@ include file="/WEB-INF/view/user/include/bottom.jsp" %>
+		<!-- E N D :: footerArea-->
     </div>
 </div>
 </body>

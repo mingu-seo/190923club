@@ -10,8 +10,9 @@
 <head>
 <meta charset="UTF-8">
     <title></title>
-   <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
+  	<%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 				<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
 				<script>
 				var oEditors = [];
@@ -19,13 +20,9 @@
 					
 					nhn.husky.EZCreator.createInIFrame({
 						oAppRef: oEditors,
-<<<<<<< HEAD
-						elPlaceHolder: "content", // textarea ID
-						sSkinURI: "/smarteditor/SmartEditor2Skin.html",	
-=======
 						elPlaceHolder: "contents", // textarea ID
-						sSkinURI: "/club/smarteditor/SmartEditor2Skin.html",	
->>>>>>> branch 'master' of https://github.com/mingu-seo/190923club.git
+						sSkinURI: "/smarteditor/SmartEditor2Skin.html",	
+
 						htParams : {
 							bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 							bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -60,47 +57,48 @@
       
         <div class="visual">
 	
-		
+			<!-- 왼쪽메뉴 -->
         	<div class="visualLeft">
-        
         	<%@ include file="/WEB-INF/view/board/submain/boardLeft.jsp" %>
-
         	</div>
+        	
+        	<!-- 오른쪽 contents -->
         	<div class="visualRight">
-        		<h1>자유게시판</h1>
+        		<div class="board_ctg_name">게시판 목록</div>
+        		
         		<div>
 				<form action="boardInsert.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
-			
 					<table id="boardTable">
-					<tr>
-						<th>카테고리</th>
-						<td>
-							<select name="category" class="tableRight">
-							<option value="공감해주셈">공감해주셈</option>
-							<option value="웃긴글">웃긴글</option>
-							<option value="어쩌구">어쩌구</option>
-							</select>
-						</td>
-					</tr>
-					<tr>		
-						<th>제목</th>
-						<td>
-							<input type="text" name="title" class="tableRight">
-						</td>
+						<tr>
+							<th>카테고리</th>
+								<td class="writing_box">
+									<select name="category" class="tableRight">
+										<option value="공감해주셈">공감해주셈</option>
+										<option value="웃긴글">웃긴글</option>
+										<option value="어쩌구">어쩌구</option>
+									</select>
+								</td>
+						</tr>
 						
-					</tr>
-					<tr>		
+						<tr>		
+							<th>제목</th>
+								<td class="writing_box">
+									<input type="text" name="title" class="tableRight">
+								</td>
+						</tr>
 						
-						<td colspan="2">
-							<textarea name="contents" id="contents"></textarea>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2"><input type="submit" value="작성완료">&nbsp;&nbsp;
-						<input type="reset" value="다시 작성"/></td>
-					</tr>
-						
+						<tr>		
+							<td colspan="2">
+								<textarea name="contents" id="contents"></textarea>
+							</td>
+						</tr>
 					</table>
+						
+						<div class="writing_btns">
+							<span><input type="submit" value="작성완료" class="btns"></span>
+							<span><input type="reset" value="다시 작성" class="btns"/></span>
+							<span><input type="button" value="목록" class="btns"></span>
+						</div>
 				</form>
 			</div>
         </div>

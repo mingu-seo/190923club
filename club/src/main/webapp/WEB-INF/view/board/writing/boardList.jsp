@@ -67,12 +67,12 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 							for (int i=0; i<list.size(); i++) {
 							%>
 							<tr class="board_art">
-								<td><a href="<%=list.get(i).getId_post() %>"><%=list.get(i).getId_post()%></a></td>
+								<td><a><%=list.get(i).getId_post()%></a></td>
 								<td class="art_title"><%=list.get(i).getTitle() %></td>
-								<td>작성자  불러오기</td>
-								<td><%=list.get(i).getRegdate() %></td>
-								<td>좋아요 불러오기</td>
-								<td>조회수  불러오기</td>
+								<td>김세영</td>
+								<td><%=util.Function.getYmd(list.get(i).getRegdate()) %></td>
+								<td>11</td>
+								<td>235</td>
 						
 							</tr>	
 							<%
@@ -86,7 +86,7 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 					</table>
 					</div>
 	
-				 <div class="boardSearch">
+				<div class="boardSearch">
 					 	<select class="search_ctg">
 					 	<option value="작성자">작성자</option>
 					 	<option value="제목">제목</option>
@@ -115,5 +115,6 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
         
     </div>
      <%@ include file="/WEB-INF/view/board/submain/footer.jsp" %>
+</div>
 </body>
 </html>

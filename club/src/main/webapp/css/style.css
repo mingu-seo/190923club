@@ -170,29 +170,12 @@
 		margin:10px;
 		}
 		
-		#contents{
+		/*무슨 css인지 모름*/
+		/*#contents{
 		width:100%;
 		height:auto;
-		}
+		}*/
 		
-		#boardTable{
-		margin:30px 0;
-		border : 1px solid #f0f0f0;
-		}
-		
-		
-		#boardTable th{
-		width:300px;
-		margin : 10px 0;
-		background-color : #fff7ee;
-		}
-		
-		.tableRight{
-		width:100%;
-		margin : 10px 0;
-		height:auto;
-		
-		}
 		
 		#file{
 		border:1px solid #d3d3d3;

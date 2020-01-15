@@ -11,11 +11,10 @@
 
 
     <div class="wrap">
-    	<%@ include file="header.jsp" %>
        
+    	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
         <%@ include file="menu.jsp" %>
-       
-      
+
         <div class="visual">
         	
         	<!-- 왼쪽메뉴 -->

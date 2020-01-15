@@ -85,10 +85,10 @@
         <input type="button" class="spotRegistbutton" value="취    소">
         <input type="submit" class="spotRegistbutton" value="확    인">        
     </div>
-        <div class="container">
+
 		<!-- S T A R T :: footerArea-->
 		<%@ include file="/WEB-INF/view/user/include/bottom.jsp" %>
-		<!-- E N D :: footerArea-->
+
     </div>
 </div>
 </body>

@@ -32,7 +32,7 @@
                  <li class="outer-menu-item">
                      <span class="menu-title"><img src="/img/board/myPage.png"></span>
                      <ul class="inner-menu">
-                         <li class="inner-menu-item"><a href="#">내 정보</a></li>
+                         <li class="inner-men	u-item"><a href="#">내 정보</a></li>
                          <li class="inner-menu-item"><a href="#">내가 쓴 글</a></li>
                          <li class="inner-menu-item"><a href="#">공지사항</a></li>
                          <li class="inner-menu-item"><a href="#">로그아웃</a></li>

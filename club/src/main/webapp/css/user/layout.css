@@ -105,7 +105,25 @@ li{ list-style: none;}
 
 /*-- E N D :: headerArea-- */
 /*-- S T A R T :: footerArea--*/
-
+.footer {
+    width:100%;
+    background-color:#beige;
+    color:#999;
+    padding:20px 0;
+    overflow: hidden;
+    height:auto;
+    margin:0 auto;
+    position: relative;
+    bottom: 0;
+}
+.footer>.size>.footer_menu{
+	color: #999;
+}
+.footer>.size>.sns_area{
+	position:absolute;
+	top:15px;
+	right:0;
+}
 /*-- E N D :: footerArea-- */
 
 

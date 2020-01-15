@@ -55,7 +55,7 @@
 										<option value="contents">내용</option>
 									</select>
 									<input type="text" name="sval" value="" title="검색할 내용을 입력해주세요" />
-									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+									<input type="image" src="/img/admin/btn_search.gif" class="sbtn" alt="검색" />
 								</div>
 							</form>
 							<!-- //search --> 

@@ -62,7 +62,7 @@ $(window).load(function(){
 		<div class="util">
 			<ul>
 				<li class="frist"><a href="#" onclick="">Home</a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/logout.do">LogOut</a></li>
+				<li><a href="/admin/logout.do">LogOut</a></li>
 			</ul>
 		</div>
 		<!-- util : e --> 
@@ -72,25 +72,25 @@ $(window).load(function(){
   				<li><span>기본 설정</span>
 					<div class="standard_left">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/admin/board/hotspotInfo.do"><span>HOTSPOT 정보</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/board/hotspotSetting.do"><span>꾸미기 설정</span></a></li>
+						<li><a href="/admin/board/hotspotInfo.do"><span>HOTSPOT 정보</span></a></li>
+						<li><a href="/admin/board/hotspotSetting.do"><span>꾸미기 설정</span></a></li>
 					</ul>
 					</div>
 				</li>
-				<li><a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>회원관리</span></a></li>
+				<li><a href="/admin/product/index.do" class="parent"><span>회원관리</span></a></li>
 				<li><span>게시판</span>
 					<div class="standard_left">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/admin/board/notice.do"><span>공지사항</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/board/qna.do"><span>Q&A</span></a></li>
+						<li><a href="/admin/board/notice.do"><span>공지사항</span></a></li>
+						<li><a href="/admin/board/qna.do"><span>Q&A</span></a></li>
 					</ul>
 					</div>
 				</li>
 				<li><span>관리자관리</span>
 					<div class="standard_right">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/admin/board/post.do"><span>게시글</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/board/club.do"><span>동아리</span></a></li>
+						<li><a href="/admin/board/post.do"><span>게시글</span></a></li>
+						<li><a href="/admin/board/club.do"><span>동아리</span></a></li>
 					</ul>
 					</div>
 				</li>

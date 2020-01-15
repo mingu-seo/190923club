@@ -34,11 +34,9 @@
         		<div class=rightBoard>
         		
         			<div class="galarybox">
-<<<<<<< HEAD
+
         				<div id="mm"><a href="/board/gallary/gallaryList.do"><button class="view-more">더보기</button></a></div>
-=======
-        				<div id="mm"><a href="/club/board/gallery/galleryList.do"><button class="view-more">더보기</button></a></div>
->>>>>>> branch 'master' of https://github.com/mingu-seo/190923club.git
+
         			
 					
 					

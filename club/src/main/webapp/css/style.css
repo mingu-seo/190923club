@@ -36,7 +36,7 @@
           
         .menu {
             width:1200px;
-            height:40px;
+            height:140px;
             margin:0 auto;
         }
         .menu > ul > li {
@@ -48,7 +48,7 @@
         }
         
       	.depth1{
-        	background-color: #c2e3f4;
+        	background-color: #dbeef4;
         	height:140px;
         }
 
@@ -115,7 +115,7 @@
         height:auto;
         float:left; 
         overflow: hidden; 
-        background: #f2f4ef;
+        background: #eef0f3;
         }
         
         

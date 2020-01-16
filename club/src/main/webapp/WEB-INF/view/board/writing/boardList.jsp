@@ -12,6 +12,7 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 <html>
 
     <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
    <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
 </head>
@@ -68,7 +69,7 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 							%>
 							<tr class="board_art">
 								<td><a><%=list.get(i).getId_post()%></a></td>
-								<td class="art_title"><%=list.get(i).getTitle() %></td>
+								<td class="art_title"><a href="/board/writing/boardWriteView.do?id_post=<%=list.get(i).getId_post()%>"><%=list.get(i).getTitle() %></a></td>
 								<td>김세영</td>
 								<td><%=util.Function.getYmd(list.get(i).getRegdate()) %></td>
 								<td>11</td>

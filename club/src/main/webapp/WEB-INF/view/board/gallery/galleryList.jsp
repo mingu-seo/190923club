@@ -8,7 +8,7 @@
 <head>
     <title></title>
    <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
-   <link rel="stylesheet" type="text/css" href="/css/style.css">
+   <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
    
    
  		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -94,32 +94,37 @@
             
         </style>
         
-           
+          
+        
         <!--라이트박스-->
         <style>
 
             #darken-background{
                 position:absolute;
                 top:0; left:0; right:0;
-                max-height:24%;
-
+                height:100%;
                 display:none;
                 background:rgba(0,0,0,0.9);
                 z-index:10000;
                 overflow-y:scroll;
                 width:100%;
+                text-align:center;
             }
-
-            #lightbox{
-                width:80%;
-                margin:20px auto; padding:15px;
+			
+			#lb_wrap {
+				width:850px;
+            	margin:0 auto;
+            	background: #f2f4ef;
+				
+			}
+        	#lightbox{
+                max-width:800px;
+                margin:5px auto; padding:10px;
                 border:1px solid #333333;
                 border-radius:5px;
                 background: white;
                 box-shadow: 0 5px 5px rgba(34,25,25,0.4);
-                text-align: center;
-            }
-
+                }
             .user-information{overflow:hidden; text-align: left;}
             .user-information-image{float:left; width:70px;}
             .user-information-text{float:right; width:620px;}
@@ -143,32 +148,31 @@
         	
         	
         <div class="visualRight">
-	        		<h1>갤러리 목록</h1>
-			<h2><a href="galleryWrite.do">갤러리글쓰기</a></h2>
-			
-			<div class="boardAlign">
-				<select id="boardAlign1">
+       		<div class="board_ctg_name">게시판 목록</div><!-- 카테고리 이름 -->
+			<div class="board_writing"><a href="boardWrite.do">글작성</a></div>
+	
+			<div class="board_seq">
+				<select>
 					 	<option value="최신순">최신순</option>
 					 	<option value="좋아요순">좋아요순</option>
 					 	<option value="조회수순">조회수순</option>
 				</select>
-				<select id="boardAlign2">
+				
+				<select>
 					 	<option value="오름차순">오름차순</option>
 					 	<option value="내림차순">내림차순</option>
 				</select>
 			</div>
 		
-			<div id="gallerySearch">
-			 	<select id="gallerySearchCategory">
+			<div class="board_seq">
+			 	<select>
 			 	<option value="작성자">작성자</option>
 			 	<option value="제목">제목</option>
 			 	<option value="내용">내용</option>
 			 	</select>
 			 	
-				 <input type="text" name="boardSearch" id="boardSearch">
-				 
-				 <input type="submit" value="검색">
-			
+				 <input type="text" name="boardSearch" class="g_s">
+				 <input type="submit" value="검색" class="g_s">
 			</div>
 			
 	<div id=section>
@@ -256,78 +260,6 @@
 			
         
       <!--라이트박스-->
-       <div id="darken-background">
-       <p class="galleryClose">X&nbsp&nbsp&nbsp&nbsp</p>
-            <div id="lightbox">
-                <div class="user-information">
-                    <a class="user-information-image" href="#">
-                        <img src="http://placekitten.com/70/70">
-                    </a>
-                    <div class="user-information-text">
-                        <h3>작성자</h3>
-                        <p>로렘 어쩌구</p>
-                    </div>
-                </div>
-                    <hr class="lightbox-splitter">
-                    <a href="">◀</a>
-                    <img src="http://placekitten.com/700/700">
-                    <a href="">▶</a>
-                    <div class="like">♥ 0명이 이 글을 좋아합니다.</div>
-            </div>
-            
-       <h4>댓글 </h4>
-			<div id="replyBox">
-				<table id="reply">
-					<tr>
-						<th> 홍길동</th>
-						<td> 어케 댓글창 만들지</td>
-						<td> 20-01-05</td>
-					</tr>
-					<tr>
-						<th> 김길동</th>
-						<td>클낫다 클낫어</td>
-						<td> 20-01-06</td>
-					</tr>
-					<tr>
-						<th> 박길동</th>
-						<td> 대댓글창도 만들어야 하는디</td>
-						<td> 20-01-07</td>
-					</tr>
-					<tr>
-						<th> 박길동</th>
-						<td> 대댓글창도 만들어야 하는디</td>
-						<td> 20-01-07</td>
-					</tr>
-					<tr>
-						<th> 박길동</th>
-						<td> 대댓글창도 만들어야 하는디</td>
-						<td> 20-01-07</td>
-					</tr>
-					<tr>
-						<th> 박길동</th>
-						<td> 테스트중</td>
-						<td> 20-01-07</td>
-					</tr>
-					<tr>
-						<th> 박길동</th>
-						<td> 테스트중</td>
-						<td> 20-01-07</td>
-					</tr>
-				</table>
-			</div>
-			
-			
-			<div>
-			
-			<table id="replyInput">
-				<tr>
-					<th> 이름</th>
-					<td><input type="text" name="reply" id="replyText"></td>
-					<td><input type="submit" value="작성"></td>
-			</table>
-			<p class="galleryClose">[닫기]</p>     
-			</div>
-        </div>
 	</section>
 	</div>
 		 
@@ -342,4 +274,64 @@
     </div>
      <%@ include file="/WEB-INF/view/board/submain/footer.jsp" %>
 </body>
+
+      <div id="lb_wrap">
+       <div id="darken-background">
+       <p class="galleryClose"></p>
+            <div id="lightbox">
+            	<div>
+					<span class="galleryClose">X</span>     
+				</div>
+                <div class="user-information">
+                    <a class="user-information-image" href="#">
+                        <img src="http://placekitten.com/70/70">
+                    </a>
+                    <div class="user-information-text">
+                        <h3>작성자</h3>
+                        <p>로렘 어쩌구</p>
+                    </div>
+                </div>
+                    <hr class="lightbox-splitter">
+                    <a href="">◀</a>
+                    <img src="http://placekitten.com/700/700">
+                    <a href="">▶</a>
+                    
+          	<div class="view_repl_info">
+				<span class="view_like">♥</span>
+				<span>이 글을 N명이 좋아합니다.</span>
+			</div>
+					
+			<div id="replyBox">
+						<table id="reply">
+							<tr> 
+								<th class="repl_date">홍길동</th>
+								<td>어케 댓글창 만들지</td>
+								<th class="repl_date">2020-01-05</th>
+							</tr>
+							<tr>
+								<th class="repl_date">김길동</th>
+								<td>클낫다 클낫어</td>
+								<th class="repl_date">2020-01-06</th>
+							</tr>
+							<tr>
+								<th class="repl_date">박길동</th>
+								<td>대댓글창도 만들어야 하는디</td>
+								<th class="repl_date">2020-01-07</th>
+							</tr>
+							
+							<tr>
+								<td colspan="2">
+									<textarea id="replyText">댓글을 입력하세요</textarea>
+								</td>
+								<td> 
+									<input type="submit" id="repl_btn" value="등록"> 
+								</td>
+							</tr>
+						</table>
+					</div>
+        </div>
+            
+       
+        </div>
+       </div>
 </html>

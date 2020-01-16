@@ -1,103 +1,99 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import ="java.util.HashMap" %>
+<%@ page import ="board.BoardVO" %>
+<%@ page import ="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
    <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
-<%@page import="test.TestVO"%>
-<%
-TestVO vo = (TestVO)request.getAttribute("vo");
-%>				
+
+<% List<BoardVO> list = (List<BoardVO>)request.getAttribute("list"); %>				
 
 </head>
 <body>
+ 
 
-
-    <div class="wrap">
+<div class="wrap">
     	<%@ include file="/WEB-INF/view/board/submain/header.jsp" %>
-       
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
-      
         <div class="visual">
 	
-		
         	<div class="visualLeft">
-        	
         	<%@ include file="/WEB-INF/view/board/submain/boardLeft.jsp" %>
-
         	</div>
+        	
         	<div class="visualRight">
-        		<h1>자유게시판</h1>
-        		<div>
-					<table id="boardTable">
-					<tr>
-						<th>카테고리</th>
-						<td>
-							카테고리명 넣기
-
-						</td>
-					</tr>
-					<tr>		
-						<th>제목</th>
-						<td>
-						타이틀명 넣기
-						</td>
-						
-					</tr>
-					<tr>		
-						
-						<td colspan="2" id="boardTextarea">
-							컨텐츠 내용 넣기
-							예시이미지
-							<img src="/img/pic.jpg">
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" class="like">♥ 0명이 이 글을 좋아합니다</td>
-					</table>
+        		<div class="board_ctg_name">게시판 목록</div>
+        	<div class="view_wrap">
+					<div class="view_tt">제목 불러오기
+						<div class="view_info">
+							<span>김세영</span>
+							<span>|</span> 
+							<span>2020-01-06</span>
+						</div>
+					</div>
+					
+					<div class="view_ctt">
+						내용이 이것저것
+						뭐가 많이 들어가겠지
+						사진도들어가고
+						이것저것
+						아 허리가 너무아프다
+						<img src="/img/board/gal2.PNG">
+					</div>
+					
+					<div class="view_repl_info">
+						<span class="view_like">♥</span>
+						<span>이 글을 N명이 좋아합니다.</span>
+					</div>		
+				
+				<div class="repl_box">
+					<div id="replyBox">
+						<table id="reply">
+							<tr> 
+								<th class="repl_date">홍길동</th>
+								<td>어케 댓글창 만들지</td>
+								<th class="repl_date">2020-01-05</th>
+							</tr>
+							<tr>
+								<th class="repl_date">김길동</th>
+								<td>클낫다 클낫어</td>
+								<th class="repl_date">2020-01-06</th>
+							</tr>
+							<tr>
+								<th class="repl_date">박길동</th>
+								<td>대댓글창도 만들어야 하는디</td>
+								<th class="repl_date">2020-01-07</th>
+							</tr>
+							
+							<tr>
+								<td colspan="2">
+									<textarea id="replyText">댓글을 입력하세요</textarea>
+								</td>
+								<td> 
+									<input type="submit" id="repl_btn" value="등록"> 
+								</td>
+							</tr>
+						</table>
+					</div> 
+				</div>
+				
+				
 			</div>
 			
-			<h4>댓글 </h4>
-			<div id="replyBox">
-				<table id="reply">
-					<tr>
-						<th> 홍길동</th>
-						<td> 어케 댓글창 만들지</td>
-						<td> 20-01-05</td>
-					</tr>
-					<tr>
-						<th> 김길동</th>
-						<td>클낫다 클낫어</td>
-						<td> 20-01-06</td>
-					</tr>
-					<tr>
-						<th> 박길동</th>
-						<td> 대댓글창도 만들어야 하는디</td>
-						<td> 20-01-07</td>
-					</tr>
-				</table>
-			</div>
-			
-			
-			<div>
-			
-			<table id="replyInput">
-				<tr>
-					<th> 이름</th>
-					<td><input type="text" name="reply" id="replyText"></td>
-					<td><input type="submit" value="작성"></td>
-			</table>
-			</div>
-			<a href="boardList.do">게시글 목록으로 돌아가기</a>
+			<input type="button" value="목록" class="btns"> 
         </div>
         
         
     </div>
     <%@ include file="/WEB-INF/view/board/submain/footer.jsp" %>
-  </div>
+ </div>
 </body>
 </html>

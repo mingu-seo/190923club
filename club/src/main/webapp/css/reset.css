@@ -117,3 +117,7 @@ input[type="file"] {vertical-align:middle; height:22px; width:80%; margin-right:
 a[href^=tel]{color:inherit;text-decoration:none;}
 
 legend, caption{display:none;}
+
+input[type="submit"],  input[type="reset"] {
+	border:0;
+}

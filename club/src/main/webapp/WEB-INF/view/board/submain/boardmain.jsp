@@ -34,12 +34,7 @@
         		<div class=rightBoard>
         		
         			<div class="galarybox">
-
         				<div id="mm"><a href="/board/gallary/gallaryList.do"><button class="view-more">더보기</button></a></div>
-
-        			
-					
-					
 					<div class="pregalary-info">
 					<a href=""><img class="pregalary-img" src="/img/board/gal2.PNG"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
 					<div class="pregalary-title"><a href="">이번에 홍천 비발디파크에서 스키탄거 </a></div>
@@ -50,7 +45,7 @@
 					</div> 
 					
 					<div class="pregalary-info">
-					<a href=""><img  class="pregalary-img" src="/club/img/board/gal1.PNG"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
+					<a href=""><img  class="pregalary-img" src="/img/board/gal1.PNG"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
 					<div class="pregalary-title"><a href="">블랙위도우</a></div>
 					<div class="pregalary-writer">김길동</div>
 					<div class="pregalary-dn">

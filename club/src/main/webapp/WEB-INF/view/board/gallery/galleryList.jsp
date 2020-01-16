@@ -8,11 +8,12 @@
 <head>
     <title></title>
    <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
+   <link rel="stylesheet" type="text/css" href="/css/style.css">
    
    
  		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-        <script src="/club/js/jquery.imagesloaded.min.js"></script>
-        <script src="/club/js/jquery.masonry.min.js"></script> 
+        <script src="/js/jquery.imagesloaded.min.js"></script>
+        <script src="/js/jquery.masonry.min.js"></script> 
 
 
         <script>

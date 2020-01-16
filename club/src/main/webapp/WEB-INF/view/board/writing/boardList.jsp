@@ -12,7 +12,7 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 <html>
 
     <title></title>
-    <link rel="stylesheet" type="text/css" href="/club/css/board/writing.css">
+    <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
    <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
 </head>
 <body>
@@ -62,100 +62,31 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 								<th>조회</th>
 							</tr>
 							
+
+							<%
+							for (int i=0; i<list.size(); i++) {
+							%>
 							<tr class="board_art">
-								<td>10</td>
-								<td class="art_title">가나다라마바사아자차카타파하언제까지길게써야되는거야 아...</td>
-								<td>조한빈</td>
-								<td>2020.01.15.</td>
+								<td><a><%=list.get(i).getId_post()%></a></td>
+								<td class="art_title"><%=list.get(i).getTitle() %></td>
+								<td>김세영</td>
+								<td><%=util.Function.getYmd(list.get(i).getRegdate()) %></td>
 								<td>11</td>
-								<td>24</td>
-							</tr>
+								<td>235</td>
+						
+							</tr>	
+							<%
+							}
+							%>
+			  				
+			  			
+										
 
-							<tr class="board_art">
-								<td>9</td>
-								<td class="art_title">오빠따라서 방콕을 갈까 말까 </td>
-								<td>김세영</td>
-								<td>2020.01.11.</td>
-								<td>21</td>
-								<td>365</td>
-							</tr> 
-							
-							<tr class="board_art">
-								<td>8</td>
-								<td class="art_title">제목 불러오기</td>
-								<td>조한빈</td>
-								<td>2020.01.29.</td>
-								<td>55</td>
-								<td>451</td>
-							</tr>
-							
-							<tr class="board_art">
-								<td>7</td>
-								<td class="art_title">제목 불러오기</td>
-								<td>손슬기</td>
-								<td>2020.01.01.</td>
-								<td>61</td>
-								<td>3</td>
-							</tr>
-							
-							<tr class="board_art">
-								<td>6</td>
-								<td class="art_title">제목 불러오기</td>
-								<td>김세영</td>
-								<td>2020.01.14.</td>
-								<td>77</td>
-								<td>755</td>
-							</tr>
-							
-							<tr class="board_art">
-								<td>5</td>
-								<td class="art_title">제목 불러오기</td>
-								<td>서주찬</td>
-								<td>2020.01.05.</td>
-								<td>14</td>
-								<td>65</td>
-							</tr>
-							
-							<tr class="board_art">
-								<td>4</td>
-								<td class="art_title">제목 불러오기</td>
-								<td>김세영</td>
-								<td>2020.01.08.</td>
-								<td>98</td>
-								<td>91</td>
-							</tr>
-							
-							<tr class="board_art">
-								<td>3</td>
-								<td class="art_title">제목 불러오기</td>
-								<td>손슬기</td>
-								<td>2020.01.14.</td>
-								<td>61</td>
-								<td>22</td>
-							</tr>
-							
-							<tr class="board_art">
-								<td>2</td>
-								<td class="art_title">제목 불러오기</td>
-								<td>서주찬</td>
-								<td>2020.01.14.</td>
-								<td>8</td>
-								<td>2354</td>
-							</tr>
-							
-							<tr class="board_art">
-								<td>1</td>
-								<td class="art_title">제목 불러오기</td>
-								<td>조한빈</td>
-								<td>2020.01.14.</td>
-								<td>1</td>
-								<td>575</td>
-							</tr>
 
-						</table>
+					</table>
 					</div>
 	
-				 <div class="boardSearch">
+				<div class="boardSearch">
 					 	<select class="search_ctg">
 					 	<option value="작성자">작성자</option>
 					 	<option value="제목">제목</option>
@@ -184,5 +115,6 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
         
     </div>
      <%@ include file="/WEB-INF/view/board/submain/footer.jsp" %>
+</div>
 </body>
 </html>

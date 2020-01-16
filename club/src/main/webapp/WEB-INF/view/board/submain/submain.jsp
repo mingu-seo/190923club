@@ -11,11 +11,10 @@
 
 
     <div class="wrap">
-    	<%@ include file="header.jsp" %>
        
+    	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
         <%@ include file="menu.jsp" %>
-       
-      
+
         <div class="visual">
         	
         	<!-- 왼쪽메뉴 -->
@@ -23,19 +22,11 @@
         	<!-- /왼쪽메뉴 -->
         	
         	<div class="visualRight">
-
         		<h1><a href="/board/writing/boardWrite.do">게시판 글쓰기</a></h1>
         		<h1><a href="/board/gallary/gallaryWrite.do">갤러리 글쓰기</a></h1>
-
-        	</div>
-        	
+        	</div>        	
         </div>
-        
-        
         <%@ include file="footer.jsp" %>
-        
-   
-        
     </div>
 </body>
 </html>

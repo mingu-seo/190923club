@@ -11,17 +11,23 @@
 <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
-   <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
 
 <% List<BoardVO> list = (List<BoardVO>)request.getAttribute("list"); %>				
+   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
+<%@page import="test.TestVO"%>
+<%
+TestVO vo = (TestVO)request.getAttribute("vo");
+%>				
 
 </head>
 <body>
  
 
-<div class="wrap">
-    	<%@ include file="/WEB-INF/view/board/submain/header.jsp" %>
-        <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
+
+    <div class="wrap">
+	<!-- S T A R T :: headerArea-->
+	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
+	<!-- E N D :: headerArea-->
        
         <div class="visual">
 	
@@ -93,7 +99,12 @@
         
         
     </div>
+<<<<<<< HEAD
     <%@ include file="/WEB-INF/view/board/submain/footer.jsp" %>
  </div>
+=======
+    <%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
+  </div>
+>>>>>>> branch 'master' of https://github.com/mingu-seo/190923club.git
 </body>
 </html>

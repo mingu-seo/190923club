@@ -11,24 +11,21 @@
 <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
-  	<%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
+  	<%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 				<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
 				<script>
 				var oEditors = [];
 				$(function() {
-					
 					nhn.husky.EZCreator.createInIFrame({
 						oAppRef: oEditors,
 						elPlaceHolder: "contents", // textarea ID
 						sSkinURI: "/smarteditor/SmartEditor2Skin.html",	
-
 						htParams : {
 							bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 							bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
 							bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
 							fOnBeforeUnload : function(){
-								
 							}
 						}, //boolean
 						fOnAppLoad : function(){
@@ -50,8 +47,9 @@
 
 
     <div class="wrap">
-    	<%@ include file="/WEB-INF/view/board/submain/header.jsp" %>
-       
+	<!-- S T A R T :: headerArea-->
+	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<!-- E N D :: headerArea-->
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
       
@@ -105,7 +103,7 @@
         
         
     </div>
-    <%@ include file="/WEB-INF/view/board/submain/footer.jsp" %>
+    <%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
   </div>
 </body>
 </html>

@@ -4,7 +4,7 @@
 
 /*-- S T A R T :: headerArea--*/
 *{ margin: 0; padding: 0;font-family: '맑은 고딕','Malgun Gothic', Gothic, sans-serif;}
-a{ text-decoration: none;}
+a{ text-decoration: none; color : black;}
 li{ list-style: none;}
 /* 기본 클래스 */
 .pull-left{float: left;}
@@ -37,7 +37,7 @@ li{ list-style: none;}
 .menu-title{
     text-align: center;
     padding:5px 20px;
-    margin: 30 auto;
+    margin: 30px auto;
 }
 
 .inner-menu{
@@ -66,11 +66,12 @@ li{ list-style: none;}
 }
 .header_search {
 	float:left;
+	height: 80px;
 }
 
 /* 검색 양식 추가하기 (네비게이션 내부검색) */
 .search-bar{
-    height: 26px;
+    height: 32px;
     padding: 7px;
 }
 .input-search{
@@ -80,25 +81,26 @@ li{ list-style: none;}
     border: 1px solid #CCCCCC;
     border-radius: 15px 0 0 15px;
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.5);
-    width: 220px; height: 24px;
+    width: 220px; 
+    height: 32px;
     padding: 0 0 0 10px;
     font-size: 12px;
     color: #555555;
-    margin: 30 auto;
+    margin: 30px auto;
 }
 .input-search:focus{
     border-color: rgba(82,168,236,0.8);
     outline: 0;
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
 }
-.input-search-submit{
+input[type='submit'].input-search-submit{
     display: block;
     float: left;
-    width: 50px; height: 26px;
+    width: 50px; 
+    height: 32px;
     border-radius: 0 15px 15px 0;
     border: 1px solid #CCCCCC;
-    margin-left: -1px;
-    margin: 30 auto;
+    margin: 30px auto;
     vertical-align: top;
     display: inline-block;
 }
@@ -107,23 +109,14 @@ li{ list-style: none;}
 /*-- S T A R T :: footerArea--*/
 .footer {
     width:100%;
-    background-color:#beige;
-    color:#999;
     padding:20px 0;
     overflow: hidden;
-    height:auto;
-    margin:0 auto;
-    position: relative;
-    bottom: 0;
 }
-.footer>.size>.footer_menu{
-	color: #999;
+.footer > .footer_menu{
+	text-align: center;
 }
-.footer>.size>.sns_area{
-	position:absolute;
-	top:15px;
-	right:0;
-}
+
+
 /*-- E N D :: footerArea-- */
 
 

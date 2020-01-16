@@ -294,7 +294,6 @@ label{
 .swiper-button-next {
     box-sizing: border-box;
     right: 5%;
-    /* margin-left: 730px; */
     margin-top: -35px;
     background: url(/img/visual_next.png) no-repeat center center !important ;
 }
@@ -302,12 +301,6 @@ label{
 .swiper-button-prev {
     box-sizing: border-box;
     right: 5%;
-    /* margin-left: 730px; */
     margin-top: -35px;
     background: url(/img/visual_prev.png) no-repeat center center !important ;
 }
-
-/*footer*/
-
-   
-        

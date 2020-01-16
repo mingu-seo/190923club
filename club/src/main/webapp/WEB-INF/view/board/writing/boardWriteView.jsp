@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
     <title></title>
-   <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
+   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 <%@page import="test.TestVO"%>
 <%
 TestVO vo = (TestVO)request.getAttribute("vo");
@@ -17,8 +17,9 @@ TestVO vo = (TestVO)request.getAttribute("vo");
 
 
     <div class="wrap">
-    	<%@ include file="/WEB-INF/view/board/submain/header.jsp" %>
-       
+	<!-- S T A R T :: headerArea-->
+	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
+	<!-- E N D :: headerArea-->
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
       
@@ -97,7 +98,7 @@ TestVO vo = (TestVO)request.getAttribute("vo");
         
         
     </div>
-    <%@ include file="/WEB-INF/view/board/submain/footer.jsp" %>
+    <%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
   </div>
 </body>
 </html>

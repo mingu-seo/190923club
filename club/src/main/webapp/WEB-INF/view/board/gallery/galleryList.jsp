@@ -7,7 +7,7 @@
 <html>
 <head>
     <title></title>
-   <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
+   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
    <link rel="stylesheet" type="text/css" href="/css/style.css">
    
    
@@ -131,7 +131,7 @@
 
 
     <div class="wrap">
-    	<%@ include file="/WEB-INF/view/board/submain/header.jsp" %>
+    	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
        
@@ -340,6 +340,8 @@
        
         
     </div>
-     <%@ include file="/WEB-INF/view/board/submain/footer.jsp" %>
+		<!-- S T A R T :: footerArea-->
+		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
+		<!-- E N D :: footerArea-->
 </body>
 </html>

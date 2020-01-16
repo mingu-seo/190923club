@@ -5,15 +5,16 @@
 <html>
 <head>
     <title></title>
-   <%@ include file="head.jsp" %>
+   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
    <link rel="stylesheet" type="text/css" href="/css/board/boardmain.css">
 </head>
 <body>
 
 
     <div class="wrap">
-    	<%@ include file="header.jsp" %>
-       
+	<!-- S T A R T :: headerArea-->
+	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<!-- E N D :: headerArea-->  
         <%@ include file="menu.jsp" %>
        
       
@@ -40,7 +41,7 @@
 					<div class="pregalary-title"><a href="">이번에 홍천 비발디파크에서 스키탄거 </a></div>
 					<div class="pregalary-writer">홍길동</div>
 					<div class="pregalary-dn">
-					<span class="pregalary-day">2020-12-28</span><span class="pregalary-num">조회수 285</span>
+					<span class="pregalary-day">2020-12-28</span>&nbsp;&nbsp;<span class="pregalary-num">조회수 285</span>
 					</div>
 					</div> 
 					
@@ -49,7 +50,7 @@
 					<div class="pregalary-title"><a href="">블랙위도우</a></div>
 					<div class="pregalary-writer">김길동</div>
 					<div class="pregalary-dn">
-					<span class="pregalary-day">2020-01-08</span><span class="pregalary-num">조회수 285</span>
+					<span class="pregalary-day">2020-01-08</span>&nbsp;&nbsp;<span class="pregalary-num">조회수 285</span>
 					</div>
 					</div>
 					
@@ -58,7 +59,7 @@
 					<div class="pregalary-title"><a href="">엠티가서 찍은 사진 다들 구경해라 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</a></div>
 					<div class="pregalary-writer">최길동</div>
 					<div class="pregalary-dn">					
-					<span class="pregalary-day">2020-01-22</span><span class="pregalary-num">조회수 285</span>
+					<span class="pregalary-day">2020-01-22</span>&nbsp;&nbsp;<span class="pregalary-num">조회수 285</span>
 					</div>
 					</div>
 					
@@ -67,7 +68,7 @@
 					<div class="pregalary-title"><a href="">블랙위도우</a></div>
 					<div class="pregalary-writer">김길동</div>
 					<div class="pregalary-dn">
-					<span class="pregalary-day">2020-01-08</span><span class="pregalary-num">조회수 285</span>
+					<span class="pregalary-day">2020-01-08</span>&nbsp;&nbsp;<span class="pregalary-num">조회수 285</span>
 					</div>
 					</div>
 					
@@ -177,8 +178,9 @@
         
     </div>
    </div>
-     <%@ include file="footer.jsp" %>
-     
+		<!-- S T A R T :: footerArea-->
+		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
+		<!-- E N D :: footerArea-->
  </div>
 </body>
 </html>

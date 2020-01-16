@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
     <title></title>
-   <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
+   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 <script>
 function getThumbnailPrivew(html, $target) {
     if (html.files && html.files[0]) {
@@ -27,7 +27,7 @@ function getThumbnailPrivew(html, $target) {
 <body>
 
     <div class="wrap">
-    	<%@ include file="/WEB-INF/view/board/submain/header.jsp" %>
+    	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
        
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
@@ -79,7 +79,9 @@ function getThumbnailPrivew(html, $target) {
         
         
     </div>
-    <%@ include file="/WEB-INF/view/board/submain/footer.jsp" %>
+		<!-- S T A R T :: footerArea-->
+		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
+		<!-- E N D :: footerArea-->
   </div>
 </body>
 </html>

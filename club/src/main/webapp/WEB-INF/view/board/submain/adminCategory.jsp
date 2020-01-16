@@ -5,14 +5,15 @@
 <html>
 <head>
     <title></title>
-   <%@ include file="head.jsp" %>
+   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 </head>
 <body>
 
 
     <div class="wrap">
-    	<%@ include file="header.jsp" %>
-       
+	<!-- S T A R T :: headerArea-->
+	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<!-- E N D :: headerArea-->  
         <%@ include file="menu.jsp" %>
        
       
@@ -146,7 +147,9 @@
         </div>
        
     </div>
-     <%@ include file="footer.jsp" %>
+		<!-- S T A R T :: footerArea-->
+		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
+		<!-- E N D :: footerArea-->
    </div>
 </body>
 </html>

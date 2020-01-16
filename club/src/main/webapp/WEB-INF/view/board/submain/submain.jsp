@@ -5,14 +5,16 @@
 <html>
 <head>
     <title></title>
-   <%@ include file="head.jsp" %>
+   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 </head>
 <body>
 
 
     <div class="wrap">
        
-    	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
+	<!-- S T A R T :: headerArea-->
+	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<!-- E N D :: headerArea-->
         <%@ include file="menu.jsp" %>
 
         <div class="visual">
@@ -26,7 +28,9 @@
         		<h1><a href="/board/gallary/gallaryWrite.do">갤러리 글쓰기</a></h1>
         	</div>        	
         </div>
-        <%@ include file="footer.jsp" %>
+		<!-- S T A R T :: footerArea-->
+		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
+		<!-- E N D :: footerArea-->
     </div>
 </body>
 </html>

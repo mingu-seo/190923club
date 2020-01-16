@@ -13,14 +13,15 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
-   <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
+   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 </head>
 <body>
 
 
     <div class="wrap">
-    	<%@ include file="/WEB-INF/view/board/submain/header.jsp" %>
-       
+	<!-- S T A R T :: headerArea-->
+	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<!-- E N D :: headerArea-->  
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
       
@@ -114,7 +115,7 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
        
         
     </div>
-     <%@ include file="/WEB-INF/view/board/submain/footer.jsp" %>
+     <%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
 </div>
 </body>
 </html>

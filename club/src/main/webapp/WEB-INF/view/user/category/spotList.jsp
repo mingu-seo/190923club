@@ -8,7 +8,7 @@
 <title>Insert title here</title>
     <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="/club/js/swiper.min.js"></script>
+    <script src="/js/swiper.min.js"></script>
     <link rel="stylesheet" href="/css/swiper.css"/>
       <script>
           $(function() {

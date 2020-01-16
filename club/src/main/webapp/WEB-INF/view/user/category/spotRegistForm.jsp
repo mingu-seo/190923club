@@ -88,8 +88,8 @@
 
 		<!-- S T A R T :: footerArea-->
 		<%@ include file="/WEB-INF/view/user/include/bottom.jsp" %>
-
-    </div>
+		<!-- E N D :: footerArea-->
 </div>
+
 </body>
 </html>

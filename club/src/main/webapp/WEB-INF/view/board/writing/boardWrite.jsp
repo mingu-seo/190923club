@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
-  	<%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
+  	<%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 				<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
 				<script>
@@ -47,8 +47,9 @@
 
 
     <div class="wrap">
-    	<%@ include file="/WEB-INF/view/board/submain/header.jsp" %>
-       
+	<!-- S T A R T :: headerArea-->
+	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<!-- E N D :: headerArea-->
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
       
@@ -102,7 +103,7 @@
         
         
     </div>
-    <%@ include file="/WEB-INF/view/board/submain/footer.jsp" %>
+    <%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
   </div>
 </body>
 </html>

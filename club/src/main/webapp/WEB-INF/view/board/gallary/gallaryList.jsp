@@ -7,7 +7,7 @@
 <html>
 <head>
     <title></title>
-   <%@ include file="/WEB-INF/view/board/submain/head.jsp" %>
+   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
    
    
  		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -130,7 +130,7 @@
 
 
     <div class="wrap">
-    	<%@ include file="/WEB-INF/view/board/submain/header.jsp" %>
+    	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
        
@@ -339,6 +339,8 @@
        
         
     </div>
-     <%@ include file="/WEB-INF/view/board/submain/footer.jsp" %>
+		<!-- S T A R T :: footerArea-->
+		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
+		<!-- E N D :: footerArea-->
 </body>
 </html>

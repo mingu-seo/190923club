@@ -99,12 +99,6 @@ TestVO vo = (TestVO)request.getAttribute("vo");
         
         
     </div>
-<<<<<<< HEAD
-    <%@ include file="/WEB-INF/view/board/submain/footer.jsp" %>
- </div>
-=======
     <%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
-  </div>
->>>>>>> branch 'master' of https://github.com/mingu-seo/190923club.git
 </body>
 </html>

@@ -8,13 +8,10 @@
 <head>
     <title></title>
    <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
-   <link rel="stylesheet" type="text/css" href="/css/style.css">
+   <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
    
-   
- 		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-        <script src="/js/jquery.imagesloaded.min.js"></script>
-        <script src="/js/jquery.masonry.min.js"></script> 
-
+        <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
         <script>
         //페이지
@@ -48,7 +45,12 @@
                     $('.paper').click(function(){showLightBox();});
                     $('#lightbox').click(function(event){event.stopPropagation();
                     });
-                });
+                    
+              	//라이트박스 제거 이벤트
+	                $('#darken-background').click(function() {
+	                    hideLightBox();
+	                })
+	            });
         </script>
      <!--종이스타일-->
         <style>
@@ -60,17 +62,20 @@
                 font-size:11px;
                 background:#ffffff;
                 box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+                cursor:pointer;
             }
 
             .paper-content{
                 margin:0 -15px;
-                margin-top:10px;
                 padding:10px 15px;
                 background:#f2f0f0;
                 overflow:hidden;
             }
             .paper-description{
-                margin : 10px 0;
+                margin : 5px;
+                font-size:15px;
+                font-weight:bold;
+                text-align: right;
             }
 
             .paper-link{
@@ -138,8 +143,6 @@
     <div class="wrap">
     	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
-       
-       
         <div class="visual">
         	<div class="visualLeft">
         <%@ include file="/WEB-INF/view/board/submain/boardLeft.jsp" %>
@@ -148,22 +151,9 @@
         	
         	
         <div class="visualRight">
-       		<div class="board_ctg_name">게시판 목록</div><!-- 카테고리 이름 -->
-			<div class="board_writing"><a href="boardWrite.do">글작성</a></div>
+       		<div class="board_ctg_name">갤러리 목록</div><!-- 카테고리 이름 -->
+			<div class="board_writing"><a href="galleryWrite.do">글작성</a></div>
 	
-			<div class="board_seq">
-				<select>
-					 	<option value="최신순">최신순</option>
-					 	<option value="좋아요순">좋아요순</option>
-					 	<option value="조회수순">조회수순</option>
-				</select>
-				
-				<select>
-					 	<option value="오름차순">오름차순</option>
-					 	<option value="내림차순">내림차순</option>
-				</select>
-			</div>
-		
 			<div class="board_seq">
 			 	<select>
 			 	<option value="작성자">작성자</option>
@@ -182,10 +172,10 @@
                     <div class="paper-holder">
                         <a><img width="190" src="http://placekitten.com/130/206"></a>
                     </div>
-                    <p class="paper-description">로렘 어쩌구</p>
+                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
                     <div class="paper-content">
                       <a class="paper-link" href="#">
-                      <img src="http://placekitten.com/40/30">
+                      <img src="http://placekitten.com/30/30">
                       </a>
                       <p class="paper-text">로렘 어쩌구</p>
                      </div>
@@ -193,9 +183,9 @@
             
      	 <div class="paper">
                     <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/206"></a>
+                        <a><img width="190" src="http://placekitten.com/130/102"></a>
                     </div>
-                    <p class="paper-description">로렘 어쩌구</p>
+                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
                     <div class="paper-content">
                       <a class="paper-link" href="#">
                       <img src="http://placekitten.com/30/30">
@@ -207,9 +197,9 @@
           
           <div class="paper">
                     <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/206"></a>
+                        <a><img width="190" src="http://placekitten.com/130/181"></a>
                     </div>
-                    <p class="paper-description">로렘 어쩌구</p>
+                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
                     <div class="paper-content">
 	                      <a class="paper-link" href="#">
 	                      <img src="http://placekitten.com/30/30">
@@ -221,9 +211,9 @@
           
           <div class="paper">
                     <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/206"></a>
+                        <a><img width="190" src="http://placekitten.com/130/220"></a>
                     </div>
-                    <p class="paper-description">로렘 어쩌구</p>
+                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
                     <div class="paper-content">
 	                      <a class="paper-link" href="#">
 	                      <img src="http://placekitten.com/30/30">
@@ -234,9 +224,9 @@
           
           <div class="paper">
                     <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/206"></a>
+                        <a><img width="190" src="http://placekitten.com/130/95"></a>
                     </div>
-                    <p class="paper-description">로렘 어쩌구</p>
+                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
                     <div class="paper-content">
                       <a class="paper-link" href="#">
                       <img src="http://placekitten.com/30/30">
@@ -247,9 +237,9 @@
           
           <div class="paper">
                     <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/206"></a>
+                        <a><img width="190" src="http://placekitten.com/130/265"></a>
                     </div>
-                    <p class="paper-description">로렘 어쩌구</p>
+                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
                     <div class="paper-content">
                       <a class="paper-link" href="#">
                       <img src="http://placekitten.com/30/30">

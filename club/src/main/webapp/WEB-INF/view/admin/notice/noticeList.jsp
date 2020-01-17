@@ -1,4 +1,13 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ page import="admin.AdminVO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="util.Page"%>
+<%
+    int listcount = (Integer)request.getAttribute("listCount"); 
+	List<AdminVO> list= (List<AdminVO>)request.getAttribute("list");
+	AdminVO vo = (AdminVO)request.getAttribute("vo");
+	int totalpage = (Integer)request.getAttribute("totalpage");
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -23,7 +32,7 @@
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>총 111개</strong>  |  1/12페이지</span></p>
+							<p><span><strong>총 <%=listcount%>개</strong>  |  <%=vo.getPage()%>/<%=totalpage%>페이지</span></p>
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
@@ -34,6 +43,9 @@
 									<col class="w5" />
 									<col class="w6" />
 								</colgroup>
+								<%
+									if(list !=null && listcount > 0 ){
+								%>
 								<thead>
 									<tr>
 										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check(this, document.frm.no)"/></th>
@@ -44,55 +56,23 @@
 										<th scope="col" class="last">조회수</th>
 									</tr>
 								</thead>
+								<%
+								for (int i=0; i<list.size(); i++){
+								%>
 								<tbody>
 									<tr>
 										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td>111</td>
-										<td class="title"><a href="view.do">제목입니다.</a></td>
-										<td>2020-01-01 11:11:11</td>
-										<td>홍길동</td>
-										<td class="last">9</td>
+										<td><%=list.get(i).getNotice_num()%></td>
+										<td class="title"><a href="noticeDetail.do?notice_num=<%=list.get(i).getNotice_num()%>&page=<%=vo.getPage()%>">
+										<%=list.get(i).getNotice_subject() %></a></td>							
+										<td><%=list.get(i).getNotice_date() %></td>
+										<td><%=list.get(i).getNotice_name() %></td>
+										<td class="last"><%=list.get(i).getNotice_readcount() %></td>
 									</tr>
-									<tr>
-										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td>111</td>
-										<td class="title"><a href="view.do">제목입니다.</a></td>
-										<td>2020-01-01 11:11:11</td>
-										<td>홍길동</td>
-										<td class="last">9</td>
-									</tr>
-									<tr>
-										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td>111</td>
-										<td class="title"><a href="view.do">제목입니다.</a></td>
-										<td>2020-01-01 11:11:11</td>
-										<td>홍길동</td>
-										<td class="last">9</td>
-									</tr>
-									<tr>
-										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td>111</td>
-										<td class="title"><a href="view.do">제목입니다.</a></td>
-										<td>2020-01-01 11:11:11</td>
-										<td>홍길동</td>
-										<td class="last">9</td>
-									</tr>
-									<tr>
-										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td>111</td>
-										<td class="title"><a href="view.do">제목입니다.</a></td>
-										<td>2020-01-01 11:11:11</td>
-										<td>홍길동</td>
-										<td class="last">9</td>
-									</tr>
-									<tr>
-										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td>111</td>
-										<td class="title"><a href="view.do">제목입니다.</a></td>
-										<td>2020-01-01 11:11:11</td>
-										<td>홍길동</td>
-										<td class="last">9</td>
-									</tr>
+									<%
+										}
+									}
+									%>
 								</tbody>
 							</table>
 							</form>
@@ -106,14 +86,9 @@
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
-							<div class='page'>
-								<strong>1</strong>
-								<a href="">2</a>
-								<a href="">3</a>
-								<a href="">4</a>
-							</div>
+								<%=Page.getPageList(vo.getPage(), totalpage, "noticeList.do")%>
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="index.do"  method="post">
+							<form name="searchForm" id="searchForm" action="noticeList.do"  method="post">
 								<div class="search">
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all">전체</option>

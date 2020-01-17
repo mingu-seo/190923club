@@ -13,7 +13,6 @@
       <script>
           $(function() {
                 var swiper = new Swiper('.banner-swiper', {
-                    slidesPerView: 'auto',
                     loop: true,
                     slidesPerView:6,
                 navigation: {

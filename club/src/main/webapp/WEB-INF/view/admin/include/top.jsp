@@ -81,7 +81,7 @@ $(window).load(function(){
 				<li><span>게시판</span>
 					<div class="standard_left">
 					<ul>
-						<li><a href="/admin/board/notice.do"><span>공지사항</span></a></li>
+						<li><a href="/admin/notice/noticeList.do"><span>공지사항</span></a></li>
 						<li><a href="/admin/board/qna.do"><span>Q&A</span></a></li>
 					</ul>
 					</div>

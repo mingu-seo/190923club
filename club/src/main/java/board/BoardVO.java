@@ -4,15 +4,15 @@ import java.sql.Timestamp;
 
 public class BoardVO {
 
-	private int id_board; //게시물번호(pk)
-	private String name_board; //게시물이름
-	private int id_category; //카테고리번호
+	private int id_board; //게시판번호
+	private String name_board; //게시판이름 (갤러리, 자유게시판, 공지사항)
+	private int id_category; //카테고리번호 (공감해주셈 등)
 	private String title; //제목
 	private String contents; //내용
 	private String image; //이미지
-	private int id_post; //
+	private int id_post; //게시글번호(pk)
 	private int like; //좋아요
-	private int view; //상세보기
+	private int view; //조회수
 	private Timestamp regdate; //날짜
 	
 	public int getId_board() {

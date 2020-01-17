@@ -67,17 +67,7 @@
         		<div>
 				<form action="boardInsert.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
 					<table id="boardTable">
-						<tr>
-							<th>카테고리</th>
-								<td class="writing_box">
-									<select name="category" class="tableRight">
-										<option value="공감해주셈">공감해주셈</option>
-										<option value="웃긴글">웃긴글</option>
-										<option value="어쩌구">어쩌구</option>
-									</select>
-								</td>
-						</tr>
-						
+												
 						<tr>		
 							<th>제목</th>
 								<td class="writing_box">

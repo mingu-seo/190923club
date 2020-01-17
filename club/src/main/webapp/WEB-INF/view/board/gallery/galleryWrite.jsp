@@ -10,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
    <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 <script>
 function getThumbnailPrivew(html, $target) {
@@ -40,26 +41,24 @@ function getThumbnailPrivew(html, $target) {
         	
         	</div>
         	<div class="visualRight">
-        		<h1>갤러리</h1>
+        		<div class="board_ctg_name">갤러리 목록</div><!-- 카테고리 이름 -->
 				<form action="galleryInsert.do" method="post" enctype="multipart/form-data" onsubmit="save();">
-					<table id="boardTable">
-					<tr>
-						<th>카테고리</th>
-						<td>
-						<select name="category" class="tableRight">
-							<option value="생일">생일</option>
-							<option value="대회">대회</option>
-							<option value="웃음">웃음</option>
-						</select>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2"><input type="file" id="image" name="image_tmp" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" ></td>
+					<table id="boardTable" border="1">
+					<tr>		
+						<th>제목</th>
+							<td class="writing_box">
+								<input type="text" name="title" class="tableRight">
+							</td>
 					</tr>
 					
 					<tr>
-					<td colspan="2" >
-					<div id="thumb_img1" onfocus="this.value='';">사진이나 동영상을 불러오세요</div>
+						<th>파일 선택</th>
+						<td><input type="file" id="image" name="image_tmp" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" ></td>
+					</tr>
+					
+					<tr>
+						<td colspan="2" >
+						<div id="thumb_img1" onfocus="this.value='';">사진이나 동영상을 불러오세요</div>
 					</tr>
 					
 					
@@ -68,12 +67,14 @@ function getThumbnailPrivew(html, $target) {
 							<textarea name="contents" id="contents" onfocus="this.value='';">내용을 입력하세요</textarea>
 						</td>
 					</tr>
-					<tr>
-						<td colspan="2"><input type="submit" value="작성완료">&nbsp;&nbsp;
-						<input type="reset" value="다시 작성"/></td>
-					</tr>
 						
 					</table>
+					
+					<div class="writing_btns">
+						<span><input type="submit" value="작성완료" class="btns"></span>
+						<span><input type="reset" value="다시 작성" class="btns"/></span>
+						<span><input type="button" value="목록" class="btns"></span>
+					</div>
 				</form>
         </div>
         

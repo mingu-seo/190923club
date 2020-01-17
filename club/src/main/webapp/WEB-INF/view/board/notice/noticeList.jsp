@@ -25,7 +25,7 @@
         	
         	
 	        <div class="visualRight">
-		        	<div class="board_ctg_name">게시판 목록</div><!-- 카테고리 이름 -->
+		        	<div class="board_ctg_name">공지사항 목록</div><!-- 카테고리 이름 -->
 					<div class="board_writing"><a href="noticeWrite.do">글작성</a></div>
 			
 					<div class="board_seq">

@@ -110,16 +110,7 @@ public class TestController {
 	
 	// 관리자 인터셉터처리
 	
-	@RequestMapping("/admin/index.do")
-	public String adminIndex() {
-		return "admin/index";
-	}
-	
-	@RequestMapping("/admin/login.do")
-	public String adminLogin() {
-		return "admin/login";
-	}
-	
+
 	@RequestMapping("/admin/loginProcess.do")
 	public String loginProcess(HttpSession session, HttpServletResponse response,
 			@RequestParam("mail") String mail, 
@@ -140,25 +131,29 @@ public class TestController {
 			// 로그인성공
 			session.setAttribute("adminSession", vo);
 			return "redirect:/admin/index.do";
-		}
-		
-		
-	}
-	
-	@RequestMapping("/admin/logout.do")
-	public String logout(HttpSession session) {
-		//session.invalidate();
-		session.setAttribute("adminSession", null);
-		return "redirect:/admin/login.do";
+		}	
 	}
 	
 	
 	
+	// user category list 
 	
+	@RequestMapping("/user/category/spotList.do")
+	public String userSpotList() {
+		return "user/category/spotList";
+	}
+
+	@RequestMapping("/user/category/spotChoice.do")
+	public String userSpotChoice() {
+		return "user/category/spotChoice";
+	}
+
 	
-	
-	
-	
-	
+	@RequestMapping("/user/category/spotRegist.do")
+	public String userSpotRegist() {
+		return "user/category/spotRegistForm";
+	}
 	
 }
+
+

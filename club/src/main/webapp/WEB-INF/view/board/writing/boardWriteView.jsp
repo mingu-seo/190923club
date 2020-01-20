@@ -86,7 +86,7 @@
 				
 			</div>
 			
-			<input type="button" value="목록" class="btns"> 
+			<input type="button" value="목록" class="btns" onclick="location.href='boardList.do'"> 
         </div>
         
         

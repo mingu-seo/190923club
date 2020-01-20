@@ -23,7 +23,7 @@
 	
 	.board_seq {
 		text-align:right;
-		margin:5px; 
+		margin:5px;
 	}	
 	
 	.board_seq>select {
@@ -106,7 +106,7 @@
 	}
 	
 	#boardTable{
-		border : 1px solid red;
+		border : 1px solid #e1dcd9;
 		}
 		
 		
@@ -114,11 +114,10 @@
 	width:300px;
 	margin : 10px 0;
 	font-size: 16px;
-	background-color : #fff7ee;
 	}
 		
 	#contents {
-		width:930px;
+		width:935px;
 		min-height:500px;
 		margin:0 auto;
 	}
@@ -242,4 +241,9 @@
 	/*갤러리 리스트페이지*/
 	.g_s {
 		height:30px;
+	}
+	#horizen {
+		height:3px;
+		background-color: gray;
+		margin-top:10px;
 	}

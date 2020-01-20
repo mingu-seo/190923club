@@ -106,7 +106,7 @@
 	}
 	
 	#boardTable{
-		border : 1px solid red;
+		border : 1px solid #a1a1a1;
 		}
 		
 		
@@ -243,3 +243,4 @@
 	.g_s {
 		height:30px;
 	}
+	

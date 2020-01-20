@@ -87,7 +87,14 @@
                 float:left;
                 width:150px;
                 margin-left:10px;
+                font-size:15px;
+                font-weight:bold;
+				overflow:hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+				display:inline-block;
             }
+            
          </style>
             
         <!--섹션-->
@@ -177,7 +184,7 @@
                       <a class="paper-link" href="#">
                       <img src="http://placekitten.com/30/30">
                       </a>
-                      <p class="paper-text">로렘 어쩌구</p>
+                      <div class="paper-text">갤러리 제목 불러오기.</div>
                      </div>
           </div>
             
@@ -190,7 +197,7 @@
                       <a class="paper-link" href="#">
                       <img src="http://placekitten.com/30/30">
                       </a>
-                      <p class="paper-text">로렘 어쩌구</p>
+                      <p class="paper-text">갤러리 제목 불러오기입니다하하하하하하하하하</p>
                      </div>
           </div>
           
@@ -204,7 +211,7 @@
 	                      <a class="paper-link" href="#">
 	                      <img src="http://placekitten.com/30/30">
 	                      </a>
-                      	  <p class="paper-text">로렘 어쩌구</p>
+                      	  <p class="paper-text">갤러리 제목 불러오기.</p>
                      </div>
           </div>
           
@@ -218,7 +225,7 @@
 	                      <a class="paper-link" href="#">
 	                      <img src="http://placekitten.com/30/30">
 	                      </a>
-                     	 <p class="paper-text">로렘 어쩌구</p>
+                     	 <p class="paper-text">갤러리 제목 불러오기.</p>
                      </div>
           </div>
           
@@ -231,7 +238,7 @@
                       <a class="paper-link" href="#">
                       <img src="http://placekitten.com/30/30">
                       </a>
-                      <p class="paper-text">로렘 어쩌구</p>
+                      <p class="paper-text">갤러리 제목 불러오기.</p>
                      </div>
           </div>
           
@@ -244,7 +251,7 @@
                       <a class="paper-link" href="#">
                       <img src="http://placekitten.com/30/30">
                       </a>
-                      <p class="paper-text">로렘 어쩌구</p>
+                      <p class="paper-text">갤러리 제목 불러오기.</p>
                      </div>
           </div>
 			
@@ -280,7 +287,7 @@
                     </a>
                     <div class="user-information-text">
                         <h3>작성자</h3>
-                        <p>로렘 어쩌구</p>
+                        <div class="paper-text">제목 불러오기</div>
                     </div>
                 </div>
                     <hr class="lightbox-splitter">

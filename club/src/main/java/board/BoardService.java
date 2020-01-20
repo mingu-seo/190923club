@@ -19,4 +19,8 @@ public class BoardService {
 	public int boardInsert(BoardVO vo) {
 		return boardDAO.boardInsert(vo);
 	}
+	
+	public BoardVO boardView(int id_post) {
+		return boardDAO.boardView(id_post);
+	}
 }

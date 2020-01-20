@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class BoardController {
@@ -24,15 +22,15 @@ public class BoardController {
 	public String subMain() {
 		return "board/submain/submain";
 	}
-	//게시판 메인 페이지
-	@RequestMapping("/board/submain/boardmain.do") 
-	public String boardMain() {
-		return "board/submain/boardmain";
-	}
 	//게시판 관리 페이지
 	@RequestMapping("/board/submain/admincategory.do")
 	public String adminCategory() {
 		return "board/submain/adminCategory";
+	}
+	//게시판 메인 페이지
+	@RequestMapping("/board/submain/boardmain.do") 
+	public String boardMain() {
+		return "board/submain/boardmain";
 	}
 	//자유게시판 목록페이지
 	@RequestMapping("/board/writing/boardList.do") 
@@ -48,13 +46,13 @@ public class BoardController {
 	public String boardWrite() {
 		return "board/writing/boardWrite";
 	}
-	
-	@RequestMapping("/board/writing/boardInsert.do") 
-		public String boardInsert(BoardVO vo, HttpServletRequest request) {
-			
-			bService.boardInsert(vo, request);
-			return "redirect://board/writing/boardList.do";
+	//자유게시판 작성
+	@RequestMapping("/board/writing/boardInsert.do")
+	public String boardInsert(BoardVO vo) {
+		bService.boardInsert(vo);
+		return "redirect:/board/writing/boardList.do";
 	}
+	
 		
 	//자유게시판 상세보기 페이지
 	@RequestMapping("/board/writing/boardWriteView.do") 
@@ -67,12 +65,7 @@ public class BoardController {
 		return "board/gallery/galleryWrite";
 	}
 	
-	@RequestMapping("/board/gallery/galleryInsert.do") 
-	public String galleryInsert(BoardVO vo, @RequestParam("image_tmp") MultipartFile file, HttpServletRequest request) {
-		
-		bService.galleryInsert(vo, file, request);
-		return "redirect://board/gallery/galleryList.do";
-	}
+	
 	//갤러리 목록 페이지
 	@RequestMapping("/board/gallery/galleryList.do") 
 	public String galleryList() {

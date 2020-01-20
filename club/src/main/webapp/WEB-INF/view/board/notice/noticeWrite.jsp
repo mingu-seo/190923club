@@ -74,6 +74,12 @@
 									<input type="text" name="title" class="tableRight">
 								</td>
 						</tr>
+						<tr>		
+							<th>첨부파일</th>
+								<td class="writing_box">
+									<input type="file" name="file_tmp" class="tableRight">
+								</td>
+						</tr>
 						
 						<tr>		
 							<th>첨부파일</th>

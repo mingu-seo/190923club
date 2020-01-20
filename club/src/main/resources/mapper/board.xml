@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	<select id="list" parameterType="board.BoardVO" resultType="board.BoardVO">
+		select * from project.board order by regdate desc;
+	</select>
+	
+	<!-- 자유게시판 글작성 -->
+	<insert id="board_insert" parameterType="board.BoardVO">
+		insert into project.board (title, contents, regdate) values(#{title}, #{contents}, now()) 
+	</insert>
+	
+	<!-- 자유게시판 상세보기 -->
+	<select id="board_view" parameterType="Integer" resultType="board.BoardVO">
+		select * from project.board where id_post=#{id_post}
+	</select>
+</mapper>

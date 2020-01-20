@@ -53,7 +53,6 @@
 	.board_art > td {
 		font-size:18px;
 		padding:8px;
-		
 	}
 	
 	.art_title { 
@@ -106,7 +105,7 @@
 	}
 	
 	#boardTable{
-		border : 1px solid #e1dcd9;
+		border : 1px solid gray;
 		}
 		
 		
@@ -241,9 +240,4 @@
 	/*갤러리 리스트페이지*/
 	.g_s {
 		height:30px;
-	}
-	#horizen {
-		height:3px;
-		background-color: gray;
-		margin-top:10px;
 	}

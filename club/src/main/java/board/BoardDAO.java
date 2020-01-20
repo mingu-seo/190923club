@@ -1,17 +1,10 @@
 package board;
 
-import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
-import test.TestVO;
 
 @Repository
 public class BoardDAO {
@@ -20,36 +13,16 @@ public class BoardDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	public List<BoardVO> boardList(BoardVO vo) {
-		return sqlSession.selectList("test.selectBoard", vo);
+		return sqlSession.selectList("board.list", vo);
 	}
 	
+	//자유게시판 글 작성
 	public int boardInsert(BoardVO vo) {
-		return sqlSession.insert("test.insertBoard", vo);
+		return sqlSession.insert("board.board_insert", vo);
 	}
 	
-	public BoardVO boardDetail(int id) {
-		return sqlSession.selectOne("test.detailBoard", id);
+	//자유게시판 글 상세
+	public BoardVO boardView(int id_post) {
+		return sqlSession.selectOne("board.board_view", id_post);
 	}
-	
-	public int boardUpdate(BoardVO vo) {
-		return sqlSession.update("test.updateBoard", vo);
-	}
-	
-	public int boardDelete(int id) {
-		return sqlSession.delete("test.deleteBoard", id);
-	}
-	
-	public int galleryInsert(BoardVO vo) {
-		return sqlSession.insert("test.insertGallery", vo);
-	}
-	
-	
-	public BoardVO loginCheck(HashMap hm) {
-		return sqlSession.selectOne("test.loginCheck", hm);
-	}
-	
-	
-	
-	
-	
 }

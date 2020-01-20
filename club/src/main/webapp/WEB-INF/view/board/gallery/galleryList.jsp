@@ -320,7 +320,7 @@
 							
 							<tr>
 								<td colspan="2">
-									<textarea id="replyText">댓글을 입력하세요</textarea>
+									<textarea id="replyText" onfocus="this.value='';">댓글을 입력하세요</textarea>
 								</td>
 								<td> 
 									<input type="submit" id="repl_btn" value="등록"> 

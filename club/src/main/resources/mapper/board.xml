@@ -5,27 +5,27 @@
 
 	<!-- 자유게시판 리스트 -->
 	<select id="list" parameterType="board.BoardVO" resultType="board.BoardVO">
-		select * from project.board order by regdate desc;
+		select * from project.writing order by regdate desc;
 	</select>
 	
 	<!-- 자유게시판 글작성 -->
 	<insert id="board_insert" parameterType="board.BoardVO">
-		insert into project.board (title, contents, regdate) values(#{title}, #{contents}, now()) 
+		insert into project.writing (title, contents, regdate) values(#{title}, #{contents}, now()) 
 	</insert>
 	
 	<!-- 자유게시판 상세보기 -->
 	<select id="board_view" parameterType="Integer" resultType="board.BoardVO">
-		select * from project.board where id_post=#{id_post}
+		select * from project.writing where post_id=#{post_id}
 	</select>
 	
 	<!-- 갤러리 리스트 -->
-	<select id="gallery_list" parameterType="board.BoardVO" resultType="board.BoardVO">
-		select * from project.board where id_board=2 order by regdate desc;
+	<select id="gallery_list" parameterType="gallery.GalleryVO" resultType="gallery.GalleryVO">
+		select * from project.gallery order by regdate desc;
 	</select>
 	
 	<!--갤러리 글작성 -->
-	<insert id="gallery_insert" parameterType="board.BoardVO">
-		insert into project.board (title, contents, image, regdate, id_board) values(#{title}, #{contents}, #{image}, now(), #{id_board}) 
+	<insert id="gallery_insert" parameterType="gallery.GalleryVO">
+		insert into project.gallery (title, contents, image, regdate) values(#{title}, #{contents}, #{image}, now()) 
 	</insert>
 	
 </mapper>

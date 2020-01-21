@@ -11,6 +11,9 @@
 	<context:component-scan base-package="test"/>
 	<context:component-scan base-package="admin"/>
 	<context:component-scan base-package="board"/>
+	<context:component-scan base-package="gallery"/>
+	<context:component-scan base-package="notice"/>
+	
 	
 	<!-- annotation 활성화 -->
 	<mvc:annotation-driven/>

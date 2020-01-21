@@ -3,10 +3,10 @@
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<%@ page import ="board.BoardVO" %>
+<%@ page import ="gallery.GalleryVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
+List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>

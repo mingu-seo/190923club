@@ -67,6 +67,7 @@
 									<a class="btns" href="qnaList.do?page=<%=nowPage%>"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
+									<a class="btns" style="cursor:pointer;" href="qnaReplyForm.do?qna_num=<%=list.getQna_num()%>&page=<%=nowPage%>"><strong>답변</strong></a>
 									<a class="btns" style="cursor:pointer;" href="qnaUpdateForm.do?qna_num=<%=list.getQna_num()%>&page=<%=nowPage%>"><strong>수정</strong></a>
 									<a class="btns" style="cursor:pointer;" href="qnaDelete.do?qna_num=<%=list.getQna_num() %>&page=<%=nowPage%>"><strong>삭제</strong></a>
 				

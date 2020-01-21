@@ -176,7 +176,7 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 				 <input type="text" name="boardSearch" class="g_s">
 				 <input type="submit" value="검색" class="g_s">
 			</div>
-			
+			<div id="horizen"></div>
 	<div id=section>
 	 <section id="main-section">
      	 <div class="paper">

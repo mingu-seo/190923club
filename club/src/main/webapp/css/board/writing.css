@@ -23,7 +23,7 @@
 	
 	.board_seq {
 		text-align:right;
-		margin:5px; 
+		margin:5px;
 	}	
 	
 	.board_seq>select {
@@ -113,7 +113,6 @@
 	width:300px;
 	margin : 10px 0;
 	font-size: 16px;
-	background-color : #fff7ee;
 	}
 		
 	#contents {
@@ -242,4 +241,3 @@
 	.g_s {
 		height:30px;
 	}
-	

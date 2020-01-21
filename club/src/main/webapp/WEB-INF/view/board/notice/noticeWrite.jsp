@@ -82,6 +82,13 @@
 						</tr>
 						
 						<tr>		
+							<th>첨부파일</th>
+								<td class="writing_box">
+									<input type="file" name="file_tmp" class="tableRight">
+								</td>
+						</tr>
+						
+						<tr>		
 							<td colspan="2">
 								<textarea name="contents" id="contents"></textarea>
 							</td>

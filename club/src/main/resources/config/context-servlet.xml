@@ -13,6 +13,9 @@
 	<context:component-scan base-package="adminNotice"/>
 	<context:component-scan base-package="adminQna"/>
 	<context:component-scan base-package="board"/>
+	<context:component-scan base-package="gallery"/>
+	<context:component-scan base-package="notice"/>
+	
 	
 	<!-- annotation 활성화 -->
 	<mvc:annotation-driven/>

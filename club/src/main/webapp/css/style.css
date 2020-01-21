@@ -36,7 +36,7 @@
           
         .menu {
             width:1200px;
-            height:140px;
+            height:120px;
             margin:0 auto;
         }
         .menu > ul > li {
@@ -44,12 +44,12 @@
             float:left;
             width:25%;
             text-align:center;
-            line-height: 40px; /*depth1의 높이와 비례 */
+            line-height: 20px; /*depth1의 높이와 비례 */
         }
         
       	.depth1{
-        	background-color: #dbeef4;
-        	height:140px;
+        	background-color: lightsteelblue;
+        	height:120px;
         }
 
         
@@ -62,6 +62,7 @@
         .depth1>li>a{
        		 display:block;
              box-sizing: border-box;
+             height:120px;
         }
         
         

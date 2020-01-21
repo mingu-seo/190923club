@@ -49,5 +49,17 @@ public class AdminQnaDAO {
 	
 	public void updateReadcount(int qna_num) {
 		sqlSession.update("adminQna.updateReadcount",qna_num);
+	}
+
+
+	public int replySeq(AdminQnaVO vo) {
+		return sqlSession.update("adminQna.replySeq", vo);
+	}
+
+
+	public int replyInsert(AdminQnaVO vo) {
+		return sqlSession.insert("adminQna.replyInsert",vo);
 	}	
+	
+	
 }

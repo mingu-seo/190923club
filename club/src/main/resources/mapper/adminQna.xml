@@ -79,4 +79,18 @@
 	<select id="writerCheck" parameterType="adminQna.AdminQnaVO">
 		SELECT * FROM project.adminqna WHERE qna_num=#{qna_num}
 	</select>	
+	
+	<update id="replySeq" parameterType="adminQna.AdminQnaVO">
+		UPDATE project.adminqna SET qna_re_seq=qna_re_seq+1 
+		WHERE qna_re_ref=#{qna_re_ref} AND qna_re_seq > #{qna_re_seq}
+	</update>
+	
+	<insert id="replyInsert" parameterType="adminQna.AdminQnaVO">
+		INSERT INTO project.adminqna
+		(qna_name,  qna_subject, qna_content, qna_file, 
+		qna_re_ref, qna_re_lev, qna_re_seq, qna_readcount, qna_date)
+		VALUES
+		(#{qna_name},  #{qna_subject}, #{qna_content}, #{qna_file}, 
+		#{qna_re_ref}, #{qna_re_lev}, #{qna_re_seq}, 0, NOW())
+	</insert>
 </mapper>

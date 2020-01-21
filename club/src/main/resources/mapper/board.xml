@@ -28,4 +28,9 @@
 		insert into project.gallery (title, contents, image, regdate) values(#{title}, #{contents}, #{image}, now()) 
 	</insert>
 	
+	<!-- 갤러리 상세 -->
+	<select id="gallery_view" parameterType="Integer" resultType="gallery.GalleryVO">
+		select * from project.gallery where post_id=#{post_id}
+	</select>
+	
 </mapper>

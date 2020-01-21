@@ -179,75 +179,30 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 			<div id="horizen"></div>
 	<div id=section>
 	 <section id="main-section">
-     	 <div class="paper">
-     	 		
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/102"></a>
-                    </div>
-                    <p class="paper-description">날짜</p><!-- 날짜 불러오기 -->
-                    <div class="paper-content">
-                      <a class="paper-link" href="#">
-                      <img src="http://placekitten.com/30/30">
-                      </a>
-                      <p class="paper-text">갤러리 제목 불러오기입니다하하하하하하하하하</p>
-             
-                    </div>
+     	
+     	<%
+		for (int i=0; i<list.size(); i++) {
+		%>
+     	<div class="paper">
+          <div class="paper-holder">
+             <a><img width="190" src="http://placekitten.com/130/181"></a>
           </div>
-          
-          
-          <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/181"></a>
-                    </div>
-                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
+     	
+		
+		 <p class="paper-description"><%=util.Function.getYmd(list.get(i).getRegdate()) %></p><!-- 날짜 불러오기 -->
                     <div class="paper-content">
 	                      <a class="paper-link" href="#">
-	                      <img src="http://placekitten.com/30/30">
+	                      <img src="/upload/<%=list.get(i).getImage()%>">
 	                      </a>
-                      	  <p class="paper-text">갤러리 제목 불러오기.</p>
+                      	  <p class="paper-text"><%=list.get(i).getTitle()%></p>
                      </div>
           </div>
+	
+		<%
+		}
+		%>
+         
           
-          
-          <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/220"></a>
-                    </div>
-                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
-                    <div class="paper-content">
-	                      <a class="paper-link" href="#">
-	                      <img src="http://placekitten.com/30/30">
-	                      </a>
-                     	 <p class="paper-text">갤러리 제목 불러오기.</p>
-                     </div>
-          </div>
-          
-          <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/95"></a>
-                    </div>
-                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
-                    <div class="paper-content">
-                      <a class="paper-link" href="#">
-                      <img src="http://placekitten.com/30/30">
-                      </a>
-                      <p class="paper-text">갤러리 제목 불러오기.</p>
-                     </div>
-          </div>
-          
-          <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/265"></a>
-                    </div>
-                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
-                    <div class="paper-content">
-                      <a class="paper-link" href="#">
-                      <img src="http://placekitten.com/30/30">
-                      </a>
-                      <p class="paper-text">갤러리 제목 불러오기.</p>
-                     </div>
-          </div>
-			
         
       <!--라이트박스-->
 	</section>

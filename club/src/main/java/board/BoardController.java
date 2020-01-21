@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+
 
 @Controller
 public class BoardController {
@@ -61,26 +64,42 @@ public class BoardController {
 		return "board/boardWriteView";
 	}
 	
-		@RequestMapping("/board/writing/boardWriteView.do") 
+	
+	@RequestMapping("/board/writing/boardWriteView.do") 
 	public String boardWriteView(@RequestParam("id_post")int id_post, Model model) {
-		BoardVO vo = bService.boardView(id_post);
-		model.addAttribute("vo", vo);
-		
-		return "board/writing/boardWriteView";
+	BoardVO vo = bService.boardView(id_post);
+	model.addAttribute("vo", vo);
+	
+	return "board/writing/boardWriteView";
+	}
+
+	
+	
+	//갤러리 목록 페이지
+	@RequestMapping("/board/gallery/galleryList.do") 
+	public String galleryList(Model model, HttpServletRequest req, BoardVO vo) {
+			List<BoardVO> list = boardDao.galleryList(vo);
+			model.addAttribute("list", list); 
+		return "board/gallery/galleryList";
 	}
 	
-	//갤러리 작성 페이지
+	
+	//갤러리 작성페이지
 	@RequestMapping("/board/gallery/galleryWrite.do") 
 	public String galleryWrite() {
 		return "board/gallery/galleryWrite";
 	}
 	
-	
-	//갤러리 목록 페이지
-	@RequestMapping("/board/gallery/galleryList.do") 
-	public String galleryList() {
-		return "board/gallery/galleryList";
+	//갤러리 작성
+	@RequestMapping("/board/gallery/galleryInsert.do")
+	public String galleryInsert(BoardVO vo, @RequestParam("image_tmp") MultipartFile file, @RequestParam("id_board") int id_board, HttpServletRequest request) {
+		bService.galleryInsert(vo, file, id_board, request);
+		return "redirect:/board/gallery/galleryList.do";
 	}
+
+	
+	
+	
 	//공지사항 목록 페이지
 	@RequestMapping("/board/notice/noticeList.do") 
 	public String noticeList() {

@@ -56,6 +56,35 @@ List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
 	                    hideLightBox();
 	                })
 	            });
+                
+                
+                function ajaxView(id){
+                	$.ajax({
+                		async :false,
+                		url:'galleryAjax.do',
+                		data :{
+                			'id':id
+	                	},
+	                	dataType:'JSON',
+	                	success : function(data){
+	                		console.log(data);
+	                		$(".paper-text2").text(data.title);	
+		                	$(".paper-each2").attr("src", "/upload/"+data.image);
+		                	$("#nextHref").attr("href", "galleryAjax.do?id="+id);
+		                	$("#deleteHref").attr("href", "delete.do?id="+id);
+		                	$("#detailHref").attr("href", "detail.do?id="+id);
+		               		$("#readCount").text(data.readcount);
+	                	},
+	                	error:function(data){
+	                		console.log(data);
+                		}
+                	});
+	                	showLightBox();
+                }
+                
+                
+                
+                
         </script>
      <!--종이스타일-->
         <style>
@@ -69,23 +98,42 @@ List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
                 box-shadow: 0 1px 3px rgba(34,25,25,0.4);
                 cursor:pointer;
             }
-
+			
+			
+			
             .paper-content{
                 margin:0 -15px;
                 padding:10px 15px;
                 background:#f2f0f0;
                 overflow:hidden;
+                width:100%;
+                text-align: center;
             }
-            .paper-description{
-                margin : 5px;
+            
+           .paper-each{
+            	width:100%;
+            	text-align:center;
+            }
+            
+           .paper-each2{
+            	width:auto;
+            	max-width:90%;
+            	text-align:center;
+            	box-sizing: border-box;
+            	
+            }
+            
+            
+            .paper-holder  p{
+            	float:left;
+            	margin : 5px;
                 font-size:15px;
                 font-weight:bold;
-                text-align: right;
             }
+            
 
             .paper-link{
                 display:block;
-                float:left;
             }
             
             .paper-text{
@@ -183,20 +231,18 @@ List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
      	<%
 		for (int i=0; i<list.size(); i++) {
 		%>
-     	<div class="paper">
-          <div class="paper-holder">
-             <a><img width="190" src="http://placekitten.com/130/181"></a>
-          </div>
-     	
-		
-		 <p class="paper-description"><%=util.Function.getYmd(list.get(i).getRegdate()) %></p><!-- 날짜 불러오기 -->
-                    <div class="paper-content">
-	                      <a class="paper-link" href="#">
-	                      <img src="/upload/<%=list.get(i).getImage()%>">
-	                      </a>
-                      	  <p class="paper-text"><%=list.get(i).getTitle()%></p>
-                     </div>
-          </div>
+     	<div class="paper" onclick="ajaxView('<%=list.get(i).getPost_id()%>');">
+	          <div class="paper-holder">
+	             <p>사용자 이름</p>
+				 <p class="paper-description"><%=util.Function.getYmd(list.get(i).getRegdate()) %></p><!-- 날짜 불러오기 -->
+		     </div>
+	         <div class="paper-content">
+	            <a class="paper-link">
+	            <img class = "paper-each" src="/upload/<%=list.get(i).getImage()%>">
+	            </a>
+	           	  <p class="paper-text"><%=list.get(i).getTitle()%></p>
+	          </div>
+         </div>
 	
 		<%
 		}
@@ -221,7 +267,6 @@ List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
 		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
 		<!-- E N D :: footerArea-->
 </body>
-
       <div id="lb_wrap">
        <div id="darken-background">
        <p class="galleryClose"></p>
@@ -229,55 +274,61 @@ List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
             	<div>
 					<span class="galleryClose">X</span>     
 				</div>
+               
                 <div class="user-information">
                     <a class="user-information-image" href="#">
                         <img src="http://placekitten.com/70/70">
                     </a>
                     <div class="user-information-text">
                         <h3>작성자</h3>
-                        <div class="paper-text">제목 불러오기</div>
+                        <div class="paper-text2">${gallery.title }</div>
                     </div>
                 </div>
-                    <hr class="lightbox-splitter">
-                    <a href="">◀</a>
-                    <img src="http://placekitten.com/700/700">
-                    <a href="">▶</a>
-                    
-          	<div class="view_repl_info">
-				<span class="view_like">♥</span>
-				<span>이 글을 N명이 좋아합니다.</span>
-			</div>
+                   
+                <hr class="lightbox-splitter">
+                
+                <div class="galleryImage"> 
+	                <a href="">◀</a>
+	                <img class="paper-each2" src="/upload/${gallery.image }">
+	                <a id="nextHref">▶</a>
+                </div>  
+                
+	          	<div class="view_repl_info">
+					<span class="view_like">♥</span>
+					<span>이 글을 N명이 좋아합니다.</span>
+				</div>
 					
-			<div id="replyBox">
-						<table id="reply">
-							<tr> 
-								<th class="repl_date">홍길동</th>
-								<td>어케 댓글창 만들지</td>
-								<th class="repl_date">2020-01-05</th>
-							</tr>
-							<tr>
-								<th class="repl_date">김길동</th>
-								<td>클낫다 클낫어</td>
-								<th class="repl_date">2020-01-06</th>
-							</tr>
-							<tr>
-								<th class="repl_date">박길동</th>
-								<td>대댓글창도 만들어야 하는디</td>
-								<th class="repl_date">2020-01-07</th>
-							</tr>
-							
-							<tr>
-								<td colspan="2">
-									<textarea id="replyText" onfocus="this.value='';">댓글을 입력하세요</textarea>
-								</td>
-								<td> 
-									<input type="submit" id="repl_btn" value="등록"> 
-								</td>
-							</tr>
-						</table>
-					</div>
-        </div>
+				<div id="replyBox">
+					<table id="reply">
+						<tr> 
+							<th class="repl_date">홍길동</th>
+							<td>어케 댓글창 만들지</td>
+							<th class="repl_date">2020-01-05</th>
+						</tr>
+						<tr>
+							<th class="repl_date">김길동</th>
+							<td>클낫다 클낫어</td>
+							<th class="repl_date">2020-01-06</th>
+						</tr>
+						<tr>
+							<th class="repl_date">박길동</th>
+							<td>대댓글창도 만들어야 하는디</td>
+							<th class="repl_date">2020-01-07</th>
+						</tr>
+					
+						<tr>
+							<td colspan="2">
+								<textarea id="replyText" onfocus="this.value='';">댓글을 입력하세요</textarea>
+							</td>
+							<td> 
+								<input type="submit" id="repl_btn" value="등록"> 
+							</td>
+						</tr>
+					</table>
+				</div>
+      	  </div>
             
+         
        
         </div>
        </div>

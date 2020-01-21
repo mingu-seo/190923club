@@ -68,9 +68,18 @@ public class AdminQnaService {
 		return r;
 	}
 	
-	public int amdinQnaDelete(int nna_num) {
-		int r = adminQnaDao.amdinQnaDelete(nna_num);
+	public int amdinQnaDelete(int qna_num) {
+		int r = adminQnaDao.amdinQnaDelete(qna_num);
 		return r;
+	}
+
+
+
+	public int replyProcess(AdminQnaVO vo) {
+		adminQnaDao.replySeq(vo);
+		vo.setQna_re_lev(vo.getQna_re_lev()+1);
+		vo.setQna_re_seq(vo.getQna_re_lev()+1);
+		return adminQnaDao.replyInsert(vo);
 	}
 
 }

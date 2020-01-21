@@ -52,4 +52,9 @@
 	<delete id="notice_delete" parameterType="Integer">
 		delete from project.notice where post_id=#{post_id}
 	</delete>
+	<!-- 갤러리 상세 -->
+	<select id="gallery_view" parameterType="Integer" resultType="gallery.GalleryVO">
+		select * from project.gallery where post_id=#{post_id}
+	</select>
+	
 </mapper>

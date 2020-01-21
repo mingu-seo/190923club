@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 @Controller
 public class GalleryController {
 
@@ -40,5 +41,13 @@ public class GalleryController {
 		public String galleryInsert(GalleryVO vo, @RequestParam("image_tmp") MultipartFile file, HttpServletRequest request) {
 			gService.galleryInsert(vo, file, request);
 			return "redirect:/board/gallery/galleryList.do";
+		}
+		
+		//갤러리 ajax
+		@RequestMapping("/board/gallery/galleryAjax.do")
+		public String dogAjax(Model model, @RequestParam("id") int id) {
+			GalleryVO vo = gService.galleryView(id);
+			model.addAttribute("vo", vo);
+			return "board/gallery/galleryAjax";
 		}
 }

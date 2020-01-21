@@ -27,4 +27,10 @@ public class GalleryService {
 		vo.setImage(fu.fileName);
 		return galleryDao.galleryInsert(vo);
 	}
+	
+	public GalleryVO galleryView(int id) {
+		//galleryDao.updateView(id);
+		return galleryDao.galleryView(id);
+	}
+	
 }

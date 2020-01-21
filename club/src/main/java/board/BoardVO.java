@@ -4,34 +4,37 @@ import java.sql.Timestamp;
 
 public class BoardVO {
 
-	private int id_board; //게시판번호
-	private String name_board; //게시판이름 (갤러리, 자유게시판, 공지사항)
-	private int id_category; //카테고리번호 (공감해주셈 등)
-	private String title; //제목
-	private String contents; //내용
-	private String image; //이미지
-	private int id_post; //게시글번호(pk)
-	private int like; //좋아요
-	private int view; //조회수
-	private Timestamp regdate; //날짜
+	private int board_id;
+	private int post_id;
+	private Timestamp regdate;
+	private String writer;
+	private String title;
+	private String contents;
+	private int view;
 	
-	public int getId_board() {
-		return id_board;
+	public int getBoard_id() {
+		return board_id;
 	}
-	public void setId_board(int id_board) {
-		this.id_board = id_board;
+	public void setBoard_id(int board_id) {
+		this.board_id = board_id;
 	}
-	public String getName_board() {
-		return name_board;
+	public int getPost_id() {
+		return post_id;
 	}
-	public void setName_board(String name_board) {
-		this.name_board = name_board;
+	public void setPost_id(int post_id) {
+		this.post_id = post_id;
 	}
-	public int getId_category() {
-		return id_category;
+	public Timestamp getRegdate() {
+		return regdate;
 	}
-	public void setId_category(int id_category) {
-		this.id_category = id_category;
+	public void setRegdate(Timestamp regdate) {
+		this.regdate = regdate;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	public String getTitle() {
 		return title;
@@ -45,36 +48,14 @@ public class BoardVO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
-	public int getId_post() {
-		return id_post;
-	}
-	public void setId_post(int id_post) {
-		this.id_post = id_post;
-	}
-	public int getLike() {
-		return like;
-	}
-	public void setLike(int like) {
-		this.like = like;
-	}
 	public int getView() {
 		return view;
 	}
 	public void setView(int view) {
 		this.view = view;
 	}
-	public Timestamp getRegdate() {
-		return regdate;
-	}
-	public void setRegdate(Timestamp regdate) {
-		this.regdate = regdate;
-	}
+	
+	
 	
 	
 	

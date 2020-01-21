@@ -11,7 +11,14 @@ public class NoticeVO {
 	private String title;
 	private String contents;
 	private int view;
+	private String file;
 	
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
 	public int getBoard_id() {
 		return board_id;
 	}

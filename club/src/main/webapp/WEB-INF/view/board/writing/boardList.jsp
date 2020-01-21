@@ -69,8 +69,8 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 							for (int i=0; i<list.size(); i++) {
 							%>
 							<tr class="board_art">
-								<td><a><%=list.get(i).getId_post()%></a></td>
-								<td class="art_title"><a href="/board/writing/boardWriteView.do?id_post=<%=list.get(i).getId_post()%>"><%=list.get(i).getTitle() %></a></td>
+								<td><a><%=list.get(i).getPost_id()%></a></td>
+								<td class="art_title"><a href="/board/writing/boardWriteView.do?id_post=<%=list.get(i).getPost_id()%>"><%=list.get(i).getTitle() %></a></td>
 								<td>김세영</td>
 								<td><%=util.Function.getYmd(list.get(i).getRegdate()) %></td>
 								<td>11</td>

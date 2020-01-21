@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="java.util.HashMap" %>
-<%@ page import ="board.BoardVO" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -65,7 +64,7 @@
         		<div class="board_ctg_name">공지사항 목록</div>
         		
         		<div>
-				<form action="boardInsert.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
+				<form action="noticeInsert.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
 					<table id="boardTable">
 												
 						<tr>		
@@ -74,12 +73,7 @@
 									<input type="text" name="title" class="tableRight">
 								</td>
 						</tr>
-						<tr>		
-							<th>첨부파일</th>
-								<td class="writing_box">
-									<input type="file" name="file_tmp" class="tableRight">
-								</td>
-						</tr>
+						
 						
 						<tr>		
 							<th>첨부파일</th>

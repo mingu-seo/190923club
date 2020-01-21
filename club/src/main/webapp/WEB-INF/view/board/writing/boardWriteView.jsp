@@ -5,7 +5,9 @@
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%
+BoardVO vo = (BoardVO)request.getAttribute("vo"); 
+%>				
 
 
 <!DOCTYPE html>
@@ -15,9 +17,8 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
 
-<% BoardVO vo = (BoardVO)request.getAttribute("vo"); %>				
    <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
-<%@page import="test.TestVO"%>
+  
 
 </head>
 <body>
@@ -42,7 +43,7 @@
 						<div class="view_info">
 							<span>김세영</span>
 							<span>|</span> 
-							<span>2020-01-06</span>
+							<span><%=vo.getRegdate() %></span>
 						</div>
 					</div>
 					
@@ -88,7 +89,6 @@
 				
 				
 			</div>
-			
 			<input type="button" value="목록" class="btns" onclick="location.href='boardList.do'"> 
         </div>
         

@@ -241,3 +241,9 @@
 	.g_s {
 		height:30px;
 	}
+	
+	/*공지사항*/
+	.view_file {
+		margin:20px;
+		font-weight: bold;
+	}

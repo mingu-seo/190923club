@@ -2,7 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import ="board.BoardVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -174,31 +179,19 @@
 			
 	<div id=section>
 	 <section id="main-section">
-        
-        <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/206"></a>
-                    </div>
-                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
-                    <div class="paper-content">
-                      <a class="paper-link" href="#">
-                      <img src="http://placekitten.com/30/30">
-                      </a>
-                      <div class="paper-text">갤러리 제목 불러오기.</div>
-                     </div>
-          </div>
-            
      	 <div class="paper">
+     	 		
                     <div class="paper-holder">
                         <a><img width="190" src="http://placekitten.com/130/102"></a>
                     </div>
-                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
+                    <p class="paper-description">날짜</p><!-- 날짜 불러오기 -->
                     <div class="paper-content">
                       <a class="paper-link" href="#">
                       <img src="http://placekitten.com/30/30">
                       </a>
                       <p class="paper-text">갤러리 제목 불러오기입니다하하하하하하하하하</p>
-                     </div>
+             
+                    </div>
           </div>
           
           

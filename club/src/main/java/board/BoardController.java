@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class BoardController {
@@ -55,10 +57,11 @@ public class BoardController {
 	
 		
 	//자유게시판 상세보기 페이지
-	@RequestMapping("/board/writing/boardWriteView.do") 
-	public String boardWriteView() {
-		return "board/writing/boardWriteView";
+	@RequestMapping("/board/writing/boardView.do")
+	public String boardDetail(Model model, @RequestParam("id") int id) {
+		return "board/boardWriteView";
 	}
+	
 	//갤러리 작성 페이지
 	@RequestMapping("/board/gallery/galleryWrite.do") 
 	public String galleryWrite() {

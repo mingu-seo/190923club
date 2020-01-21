@@ -41,6 +41,7 @@ String board_type = request.getParameter("board_type");
 						<div class="board-title">공지사항</div>
 						<div>
 							<ul>
+							<li><a href="/board/notice/noticeList.do"><span class="ctg-s">┗</span>이벤트 공지</a></li>
 							</ul>
 						</div>
 						

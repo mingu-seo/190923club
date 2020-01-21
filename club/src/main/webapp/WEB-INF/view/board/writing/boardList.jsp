@@ -10,7 +10,7 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
-
+<head>
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css">

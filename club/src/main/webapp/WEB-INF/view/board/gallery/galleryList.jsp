@@ -2,7 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import ="board.BoardVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,7 +92,14 @@
                 float:left;
                 width:150px;
                 margin-left:10px;
+                font-size:15px;
+                font-weight:bold;
+				overflow:hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+				display:inline-block;
             }
+            
          </style>
             
         <!--섹션-->
@@ -164,90 +176,33 @@
 				 <input type="text" name="boardSearch" class="g_s">
 				 <input type="submit" value="검색" class="g_s">
 			</div>
-			
+			<div id="horizen"></div>
 	<div id=section>
 	 <section id="main-section">
-        
-        <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/206"></a>
-                    </div>
-                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
-                    <div class="paper-content">
-                      <a class="paper-link" href="#">
-                      <img src="http://placekitten.com/30/30">
-                      </a>
-                      <p class="paper-text">로렘 어쩌구</p>
-                     </div>
+     	
+     	<%
+		for (int i=0; i<list.size(); i++) {
+		%>
+     	<div class="paper">
+          <div class="paper-holder">
+             <a><img width="190" src="http://placekitten.com/130/181"></a>
           </div>
-            
-     	 <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/102"></a>
-                    </div>
-                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
-                    <div class="paper-content">
-                      <a class="paper-link" href="#">
-                      <img src="http://placekitten.com/30/30">
-                      </a>
-                      <p class="paper-text">로렘 어쩌구</p>
-                     </div>
-          </div>
-          
-          
-          <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/181"></a>
-                    </div>
-                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
+     	
+		
+		 <p class="paper-description"><%=util.Function.getYmd(list.get(i).getRegdate()) %></p><!-- 날짜 불러오기 -->
                     <div class="paper-content">
 	                      <a class="paper-link" href="#">
-	                      <img src="http://placekitten.com/30/30">
+	                      <img src="/upload/<%=list.get(i).getImage()%>">
 	                      </a>
-                      	  <p class="paper-text">로렘 어쩌구</p>
+                      	  <p class="paper-text"><%=list.get(i).getTitle()%></p>
                      </div>
           </div>
+	
+		<%
+		}
+		%>
+         
           
-          
-          <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/220"></a>
-                    </div>
-                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
-                    <div class="paper-content">
-	                      <a class="paper-link" href="#">
-	                      <img src="http://placekitten.com/30/30">
-	                      </a>
-                     	 <p class="paper-text">로렘 어쩌구</p>
-                     </div>
-          </div>
-          
-          <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/95"></a>
-                    </div>
-                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
-                    <div class="paper-content">
-                      <a class="paper-link" href="#">
-                      <img src="http://placekitten.com/30/30">
-                      </a>
-                      <p class="paper-text">로렘 어쩌구</p>
-                     </div>
-          </div>
-          
-          <div class="paper">
-                    <div class="paper-holder">
-                        <a><img width="190" src="http://placekitten.com/130/265"></a>
-                    </div>
-                    <p class="paper-description">2020-01-17</p><!-- 날짜 불러오기 -->
-                    <div class="paper-content">
-                      <a class="paper-link" href="#">
-                      <img src="http://placekitten.com/30/30">
-                      </a>
-                      <p class="paper-text">로렘 어쩌구</p>
-                     </div>
-          </div>
-			
         
       <!--라이트박스-->
 	</section>
@@ -280,7 +235,7 @@
                     </a>
                     <div class="user-information-text">
                         <h3>작성자</h3>
-                        <p>로렘 어쩌구</p>
+                        <div class="paper-text">제목 불러오기</div>
                     </div>
                 </div>
                     <hr class="lightbox-splitter">
@@ -313,7 +268,7 @@
 							
 							<tr>
 								<td colspan="2">
-									<textarea id="replyText">댓글을 입력하세요</textarea>
+									<textarea id="replyText" onfocus="this.value='';">댓글을 입력하세요</textarea>
 								</td>
 								<td> 
 									<input type="submit" id="repl_btn" value="등록"> 

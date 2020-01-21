@@ -4,6 +4,9 @@
 <%@ page import ="board.BoardVO" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -12,12 +15,9 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
 
-<% List<BoardVO> list = (List<BoardVO>)request.getAttribute("list"); %>				
+<% BoardVO vo = (BoardVO)request.getAttribute("vo"); %>				
    <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 <%@page import="test.TestVO"%>
-<%
-TestVO vo = (TestVO)request.getAttribute("vo");
-%>				
 
 </head>
 <body>
@@ -38,7 +38,7 @@ TestVO vo = (TestVO)request.getAttribute("vo");
         	<div class="visualRight">
         		<div class="board_ctg_name">게시판 목록</div>
         	<div class="view_wrap">
-					<div class="view_tt">제목 불러오기
+					<div class="view_tt"><%=vo.getTitle() %>
 						<div class="view_info">
 							<span>김세영</span>
 							<span>|</span> 
@@ -47,12 +47,7 @@ TestVO vo = (TestVO)request.getAttribute("vo");
 					</div>
 					
 					<div class="view_ctt">
-						내용이 이것저것
-						뭐가 많이 들어가겠지
-						사진도들어가고
-						이것저것
-						아 허리가 너무아프다
-						<img src="/img/board/gal2.PNG">
+						<%=vo.getContents() %>
 					</div>
 					
 					<div class="view_repl_info">
@@ -94,11 +89,12 @@ TestVO vo = (TestVO)request.getAttribute("vo");
 				
 			</div>
 			
-			<input type="button" value="목록" class="btns"> 
+			<input type="button" value="목록" class="btns" onclick="location.href='boardList.do'"> 
         </div>
         
         
     </div>
     <%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
+</div>
 </body>
 </html>

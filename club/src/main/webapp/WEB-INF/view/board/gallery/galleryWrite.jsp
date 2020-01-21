@@ -43,6 +43,8 @@ function getThumbnailPrivew(html, $target) {
         	<div class="visualRight">
         		<div class="board_ctg_name">갤러리 목록</div><!-- 카테고리 이름 -->
 				<form action="galleryInsert.do" method="post" enctype="multipart/form-data" onsubmit="save();">
+				<input type="hidden" name="id_board" value="2">
+				
 					<table id="boardTable" border="1">
 					<tr>		
 						<th>제목</th>

@@ -28,7 +28,7 @@
 	<!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
 	<!-- E N D :: headerArea-->
-       
+    <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
         <div class="visual">
 	
         	<div class="visualLeft">

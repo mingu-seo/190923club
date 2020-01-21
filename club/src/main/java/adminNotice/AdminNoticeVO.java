@@ -1,6 +1,6 @@
-package admin;
+package adminNotice;
 
-public class AdminVO {
+public class AdminNoticeVO {
 	
 	private int notice_num;
 	private String notice_name;
@@ -24,7 +24,7 @@ public class AdminVO {
 	private int maxPage;
 	
 	
-	public AdminVO() {
+	public AdminNoticeVO() {
 		this.page = 1;
 		this.limit = 10;
 	}

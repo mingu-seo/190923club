@@ -8,7 +8,7 @@ $(function() {
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
-		elPlaceHolder: "notice_content", // textarea ID
+		elPlaceHolder: "qna_content", // textarea ID
 		sSkinURI: "/smarteditor/SmartEditor2Skin.html",	
 		htParams : {
 			bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -41,14 +41,14 @@ $(function() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [쓰기]</h2>
+					<h2>Q & A - [쓰기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="noticeRegist.do" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="qnaRegist.do" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -60,19 +60,19 @@ $(function() {
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="notice_subject">*제목</label></th>
+										<th scope="row"><label for="qna_subject">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="notice_subject" class="w100" title="제목을 입력해주세요" />	
+											<input type="text" id="title" name="qna_subject" class="w100" title="제목을 입력해주세요" />	
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="notice_content">*내용</label></th>
+										<th scope="row"><label for="qna_content">*내용</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="notice_content" title="내용을 입력해주세요" style="width:100%;"></textarea>	
+											<textarea id="contents" name="qna_content" title="내용을 입력해주세요" style="width:100%;"></textarea>	
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="notice_file">첨부파일</label></th>
+										<th scope="row"><label for="qna_file">첨부파일</label></th>
 										<td colspan="10">
 											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
 										</td>
@@ -83,7 +83,7 @@ $(function() {
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="noticeList.do"><strong>목록</strong></a>
+									<a class="btns" href="qnaList.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
 									<a class="btns" style="cursor:pointer;" onClick="$('#frm').submit();"><strong>저장</strong></a>

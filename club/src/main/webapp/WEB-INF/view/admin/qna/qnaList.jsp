@@ -1,12 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@ page import="adminNotice.AdminNoticeVO" %>
+<%@ page import="adminQna.AdminQnaVO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="util.Page"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%
     int listcount = (Integer)request.getAttribute("listCount"); 
-	List<AdminNoticeVO> list= (List<AdminNoticeVO>)request.getAttribute("list");
-	AdminNoticeVO vo = (AdminNoticeVO)request.getAttribute("vo");
+	List<AdminQnaVO> list= (List<AdminQnaVO>)request.getAttribute("list");
+	AdminQnaVO vo = (AdminQnaVO)request.getAttribute("vo");
 	int totalpage = (Integer)request.getAttribute("totalpage");
 %>
 <html>
@@ -26,7 +26,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [목록]</h2>
+					<h2>Q & A - [목록]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -63,12 +63,12 @@
 								<tbody>
 									<tr>
 										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td><%=list.get(i).getNotice_num()%></td>
-										<td class="title"><a href="noticeDetail.do?notice_num=<%=list.get(i).getNotice_num()%>&page=<%=vo.getPage()%>">
-										<%=list.get(i).getNotice_subject() %></a></td>							
-										<td><%=list.get(i).getNotice_date() %></td>
-										<td><%=list.get(i).getNotice_name() %></td>
-										<td class="last"><%=list.get(i).getNotice_readcount() %></td>
+										<td><%=list.get(i).getQna_num()%></td>
+										<td class="title"><a href="qnaDetail.do?qna_num=<%=list.get(i).getQna_num()%>&page=<%=vo.getPage()%>">
+										<%=list.get(i).getQna_subject() %></a></td>							
+										<td><%=list.get(i).getQna_date() %></td>
+										<td><%=list.get(i).getQna_name() %></td>
+										<td class="last"><%=list.get(i).getQna_readcount() %></td>
 									</tr>
 									<%
 										}
@@ -82,14 +82,14 @@
 									<a class="btns" href="#" onclick=""><strong>삭제</strong> </a>
 								</div>
 								<div class="btnRight">
-									<a class="wbtn" href="noticeWrite.do"><strong>등록</strong> </a>
+									<a class="wbtn" href="qnaWrite.do"><strong>등록</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
-								<div class='page'><%=Page.getPageList(vo.getPage(), totalpage, "noticeList.do")%></div>
+								<div class='page'><%=Page.getPageList(vo.getPage(), totalpage, "qnaList.do")%></div>
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="noticeList.do"  method="post">
+							<form name="searchForm" id="searchForm" action="qnaList.do"  method="post">
 								<div class="search">
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all"<c:if test="${vo.searchOption == 'all'}">selected</c:if>>전체</option>

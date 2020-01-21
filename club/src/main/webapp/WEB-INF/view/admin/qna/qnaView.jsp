@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@ page import="adminNotice.AdminNoticeVO"%>
+<%@ page import="adminQna.AdminQnaVO"%>
 <%@ page import="util.Page"%>
 <%
-	AdminNoticeVO list = (AdminNoticeVO)request.getAttribute("list");
+	AdminQnaVO list = (AdminQnaVO)request.getAttribute("list");
 	String nowPage = (String)request.getAttribute("nowPage");
 %>
 
@@ -43,20 +43,20 @@
 									<tr>
 										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
-											<%=list.getNotice_subject()%>
+											<%=list.getQna_subject()%>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10">
-											<%=list.getNotice_content() %>
+											<%=list.getQna_content() %>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">첨부파일</label></th>
 										<td colspan="10">
 												<div class="weidtFile">
-													<p><a href="notice/file_down.jsp?notice_file=<%=list.getNotice_file()%>" target="_blank"><%=list.getNotice_file() %></a><br />
+													<p><a href="qna/file_down.jsp?qna_file=<%=list.getQna_file()%>" target="_blank"><%=list.getQna_file() %></a><br />
 												</div>
 										</td>
 									</tr>
@@ -64,11 +64,11 @@
 							</table>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="noticeList.do?page=<%=nowPage%>"><strong>목록</strong></a>
+									<a class="btns" href="qnaList.do?page=<%=nowPage%>"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="noticeUpdateForm.do?notice_num=<%=list.getNotice_num()%>&page=<%=nowPage%>"><strong>수정</strong></a>
-									<a class="btns" style="cursor:pointer;" href="noticeDelete.do?notice_num=<%=list.getNotice_num() %>&page=<%=nowPage%>"><strong>삭제</strong></a>
+									<a class="btns" style="cursor:pointer;" href="qnaUpdateForm.do?qna_num=<%=list.getQna_num()%>&page=<%=nowPage%>"><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="qnaDelete.do?qna_num=<%=list.getQna_num() %>&page=<%=nowPage%>"><strong>삭제</strong></a>
 				
 								</div>
 							</div>

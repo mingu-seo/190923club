@@ -1,3 +1,4 @@
+<%@page import="reply.ReplyVO"%>
 <%@page import="util.Function"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,10 +8,14 @@
 <%@ page import="notice.*" %>
 <%
 List<NoticeVO> list = (List<NoticeVO>)request.getAttribute("list");
+NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
+
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
    <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
@@ -83,16 +88,11 @@ List<NoticeVO> list = (List<NoticeVO>)request.getAttribute("list");
 					</div>
 	
 				 <div class="boardSearch">
-					 	<select class="search_ctg">
-					 	<option value="작성자">작성자</option>
-					 	<option value="제목">제목</option>
-					 	<option value="내용">내용</option>
-					 	</select>
-					 	
-						<input type="text" name="boardSearch" id="boardSearch">
-						 
-						<input id="board_search_btn" type="submit" value="검색">
-				</div>	
+					 	<form>
+							<input type="search" name="search_word" id="boardSearch" value="<%=vo.getSearch_word() %>"> 
+							<input id="board_search_btn" type="submit" value="검색">
+						</form>
+				</div>
 	
 				<div id="pageList">
 					<span>[이전]</span>

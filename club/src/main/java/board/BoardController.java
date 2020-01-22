@@ -61,10 +61,15 @@ public class BoardController {
 	@RequestMapping("/board/writing/boardWriteView.do") 
 	public String boardWriteView(@RequestParam("id_post")int id_post, Model model) {
 	BoardVO vo = bService.boardView(id_post);
+	
 	model.addAttribute("vo", vo);
 	
 	return "board/writing/boardWriteView";
 	}
-	
+	//자유게시판 삭제
+	@RequestMapping("/board/writing/boardDelete.do")
+	public String boardDelete(@RequestParam("post_id")int post_id) {
+		return "redirect:/board/writing/boardList.do";
+	}
 	
 }

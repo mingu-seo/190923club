@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="notice.NoticeVO" %>
+<%@ page import ="reply.ReplyVO" %>
+<%@ page import ="java.util.HashMap" %>
+<%@ page import ="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +14,10 @@
    <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
 <%
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
-%>				
+List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
+%>
+
+<!-- 삭제 스크립트 -->
 <script type="text/javascript">
    function noticeDel(post_id) {
 	   if(confirm("삭제하시겠습니까?")) { 
@@ -62,23 +69,20 @@ NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 				
 				<div class="repl_box">
 					<div id="replyBox">
+						<form action="/board/reply.do" method="get">
+						<input type="hidden" name="post_id" value="<%=vo.getPost_id() %>">
 						<table id="reply">
+							<%
+							for(int i=0; i<rList.size(); i++) {
+							%>
 							<tr> 
 								<th class="repl_date">홍길동</th>
-								<td>어케 댓글창 만들지</td>
-								<th class="repl_date">2020-01-05</th>
+								<td><%=rList.get(i).getContents() %></td>
+								<th class="repl_date"><%=rList.get(i).getRegdate() %></th>
 							</tr>
-							<tr>
-								<th class="repl_date">김길동</th>
-								<td>클낫다 클낫어</td>
-								<th class="repl_date">2020-01-06</th>
-							</tr>
-							<tr>
-								<th class="repl_date">박길동</th>
-								<td>대댓글창도 만들어야 하는디</td>
-								<th class="repl_date">2020-01-07</th>
-							</tr>
-							
+							<%
+							}
+							%>
 							<tr>
 								<td colspan="2">
 									<textarea id="replyText">댓글을 입력하세요</textarea>
@@ -88,12 +92,14 @@ NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 								</td>
 							</tr>
 						</table>
+						</form>
 					</div> 
 				</div>
 				
 				
-			</div>
+			</div>  
 			<input type="button" value="삭제" class="btns" onclick="javascript:noticeDel('<%=vo.getPost_id()%>');">
+			<input type="button" value="수정" class="btns" onclick="location.href='noticeUpdateForm.do?post_id=' + <%=vo.getPost_id() %>">
 			<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do'"> 
         </div>
         

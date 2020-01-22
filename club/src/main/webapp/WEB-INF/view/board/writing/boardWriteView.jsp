@@ -13,6 +13,16 @@ BoardVO vo = (BoardVO)request.getAttribute("vo");
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 삭제 스크립트 -->
+<script type="text/javascript">
+   function writingDel(post_id) {
+	   if(confirm("삭제하시겠습니까?")) { 
+		   location.href="/board/writing/boardDelete.do?post_id="+post_id;
+	   } else
+		   return false;
+		   
+   }
+</script>
 <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
@@ -89,6 +99,7 @@ BoardVO vo = (BoardVO)request.getAttribute("vo");
 				
 				
 			</div>
+			<input type="button" value="삭제" class="btns" onclick="javascript:writingDel('<%=vo.getPost_id()%>');">
 			<input type="button" value="목록" class="btns" onclick="location.href='boardList.do'"> 
         </div>
         

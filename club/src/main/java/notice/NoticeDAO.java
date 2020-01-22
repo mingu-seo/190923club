@@ -28,5 +28,9 @@ public class NoticeDAO {
 	public int noticeDelete(int post_id) {
 		return sqlSession.delete("board.notice_delete", post_id);
 	}
+	//공지사항 수정
+	public int noticeUpdate(NoticeVO vo) {
+		return sqlSession.update("board.notice_update", vo);
+	}
 	
 }

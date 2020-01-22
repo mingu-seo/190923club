@@ -36,4 +36,14 @@ public class NoticeService {
 		return noticeDAO.noticeDelete(post_id);
 	}
 	
+	public NoticeVO noticeUpdateForm(int post_id) {
+		return noticeDAO.noticeView(post_id);
+	}
+	
+	public int noticeUpdate(NoticeVO vo, MultipartFile file, HttpServletRequest req) {
+		FileUtil fu = new FileUtil();
+		fu.fileUpload(file, req.getRealPath("/upload/"));
+		vo.setFile(fu.fileName);
+		return noticeDAO.noticeUpdate(vo);
+	}
 }

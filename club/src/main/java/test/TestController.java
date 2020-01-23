@@ -137,22 +137,7 @@ public class TestController {
 	
 	
 	// user category list 
-	
-	@RequestMapping("/user/category/spotList.do")
-	public String userSpotList() {
-		return "user/category/spotList";
-	}
 
-	@RequestMapping("/user/category/spotChoice.do")
-	public String userSpotChoice() {
-		return "user/category/spotChoice";
-	}
-
-	
-	@RequestMapping("/user/category/spotRegist.do")
-	public String userSpotRegist() {
-		return "user/category/spotRegistForm";
-	}
 	
 }
 

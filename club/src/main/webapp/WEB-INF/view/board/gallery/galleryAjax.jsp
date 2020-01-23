@@ -4,5 +4,6 @@
 "contents" : "${vo.contents}",
 "title" : "${vo.title}",
 "regdate" : "${vo.regdate}",
-"image" : "${vo.image}"
+"image" : "${vo.image}",
+"post_id" : "${vo.post_id}"
 }

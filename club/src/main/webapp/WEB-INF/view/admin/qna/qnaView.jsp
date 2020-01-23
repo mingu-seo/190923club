@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="adminQna.AdminQnaVO"%>
 <%@ page import="util.Page"%>
 <%
@@ -10,6 +11,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script>
+
+function replyConfirm() {
+	if (confirm("답변하시겠습니까?")) {
+		location.href='qnaReplyForm.do?num=<%=list.getNum()%>&page=<%=nowPage%>';
+	}
+}
+function updateConfirm() {
+	if (confirm("수정하시겠습니까?")) {
+		location.href='qnaUpdateForm.do?num=<%=list.getNum()%>&page=<%=nowPage%>';
+	}
+}
+function deleteConfirm() {
+	if (confirm("삭제하시겠습니까?")) {
+		location.href='qnaDelete.do?num=<%=list.getNum()%>&page=<%=nowPage%>';
+	}
+}
+</script>
 </head>
 <body> 
 <div id="wrap">
@@ -23,7 +42,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [읽기]</h2>
+					<h2>Q & A - [읽기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -43,20 +62,20 @@
 									<tr>
 										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
-											<%=list.getQna_subject()%>
+											<%=list.getSubject()%>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10">
-											<%=list.getQna_content() %>
+											<%=list.getContent() %>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">첨부파일</label></th>
 										<td colspan="10">
 												<div class="weidtFile">
-													<p><a href="qna/file_down.jsp?qna_file=<%=list.getQna_file()%>" target="_blank"><%=list.getQna_file() %></a><br />
+													<p><a href="/WEB-INF/view/admin/file/file_down.jsp?file=<%=list.getFile()%>" target="_blank"><%=list.getFile() %></a><br />
 												</div>
 										</td>
 									</tr>
@@ -67,9 +86,9 @@
 									<a class="btns" href="qnaList.do?page=<%=nowPage%>"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="qnaReplyForm.do?qna_num=<%=list.getQna_num()%>&page=<%=nowPage%>"><strong>답변</strong></a>
-									<a class="btns" style="cursor:pointer;" href="qnaUpdateForm.do?qna_num=<%=list.getQna_num()%>&page=<%=nowPage%>"><strong>수정</strong></a>
-									<a class="btns" style="cursor:pointer;" href="qnaDelete.do?qna_num=<%=list.getQna_num() %>&page=<%=nowPage%>"><strong>삭제</strong></a>
+									<a class="btns" style="cursor:pointer;" onclick="replyConfirm();"><strong>답변</strong></a>
+									<a class="btns" style="cursor:pointer;" onclick="updateConfirm();"><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" onclick="deleteConfirm();"><strong>삭제</strong></a>
 				
 								</div>
 							</div>

@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <script>
 
@@ -91,6 +92,7 @@ $(window).load(function(){
 					<ul>
 						<li><a href="/admin/board/post.do"><span>게시글</span></a></li>
 						<li><a href="/admin/board/club.do"><span>동아리</span></a></li>
+						<li><a href="/admin/category/categoryList.do"><span>카테고리</span></a></li>
 					</ul>
 					</div>
 				</li>

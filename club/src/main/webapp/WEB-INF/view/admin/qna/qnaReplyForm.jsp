@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="adminQna.AdminQnaVO" %>
 <%
 AdminQnaVO article = (AdminQnaVO)request.getAttribute("data");
@@ -9,11 +10,11 @@ AdminQnaVO vo = (AdminQnaVO)request.getAttribute("vo");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
+var oEditors = [];
 $(function() {
-	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
-		elPlaceHolder: "qna_content", // textarea ID
+		elPlaceHolder: "contents", // textarea ID
 		sSkinURI: "/smarteditor/SmartEditor2Skin.html",	
 		htParams : {
 			bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -31,6 +32,11 @@ $(function() {
 	});
 });
 
+function save() {
+	oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용을 textarea(id=introduce)에 적용
+	$('#frm').submit();
+}
+
 
 </script>
 
@@ -46,7 +52,7 @@ $(function() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2> 답 변 - [쓰기]</h2>
+					<h2>Q & A - [답변]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -55,10 +61,10 @@ $(function() {
 						<div id="bread">
 							<form method="post" name="frm" id="frm" action="replyProcess.do" enctype="multipart/form-data">
 							<input type="hidden" name="page" value="<%=vo.getPage()%>"/>
-							<input type="hidden" name="qna_num" value="<%=article.getQna_num()%>"/>
-							<input type="hidden" name="qna_re_ref" value="<%=article.getQna_re_ref()%>"/>
-							<input type="hidden" name="qna_re_lev" value="<%=article.getQna_re_lev()%>"/>
-							<input type="hidden" name="qna_re_seq" value="<%=article.getQna_re_seq()%>"/>
+							<input type="hidden" name="num" value="<%=article.getNum()%>"/>
+							<input type="hidden" name="re_ref" value="<%=article.getRe_ref()%>"/>
+							<input type="hidden" name="re_lev" value="<%=article.getRe_lev()%>"/>
+							<input type="hidden" name="re_seq" value="<%=article.getRe_seq()%>"/>
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -70,19 +76,19 @@ $(function() {
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="qna_subject">*제목</label></th>
+										<th scope="row"><label for="subject">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="qna_subject" class="w100" title="제목을 입력해주세요" value="Re: <%=article.getQna_subject()%>"/>	
+											<input type="text" id="title" name="subject" class="w100" title="제목을 입력해주세요" value="Re: <%=article.getSubject()%>"/>	
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="qna_content">*내용</label></th>
+										<th scope="row"><label for="content">*내용</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="qna_content" title="내용을 입력해주세요" style="width:100%;"></textarea>	
+											<textarea id="contents" name="content" title="내용을 입력해주세요" style="width:100%;"></textarea>	
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="qna_file">첨부파일</label></th>
+										<th scope="row"><label for="file">첨부파일</label></th>
 										<td colspan="10">
 											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
 										</td>
@@ -96,7 +102,7 @@ $(function() {
 									<a class="btns" href="qnaList.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" onClick="$('#frm').submit();"><strong>저장</strong></a>
+									<a class="btns" style="cursor:pointer;" onClick="save();"><strong>저장</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

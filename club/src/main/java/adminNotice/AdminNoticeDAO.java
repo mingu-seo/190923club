@@ -27,9 +27,9 @@ public class AdminNoticeDAO {
 		return sqlSession.selectOne("adminNotice.count",vo);
 	}
 
-	public AdminNoticeVO adminNoticeView(int notice_num) {
+	public AdminNoticeVO adminNoticeView(int num) {
 		//sqlSession.update("dog.updateReadcount",id); 조회수를 여기다가 두면 수정 할때에도 
-		return sqlSession.selectOne("adminNotice.adminNoticeView",notice_num);
+		return sqlSession.selectOne("adminNotice.adminNoticeView",num);
 	}
 
 	public int amdinNoticeInsert(AdminNoticeVO vo) {
@@ -43,11 +43,11 @@ public class AdminNoticeDAO {
 		return sqlSession.update("adminNotice.adminNoticeUpdate", vo);
 	}
 
-	public int amdinNoticeDelete(int notice_num) {
-		return sqlSession.delete("adminNotice.adminNoticeDelete",notice_num);
+	public int amdinNoticeDelete(int num) {
+		return sqlSession.delete("adminNotice.adminNoticeDelete",num);
 	}
 	
-	public void updateReadcount(int notice_num) {
-		sqlSession.update("adminNotice.updateReadcount",notice_num);
+	public void updateReadcount(int num) {
+		sqlSession.update("adminNotice.updateReadcount",num);
 	}	
 }

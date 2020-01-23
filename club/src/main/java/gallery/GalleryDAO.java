@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
+
 @Repository
 public class GalleryDAO {
 	
@@ -28,4 +29,12 @@ public class GalleryDAO {
 			return sqlSession.selectOne("board.gallery_view", id);
 		}
 
+		
+		public int galleryDelete(GalleryVO vo) {
+			return sqlSession.delete("board.gallery_delete",vo);
+		}
+		
+		public int galleryUpdate(GalleryVO vo) {
+			return sqlSession.update("board.gallery_update",vo);
+		}
 }

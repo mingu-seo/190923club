@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="adminNotice.AdminNoticeVO"%>
 <%@ page import="util.Page"%>
 <%
@@ -10,6 +11,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script>
+function updateConfirm() {
+	if (confirm("수정하시겠습니까?")) {
+		location.href='noticeUpdateForm.do?num=<%=list.getNum()%>&page=<%=nowPage%>';
+	}
+}
+function deleteConfirm() {
+	if (confirm("삭제하시겠습니까?")) {
+		location.href='noticeDelete.do?num=<%=list.getNum() %>&page=<%=nowPage%>';
+	}
+}
+
+</script>
 </head>
 <body> 
 <div id="wrap">
@@ -41,22 +55,22 @@
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">제목</label></th>
+										<th scope="row"><label for="subject">제목</label></th>
 										<td colspan="10">
-											<%=list.getNotice_subject()%>
+											<%=list.getSubject()%>
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">내용</label></th>
+										<th scope="row"><label for="content">내용</label></th>
 										<td colspan="10">
-											<%=list.getNotice_content() %>
+											<%=list.getContent() %>
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
+										<th scope="row"><label for="file">첨부파일</label></th>
 										<td colspan="10">
 												<div class="weidtFile">
-													<p><a href="notice/file_down.jsp?notice_file=<%=list.getNotice_file()%>" target="_blank"><%=list.getNotice_file() %></a><br />
+													<p><a href="notice/file_down.jsp?file=<%=list.getFile()%>" target="_blank"><%=list.getFile() %></a><br />
 												</div>
 										</td>
 									</tr>
@@ -67,8 +81,8 @@
 									<a class="btns" href="noticeList.do?page=<%=nowPage%>"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="noticeUpdateForm.do?notice_num=<%=list.getNotice_num()%>&page=<%=nowPage%>"><strong>수정</strong></a>
-									<a class="btns" style="cursor:pointer;" href="noticeDelete.do?notice_num=<%=list.getNotice_num() %>&page=<%=nowPage%>"><strong>삭제</strong></a>
+									<a class="btns" style="cursor:pointer;" onclick="updateConfirm();"><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" onclick="deleteConfirm();"><strong>삭제</strong></a>
 				
 								</div>
 							</div>

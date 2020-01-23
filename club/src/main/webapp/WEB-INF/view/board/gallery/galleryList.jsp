@@ -7,6 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
+GalleryVO vo = (GalleryVO)request.getAttribute("vo");
 %>
 <!DOCTYPE html>
 <html>
@@ -30,6 +31,20 @@ List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
             });
         });
         </script>
+        
+       <!-- 삭제확인 --> 
+       <script>
+       $(function() {
+    		$('#deleteHref').on("click", function(){  
+    			if(confirm("삭제하시겠습니까?")==true){
+    			 } else {
+    			 return false;
+    			    }
+    	    });    
+    	});
+       </script>
+        
+        
         
         <script>
                 //라이트박스
@@ -69,10 +84,11 @@ List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
 	                	success : function(data){
 	                		console.log(data);
 	                		$(".paper-text2").text(data.title);	
+	                		$(".paper-contents").text(data.contents);	
 		                	$(".paper-each2").attr("src", "/upload/"+data.image);
 		                	$("#nextHref").attr("href", "galleryAjax.do?id="+id);
-		                	$("#deleteHref").attr("href", "delete.do?id="+id);
-		                	$("#detailHref").attr("href", "detail.do?id="+id);
+		                	$("#deleteHref").attr("href", "galleryDelete.do?post_id="+id);
+		                	$("#detailHref").attr("href", "galleryEdit.do?post_id="+id);
 		               		$("#readCount").text(data.readcount);
 	                	},
 	                	error:function(data){
@@ -274,6 +290,8 @@ List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
             	<div>
 					<span class="galleryClose">X</span>     
 				</div>
+               <form action="galleryEdit.do" method="post">
+               <input type="hidden" id="hidden_id" name="post_id">
                
                 <div class="user-information">
                     <a class="user-information-image" href="#">
@@ -293,6 +311,10 @@ List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
 	                <a id="nextHref">▶</a>
                 </div>  
                 
+                </form>
+                
+                <div class="paper-contents"></div>  
+	          	
 	          	<div class="view_repl_info">
 					<span class="view_like">♥</span>
 					<span>이 글을 N명이 좋아합니다.</span>
@@ -326,10 +348,10 @@ List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
 						</tr>
 					</table>
 				</div>
+				<a id="deleteHref"><input type="button" value="삭제" class="btns" ></a>
+				<a id="detailHref"><input type="button" value="수정" class="btns" ></a>
       	  </div>
-            
          
-       
         </div>
        </div>
 </html>

@@ -34,7 +34,7 @@
     <div class="boxcontainer">
         <div class="center">
             <div class="button">
-                <a href="#" class="box1" img="#">SPOT 만들기</a> 
+                <a href="/spot/categoryCheck.do" class="box1" img="#">SPOT 만들기</a> 
             </div>    
             <div class="box2">가입한 SPOT</div>
             <div class="box2">가입한 SPOT</div>

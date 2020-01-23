@@ -52,8 +52,8 @@ public class AdminQnaController {
 	
 	//Q & A 상세보기
 	@RequestMapping("/admin/qna/qnaDetail.do")
-	public String adminQnaView(Model model,@RequestParam(name="page",required=false) String page, int qna_num) {
-		AdminQnaVO vo = adminQnaService.adminQnaView(qna_num);
+	public String adminQnaView(Model model,@RequestParam(name="page",required=false) String page, int num) {
+		AdminQnaVO vo = adminQnaService.adminQnaView(num);
 		model.addAttribute("list", vo);
 		model.addAttribute("nowPage", page);
 		return "admin/qna/qnaView";
@@ -63,8 +63,8 @@ public class AdminQnaController {
 	//Q & A 수정 폼
 	@RequestMapping("/admin/qna/qnaUpdateForm.do")
 	
-	public String amdinQnaUpdateForm(Model model, @RequestParam("qna_num") int qna_num) {
-		AdminQnaVO vo = adminQnaService.adminQnaView(qna_num);
+	public String amdinQnaUpdateForm(Model model, @RequestParam("num") int num) {
+		AdminQnaVO vo = adminQnaService.adminQnaView(num);
 		model.addAttribute("vo",vo);
 		return "admin/qna/qnaUpdateForm";
 	}
@@ -79,15 +79,15 @@ public class AdminQnaController {
 	//Q & A 삭제하기
 	@RequestMapping("/admin/qna/qnaDelete.do")
 	public String amdinQnaDelete(HttpServletRequest request) {
-		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
-		adminQnaService.amdinQnaDelete(qna_num);
+		int num = Integer.parseInt(request.getParameter("num"));
+		adminQnaService.amdinQnaDelete(num);
 		return "redirect:/admin/qna/qnaList.do";
 	}
 	
 	//Q & A 답변
 	@RequestMapping("/admin/qna/qnaReplyForm.do")
 	public String adminQnaReplyForm(Model model, AdminQnaVO vo) {
-		AdminQnaVO data = adminQnaService.adminQnaView(vo.getQna_num());
+		AdminQnaVO data = adminQnaService.adminQnaView(vo.getNum());
 		model.addAttribute("data", data);
 		model.addAttribute("vo", vo);
 		return "admin/qna/qnaReplyForm";
@@ -104,7 +104,7 @@ public class AdminQnaController {
 			url = "qnaList.do?page="+vo.getPage();
 		} else {
 			msg = "답변 저장 실패";
-			url = "qnaReplyForm.do?board_num="+vo.getQna_num()+"&page="+vo.getPage();
+			url = "qnaReplyForm.do?board_num="+vo.getNum()+"&page="+vo.getPage();
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);

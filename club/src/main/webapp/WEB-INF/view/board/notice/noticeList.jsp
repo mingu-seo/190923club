@@ -55,6 +55,8 @@ NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 		
 		
 					<div class="board_list_box">
+					<form>
+						<input type="hidden" name="board_id" value="3">
 						<table id="boardList">
 							<tr class="board_top">
 								<th>번호</th>
@@ -71,7 +73,7 @@ NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 							%>
 							<tr class="board_art">
 								<td><%= list.get(i).getPost_id()%></td>
-								<td class="art_title"><a href="/board/notice/noticeWriteView.do?post_id=<%=list.get(i).getPost_id()%>"><%=list.get(i).getTitle() %></td>
+								<td class="art_title"><a href="/board/notice/noticeWriteView.do?post_id=<%=list.get(i).getPost_id()%>&board_id=<%=list.get(i).getBoard_id()%>"><%=list.get(i).getTitle() %></td>
 								<td>조한빈</td>
 								<td><%=util.Function.getYmd(list.get(i).getRegdate())%></td>
 								<td>11</td>
@@ -85,6 +87,7 @@ NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 							
 							
 						</table>
+						</form>
 					</div>
 	
 				 <div class="boardSearch">

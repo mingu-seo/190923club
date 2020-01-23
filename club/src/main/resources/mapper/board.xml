@@ -15,7 +15,7 @@
 	
 	<!-- 자유게시판 상세보기 -->
 	<select id="board_view" parameterType="Integer" resultType="board.BoardVO">
-		select * from project.writing where post_id=#{post_id}
+		select * from project.writing where post_id=#{post_id} board_id=#{board_id}
 	</select>
 	
 	<!-- 자유게시판 글삭제 -->
@@ -51,7 +51,8 @@
 	
 	<!-- 공지사항 글작성 -->
 	<insert id="notice_insert" parameterType="notice.NoticeVO">
-		insert into project.notice (title, file, contents, regdate) values(#{title}, #{file}, #{contents}, now())
+		insert into project.notice (title, file, contents, regdate, board_id) 
+		values(#{title}, #{file}, #{contents}, now(), #{board_id})
 	</insert>
 	
 	<!-- 공지사항 상세보기 -->

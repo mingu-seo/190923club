@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="notice.NoticeVO" %>
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+NoticeVO vo = (NoticeVO)request.getAttribute("vo");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -64,7 +68,8 @@
         		<div class="board_ctg_name">공지사항 목록</div>
         		
         		<div>
-				<form action="noticeInsert.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
+				<form action="noticeInsert.do?board_id=3" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
+					<input type="hidden" name="board_id" value="3">
 					<table id="boardTable">
 												
 						<tr>		
@@ -92,7 +97,7 @@
 						<div class="writing_btns">
 							<input type="submit" value="작성완료" class="btns">
 							<input type="reset" value="다시 작성" class="btns"/>
-							<input type="button" value="목록" class="btns">
+							<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?board_id=3'">
 						</div>
 				</form>
 			</div>

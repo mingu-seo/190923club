@@ -8,7 +8,8 @@
 	</select>
 
 	<insert id="re_insert" parameterType="reply.ReplyVO">
-		insert into project.reply (contents, regdate) 
-		values(#{contents}, now()) 
+		insert into project.reply (contents, regdate, post_id, board_id, g_id, g_lev, g_seq) 
+		values(#{contents}, now(), #{post_id}, #{board_id}, #{g_id}, #{g_lev}, #{g_seq})
 	</insert>
+	
 </mapper>

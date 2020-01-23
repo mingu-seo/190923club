@@ -35,7 +35,7 @@
         		<div class=rightBoard>
         		
         			<div class="galarybox">
-        				<div id="mm"><a href="/board/gallery/galleryList.do"><button class="view-more">더보기</button></a></div>
+        				<div id="mm"><a href="/board/gallery/galleryList.do?board_id=1"><button class="view-more">더보기</button></a></div>
 					<div class="pregalary-info">
 					<a href=""><img class="pregalary-img" src="/img/board/gal2.PNG"></a><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
 					<div class="pregalary-title"><a href="">이번에 홍천 비발디파크에서 스키탄거 </a></div>
@@ -79,7 +79,7 @@
         		<div class="pre-board">
         		<div class="preBoard-name">게시판</div>
         		<div class=rightBoard>
-        		<div id="mm"><a href="/board/writing/boardList.do"><button class="view-more">더보기</button></a></div>
+        		<div id="mm"><a href="/board/writing/boardList.do?board_id=2"><button class="view-more">더보기</button></a></div>
         		<table class="preboard">
 					
         			<tr> <!-- 최대 갯수 지정 -->
@@ -125,7 +125,7 @@
         		<div class="pre-board">
         		<div class="preBoard-name">공지</div>
         		<div class=rightBoard>
-        		<div id="mm"><a href="/board/notice/noticeList.do"><button class="view-more">더보기</button></a></div>
+        		<div id="mm"><a href="/board/notice/noticeList.do?board_id=3"><button class="view-more">더보기</button></a></div>
         		<table class="preboard">
         			<tr> <!-- 최대 갯수 지정(7개정도) -->
         				<td>★</td>

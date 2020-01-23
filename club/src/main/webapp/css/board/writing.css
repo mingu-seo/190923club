@@ -193,21 +193,28 @@
 		width:100px;
 	}
 	
-	#replyText{
+	.replyText{
 		background:#f2f2f2;
 		resize: none;
 		width:100%;
 		height:70px; 
 		padding:10px;
-		margin: 20px;
 	}
 	
-	#repl_btn {
+	.re_reply {
+		background:#f2f2f2;
+		resize: none; 
+		width:100%;
+		height:70px;
+		padding:10px;
+		margin:20px 0;
+	}
+	
+	.repl_btn {
 		height:70px;
 		width:100%;
-		padding:10px;
 		background:#f2f2f2;
-		border:1px solid gray;
+		border:1px solid gray !important;
 	}
 	
 	.repl_box { 
@@ -223,9 +230,9 @@
 		border-bottom: 1px dotted #e5e5e5;
 	}
 	
-	#reply tr td {
+	#reply #re_info td {
 		text-align: left;
-		padding:10px;
+		padding:5px;
 	}
 	
 	.btns {
@@ -238,6 +245,10 @@
 	    margin: 20px;
 	}
 	
+	#repl_del {
+		width:5px;
+	}
+	
 	/*갤러리 리스트페이지*/
 	.g_s {
 		height:30px;
@@ -248,3 +259,25 @@
 		margin:20px;
 		font-weight: bold;
 	}
+	
+	.re_tr {
+		display:none;
+	}
+	
+	.repForm {
+		padding: 20px 0 20px 20px;
+	} 
+	
+	.repForm_sub {
+		width:100px;
+		padding:20px 20px 20px 0; 
+	}
+	
+	#dndn{
+		font-size: 28px;
+	    text-align: right;
+	    color: darkgrey;
+	    padding:20px;
+	}
+	 
+}

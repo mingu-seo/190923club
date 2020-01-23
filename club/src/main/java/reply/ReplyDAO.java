@@ -21,4 +21,6 @@ public class ReplyDAO {
 	public int replyInsert(ReplyVO vo) {
 		return sqlSession.insert("reply.re_insert", vo);
 	}
+	
+
 }

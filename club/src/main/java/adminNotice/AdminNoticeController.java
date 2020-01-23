@@ -19,7 +19,7 @@ public class AdminNoticeController {
 	
 	@Autowired
 	private AdminNoticeService adminNoticeService;
-	
+	//D
 	/* 공지사항 S T A R T  */
 
 	//공지사항 등록 폼

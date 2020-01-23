@@ -9,6 +9,14 @@
 
 	<!-- component-scan : 자동으로 어노테이션 클래스 객체 생성 -->
 	<context:component-scan base-package="test"/>
+	<context:component-scan base-package="admin"/>
+	<context:component-scan base-package="adminNotice"/>
+	<context:component-scan base-package="adminQna"/>
+	<context:component-scan base-package="board"/>
+	<context:component-scan base-package="gallery"/>
+	<context:component-scan base-package="notice"/>
+	<context:component-scan base-package="reply"/>
+	
 	
 	<!-- annotation 활성화 -->
 	<mvc:annotation-driven/>
@@ -28,7 +36,7 @@
 	<!-- dataSource 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost/spring5fs?characterEncoding=utf8&amp;serverTimezone=Asia/Seoul"/>
+		<property name="url" value="jdbc:mysql://localhost/project?characterEncoding=utf8&amp;serverTimezone=Asia/Seoul"/>
 		<property name="username" value="root"/>
 		<property name="password" value="test1234"/>
 	</bean>
@@ -49,14 +57,16 @@
 	</bean>
 	
 	<!-- 인터셉터:가로채기 -->
-	<mvc:interceptors>
+<!-- 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**"/>
 			<mvc:exclude-mapping path="/admin/login.do"/>
 			<mvc:exclude-mapping path="/admin/loginProcess.do"/>
 			<bean class="interceptor.AdminInterceptor"/>
 		</mvc:interceptor>
+
 	</mvc:interceptors>
+ -->
 	
 	
 	

@@ -47,4 +47,28 @@
 		SELECT * FROM spring5fs.member WHERE email=#{mail} AND password=#{pwd}
 	</select>
 	
+	
+	
+	
+	
+	
+	
+	
+	<select id="detailBoard" parameterType="Integer" resultType="test.TestVO">
+		SELECT * FROM project.board WHERE id_post=#{id_post}
+	</select>
+	
+	<update id="updateBoard" parameterType="test.TestVO">
+		UPDATE project.board SET
+		title=#{title}, contents=#{contents}
+		<if test="picture != null">
+			, picture=#{picture}
+		</if>
+		WHERE id_post= #{id_post}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="Integer">
+		DELETE FROM project.board WHERE id_post=#{id_post}
+	</delete>
+	
 </mapper>

@@ -11,7 +11,23 @@ public class NoticeVO {
 	private String title;
 	private String contents;
 	private int view;
+	private String file;
+	private String search_word;
 	
+	
+	public String getSearch_word() {
+		//검색창이 널값일때 빈값을, 아니면 검색어를
+		return search_word==null ? "" : search_word;
+	}
+	public void setSearch_word(String search_word) {
+		this.search_word = search_word;
+	}
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
 	public int getBoard_id() {
 		return board_id;
 	}

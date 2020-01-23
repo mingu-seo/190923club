@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reply">
+
+	<select id="re_list" parameterType="notice.NoticeVO" resultType="reply.ReplyVO">
+		select * from project.reply where post_id=#{post_id} and board_id=#{board_id}
+	</select>
+
+	<insert id="re_insert" parameterType="reply.ReplyVO">
+		insert into project.reply (contents, regdate) 
+		values(#{contents}, now()) 
+	</insert>
+</mapper>

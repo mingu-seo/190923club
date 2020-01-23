@@ -57,35 +57,19 @@ public class BoardController {
 		bService.boardInsert(vo);
 		return "redirect:/board/writing/boardList.do";
 	}
-	//자유게시판 상세보기 페이지
-	@RequestMapping("/board/writing/boardView.do")
-	public String boardDetail(Model model, @RequestParam("id") int id) {
-		return "board/boardWriteView";
-	}
-	
-	
+	//자유게시판 상세보기
 	@RequestMapping("/board/writing/boardWriteView.do") 
 	public String boardWriteView(@RequestParam("id_post")int id_post, Model model) {
 	BoardVO vo = bService.boardView(id_post);
+	
 	model.addAttribute("vo", vo);
 	
 	return "board/writing/boardWriteView";
 	}
-	
-	//공지사항 목록 페이지
-	@RequestMapping("/board/notice/noticeList.do") 
-	public String noticeList() {
-		return "board/notice/noticeList";
-	}
-	//공지사항 작성페이지
-	@RequestMapping("/board/notice/noticeWrite.do") 
-	public String noticeWrite() {
-		return "board/notice/noticeWrite";
-	}
-	//공지사항 상세보기 페이지
-	@RequestMapping("/board/notice/noticeWriteView.do") 
-	public String noticeWriteView() {
-		return "board/notice/noticeWriteView";
+	//자유게시판 삭제
+	@RequestMapping("/board/writing/boardDelete.do")
+	public String boardDelete(@RequestParam("post_id")int post_id) {
+		return "redirect:/board/writing/boardList.do";
 	}
 	
 }

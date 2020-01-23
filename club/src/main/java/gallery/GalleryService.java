@@ -27,4 +27,20 @@ public class GalleryService {
 		vo.setImage(fu.fileName);
 		return galleryDao.galleryInsert(vo);
 	}
+	
+	public GalleryVO galleryView(int id) {
+		//galleryDao.updateView(id);
+		return galleryDao.galleryView(id);
+	}
+	
+	public int galleryDelete(GalleryVO vo) {
+		return galleryDao.galleryDelete(vo);
+	}
+	
+	public int galleryUpdate(GalleryVO vo, MultipartFile file, HttpServletRequest request) {
+		FileUtil fu = new FileUtil();
+		fu.fileUpload(file, request.getRealPath("/upload/"));
+		vo.setImage(fu.fileName);
+		return galleryDao.galleryUpdate(vo);
+	}
 }

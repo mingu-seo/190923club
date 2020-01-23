@@ -22,5 +22,8 @@ public class BoardService {
 	public BoardVO boardView(int id_post) {
 		return boardDAO.boardView(id_post);
 	}
+	public int boardDelete(int post_id) {
+		return boardDAO.boardDelete(post_id);
+	}
 	
 }

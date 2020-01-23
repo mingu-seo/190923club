@@ -143,6 +143,7 @@
 	
 	.view_tt {
 		font-weight: bold; 
+		font-size:16px;
 		margin:20px 20px 0 20px;
 		padding:5px; 
 		border-bottom: 2px double black; 
@@ -154,7 +155,7 @@
 	}
 	
 	.view_ctt {
-		margin:20px 40px;
+		margin:40px 40px;
 		heigh:auto;
 		
 	} 
@@ -240,4 +241,10 @@
 	/*갤러리 리스트페이지*/
 	.g_s {
 		height:30px;
+	}
+	
+	/*공지사항*/
+	.view_file {
+		margin:20px;
+		font-weight: bold;
 	}

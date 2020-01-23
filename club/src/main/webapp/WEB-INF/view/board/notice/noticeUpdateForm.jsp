@@ -3,6 +3,10 @@
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="notice.*" %>
+<%
+NoticeVO vo = (NoticeVO)request.getAttribute("vo");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -64,27 +68,27 @@
         		<div class="board_ctg_name">공지사항 목록</div>
         		
         		<div>
-				<form action="noticeInsert.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
+				<form action="noticeUpdate.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
+				<input type="hidden" name="post_id" value="<%=vo.getPost_id() %>">
+				
 					<table id="boardTable">
-												
 						<tr>		
 							<th>제목</th>
 								<td class="writing_box">
-									<input type="text" name="title" class="tableRight">
+									<input type="text" name="title" class="tableRight" value="<%=vo.getTitle() %>">
 								</td>
 						</tr>
-						
 						
 						<tr>		
 							<th>첨부파일</th>
 								<td class="writing_box">
-									<input type="file" name="file_tmp" class="tableRight">
+									<input type="file" name="file_tmp" class="tableRight" value="<%=vo.getFile() %>">
 								</td>
 						</tr>
 						
 						<tr>		
 							<td colspan="2">
-								<textarea name="contents" id="contents"></textarea>
+								<textarea name="contents" id="contents"><%=vo.getContents() %></textarea>
 							</td>
 						</tr>
 					</table>

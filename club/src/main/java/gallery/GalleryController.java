@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
+
+
 @Controller
 public class GalleryController {
 
@@ -41,4 +44,35 @@ public class GalleryController {
 			gService.galleryInsert(vo, file, request);
 			return "redirect:/board/gallery/galleryList.do";
 		}
+		
+		//갤러리 ajax
+		@RequestMapping("/board/gallery/galleryAjax.do")
+		public String galleryAjax(Model model, @RequestParam("id") int id) {
+			GalleryVO vo = gService.galleryView(id);
+			model.addAttribute("vo", vo);
+			return "board/gallery/galleryAjax";
+		}
+		
+		//갤러리삭제
+			@RequestMapping("/board/gallery/galleryDelete.do")
+			public String galleryDelete(GalleryVO vo) {
+			gService.galleryDelete(vo);
+			return "redirect:/board/gallery/galleryList.do";
+			}
+			
+		//갤러리 수정
+		@RequestMapping("/board/gallery/galleryEdit.do") 
+		public String galleryEdit(Model model, @RequestParam("post_id") int id) {
+			GalleryVO vo = gService.galleryView(id);
+			model.addAttribute("vo", vo);
+			return "board/gallery/galleryEdit";
+		}
+		
+		//갤러리 업데이트
+				@RequestMapping("/board/gallery/galleryUpdate.do") 
+				public String galleryUpdate(GalleryVO vo, @RequestParam("image_tmp") MultipartFile file, HttpServletRequest request) {
+				gService.galleryUpdate(vo, file, request);
+				return "redirect:/board/gallery/galleryList.do";
+				}
+		
 }

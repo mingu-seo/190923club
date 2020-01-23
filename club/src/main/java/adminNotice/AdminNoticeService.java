@@ -37,22 +37,22 @@ public class AdminNoticeService {
 	}
 	
 	//수정페이지에서는 조회수 증가못하도록 따로 분리해아함
-	public AdminNoticeVO adminNoticeView(int notice_num) {
-		adminNoticeDao.updateReadcount(notice_num);
-		return adminNoticeDao.adminNoticeView(notice_num);
+	public AdminNoticeVO adminNoticeView(int num) {
+		adminNoticeDao.updateReadcount(num);
+		return adminNoticeDao.adminNoticeView(num);
 	}
 
 	
-	public AdminNoticeVO adminNoticeUpdateForm(int notice_num) {
-		return adminNoticeDao.adminNoticeView(notice_num);
+	public AdminNoticeVO adminNoticeUpdateForm(int num) {
+		return adminNoticeDao.adminNoticeView(num);
 	}
 	
 	public int adminNoticeInsert(AdminNoticeVO vo , MultipartFile file, HttpServletRequest request) {
 		FileUtil fu = new FileUtil();
 		fu.fileUpload(file, request.getRealPath("/upload/images/"));
-		vo.setNotice_file(fu.fileName);
+		vo.setFile(fu.fileName);
 		int maxNum = adminNoticeDao.maxNoticeNum();
-		vo.setNotice_re_ref(maxNum);
+		vo.setRe_ref(maxNum);
 		int r = adminNoticeDao.amdinNoticeInsert(vo);
 		return r;
 	}
@@ -62,14 +62,14 @@ public class AdminNoticeService {
 		fu.fileUpload(file, request.getRealPath("/upload/images/"));
 		
 		if (fu.fileName != null && !"".equals(fu.fileName)) {
-			vo.setNotice_file(fu.fileName);
+			vo.setFile(fu.fileName);
 		}
 		int r = adminNoticeDao.amdinNoticeUpdate(vo);
 		return r;
 	}
 	
-	public int amdinNoticeDelete(int notice_num) {
-		int r = adminNoticeDao.amdinNoticeDelete(notice_num);
+	public int amdinNoticeDelete(int num) {
+		int r = adminNoticeDao.amdinNoticeDelete(num);
 		return r;
 	}
 

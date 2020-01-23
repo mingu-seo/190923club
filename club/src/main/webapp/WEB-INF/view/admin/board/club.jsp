@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -137,6 +138,9 @@
 		</div>
 		<!--//container --> 
 		<!-- E N D :: containerArea-->
+		<div class="footer">
+			Copyrights (c) 2020 <a href="#" target="_blank">SAMPLE</a>. All Rights Reserved.  
+		</div>
 	</div>
 	<!--//canvas -->
 </div>

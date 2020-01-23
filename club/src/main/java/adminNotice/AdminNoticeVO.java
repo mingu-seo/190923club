@@ -2,17 +2,17 @@ package adminNotice;
 
 public class AdminNoticeVO {
 	
-	private int notice_num;
-	private String notice_name;
-	private String notice_pass;
-	private String notice_subject;
-	private String notice_content;
-	private String notice_file;
-	private int notice_re_ref;
-	private int notice_re_lev;
-	private int notice_re_seq;
-	private int notice_readcount;
-	private String notice_date;
+	private int num;
+	private String name;
+	private String pass;
+	private String subject;
+	private String content;
+	private String file;
+	private int re_ref;
+	private int re_lev;
+	private int re_seq;
+	private int readcount;
+	private String date;
 	
 	private String keyword;
 	private String searchOption;
@@ -62,71 +62,71 @@ public class AdminNoticeVO {
 	
 	
 	
-	public int getNotice_num() {
-		return notice_num;
+	public int getNum() {
+		return num;
 	}
-	public void setNotice_num(int notice_num) {
-		this.notice_num = notice_num;
+	public void setNum(int num) {
+		this.num = num;
 	}
-	public String getNotice_name() {
-		return notice_name;
+	public String getName() {
+		return name;
 	}
-	public void setNotice_name(String notice_name) {
-		this.notice_name = notice_name;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getNotice_pass() {
-		return notice_pass;
+	public String getPass() {
+		return pass;
 	}
-	public void setNotice_pass(String notice_pass) {
-		this.notice_pass = notice_pass;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
-	public String getNotice_subject() {
-		return notice_subject;
+	public String getSubject() {
+		return subject;
 	}
-	public void setNotice_subject(String notice_subject) {
-		this.notice_subject = notice_subject;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
-	public String getNotice_content() {
-		return notice_content;
+	public String getContent() {
+		return content;
 	}
-	public void setNotice_content(String notice_content) {
-		this.notice_content = notice_content;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public String getNotice_file() {
-		return notice_file;
+	public String getFile() {
+		return file;
 	}
-	public void setNotice_file(String notice_file) {
-		this.notice_file = notice_file;
+	public void setFile(String file) {
+		this.file = file;
 	}
-	public int getNotice_re_ref() {
-		return notice_re_ref;
+	public int getRe_ref() {
+		return re_ref;
 	}
-	public void setNotice_re_ref(int notice_re_ref) {
-		this.notice_re_ref = notice_re_ref;
+	public void setRe_ref(int re_ref) {
+		this.re_ref = re_ref;
 	}
-	public int getNotice_re_lev() {
-		return notice_re_lev;
+	public int getRe_lev() {
+		return re_lev;
 	}
-	public void setNotice_re_lev(int notice_re_lev) {
-		this.notice_re_lev = notice_re_lev;
+	public void setRe_lev(int re_lev) {
+		this.re_lev = re_lev;
 	}
-	public int getNotice_re_seq() {
-		return notice_re_seq;
+	public int getRe_seq() {
+		return re_seq;
 	}
-	public void setNotice_re_seq(int notice_re_seq) {
-		this.notice_re_seq = notice_re_seq;
+	public void setRe_seq(int re_seq) {
+		this.re_seq = re_seq;
 	}
-	public int getNotice_readcount() {
-		return notice_readcount;
+	public int getReadcount() {
+		return readcount;
 	}
-	public void setNotice_readcount(int notice_readcount) {
-		this.notice_readcount = notice_readcount;
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
 	}
-	public String getNotice_date() {
-		return notice_date;
+	public String getDate() {
+		return date;
 	}
-	public void setNotice_date(String notice_date) {
-		this.notice_date = notice_date;
+	public void setDate(String date) {
+		this.date = date;
 	}
 	public String getKeyword() {
 		return keyword;

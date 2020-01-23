@@ -51,8 +51,8 @@ public class AdminNoticeController {
 	
 	//공지사항 상세보기
 	@RequestMapping("/admin/notice/noticeDetail.do")
-	public String adminNoticeView(Model model,@RequestParam(name="page",required=false) String page, int notice_num) {
-		AdminNoticeVO vo = adminNoticeService.adminNoticeView(notice_num);
+	public String adminNoticeView(Model model,@RequestParam(name="page",required=false) String page, int num) {
+		AdminNoticeVO vo = adminNoticeService.adminNoticeView(num);
 		model.addAttribute("list", vo);
 		model.addAttribute("nowPage", page);
 		return "admin/notice/noticeView";
@@ -62,8 +62,8 @@ public class AdminNoticeController {
 	//공지사항 수정 폼
 	@RequestMapping("/admin/notice/noticeUpdateForm.do")
 	
-	public String amdinNoticeUpdateForm(Model model, @RequestParam("notice_num") int notice_num) {
-		AdminNoticeVO vo = adminNoticeService.adminNoticeView(notice_num);
+	public String amdinNoticeUpdateForm(Model model, @RequestParam("num") int num) {
+		AdminNoticeVO vo = adminNoticeService.adminNoticeView(num);
 		model.addAttribute("vo",vo);
 		return "admin/notice/noticeUpdateForm";
 	}
@@ -78,8 +78,8 @@ public class AdminNoticeController {
 	//공지사항 삭제하기
 	@RequestMapping("/admin/notice/noticeDelete.do")
 	public String amdinNoticeDelete(HttpServletRequest request) {
-		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
-		adminNoticeService.amdinNoticeDelete(notice_num);
+		int num = Integer.parseInt(request.getParameter("num"));
+		adminNoticeService.amdinNoticeDelete(num);
 		return "redirect:/admin/notice/noticeList.do";
 	}
 	

@@ -5,8 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
+var oEditors = [];
 $(function() {
-	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
 		elPlaceHolder: "contents", // textarea ID
@@ -26,7 +26,18 @@ $(function() {
 		fCreator: "createSEditor2"
 	});
 });
+
+function save() {
+	if ($("#name").val().trim() == ""){
+		alert("category 이름을 입력해 주세요");
+		$("#name").focus();
+		return false;
+	}
+	$('#frm').submit();
+}
+
 </script>
+
 </head>
 <body> 
 <div id="wrap">
@@ -39,14 +50,15 @@ $(function() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [쓰기]</h2>
+					<h2>카테고리 - [수정]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="categoryUpdate.do" enctype="multipart/form-data">
+							<input type="hidden" name="num" value="${vo.num}">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -58,33 +70,26 @@ $(function() {
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">*제목</label></th>
+										<th scope="row"><label for="name">*이름</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="title" class="w100" title="제목을 입력해주세요" />	
+											<input type="text" id="name" name="name" class="w100" title="이름을 입력해주세요" value="${vo.name}"/>	
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">*내용</label></th>
+										<th scope="row"><label for="file">첨부파일</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="contents" title="내용을 입력해주세요" style="width:100%;"></textarea>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
+											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." value="${vo.file }"/>	
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="cmd" value="write" />
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="index.do"><strong>목록</strong></a>
+									<a class="btns" href="categoryList.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;"><strong>저장</strong></a>
+									<a class="btns" style="cursor:pointer;" onClick="save();"><strong>수정완료</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

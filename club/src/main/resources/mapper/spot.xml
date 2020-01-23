@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spot">
+	
+	<select id="nameCheck" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM user WHERE id=#{id}
+	</select>
+	
+	<insert id="spotInsert" parameterType="spot.SpotVO">
+		insert into spot (category_num, name, file, content, tel, email, regdate, modifydate ,question)
+		values
+		(#{category_num},#{name}, #{file}, #{content}, #{tel}, #{email},now(), null, #{question})
+	</insert>
+	
+</mapper>

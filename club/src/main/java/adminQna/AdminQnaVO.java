@@ -2,17 +2,17 @@ package adminQna;
 
 public class AdminQnaVO {
 	
-	private int qna_num;
-	private String qna_name;
-	private String qna_pass;
-	private String qna_subject;
-	private String qna_content;
-	private String qna_file;
-	private int qna_re_ref;
-	private int qna_re_lev;
-	private int qna_re_seq;
-	private int qna_readcount;
-	private String qna_date;
+	private int num;
+	private String name;
+	private String pass;
+	private String subject;
+	private String content;
+	private String file;
+	private int re_ref;
+	private int re_lev;
+	private int re_seq;
+	private int readcount;
+	private String date;
 	
 	private String keyword;
 	private String searchOption;
@@ -62,71 +62,71 @@ public class AdminQnaVO {
 	
 	
 	
-	public int getQna_num() {
-		return qna_num;
+	public int getNum() {
+		return num;
 	}
-	public void setQna_num(int qna_num) {
-		this.qna_num = qna_num;
+	public void setNum(int num) {
+		this.num = num;
 	}
-	public String getQna_name() {
-		return qna_name;
+	public String getName() {
+		return name;
 	}
-	public void setQna_name(String qna_name) {
-		this.qna_name = qna_name;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getQna_pass() {
-		return qna_pass;
+	public String getPass() {
+		return pass;
 	}
-	public void setQna_pass(String qna_pass) {
-		this.qna_pass = qna_pass;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
-	public String getQna_subject() {
-		return qna_subject;
+	public String getSubject() {
+		return subject;
 	}
-	public void setQna_subject(String qna_subject) {
-		this.qna_subject = qna_subject;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
-	public String getQna_content() {
-		return qna_content;
+	public String getContent() {
+		return content;
 	}
-	public void setQna_content(String qna_content) {
-		this.qna_content = qna_content;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public String getQna_file() {
-		return qna_file;
+	public String getFile() {
+		return file;
 	}
-	public void setQna_file(String qna_file) {
-		this.qna_file = qna_file;
+	public void setFile(String file) {
+		this.file = file;
 	}
-	public int getQna_re_ref() {
-		return qna_re_ref;
+	public int getRe_ref() {
+		return re_ref;
 	}
-	public void setQna_re_ref(int qna_re_ref) {
-		this.qna_re_ref = qna_re_ref;
+	public void setRe_ref(int re_ref) {
+		this.re_ref = re_ref;
 	}
-	public int getQna_re_lev() {
-		return qna_re_lev;
+	public int getRe_lev() {
+		return re_lev;
 	}
-	public void setQna_re_lev(int qna_re_lev) {
-		this.qna_re_lev = qna_re_lev;
+	public void setRe_lev(int re_lev) {
+		this.re_lev = re_lev;
 	}
-	public int getQna_re_seq() {
-		return qna_re_seq;
+	public int getRe_seq() {
+		return re_seq;
 	}
-	public void setQna_re_seq(int qna_re_seq) {
-		this.qna_re_seq = qna_re_seq;
+	public void setRe_seq(int re_seq) {
+		this.re_seq = re_seq;
 	}
-	public int getQna_readcount() {
-		return qna_readcount;
+	public int getReadcount() {
+		return readcount;
 	}
-	public void setQna_readcount(int qna_readcount) {
-		this.qna_readcount = qna_readcount;
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
 	}
-	public String getQna_date() {
-		return qna_date;
+	public String getDate() {
+		return date;
 	}
-	public void setQna_date(String qna_date) {
-		this.qna_date = qna_date;
+	public void setDate(String date) {
+		this.date = date;
 	}
 	public String getKeyword() {
 		return keyword;

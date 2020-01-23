@@ -1,14 +1,15 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
+var oEditors = [];
 $(function() {
-	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
-		elPlaceHolder: "notice_content", // textarea ID
+		elPlaceHolder: "contents", // textarea ID
 		sSkinURI: "/smarteditor/SmartEditor2Skin.html",	
 		htParams : {
 			bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -26,6 +27,21 @@ $(function() {
 	});
 });
 
+function save() {
+	if ($("#subject").val().trim() == ""){
+		alert("제목 입력해 주세요");
+		$("#subject").focus();
+		return false;
+	}
+	
+	oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용을 textarea(id=introduce)에 적용
+	if ($("#contents").val().trim() == "" || $("#contents").val() == "<p>&nbsp;</p>") {
+		alert("내용 입력해 주세요");
+		oEditors.getById["contents"].exec("FOCUS");
+		return false;
+	}	
+	$('#frm').submit();
+}
 
 </script>
 
@@ -49,7 +65,7 @@ $(function() {
 					<div id="bbs">
 						<div id="bread">
 							<form method="post" name="frm" id="frm" action="noticeUpdate.do" enctype="multipart/form-data">
-							<input type="hidden" name="notice_num" value="${vo.notice_num}">
+							<input type="hidden" name="num" value="${vo.num}">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -61,21 +77,21 @@ $(function() {
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="notice_subject">*제목</label></th>
+										<th scope="row"><label for="subject">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="notice_subject" class="w100" title="제목을 입력해주세요" value="${vo.notice_subject}"/>	
+											<input type="text" id="subject" name="subject" class="w100" title="제목을 입력해주세요" value="${vo.subject}"/>	
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="notice_content">*내용</label></th>
+										<th scope="row"><label for="content">*내용</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="notice_content" title="내용을 입력해주세요" style="width:100%;" >"${vo.notice_content}"</textarea>	
+											<textarea id="contents" name="content" title="내용을 입력해주세요" style="width:100%;" >"${vo.content}"</textarea>	
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="notice_file">첨부파일</label></th>
+										<th scope="row"><label for="file">첨부파일</label></th>
 										<td colspan="10">
-											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." value="${vo.notice_file }"/>	
+											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." value="${vo.file }"/>	
 										</td>
 									</tr>
 								</tbody>
@@ -87,7 +103,7 @@ $(function() {
 									<a class="btns" href="noticeList.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" onClick="$('#frm').submit();"><strong>수정완료</strong></a>
+									<a class="btns" style="cursor:pointer;" onClick="save();"><strong>수정완료</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

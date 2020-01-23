@@ -37,22 +37,22 @@ public class AdminQnaService {
 	}
 	
 	//수정페이지에서는 조회수 증가못하도록 따로 분리해아함
-	public AdminQnaVO adminQnaView(int qna_num) {
-		adminQnaDao.updateReadcount(qna_num);
-		return adminQnaDao.adminQnaView(qna_num);
+	public AdminQnaVO adminQnaView(int num) {
+		adminQnaDao.updateReadcount(num);
+		return adminQnaDao.adminQnaView(num);
 	}
 
 	
-	public AdminQnaVO adminQnaUpdateForm(int qna_num) {
-		return adminQnaDao.adminQnaView(qna_num);
+	public AdminQnaVO adminQnaUpdateForm(int num) {
+		return adminQnaDao.adminQnaView(num);
 	}
 	
 	public int adminQnaInsert(AdminQnaVO vo , MultipartFile file, HttpServletRequest request) {
 		FileUtil fu = new FileUtil();
 		fu.fileUpload(file, request.getRealPath("/upload/images/"));
-		vo.setQna_file(fu.fileName);
+		vo.setFile(fu.fileName);
 		int maxNum = adminQnaDao.maxQnaNum();
-		vo.setQna_re_ref(maxNum);
+		vo.setRe_ref(maxNum);
 		int r = adminQnaDao.amdinQnaInsert(vo);
 		return r;
 	}
@@ -62,14 +62,14 @@ public class AdminQnaService {
 		fu.fileUpload(file, request.getRealPath("/upload/images/"));
 		
 		if (fu.fileName != null && !"".equals(fu.fileName)) {
-			vo.setQna_file(fu.fileName);
+			vo.setFile(fu.fileName);
 		}
 		int r = adminQnaDao.amdinQnaUpdate(vo);
 		return r;
 	}
 	
-	public int amdinQnaDelete(int qna_num) {
-		int r = adminQnaDao.amdinQnaDelete(qna_num);
+	public int amdinQnaDelete(int num) {
+		int r = adminQnaDao.amdinQnaDelete(num);
 		return r;
 	}
 
@@ -77,8 +77,8 @@ public class AdminQnaService {
 
 	public int replyProcess(AdminQnaVO vo) {
 		adminQnaDao.replySeq(vo);
-		vo.setQna_re_lev(vo.getQna_re_lev()+1);
-		vo.setQna_re_seq(vo.getQna_re_lev()+1);
+		vo.setRe_lev(vo.getRe_lev()+1);
+		vo.setRe_seq(vo.getRe_lev()+1);
 		return adminQnaDao.replyInsert(vo);
 	}
 

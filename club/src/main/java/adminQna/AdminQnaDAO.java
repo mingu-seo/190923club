@@ -27,9 +27,9 @@ public class AdminQnaDAO {
 		return sqlSession.selectOne("adminQna.count",vo);
 	}
 
-	public AdminQnaVO adminQnaView(int qna_num) {
+	public AdminQnaVO adminQnaView(int num) {
 		//sqlSession.update("dog.updateReadcount",id); 조회수를 여기다가 두면 수정 할때에도 
-		return sqlSession.selectOne("adminQna.adminQnaView",qna_num);
+		return sqlSession.selectOne("adminQna.adminQnaView",num);
 	}
 
 	public int amdinQnaInsert(AdminQnaVO vo) {
@@ -43,12 +43,12 @@ public class AdminQnaDAO {
 		return sqlSession.update("adminQna.adminQnaUpdate", vo);
 	}
 
-	public int amdinQnaDelete(int qna_num) {
-		return sqlSession.delete("adminQna.adminQnaDelete",qna_num);
+	public int amdinQnaDelete(int num) {
+		return sqlSession.delete("adminQna.adminQnaDelete",num);
 	}
 	
-	public void updateReadcount(int qna_num) {
-		sqlSession.update("adminQna.updateReadcount",qna_num);
+	public void updateReadcount(int num) {
+		sqlSession.update("adminQna.updateReadcount",num);
 	}
 
 

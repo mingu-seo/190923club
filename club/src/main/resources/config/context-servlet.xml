@@ -12,6 +12,8 @@
 	<context:component-scan base-package="admin"/>
 	<context:component-scan base-package="adminNotice"/>
 	<context:component-scan base-package="adminQna"/>
+	<context:component-scan base-package="spotCategory"/>
+	<context:component-scan base-package="spot"/>
 	<context:component-scan base-package="board"/>
 	<context:component-scan base-package="gallery"/>
 	<context:component-scan base-package="notice"/>

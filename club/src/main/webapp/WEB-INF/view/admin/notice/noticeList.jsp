@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="adminNotice.AdminNoticeVO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="util.Page"%>
@@ -63,12 +64,12 @@
 								<tbody>
 									<tr>
 										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td><%=list.get(i).getNotice_num()%></td>
-										<td class="title"><a href="noticeDetail.do?notice_num=<%=list.get(i).getNotice_num()%>&page=<%=vo.getPage()%>">
-										<%=list.get(i).getNotice_subject() %></a></td>							
-										<td><%=list.get(i).getNotice_date() %></td>
-										<td><%=list.get(i).getNotice_name() %></td>
-										<td class="last"><%=list.get(i).getNotice_readcount() %></td>
+										<td><%=list.get(i).getNum()%></td>
+										<td class="title"><a href="noticeDetail.do?num=<%=list.get(i).getNum()%>&page=<%=vo.getPage()%>">
+										<%=list.get(i).getSubject() %></a></td>							
+										<td><%=list.get(i).getDate() %></td>
+										<td><%=list.get(i).getName() %></td>
+										<td class="last"><%=list.get(i).getReadcount() %></td>
 									</tr>
 									<%
 										}
@@ -113,6 +114,7 @@
 		</div>
 		<!--//container --> 
 		<!-- E N D :: containerArea-->
+
 	</div>
 	<!--//canvas -->
 </div>

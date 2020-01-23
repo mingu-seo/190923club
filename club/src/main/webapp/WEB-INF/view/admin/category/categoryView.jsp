@@ -1,33 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="adminQna.AdminQnaVO"%>
-<%@ page import="util.Page"%>
+<%@ page import="spotCategory.SpotCategoryVO"%>
+<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+
 <%
-	AdminQnaVO list = (AdminQnaVO)request.getAttribute("list");
-	String nowPage = (String)request.getAttribute("nowPage");
+	SpotCategoryVO list = (SpotCategoryVO)request.getAttribute("list");
 %>
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
-
-function replyConfirm() {
-	if (confirm("답변하시겠습니까?")) {
-		location.href='qnaReplyForm.do?num=<%=list.getNum()%>&page=<%=nowPage%>';
-	}
-}
 function updateConfirm() {
 	if (confirm("수정하시겠습니까?")) {
-		location.href='qnaUpdateForm.do?num=<%=list.getNum()%>&page=<%=nowPage%>';
+		location.href='categoryUpdateForm.do?num=<%=list.getNum()%>';
 	}
 }
 function deleteConfirm() {
 	if (confirm("삭제하시겠습니까?")) {
-		location.href='qnaDelete.do?num=<%=list.getNum()%>&page=<%=nowPage%>';
+		location.href='categoryDelete.do?num=<%=list.getNum() %>';
 	}
 }
+
 </script>
 </head>
 <body> 
@@ -35,14 +29,14 @@ function deleteConfirm() {
 	<!-- canvas -->
 	<div id="canvas">
 		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
+	<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 		<!-- E N D :: headerArea--> 
 		
 		<!-- S T A R T :: containerArea-->
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>Q & A - [읽기]</h2>
+					<h2>카테고리 세부사항</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -60,22 +54,16 @@ function deleteConfirm() {
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">제목</label></th>
+										<th scope="row"><label for="name">카테고리 이름</label></th>
 										<td colspan="10">
-											<%=list.getSubject()%>
+											<%=list.getName()%>
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">내용</label></th>
-										<td colspan="10">
-											<%=list.getContent() %>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
+										<th scope="row"><label for="file">첨부파일</label></th>
 										<td colspan="10">
 												<div class="weidtFile">
-													<p><a href="/WEB-INF/view/admin/file/file_down.jsp?file=<%=list.getFile()%>" target="_blank"><%=list.getFile() %></a><br />
+													<p><a href="category/file_down.jsp?file=<%=list.getFile()%>" target="_blank"><%=list.getFile() %></a><br />
 												</div>
 										</td>
 									</tr>
@@ -83,10 +71,9 @@ function deleteConfirm() {
 							</table>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="qnaList.do?page=<%=nowPage%>"><strong>목록</strong></a>
+									<a class="btns" href="categoryList.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" onclick="replyConfirm();"><strong>답변</strong></a>
 									<a class="btns" style="cursor:pointer;" onclick="updateConfirm();"><strong>수정</strong></a>
 									<a class="btns" style="cursor:pointer;" onclick="deleteConfirm();"><strong>삭제</strong></a>
 				

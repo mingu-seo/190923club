@@ -92,7 +92,6 @@ $(window).load(function(){
 					<ul>
 						<li><a href="/admin/board/post.do"><span>게시글</span></a></li>
 						<li><a href="/admin/board/club.do"><span>동아리</span></a></li>
-						<li><a href="/admin/category/categoryList.do"><span>카테고리</span></a></li>
 					</ul>
 					</div>
 				</li>

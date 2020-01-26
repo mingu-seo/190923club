@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+
+	<!-- 자유게시판 리스트 -->
+	<select id="list" parameterType="board.BoardVO" resultType="board.BoardVO">
+		select * from project.writing order by regdate desc
+	</select>
+	
+	<!-- 자유게시판 글작성 -->
+	<insert id="board_insert" parameterType="board.BoardVO">
+		insert into project.writing (title, contents, regdate) values(#{title}, #{contents}, now()) 
+	</insert>
+	
+	<!-- 자유게시판 상세보기 -->
+	<select id="board_view" parameterType="Integer" resultType="board.BoardVO">
+		select * from project.writing where post_id=#{post_id}
+	</select>
+	
+	<!-- 자유게시판 글삭제 -->
+	<delete id="board_delete" parameterType="Integer">
+		delete from project.writing where post_id=#{post_id}
+	</delete>
+	
+	<!-- 갤러리 리스트 -->
+	<select id="gallery_list" parameterType="gallery.GalleryVO" resultType="gallery.GalleryVO">
+		select * from project.gallery order by regdate desc;
+	</select>
+	
+	<!--갤러리 글작성 -->
+	<insert id="gallery_insert" parameterType="gallery.GalleryVO">
+		insert into project.gallery (title, contents, image, regdate) values(#{title}, #{contents}, #{image}, now()) 
+	</insert>
+	
+	<!-- 갤러리 상세 -->
+	<select id="gallery_view" parameterType="Integer" resultType="gallery.GalleryVO">
+		select * from project.gallery where post_id=#{post_id}
+	</select>
+	
+	<!-- 갤러리 삭제 -->
+	<select id="gallery_delete" parameterType="gallery.GalleryVO">
+		delete from project.gallery where post_id=#{post_id}
+	</select>
+	
+	<!-- 갤러리 업데이트 -->
+	<update id="gallery_update" parameterType="gallery.GalleryVO">
+		update project.gallery set 
+		title=#{title}, contents=#{contents}
+		<if test="image != null">
+		, image=#{image}
+		</if>
+		where post_id=#{post_id}
+	</update>
+	
+	<!-- 공지사항 리스트 -->
+	<select id="notice_list" parameterType="notice.NoticeVO" resultType="notice.NoticeVO">
+		select * from project.notice
+		<where>
+			<if test="search_word != null and search_word != ''">
+				title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%'
+			</if>
+		</where>  
+		order by regdate desc
+	</select>
+	
+	<!-- 공지사항 글작성 -->
+	<insert id="notice_insert" parameterType="notice.NoticeVO">
+		insert into project.notice (title, file, contents, regdate) values(#{title}, #{file}, #{contents}, now())
+	</insert>
+	
+	<!-- 공지사항 상세보기 -->
+	<select id="notice_view" parameterType="Integer" resultType="notice.NoticeVO">
+		select * from project.notice where post_id = #{post_id}
+	</select>
+	
+	<!-- 공지사항 글삭제 -->
+	<delete id="notice_delete" parameterType="Integer">
+		delete from project.notice where post_id=#{post_id}
+	</delete>
+	
+	<!-- 공지사항 글수정-->
+	<update id="notice_update" parameterType="notice.NoticeVO">
+		update project.notice set title=#{title}, contents=#{contents}
+	<if test="file!=null">
+		, file=#{file}
+	</if>
+		where post_id=#{post_id}
+	</update>
+	
+</mapper>

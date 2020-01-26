@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="spotCategory.SpotCategoryVO" %>
-<%@ page import="java.util.List" %>
 <%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>    
-<%
-	List<SpotCategoryVO> list= (List<SpotCategoryVO>)request.getAttribute("list");
-	SpotCategoryVO vo = (SpotCategoryVO)request.getAttribute("vo");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,14 +28,13 @@
 </head>
 <body>
 <div class="wrap">
-  	<form  action="process.do" method="post">
 	<!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
 	<!-- E N D :: headerArea-->
     <div class="boxcontainer">
         <div class="center">
             <div class="button">
-                <a href="/spot/categoryCheck.do" class="box1" img="#">SPOT 만들기</a> 
+                <a href="#" class="box1" img="#">SPOT 만들기</a> 
             </div>    
             <div class="box2">가입한 SPOT</div>
             <div class="box2">가입한 SPOT</div>
@@ -54,16 +47,42 @@
             <div class="circlecontainer">
                         <div class="swiper-container banner-swiper">    
                             <div class="swiper-wrapper">
-                                <%
-                             		for(int i=0; i<list.size(); i++){ 
-                             	%>
                                 <div class="swiper-slide">
                                     <div class="circle"></div>
-                                    <div class="circle_title"><%=list.get(i).getName() %></div>
+                                    <div class="circle_title">카테고리1</div>
                                 </div>    
-                               <%
-                                    }
-                               %>
+                                <div class="swiper-slide">
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리2</div>
+                                </div>
+                                <div class="swiper-slide">      
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리3</div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리4</div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리5</div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리6</div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리7</div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="circle"></div>
+                                    <div class="circle_title">카테고리0</div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="circle"></div> 
+                                    <div class="circle_title">카테고리9</div>   
+                                </div>
                             </div>
                             <div class="swiper-button-prev"></div>
                             <div class="swiper-button-next"></div>
@@ -92,7 +111,6 @@
 		<%@ include file="/WEB-INF/view/user/include/bottom.jsp" %>
 		<!-- E N D :: footerArea-->
     </div>
-    </form>
 </div>
 </body>
 </html>

@@ -85,5 +85,13 @@ public class SpotCategoryController {
 		model.addAttribute("vo",vo);
 		return "/spot/spotChoice";
 	}
+	//유저가 보는 spotCategory 선택 뷰
+	@RequestMapping("/spot/spotList.do")
+	public String userSpotList(Model model, SpotCategoryVO vo) {
+		List<SpotCategoryVO> list = spotCategoryService.spotCategoryList(vo);
+		model.addAttribute("list",list);
+		model.addAttribute("vo",vo);
+		return "spot/spotList";
+	}
 	
 }

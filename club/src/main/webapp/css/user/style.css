@@ -84,7 +84,6 @@ div.circlecontainer{
     height: 200px;
     background-color: white;
     margin: 15px;
-    padding: 30px;
     float : left;
     line-height: 200px;
 }
@@ -94,17 +93,15 @@ div.circlecontainer{
     height: 200px;
     background-color: white;
     margin: 15px;
-    padding: 30px;
     float : left;
     line-height: 200px;
 }
 .categorybox{
     width:130px;
     height: 130px;
-    background-color: #f5cfa8;
+    background-color: slategrey;
     color:black;
     margin: 20px;
-    padding: 30px;
     float : left;
     line-height: 130px;
 }

@@ -1,18 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/admin/include/categoryheadHtml.jsp" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<style>
-.wrap{
-	width: 1200px;
-}
-.container{
-	width: 1200px;
-}
-</style>
+
 
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 
@@ -86,10 +80,10 @@
 					success : function(data) {
 						//console.log(data);
 						if (data.trim() == "0") {
-							alert("사용 가능");
+							alert("사용 가능합니다.");
 							$("#id").attr("readonly", "readonly");
 						} else {
-							alert("사용 불가");
+							alert("등록된 ID입니다.");
 						}
 					}
 				});
@@ -103,48 +97,78 @@
 </style>
 </head>
 <body>
+<!-- S T A R T :: headerArea-->
+<div id="header">
+	<div class="header_inner">
+		<h1>HOT SPOT</h1>
+		<p class="login_name"></p>
+	</div>
+</div>
+<!-- E N D :: headerArea-->
 <form name="joinform" id="joinform" action="joinProcess.do" method="post">
 <div class="wrap">
-    <div class="container">
-        <h2 style="padding : 10 0px;">회원가입 페이지</h2>
-    </div>
-    <div class="container">	            
-		<label for="id">아이디 : </label>
-		<input type="text" name="id" id="id"><input type="button" id="duplicateCheck" value="아이디 중복체크">
-    </div>
-	<div class="container">
-		<label for="password">비밀번호 : </label>
-		<input type="password" name="password" id="password">
-	</div>
-	<div class="container">
-		<label for="name">이름 : </label>
-		<input type="text" name="name" id="name">
-	</div>
-	<div class="container">
-		<label for="tel">전화번호 : </label>
-		<select>
-               <optgroup label="tel1" name="tel1">
-                   <option>010</option>
-                   <option>011</option>
-                   <option>017</option>
-                   <option>018</option>
-                   <option>019</option>
-               </optgroup>
-           </select>&nbsp;-
-		<input type="text" name="tel2" size="6" maxlength="4" id="tel1">&nbsp;-
-		<input type="text" name="tel3" size="6" maxlength="4" id="tel2">
-	</div>
-	<div class="container">
-		<label for="email">이메일주소 : </label>
-		<input type="text" name="email" id="email">
-	</div>
-	<div class="container">
-		<div colspan="2">
-			<a href="javascript:join();">가입완료</a>
-			&nbsp;
-			<a href="javascript:joinform.reset();">다시작성</a>
-			&nbsp;
-			<a href="index.do">메인으로</a>
+	<div class="joinwrap">
+	    <div class="joinheadcontainer">
+	        <h2>회원가입 페이지</h2>
+	    </div>
+	    <div class="joincontainer">	         
+	      	<div class="lcontents1">
+          		id : 
+        	</div>
+        	<div class="content1">
+       			<input type="text" name="id" id="id">&nbsp;<input type="button" id="duplicateCheck" value=" 중복체크 ">
+	   		</div>
+	   	</div>
+		<div class="joincontainer">
+			<div class="lcontents1">
+				PASSWORD : 
+			</div>
+        	<div class="content1">
+				<input type="password" name="password" id="password">
+			</div>
+		</div>
+		<div class="joincontainer">
+	      	<div class="lcontents1">
+	      		NAME : 
+	      	</div>
+	      	<div class="content1">
+				<input type="text" name="name" id="name">
+			</div>
+		</div>
+		<div class="joincontainer">
+	      	<div class="lcontents1">
+				TEL :
+			</div>
+	      	<div class="content1">
+				<select>
+		               <optgroup label="tel1" name="tel1">
+		                   <option>010</option>
+		                   <option>011</option>
+		                   <option>017</option>
+		                   <option>018</option>
+		                   <option>019</option>
+		               </optgroup>
+		           </select>&nbsp;-
+				<input type="text" name="tel2" size="10" maxlength="4" id="tel1">&nbsp;-
+				<input type="text" name="tel3" size="10" maxlength="4" id="tel2">
+			</div>
+		</div>
+		<div class="joincontainer">
+	      	<div class="lcontents1">
+				EMAIL : 
+			</div>
+	      	<div class="content1">			
+				<input type="text" name="email" id="email">
+			</div>
+		</div>
+		<div class="joinheadcontainer">
+			<div>
+				<a href="javascript:join();" class="joinfont">가입완료</a>
+				&nbsp;
+				<a href="javascript:joinform.reset();" class="joinfont">다시작성</a>
+				&nbsp;
+				<a href="index.do" class="joinfont">메인으로</a>
+			</div>
 		</div>
 	</div>
 </div>

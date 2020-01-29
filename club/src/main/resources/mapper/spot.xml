@@ -4,11 +4,11 @@
 <mapper namespace="spot">
 	
 	<select id="nameCheck" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) FROM user WHERE id=#{id}
+		SELECT COUNT(*) FROM project.spot WHERE name=#{name}
 	</select>
 	
 	<insert id="spotInsert" parameterType="spot.SpotVO">
-		insert into spot (category_num, name, file, content, tel, email, regdate, modifydate ,question)
+		insert into project.spot (category_num, name, file, content, tel, email, regdate, modifydate ,question)
 		values
 		(#{category_num},#{name}, #{file}, #{content}, #{tel}, #{email},now(), null, #{question})
 	</insert>

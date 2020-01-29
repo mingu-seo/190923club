@@ -4,7 +4,7 @@
 <mapper namespace="admin">
 	
 	<select id="idCheck" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) FROM user WHERE id=#{id}
+		SELECT COUNT(*) FROM project.admin WHERE id=#{id}
 	</select>
 	
 	<insert id="insert" parameterType="admin.AdminVO">

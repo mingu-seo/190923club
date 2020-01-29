@@ -1,8 +1,5 @@
 package admin;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-
-
-import org.springframework.web.multipart.MultipartFile;
 
 import admin.AdminDAO;
 import admin.AdminService;
@@ -36,7 +29,7 @@ public class AdminController {
 	public String idCheck(Model model, @RequestParam("id") String id) {
 		int cnt = adminService.idCheck(id);
 		model.addAttribute("value", cnt);
-		return "include/return";
+		return "admin/include/return";
 	}
 	
 	@RequestMapping("/admin/joinProcess.do")

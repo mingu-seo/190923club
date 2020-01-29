@@ -32,7 +32,9 @@ body{
     overflow: hidden;
     height: auto; /*값을 안줘도 되지만 길이가 얼마나 될지 모름*/
     padding: 0px;
-   
+}
+.spotcheck{
+	width: 20px;
 }
 .boxcontainer{
     margin:0 auto; 
@@ -194,6 +196,13 @@ div.circlecontainer{
    margin-top:15px; 
    }
 .group > input{
+   padding:30px 10px 20px 10px;
+   display:block;
+   width:100%;
+   border:none;
+   border-bottom:1px solid #757575;
+}
+.group > .font{
    font-size:40px;
    padding:30px 10px 20px 10px;
    display:block;
@@ -201,6 +210,7 @@ div.circlecontainer{
    border:none;
    border-bottom:1px solid #757575;
 }
+
 .group > input:focus{outline:none;}
 
 /* LABEL ======================================= */

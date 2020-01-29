@@ -1,8 +1,5 @@
 package admin;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import admin.AdminDAO;
 import admin.AdminService;
@@ -22,6 +18,38 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	//관리자 회원가입
+	@RequestMapping("/admin/join.do")
+	public String join() {
+		return "admin/join";
+	}
+	
+	@RequestMapping("/admin/idCheck.do")
+	public String idCheck(Model model, @RequestParam("id") String id) {
+		int cnt = adminService.idCheck(id);
+		model.addAttribute("value", cnt);
+		return "admin/include/return";
+	}
+	
+	@RequestMapping("/admin/joinProcess.do")
+	public String insert(Model model, AdminVO vo) {
+		int r = adminService.insert(vo);
+		String msg = "";
+		String url = "";
+		if (r > 0) {
+			msg = "정상적으로 가입되었습니다.";
+			url = "/admin/index.do";
+		} else {
+			msg = "회원가입 실패";
+			url = "/admin/join.do";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "/admin/include/alert";
+	}
+	
+	
 	
 	@RequestMapping("/admin/index.do")
 	public String adminIndex() {
@@ -86,11 +114,6 @@ public class AdminController {
 	public String club() {
 		return "admin/board/club";
 	}
-	
-	
-	
-	
-	
 	
 	
 	

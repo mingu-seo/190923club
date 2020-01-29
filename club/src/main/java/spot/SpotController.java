@@ -1,6 +1,5 @@
 package spot;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import spotCategory.SpotCategoryVO;
 
 
 
@@ -43,7 +41,7 @@ public class SpotController {
 	public String nameCheck(Model model, @RequestParam("name") String name) {
 		int cnt = spotService.nameCheck(name);
 		model.addAttribute("value", cnt);
-		return "include/return";
+		return "spot/include/return";
 	}
 	
 	@RequestMapping("/spot/joinProcess.do")

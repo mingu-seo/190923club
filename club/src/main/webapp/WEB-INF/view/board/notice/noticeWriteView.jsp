@@ -2,9 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ page import ="notice.NoticeVO" %>
 <%@ page import ="reply.ReplyVO" %>
+<%@ page import="file.FileVO" %>
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String name=request.getParameter("name");
+	String subject=request.getParameter("subject");
+	String filename1=request.getParameter("filename1");
+	String filename2=request.getParameter("filename2");
+	String origfilename1=request.getParameter("origfilename1");
+	String origfilename2=request.getParameter("origfilename2");
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +49,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 	$(function() {
 		$(".re_btn").click(function() {
 			var idx = $(this).index(".re_btn");
-			$(".re_tr").eq(idx).show();
+			$(".re_tr").eq(idx).toggle();
 		});
 	});
 
@@ -72,32 +83,41 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 						</div>
 					</div>
 					<div class="view_file">
-						<%=vo.getFile() %>
+						<a href="file_down.jsp?file_name=<%=filename1 %>"><%=origfilename1 %>
+						<%=origfilename1 %></a><br>
 					</div>
 					<div class="view_ctt">
 						<%=vo.getContents() %>
 					</div>
 					
 					<div class="view_repl_info">
-						<span class="view_like">♥</span>
-						<span>이 글을 N명이 좋아합니다.</span>
+						<span class="view_like">❤︎ 좋아요</span>
+						<span>35</span> 
+						<span>조회</span>
+						<span><%=vo.getView() %></span>  
 					</div>		
 				
 				<div class="repl_box">
 					<div id="replyBox">
 						
 							<table id="reply">
-								<%
+								<% 
 								for(int i=0; i<rList.size(); i++) {  
 								%>
 									<tr id="re_info"> 
 										<th class="repl_date">홍길동</th>
-										<td><%=rList.get(i).getContents() %> <a href="#;" class="re_btn">답글</a></td>
+										<td>
+										<% if (rList.get(i).getG_lev() > 0) { %>
+										<% for (int j=0; j<rList.get(i).getG_lev(); j++) { %>
+										&nbsp;&nbsp;
+										<% } %>└
+										<% } %>
+										<%=rList.get(i).getContents() %> <a href="#;" class="re_btn">답글</a></td>
 										<th class="repl_date"><%=rList.get(i).getRegdate() %></th>
-										<td id="repl_del"><input type="button" value="수정"></td>
-										<td id="repl_del"><input type="button" value="삭제"></td>
+										<td id="repl_del"><input type="button" value="삭제" onclick="location.href='/board/replyDelete.do?reply_num=<%=rList.get(i).getReply_num() %>&post_id=<%=rList.get(i).getPost_id()%>'"></td>
 									</tr>
-									<form action="/board/reply.do" method="post">
+									
+									<form action="/board/replyReply.do" method="post">
 									<input type="hidden" name="board_id" value="<%=vo.getBoard_id()%>">
 									<input type="hidden" name="post_id" value="<%=vo.getPost_id()%>">
 									<input type="hidden" name="reply_num" value="<%=rList.get(i).getReply_num()%>">
@@ -141,7 +161,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 			</div>
 			  
 			<input type="button" value="삭제" class="btns" onclick="javascript:noticeDel('<%=vo.getPost_id()%>');">
-			<input type="button" value="수정" class="btns" onclick="location.href='noticeUpdateForm.do?post_id=<%=vo.getPost_id() %>'">
+			<input type="button" value="수정" class="btns" onclick="location.href='noticeUpdateForm.do?board_id=3&post_id=<%=vo.getPost_id() %>'">
 			<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?board_id=3'"> 
         
         </div>

@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="java.util.HashMap" %>
+<%@ page import ="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="notice.*" %>
+<%
+List<NoticeVO> nList = (List<NoticeVO>)request.getAttribute("list");
+NoticeVO vo = (NoticeVO)request.getAttribute("vo");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -127,48 +135,24 @@
         		<div class=rightBoard>
         		<div id="mm"><a href="/board/notice/noticeList.do?board_id=3"><button class="view-more">더보기</button></a></div>
         		<table class="preboard">
+        			<!--  -->
+        			<%
+        			for (int i=0; i<nList.size(); i++) {
+        			%>
+        			
         			<tr> <!-- 최대 갯수 지정(7개정도) -->
         				<td>★</td>
-        				<td class="preboard-tt">[마감] 2020 설렘 신청 희망글</td>
+        				<td class="preboard-tt">
+        					<a href="/board/notice/noticeWriteView.do?board_id=3&post_id="<%=vo.getPost_id() %>>
+        						<%=nList.get(i).getTitle() %>
+        					</a></td>
         				<td>홍길동</td>
-        				<td>35</td>
+        				<td><%=nList.get(i).getView() %></td>
         			</tr>
-        			<tr>
-        				<td>★</td>
-        				<td class="preboard-tt">워크샵간다~</td>
-        				<td>홍길동</td>
-        				<td>77</td>
-        			</tr>
-        			<tr>
-        				<td>★</td>
-        				<td class="preboard-tt">진짜가 나타났다!!!!!!! 함께 보세요</td>
-        				<td>홍길동</td>
-        				<td>53</td>
-        			</tr>
-        			<tr>
-        				<td>★</td>
-        				<td class="preboard-tt">!! 2020 새내기 운영진 합격자 발표 !!</td>
-        				<td>홍길동</td>
-        				<td>53</td>
-        			</tr>
-        			<tr>
-        				<td>★</td>
-        				<td class="preboard-tt">경자년을 맞이해 콘서트 개최</td>
-        				<td>홍길동</td>
-        				<td>53</td>
-        			</tr>
-        			<tr>
-        				<td>★</td>
-        				<td class="preboard-tt">((2020 설렘 행사장 공지))</td>
-        				<td>홍길동</td>
-        				<td>53</td>
-        			</tr>
-        			<tr>
-        				<td>★</td>
-        				<td class="preboard-tt">뭐라고?하하하하거짓말치지마</td>
-        				<td>홍길동</td>
-        				<td>53</td>
-        			</tr>
+        			
+        			<%
+        			}
+        			%>
         		</table>
         		</div>
         	</div>

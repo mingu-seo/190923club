@@ -30,6 +30,10 @@ public class NoticeController {
 	@RequestMapping("/board/notice/noticeList.do") 
 	public String noticeList(NoticeVO vo, Model model, @RequestParam("board_id")int board_id) {
 		List<NoticeVO> list = nService.noticeList(vo, board_id);
+		int[] listcount = nService.noticeCount(vo); //전체 갯수와 총페이지수
+		
+		model.addAttribute("listcount", listcount[0]);
+		model.addAttribute("totalpage", listcount[1]);
 		model.addAttribute("list", list);
 		model.addAttribute("vo",vo);
 		return "board/notice/noticeList";
@@ -59,9 +63,9 @@ public class NoticeController {
 	}
 	//공지사항 삭제하기
 	@RequestMapping("/board/notice/noticeDelete.do")
-	public String noticeDelete(@RequestParam("post_id")int post_id) {
+	public String noticeDelete(@RequestParam("post_id")int post_id, NoticeVO vo) {
 		nService.noticeDelete(post_id);
-		return "redirect:/board/notice/noticeList.do";
+		return "redirect:/board/notice/noticeList.do?board_id=3";
 	}
 	//공지사항 수정하기 페이지
 	@RequestMapping("/board/notice/noticeUpdateForm.do")
@@ -76,4 +80,6 @@ public class NoticeController {
 		nService.noticeUpdate(vo, file, req);
 		return "redirect:/board/notice/noticeList.do";
 	}
+	
+	
 }

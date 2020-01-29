@@ -7,9 +7,23 @@
 		select * from project.reply where post_id=#{post_id} and board_id=#{board_id}
 	</select>
 
+	<select id="maxGid" resultType="Integer">
+		SELECT IFNULL(MAX(g_id),0)+1 FROM reply  
+	</select>
+	
+	<!-- 댓글 sql -->
 	<insert id="re_insert" parameterType="reply.ReplyVO">
+		insert into project.reply (contents, regdate, post_id, board_id, g_id, g_lev, g_seq) 
+		values(#{contents}, now(), #{post_id}, #{board_id}, #{g_id}, 0, 0)
+	</insert>
+	
+	<!-- 댓글의 답변 sql -->
+	<insert id="reRe_insert" parameterType="reply.ReplyVO">
 		insert into project.reply (contents, regdate, post_id, board_id, g_id, g_lev, g_seq) 
 		values(#{contents}, now(), #{post_id}, #{board_id}, #{g_id}, #{g_lev}, #{g_seq})
 	</insert>
 	
+	<delete id="re_delete" parameterType="Integer">
+		delete from project.reply where reply_num=#{reply_num}
+	</delete>
 </mapper>

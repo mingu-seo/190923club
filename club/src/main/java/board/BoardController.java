@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import notice.NoticeVO;
+
 
 
 @Controller
@@ -19,6 +21,9 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService bService;
+	
+	@Autowired
+	private notice.NoticeService nService;
 	
 	//서브메인 페이지
 	@RequestMapping("/board/submain/submain.do")
@@ -32,10 +37,12 @@ public class BoardController {
 	}
 	//게시판 메인 페이지
 	@RequestMapping("/board/submain/boardmain.do") 
-	public String boardMain() {
+	public String boardMain(NoticeVO vo, Model model) {
+		List<NoticeVO> list = nService.mainNoticeList(vo);
+		model.addAttribute("vo", vo);
+		model.addAttribute("list", list);
 		return "board/submain/boardmain";
 	}
-	
 	
 	//자유게시판 목록페이지
 	@RequestMapping("/board/writing/boardList.do") 

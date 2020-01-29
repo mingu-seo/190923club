@@ -5,19 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
-table {
-	margin:auto;
-	width:400px;
-	border:1px solid gray;
-	text-align:center;
+.wrap{
+	width: 1200px;
 }
-.td_title {
-	font-weight:bold;
-	font-size:x-large;
+.container{
+	width: 1200px;
 }
 </style>
+
+<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+
 <script>
 	function join() {
 		if ($("#id").val().trim() == "") {
@@ -57,6 +55,16 @@ table {
 			$("#name").focus();
 			return false;
 		}
+		if ($("#tel1").val().trim() == "") {
+			alert("전화번호를 입력해 주세요");
+			$("#tel1").focus();
+			return false;
+		}
+		if ($("#tel2").val().trim() == "") {
+			alert("전화번호를 입력해 주세요");
+			$("#tel2").focus();
+			return false;
+		}
 		if ($("#email").val().trim() == "") {
 			alert("이메일을 입력해 주세요");
 			$("#email").focus();
@@ -90,43 +98,56 @@ table {
 	});
 
 </script>
+<style>
+
+</style>
 </head>
 <body>
 <form name="joinform" id="joinform" action="joinProcess.do" method="post">
-<table>
-	<tr>
-		<td colspan="2" class="td_title">
-			회원가입 페이지
-		</td>
-	</tr>
-	<tr>
-		<td><label for="id">아이디 : </label></td>
-		<td><input type="text" name="id" id="id"><input type="button" id="duplicateCheck" value="아이디 중복체크"></td>
-	</tr>
-	<tr>
-		<td><label for="password">비밀번호 : </label></td>
-		<td><input type="password" name="password" id="password"></td>
-	</tr>
-	<tr>
-		<td><label for="name">이름 : </label></td>
-		<td><input type="text" name="name" id="name"></td>
-	</tr>
-	<tr>
-		<td><label for="tel">전화번호 : </label></td>
-		<td><input type="text" name="tel" id="tel"></td>
-	</tr>
-	<tr>
-		<td><label for="email">이메일주소 : </label></td>
-		<td><input type="text" name="email" id="email"></td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<a href="javascript:join();">회원가입</a>
+<div class="wrap">
+    <div class="container">
+        <h2 style="padding : 10 0px;">회원가입 페이지</h2>
+    </div>
+    <div class="container">	            
+		<label for="id">아이디 : </label>
+		<input type="text" name="id" id="id"><input type="button" id="duplicateCheck" value="아이디 중복체크">
+    </div>
+	<div class="container">
+		<label for="password">비밀번호 : </label>
+		<input type="password" name="password" id="password">
+	</div>
+	<div class="container">
+		<label for="name">이름 : </label>
+		<input type="text" name="name" id="name">
+	</div>
+	<div class="container">
+		<label for="tel">전화번호 : </label>
+		<select>
+               <optgroup label="tel1" name="tel1">
+                   <option>010</option>
+                   <option>011</option>
+                   <option>017</option>
+                   <option>018</option>
+                   <option>019</option>
+               </optgroup>
+           </select>&nbsp;-
+		<input type="text" name="tel2" size="6" maxlength="4" id="tel1">&nbsp;-
+		<input type="text" name="tel3" size="6" maxlength="4" id="tel2">
+	</div>
+	<div class="container">
+		<label for="email">이메일주소 : </label>
+		<input type="text" name="email" id="email">
+	</div>
+	<div class="container">
+		<div colspan="2">
+			<a href="javascript:join();">가입완료</a>
 			&nbsp;
 			<a href="javascript:joinform.reset();">다시작성</a>
-		</td>
-	</tr>
-</table>
+			&nbsp;
+			<a href="index.do">메인으로</a>
+		</div>
+	</div>
+</div>
 </form>
 </body>
 </html>

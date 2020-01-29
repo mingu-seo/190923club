@@ -46,14 +46,14 @@ public class AdminController {
 		String url = "";
 		if (r > 0) {
 			msg = "정상적으로 가입되었습니다.";
-			url = "/dog/board2/index.do";
+			url = "/admin/index.do";
 		} else {
 			msg = "회원가입 실패";
-			url = "/dog/user/joinForm.do";
+			url = "/admin/join.do";
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
-		return "include/alert";
+		return "/admin/include/alert";
 	}
 	
 	

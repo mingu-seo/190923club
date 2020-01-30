@@ -56,11 +56,15 @@ public class NoticeController {
 	@RequestMapping("/board/notice/noticeWriteView.do") 
 	public String noticeWriteView(@RequestParam("post_id")int post_id, Model model, @RequestParam("board_id")int board_id) {
 		NoticeVO vo = nService.noticeView(post_id, board_id);
-		List<ReplyVO> rList = rService.replyList(vo);
+		ReplyVO rv = new ReplyVO();
+		rv.setBoard_id(board_id);
+		rv.setPost_id(post_id);
+		List<ReplyVO> rList = rService.replyList(rv);
 		model.addAttribute("vo",vo);
 		model.addAttribute("rList", rList);
 		return "board/notice/noticeWriteView";
-	}
+	}	
+	
 	//공지사항 삭제하기
 	@RequestMapping("/board/notice/noticeDelete.do")
 	public String noticeDelete(@RequestParam("post_id")int post_id, NoticeVO vo) {

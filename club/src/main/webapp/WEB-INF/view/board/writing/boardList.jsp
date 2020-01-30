@@ -70,14 +70,14 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 							%>
 							<tr class="board_art">
 								<td><a><%=list.get(i).getPost_id()%></a></td>
-								<td class="art_title"><a href="/board/writing/boardWriteView.do?id_post=<%=list.get(i).getPost_id()%>"><%=list.get(i).getTitle() %></a></td>
+								<td class="art_title"><a href="/board/writing/boardWriteView.do?board_id=2&post_id=<%=list.get(i).getPost_id()%>"><%=list.get(i).getTitle() %></a></td>
 								<td>김세영</td>
 								<td><%=util.Function.getYmd(list.get(i).getRegdate()) %></td>
 								<td>11</td>
 								<td>235</td>
 						
 							</tr>	
-							<%
+							<% 
 							}
 							%>
 			  				

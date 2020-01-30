@@ -1,5 +1,7 @@
 package reply;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,15 @@ public class ReplyController {
 	public String replyInsert( Model model, ReplyVO rVO) {
 		rService.replyInsert(rVO);
 		return "redirect:/board/notice/noticeWriteView.do?post_id="+rVO.getPost_id() +"&board_id="+rVO.getBoard_id();
+	}
+	
+	//댓글 ajax
+	@RequestMapping("/board/replyListAjax.do")
+	public String replyListAjax(Model model, ReplyVO vo, @RequestParam("post_id")int post_id, @RequestParam("board_id") int board_id)   {
+		List<ReplyVO> list = rDao.replyList(vo);
+		model.addAttribute("list", list);
+		model.addAttribute("vo", vo);
+		return "board/notice/noticeReplyAjax";
 	}
 	
 	@RequestMapping("/board/replyReply.do")

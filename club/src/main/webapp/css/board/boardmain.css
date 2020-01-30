@@ -105,20 +105,33 @@
 		
 		.main_post_div {
 			border:1px solid pink;
-			margin:20px;
+			margin:40px; 
+			padding:30px;
 		}
 		.main_post {
-			padding:20px;
+			padding:80px 0 20px 0;
 		}
 		
 		.main_post_click span {
-			font-size:15px;
-			font-weight: bold;
-			margin:10px 30px;
-		
+			font-size:24px;
+			font-weight: bold;  
+			margin:70px;
+			color:white;
+			
 		}
 		
 		.main_post_writer {
-			font-size:15px;
+			font-size:20px;
 			font-weight: bold;
+			float:left;
+		}
+		
+		.main_post_info {
+			font-size:20px;
+			font-weight: bold;
+			float:right;
+		}
+		
+		.main_post_click {
+			background:pink;
 		}

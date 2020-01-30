@@ -25,16 +25,16 @@
         		동아리 소개 
         		저희는 스키를 사랑하는 사람들이 모여
         		겨울에는 강원도에 가고
-        		스위스에도 가고
+        		스위스에도 가고 
         		여기저기 보드도 타러 다니고
         		즐거운 동아리 어쩌구
         		</div> 
         		
         		<div class="clubInfo">
-        		가입신청
+        			<a href="">가입신청</a>
         		</div>
         		<div class="clubInfo">
-        		동아리 설정
+        			동아리 설정
         		<a href=""><img src="/img/board/set.png"></a>
         		</div>
         	</div>

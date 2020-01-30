@@ -52,6 +52,26 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 			$(".re_tr").eq(idx).toggle();
 		});
 	});
+	
+	//댓글 리스트 ajax 
+	function getReplyList(id) {
+		$.ajax({
+			async : false,
+			url : '/board/replyListAjax.do',
+			data : {
+				'post_id': id,
+				'board_id': 3
+			},
+			dataType:'HTML',
+			success: function(data) {
+				console.log(data);
+				$("#replyListArea").html(data);
+			},
+			error:function(data) {
+				console.log(data);
+			}
+		});
+	}
 
    </script>
 </head>
@@ -99,62 +119,70 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 				
 				<div class="repl_box">
 					<div id="replyBox">
+						<div id="replyListArea">
 						
-							<table id="reply">
-								<% 
-								for(int i=0; i<rList.size(); i++) {  
-								%>
-									<tr id="re_info"> 
-										<th class="repl_date">홍길동</th>
-										<td>
-										<% if (rList.get(i).getG_lev() > 0) { %>
-										<% for (int j=0; j<rList.get(i).getG_lev(); j++) { %>
-										&nbsp;&nbsp;
-										<% } %>└
-										<% } %>
-										<%=rList.get(i).getContents() %> <a href="#;" class="re_btn">답글</a></td>
-										<th class="repl_date"><%=rList.get(i).getRegdate() %></th>
-										<td id="repl_del"><input type="button" value="삭제" onclick="location.href='/board/replyDelete.do?reply_num=<%=rList.get(i).getReply_num() %>&post_id=<%=rList.get(i).getPost_id()%>'"></td>
-									</tr>
-									
-									<form action="/board/replyReply.do" method="post">
-									<input type="hidden" name="board_id" value="<%=vo.getBoard_id()%>">
-									<input type="hidden" name="post_id" value="<%=vo.getPost_id()%>">
-									<input type="hidden" name="reply_num" value="<%=rList.get(i).getReply_num()%>">
-									<input type="hidden" name="g_id" value="<%=rList.get(i).getG_id()%>">
-									<input type="hidden" name="g_lev" value="<%=rList.get(i).getG_lev()%>">
-									<input type="hidden" name="g_seq" value="<%=rList.get(i).getG_seq()%>">
-									<tr class="re_tr">
-										<td id="dndn">└</td>
-										<td>
-											<textarea class="re_reply" name="contents"></textarea>
-										</td>
-										<td> 
-											<input type="submit" class="repl_btn" value="등록" > 
-										</td>
-									</tr>
-									</form>
-								<%
-								}
-								%>
-							</table>
-						
+						</div>
 						
 						<!-- 댓글 폼 -->
 						<form action="/board/reply.do?board_id=3" method="post">
-								<input type="hidden" name="post_id" value="<%=vo.getPost_id() %>">
-								<input type="hidden" name="board_id" value="<%=vo.getBoard_id()%>">
+								<input type="hidden" name="post_id" class="post_id" value="<%=vo.getPost_id() %>">
+								<input type="hidden" name="board_id" class="board_id" value="<%=vo.getBoard_id()%>">
 							<table>
 								<tr>
 									<td class="repForm">   
 										<textarea class="replyText" name="contents"></textarea>
 									</td>
 									<td class="repForm_sub"> 
-										<input type="submit" class="repl_btn" value="등록"> 
+										<input type="button" class="repl_btn" value="등록" onclick="replyAjax()"> 
 									</td>
 								</tr>
 							</table>
-						</form> 
+						</form>
+						
+						<script>
+							function replyAjax() {
+								$.ajax({
+									async:false,
+									url:'/board/reply.do',
+									data: {
+										'post_id':$(".post_id").val(),
+										'board_id':$(".board_id").val(),
+										'contents':$(".replyText").val(),
+									},
+									dataType:'HTML',
+									success:function(data) {
+										//댓글이 정상적으로 저장되었을때
+										$(".replyText").val("");
+										getReplyList($(".post_id").val());
+									},
+									error:function(date) {
+										console.log(data);
+									}
+								});
+							}
+							
+							function replyAjax2() {
+								$.ajax({
+									async:false,
+									url:'/board/reply.do',
+									data: {
+										'post_id':$(".post_id").val(),
+										'board_id':$(".board_id").val(),
+										'contents':$(".replyText").val(),
+									},
+									dataType:'HTML',
+									success:function(data) {
+										//댓글이 정상적으로 저장되었을때
+										$(".replyText").val("");
+										
+										getReplyList($(".post_id").val());
+									}, 
+									error:function(date) {
+										console.log(data);
+									}
+								});
+							}
+						</script>
 						  
 					</div> 
 				</div>

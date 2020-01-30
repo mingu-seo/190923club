@@ -143,14 +143,14 @@ NoticeVO vo = (NoticeVO)request.getAttribute("vo");
         			<tr> <!-- 최대 갯수 지정(7개정도) -->
         				<td>★</td>
         				<td class="preboard-tt">
-        					<a href="/board/notice/noticeWriteView.do?board_id=3&post_id="<%=vo.getPost_id() %>>
-        						<%=nList.get(i).getTitle() %>
+        					<a href="/board/notice/noticeWriteView.do?board_id=3&post_id=<%=nList.get(i).getPost_id()%>">
+        						<%=nList.get(i).getTitle() %>  
         					</a></td>
         				<td>홍길동</td>
         				<td><%=nList.get(i).getView() %></td>
         			</tr>
         			
-        			<%
+        			<%  
         			}
         			%>
         		</table>

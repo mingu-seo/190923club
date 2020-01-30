@@ -23,8 +23,8 @@ public class BoardDAO {
 	}
 	
 	//자유게시판 글 상세
-	public BoardVO boardView(int id_post) {
-		return sqlSession.selectOne("board.board_view", id_post);
+	public BoardVO boardView(int post_id) {
+		return sqlSession.selectOne("board.board_view", post_id);
 	}
 	
 	//자유게시판 글삭제

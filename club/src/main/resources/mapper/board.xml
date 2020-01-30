@@ -15,7 +15,7 @@
 	
 	<!-- 자유게시판 상세보기 -->
 		<select id="board_view" parameterType="Integer" resultType="board.BoardVO">
-			select * from project.writing where post_id=#{post_id} board_id=#{board_id}
+			select * from project.writing where post_id=#{post_id}
 		</select>
 	
 	<!-- 자유게시판 글삭제 -->
@@ -101,9 +101,9 @@
 		
 
 
-	<!-- 보드메인 공지 -->
+	<!-- 보드메인 공지 -->  
 		<select id="main_notice" resultType="notice.NoticeVO">
-			select title, writer, view from project.notice 
+			select post_id, title, writer, view from project.notice 
 			order by regdate desc limit 0,7
 		</select>
 		

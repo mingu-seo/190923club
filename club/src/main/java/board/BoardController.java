@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import notice.NoticeVO;
+import reply.ReplyVO;
 
 
 
@@ -24,6 +25,9 @@ public class BoardController {
 	
 	@Autowired
 	private notice.NoticeService nService;
+	
+	@Autowired
+	private reply.ReplyService rService;
 	
 	//서브메인 페이지
 	@RequestMapping("/board/submain/submain.do")
@@ -66,12 +70,17 @@ public class BoardController {
 	}
 	//자유게시판 상세보기
 	@RequestMapping("/board/writing/boardWriteView.do") 
-	public String boardWriteView(@RequestParam("id_post")int id_post, Model model) {
-	BoardVO vo = bService.boardView(id_post);
+	public String boardWriteView(@RequestParam("post_id")int post_id, Model model) {
+		BoardVO vo = bService.boardView(post_id);
+		ReplyVO rv = new ReplyVO();
+		rv.setBoard_id(vo.getBoard_id());
+		rv.setPost_id(post_id);
+		List<ReplyVO> rList = rService.replyList(rv);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("rList", rList);
 	
-	model.addAttribute("vo", vo);
-	
-	return "board/writing/boardWriteView";
+		return "board/writing/boardWriteView";
 	}
 	//자유게시판 삭제
 	@RequestMapping("/board/writing/boardDelete.do")

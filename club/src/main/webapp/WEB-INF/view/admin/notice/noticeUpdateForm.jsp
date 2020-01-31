@@ -42,7 +42,16 @@ function save() {
 	}	
 	$('#frm').submit();
 }
-
+function getThumbnailPrivew(html, $target) {
+    if (html.files && html.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $target.css('display', '');
+            $target.html('<img src="' + e.target.result + '" class="listImg" alt="" />');
+        }
+        reader.readAsDataURL(html.files[0]);
+    }
+}
 </script>
 
 </head>
@@ -91,7 +100,8 @@ function save() {
 									<tr>
 										<th scope="row"><label for="file">첨부파일</label></th>
 										<td colspan="10">
-											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." value="${vo.file }"/>	
+											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" />	
+											<div id="thumb_img1" onfocus="this.value='';">사진을 올려보세요</div>
 										</td>
 									</tr>
 								</tbody>

@@ -43,12 +43,12 @@ public class SpotCategoryController {
 	}
 
 	//카테고리 상세보기
-	@RequestMapping("/admin/category/categoryDetail.do")
-	public String spotCategoryView(Model model,@RequestParam(name="page",required=false) String page, int num) {
+	@RequestMapping("/admin/category/categoryAjax.do")
+	public String spotCategoryView(Model model,@RequestParam(name="page",required=false) String page, @RequestParam("num") int num) {
 		SpotCategoryVO vo = spotCategoryService.spotCategoryView(num);
 		model.addAttribute("list", vo);
 		model.addAttribute("nowPage", page);
-		return "admin/category/categoryView";
+		return "admin/category/categoryAjax";
 		
 	}
 	

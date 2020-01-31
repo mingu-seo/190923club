@@ -17,6 +17,16 @@ function save() {
 	$('#frm').submit();
 }
 
+function getThumbnailPrivew(html, $target) {
+    if (html.files && html.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $target.css('display', '');
+            $target.html('<img src="' + e.target.result + '" class="listImg" alt="" />');
+        }
+        reader.readAsDataURL(html.files[0]);
+    }
+}
 </script>
 
 </head>
@@ -39,12 +49,14 @@ function save() {
     </div>
     <div class="container">
             <div class="group">      
-	            <input type="file" name="filename_tmp" id="filename_tmp">
-	            <span class="highlight"></span>
-	            <span class="bar"></span>
+	            <input type="file" class="file" name="filename_tmp" id="filename_tmp" onchange="getThumbnailPrivew(this,$('#thumb_img1'));">
 	            <label>Category 이미지</label>
             </div>
+            <div class="group">
+            	<div id="thumb_img1" onfocus="this.value='';">사진을 올려보세요</div>
+            </div>
     </div>
+    
 	<div class="container">
         <a class="spotRegistbutton" href="categoryList.do"><strong>취 소</strong></a>     
         <a class="spotRegistbutton" onClick="save();"><strong>저 장</strong></a>      

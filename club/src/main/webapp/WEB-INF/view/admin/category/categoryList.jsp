@@ -11,37 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-    <!-- 라이트 박스-->
-    <style>
-        #darken-background{
-            position: absolute;
-            top:0; left: 0; right: 0;
-            height: 100%;
-
-            display: none;
-            background: rgb(0,0,0,0.9);
-            z-index: 10000;
-            overflow-y:scroll;
-        }
-
-        #lightbox{
-            width:700px;
-            margin: 20px auto; padding: 15px;
-
-            border: 1px solid #333333;
-            border-radius: 5px;
-            background: white;
-            box-shadow: 0 5px 5px rgba(34,25,25,0,4);
-            text-align: center;
-        }
-
-        .user-information{overflow:hidden; text-align: left;}
-        .user-information-image{float: left; width: 70px;}
-        .user-information-text{float: right; width: 620px;}
-        .lightbox-splitter{margin:10px 0;}
-    </style>
-    
+<title>Insert title here</title>    
     <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1">
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="/js/jquery.masonry.min.js"></script>
@@ -120,7 +90,8 @@ function ajaxView(num){
 	dataType : 'JSON',
 	success : function(data){
 		$("#name").text(data.name);
-		$("#file").attr("src","/img/"+data.image);
+		$("#file").attr("src","/upload/images/"+data.file);
+		$("#num").val(num);
 		$("#editBtn").attr("onclick","updateConfirm("+num+");");
 		$("#delBtn").attr("onclick","deleteConfirm("+num+");");
 	},
@@ -134,12 +105,12 @@ function ajaxView(num){
 <script>
 function updateConfirm(num) {
 	if (confirm("수정하시겠습니까?")) {
-		location.href="categoryUpdateForm.do?id="+num;
+		location.href="categoryUpdateForm.do?num="+num;
 	}
 }
 function deleteConfirm(num) {
 	if (confirm("삭제하시겠습니까?")) {
-		location.href="categoryDelete.do?id="+num;
+		location.href="categoryDelete.do?num="+num;
 	}
 }
 </script>
@@ -159,7 +130,7 @@ function deleteConfirm(num) {
 			for (int i=0; i<list.size(); i++){
 			%>
             <div class="button">
-                <a href="javascript:ajaxView(<%=list.get(i).getNum() %>);"  data-name="<%=list.get(i).getNum() %>" class="categorybox"><%=list.get(i).getName()%></a> 
+                <a href="javascript:ajaxView('<%=list.get(i).getNum() %>');"  data-num="<%=list.get(i).getNum() %>" class="categorybox"><%=list.get(i).getName()%></a> 
             </div>    
            	<%
 			}
@@ -169,24 +140,23 @@ function deleteConfirm(num) {
     </form>
     <div id="darken-background">
         <div id="lightbox">
+		    <form action="categoryUpdateForm.do" method="post">
+		    <input type="hidden" id="num"name="num" value="0"> 
             <div class="user-information">
                 <div class="user-information-text">
- 				    <input type="hidden" name="num" value="${vo.num}">
                     <span id="name"></span>
                 </div>
-            </div>
-                <hr class="lightbox-splitter">
-            <div>
-                <img id="file" src="http://placehold.it/600x750">
-        	</div> 
-			<div>
+	                <hr class="lightbox-splitter">
+	            <div>
+	                <img id="file" src="http://placehold.it/600x750">
+	        	</div> 
+			</div>
+   			</form>
 				<input type="button" value="목록" onclick="location.href='categoryList.do';">
 				<input type="button" id="editBtn" value="수정" onclick="updateConfirm(num);">
 				<input type="button" id="delBtn" value="삭제" onclick="deleteConfirm(num);">
 		    </div>  
-        </div>
     </div>
-</div>
 </div>
 </body>
 </html>

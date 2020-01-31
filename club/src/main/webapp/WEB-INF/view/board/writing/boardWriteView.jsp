@@ -69,7 +69,7 @@ List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
 						<span class="view_like">❤︎ 좋아요</span>
 						<span>35</span> 
 						<span>조회</span>
-						<span>11</span>  
+						<span><%=vo.getView() %></span>  
 					</div>		
 				
 				<div class="repl_box">
@@ -137,7 +137,8 @@ List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
 				
 				
 			</div>
-			<input type="button" value="삭제" class="btns" onclick="javascript:writingDel('');">
+			<input type="button" value="삭제" class="btns" onclick="javascript:writingDel('<%=vo.getPost_id()%>');">
+			<input type="button" value="수정" class="btns" onclick="location.href='/board/writing/boardUpdateForm.do?board_id=2&post_id=<%=vo.getPost_id()%>'"> 
 			<input type="button" value="목록" class="btns" onclick="location.href='boardList.do'"> 
         </div>
         

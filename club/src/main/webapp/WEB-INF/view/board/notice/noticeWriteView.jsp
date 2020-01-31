@@ -46,11 +46,13 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 			return false;
    }
    
+   
 	$(function() {
 		$(".re_btn").click(function() {
 			var idx = $(this).index(".re_btn");
 			$(".re_tr").eq(idx).toggle();
 		});
+		getReplyList($(".post_id").val());
 	});
 	
 	//댓글 리스트 ajax 
@@ -64,7 +66,6 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 			},
 			dataType:'HTML',
 			success: function(data) {
-				console.log(data);
 				$("#replyListArea").html(data);
 			},
 			error:function(data) {
@@ -111,7 +112,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 					</div>
 					
 					<div class="view_repl_info">
-						<span class="view_like">❤︎ 좋아요</span>
+						<span class="view_like" onclick="javascript:">❤︎ 좋아요</span>
 						<span>35</span> 
 						<span>조회</span>
 						<span><%=vo.getView() %></span>  
@@ -148,6 +149,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 										'post_id':$(".post_id").val(),
 										'board_id':$(".board_id").val(),
 										'contents':$(".replyText").val(),
+										'g_id':$("#g_id").val(),
 									},
 									dataType:'HTML',
 									success:function(data) {
@@ -155,29 +157,24 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 										$(".replyText").val("");
 										getReplyList($(".post_id").val());
 									},
-									error:function(date) {
+									error:function(data) {
 										console.log(data);
 									}
 								});
 							}
 							
-							function replyAjax2() {
+							function replyAjax2(formId) {
 								$.ajax({
 									async:false,
-									url:'/board/reply.do',
-									data: {
-										'post_id':$(".post_id").val(),
-										'board_id':$(".board_id").val(),
-										'contents':$(".replyText").val(),
-									},
+									url:'/board/replyReply.do',
+									method:'POST',
+									data: $("#"+formId).serialize(),
 									dataType:'HTML',
 									success:function(data) {
 										//댓글이 정상적으로 저장되었을때
-										$(".replyText").val("");
-										
 										getReplyList($(".post_id").val());
 									}, 
-									error:function(date) {
+									error:function(data) {
 										console.log(data);
 									}
 								});

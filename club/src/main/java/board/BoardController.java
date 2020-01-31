@@ -54,9 +54,12 @@ public class BoardController {
 			HttpServletRequest req, 
 			BoardVO vo) {
 			List<BoardVO> list = boardDao.boardList(vo);
-			model.addAttribute("list", list); 
+			
+			model.addAttribute("list", list);
+			model.addAttribute("vo",vo);
 		return "board/writing/boardList";
 	}
+	
 	//자유게시판 작성페이지
 	@RequestMapping("/board/writing/boardWrite.do") 
 	public String boardWrite() {
@@ -82,10 +85,25 @@ public class BoardController {
 	
 		return "board/writing/boardWriteView";
 	}
+	//자유게시판 수정 페이지
+	@RequestMapping("/board/writing/boardUpdateForm.do")
+	public String boardUpdateView(Model model, @RequestParam("post_id")int post_id) {
+		BoardVO vo = bService.boardView(post_id);
+		model.addAttribute("vo", vo);
+		return "board/writing/boardUpdateForm";
+	}
+	
+	//자유게시판 수정
+	@RequestMapping("/board/writing/boardUpdate.do")
+	public String boardUpdate(BoardVO vo) {
+		bService.boardUpdate(vo);
+		return "redirect:/board/writing/boardWriteView.do?board_id=2&post_id="+vo.getPost_id();
+	}
 	//자유게시판 삭제
 	@RequestMapping("/board/writing/boardDelete.do")
 	public String boardDelete(@RequestParam("post_id")int post_id) {
-		return "redirect:/board/writing/boardList.do";
+		bService.boardDelete(post_id);
+		return "redirect:/board/writing/boardList.do?board_id=2";
 	}
 	
 }

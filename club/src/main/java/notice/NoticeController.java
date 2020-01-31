@@ -82,7 +82,7 @@ public class NoticeController {
 	@RequestMapping("/board/notice/noticeUpdate.do")
 	public String noticeUpdate(NoticeVO vo, HttpServletRequest req, @RequestParam("file_tmp") MultipartFile file) {
 		nService.noticeUpdate(vo, file, req);
-		return "redirect:/board/notice/noticeList.do";
+		return "redirect:/board/notice/noticeList.do?board_id=3";
 	}
 	
 	

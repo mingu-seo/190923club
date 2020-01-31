@@ -12,6 +12,137 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <!-- 라이트 박스-->
+    <style>
+        #darken-background{
+            position: absolute;
+            top:0; left: 0; right: 0;
+            height: 100%;
+
+            display: none;
+            background: rgb(0,0,0,0.9);
+            z-index: 10000;
+            overflow-y:scroll;
+        }
+
+        #lightbox{
+            width:700px;
+            margin: 20px auto; padding: 15px;
+
+            border: 1px solid #333333;
+            border-radius: 5px;
+            background: white;
+            box-shadow: 0 5px 5px rgba(34,25,25,0,4);
+            text-align: center;
+        }
+
+        .user-information{overflow:hidden; text-align: left;}
+        .user-information-image{float: left; width: 70px;}
+        .user-information-text{float: right; width: 620px;}
+        .lightbox-splitter{margin:10px 0;}
+    </style>
+    
+    <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1">
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery.masonry.min.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+<script>
+//풀 다운 메뉴
+$(document).ready(function(){
+    //풀 다운 메뉴
+    $('.outer-menu').hover(function(){
+        $(this).find('.inner-menu').css('display','block');
+    },function(){
+        $(this).find('.inner-menu').css('display', 'none');
+    });
+});
+//페이지
+$(function(){
+    //이미지 로드 확인
+    $('#main-section').imagesLoaded(function(){
+        //jQuery Masonry 플러그인 적용
+        $('#main-section').masonry({
+            itemSelector: '.paper',
+            columnwidth: 230,
+            isAnimated: true
+        });
+    });
+});
+
+function showLightBox(){
+    //라이트박스를 보이게 합니다.
+    $('#darken-background').show();
+    $('#darken-background').css('top',$(window).scrollTop());
+    //스크롤을 못하게 합니다.
+    $('body').css('overflow','hidden');
+}
+function ajax(x){
+	link = x.url;
+	//성공했다면
+	x.success();
+}
+function hideLightBox(){
+    //라이트 박스를 보이지 않게 합니다.
+    $('#darken-background').hide();
+    
+    //스크롤을 하게 합니다.
+    $('body').css('overflow','');
+}
+
+//라이트박스
+$(function(){
+    
+    
+    //라이트 박스 제거 이벤트
+    $('#darken-background').click(function(){
+    	console.log(1);
+        hideLightBox();
+    });
+    
+$('#lightbox').click(function(event){
+    event.stopPropagation()
+});
+}); 
+function showLightBox(){
+//라이트박스를 보이게 합니다.
+$('#darken-background').show();
+$('#darken-background').css('top',$(window).scrollTop());
+//스크롤을 못하게 합니다.
+$('body').css('overflow','hidden');
+}
+function ajaxView(num){
+    $.ajax({
+		url : 'categoryAjax.do',
+		async: false, //싱크를 맞춰줌
+		data : {
+		'num' : num
+	},
+	dataType : 'JSON',
+	success : function(data){
+		$("#name").text(data.name);
+		$("#file").attr("src","/img/"+data.image);
+		$("#editBtn").attr("onclick","updateConfirm("+num+");");
+		$("#delBtn").attr("onclick","deleteConfirm("+num+");");
+	},
+	error : function(data){
+		console.log(data)
+	}
+});
+     	showLightBox();
+     }
+     </script>
+<script>
+function updateConfirm(num) {
+	if (confirm("수정하시겠습니까?")) {
+		location.href="categoryUpdateForm.do?id="+num;
+	}
+}
+function deleteConfirm(num) {
+	if (confirm("삭제하시겠습니까?")) {
+		location.href="categoryDelete.do?id="+num;
+	}
+}
+</script>
 </head>
 <body>
 <!-- S T A R T :: headerArea-->
@@ -28,7 +159,7 @@
 			for (int i=0; i<list.size(); i++){
 			%>
             <div class="button">
-                <a href="categoryDetail.do?num=<%=list.get(i).getNum() %>" class="categorybox"><%=list.get(i).getName()%></a> 
+                <a href="javascript:ajaxView(<%=list.get(i).getNum() %>);"  data-name="<%=list.get(i).getNum() %>" class="categorybox"><%=list.get(i).getName()%></a> 
             </div>    
            	<%
 			}
@@ -36,7 +167,26 @@
         </div>
     </div>  
     </form>
-
+    <div id="darken-background">
+        <div id="lightbox">
+            <div class="user-information">
+                <div class="user-information-text">
+ 				    <input type="hidden" name="num" value="${vo.num}">
+                    <span id="name"></span>
+                </div>
+            </div>
+                <hr class="lightbox-splitter">
+            <div>
+                <img id="file" src="http://placehold.it/600x750">
+        	</div> 
+			<div>
+				<input type="button" value="목록" onclick="location.href='categoryList.do';">
+				<input type="button" id="editBtn" value="수정" onclick="updateConfirm(num);">
+				<input type="button" id="delBtn" value="삭제" onclick="deleteConfirm(num);">
+		    </div>  
+        </div>
+    </div>
+</div>
 </div>
 </body>
 </html>

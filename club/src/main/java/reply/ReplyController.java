@@ -10,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import gallery.GalleryVO;
-
 @Controller
 public class ReplyController {
 
@@ -21,24 +19,11 @@ public class ReplyController {
 	@Autowired
 	ReplyService rService;
 	
+	//세영
 	@RequestMapping("/board/reply.do")
 	public String replyInsert( Model model, ReplyVO rVO) {
 		rService.replyInsert(rVO);
 		return "spot/include/return";
-	}
-	
-	
-	@RequestMapping("/board/galleryReply.do")
-	public String replyInsert1( Model model, ReplyVO rVO) {
-		rService.replyInsert(rVO);
-		return "include/return";
-	}
-	
-	@RequestMapping("/board/replyList.do") 
-	public String replyList(Model model, HttpServletRequest req, ReplyVO vo) {
-		List<ReplyVO> list = rDao.replyList(vo);
-		model.addAttribute("list", list); 
-		return "board/gallery/replyAjax";
 	}
 	
 	//댓글 ajax
@@ -49,29 +34,43 @@ public class ReplyController {
 		model.addAttribute("vo", vo);
 		return "board/notice/noticeReplyAjax";
 	}
-	
+	//세영
 	@RequestMapping("/board/replyReply.do")
 	public String replyReply( Model model, ReplyVO rVO) {
 		rService.replyReplyInsert(rVO);
 		return "spot/include/return";
 	}
-	
+	//세영
 	@RequestMapping("/board/replyDelete.do")
 	public String replyDelete(ReplyVO rVO, @RequestParam("reply_num")int reply_num) {
 		rService.replyDelete(reply_num);
 		return "spot/include/return";
 	}
+	
+	//슬기
 	@RequestMapping("/board/reDelete.do")
 	public String reDelete(ReplyVO rVO, @RequestParam("reply_num")int reply_num) {
 		rService.replyDelete(reply_num);
 		return "include/return";
 	}
 	
-	
+	//슬기
 	@RequestMapping("/board/reReply.do")
 	public String reReply( Model model, ReplyVO rVO) {
 		rService.replyReplyInsert(rVO);
 		return "board/gallery/replyAjax";
 	}
-	
+	//슬기
+	@RequestMapping("/board/galleryReply.do")
+	public String replyInsert1( Model model, ReplyVO rVO) {
+		rService.replyInsert(rVO);
+		return "include/return";
+	}
+	//슬기
+	@RequestMapping("/board/replyList.do") 
+	public String replyList(Model model, HttpServletRequest req, ReplyVO vo) {
+		List<ReplyVO> list = rDao.replyList(vo);
+		model.addAttribute("list", list); 
+		return "board/gallery/replyAjax";
+	}
 }

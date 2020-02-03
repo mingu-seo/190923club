@@ -4,7 +4,7 @@
 <mapper namespace="reply">
 
 	<select id="re_list" parameterType="reply.ReplyVO" resultType="reply.ReplyVO">
-		select * from project.reply where post_id=#{post_id} and board_id=#{board_id} order by g_id desc, g_seq asc
+		select * from project.reply where post_id=#{post_id} and board_id=#{board_id} order by g_id asc, g_seq asc
 	</select>
 	
 	<select id="maxGid" resultType="Integer">
@@ -33,8 +33,8 @@
 	</select>
 	
 	<update id="replySeq" parameterType="reply.ReplyVO">
-	update project.reply set g_seq=g_seq+1
-	where g_id=#{g_id} and g_seq>#{g_seq}
+		update project.reply set g_seq=g_seq+1
+		where g_id=#{g_id} and g_seq>#{g_seq}
 	</update>
 	
 	<delete id="re_delete" parameterType="Integer">

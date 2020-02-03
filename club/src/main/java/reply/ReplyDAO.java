@@ -6,12 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-<<<<<<< HEAD
 import gallery.GalleryVO;
 import notice.NoticeVO;
 
-=======
->>>>>>> branch 'master' of https://github.com/mingu-seo/190923club.git
 @Repository
 public class ReplyDAO {
 
@@ -34,25 +31,14 @@ public class ReplyDAO {
 		return sqlSession.insert("reply.reRe_insert", vo);
 	}
 	
-<<<<<<< HEAD
-	//댓글 리스트
-	public List<ReplyVO> replyList(ReplyVO vo) {
-		return sqlSession.selectList("reply.relist", vo);
-			}
 	
 	public ReplyVO replyView(int id) {
 		return sqlSession.selectOne("reply.review", id);
 	}
 	
 	
-	public int replyDelete(ReplyVO vo) {
-		return sqlSession.delete("reply.re_delete",vo);
-	}
-	
-=======
 	public int replyDelete(int reply_num) {
 		return sqlSession.delete("reply.re_delete", reply_num);
 	}
 
->>>>>>> branch 'master' of https://github.com/mingu-seo/190923club.git
 }

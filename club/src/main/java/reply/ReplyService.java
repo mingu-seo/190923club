@@ -5,12 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
 import gallery.GalleryVO;
 import notice.NoticeVO;
 
-=======
->>>>>>> branch 'master' of https://github.com/mingu-seo/190923club.git
+
 @Service
 public class ReplyService {
 

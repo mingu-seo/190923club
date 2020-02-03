@@ -282,5 +282,12 @@
 	    color: darkgrey;
 	    padding:20px;
 	}
+	  
+	/*답글 버튼*/
+	.re_btn {
+		font-size:10px;
+		color:#698396!important;
+		text-decoration: underline;
+	}
 	 
 }

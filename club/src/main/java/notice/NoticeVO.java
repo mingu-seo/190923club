@@ -14,6 +14,43 @@ public class NoticeVO {
 	private String file;
 	private String search_word;
 	
+	//페이지
+	private int page; //사용자가 요청한 페이지번호
+	private int limit; //페이지당 로우수
+	private int startIndex; //limit 시작 인덱스
+	private int maxPage; //총페이지수
+	
+	public NoticeVO() {
+		this.page = 1;
+		this.limit = 15;
+	}
+	
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getLimit() {
+		return limit;
+	}
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+	public int getStartIndex() {
+		//시작인덱스값 mybatis에서 getter 메서드를 호출하기
+		int i = (this.page-1) * this.limit;
+		return i;
+	}
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+	public int getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(int maxPage) {
+		this.maxPage = maxPage;
+	}
 	
 	public String getSearch_word() {
 		//검색창이 널값일때 빈값을, 아니면 검색어를

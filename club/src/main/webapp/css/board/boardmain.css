@@ -96,8 +96,42 @@
 			font-size:22px;
 			padding:5px;
 		}
-		
+		  
 		.preboard tr {
 			border-bottom: 1px solid gray;
 		}
 		
+		/*submain css*/
+		
+		.main_post_div {
+			border:1px solid pink;
+			margin:40px; 
+			padding:30px;
+		}
+		.main_post {
+			padding:80px 0 20px 0;
+		}
+		
+		.main_post_click span {
+			font-size:24px;
+			font-weight: bold;  
+			margin:70px;
+			color:white;
+			
+		}
+		
+		.main_post_writer {
+			font-size:20px;
+			font-weight: bold;
+			float:left;
+		}
+		
+		.main_post_info {
+			font-size:20px;
+			font-weight: bold;
+			float:right;
+		}
+		
+		.main_post_click {
+			background:pink;
+		}

@@ -9,6 +9,8 @@
 <%
 List<NoticeVO> list = (List<NoticeVO>)request.getAttribute("list");
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
+int listcount = (Integer)request.getAttribute("listcount"); //전체갯수
+int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지수
 %>
 
 
@@ -77,8 +79,8 @@ NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 								<td>조한빈</td>
 								<td><%=util.Function.getYmd(list.get(i).getRegdate())%></td>
 								<td>11</td>
-								<td>24</td>
-							</tr>
+								<td><%=list.get(i).getView() %></td>
+							</tr>  
 							
 							<%
 							}
@@ -91,19 +93,14 @@ NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 					</div>
 	
 				 <div class="boardSearch">
-					 	<form>
+					 	<form action="/board/notice/noticeList.do?board_id=3" method="post">
 							<input type="search" name="search_word" id="boardSearch" value="<%=vo.getSearch_word() %>"> 
 							<input id="board_search_btn" type="submit" value="검색">
 						</form>
 				</div>
 	
 				<div id="pageList">
-					<span>[이전]</span>
-					<span><a href="">1</a></span>
-					<span><a href="">2</a></span>
-					<span><a href="">3</a></span>
-					<span><a href="">4</a></span>
-					<span>[다음]</span>
+					<%=util.BoardPage.getPageList(vo.getPage(), totalpage, "/board/notice/noticeList.do?board_id=3") %>
 				</div>
 				
 	        </div>

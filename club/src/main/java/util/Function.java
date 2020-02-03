@@ -7,4 +7,5 @@ public class Function {
 	public static String getYmd(Timestamp t) {
 		return String.valueOf(t).substring(0,10);
 	}
+	
 }

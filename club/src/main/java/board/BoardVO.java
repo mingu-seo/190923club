@@ -11,7 +11,14 @@ public class BoardVO {
 	private String title;
 	private String contents;
 	private int view;
+	private String search_word;
 	
+	public String getSearch_word() {
+		return search_word==null ? "" : search_word;
+	}
+	public void setSearch_word(String search_word) {
+		this.search_word = search_word;
+	}
 	public int getBoard_id() {
 		return board_id;
 	}

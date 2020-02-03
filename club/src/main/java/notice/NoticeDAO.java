@@ -13,25 +13,39 @@ public class NoticeDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	//공지사항 목록
+	//목록
 	public List<NoticeVO> noticeList(NoticeVO vo, int board_id) {
 		return sqlSession.selectList("board.notice_list", vo);
 	}
-	//공지사항 글작성
+	//목록 카운트
+	public int count(NoticeVO vo) {
+		return sqlSession.selectOne("board.count", vo);
+	}
+	//글작성
 	public int noticeInsert(NoticeVO vo, int board_id) {
 		return sqlSession.insert("board.notice_insert", vo);
 	}
-	//공지사항 상세
+	//상세
 	public NoticeVO noticeView(int post_id, @RequestParam("board_id")int board_id) {
 		return sqlSession.selectOne("board.notice_view", post_id);
 	}
-	//공지사항 삭제
+	//삭제
 	public int noticeDelete(int post_id) {
 		return sqlSession.delete("board.notice_delete", post_id);
 	}
-	//공지사항 수정
+	//수정
 	public int noticeUpdate(NoticeVO vo) {
 		return sqlSession.update("board.notice_update", vo);
 	}
+	//조회수
+	public void noticeViewUpdate(int post_id) {
+		sqlSession.update("board.updateReadcount", post_id);
+	}
+	//보드메인 공지사항 리스트
+	public List<NoticeVO> mainNoticeList(NoticeVO vo) {
+		return sqlSession.selectList("board.main_notice", vo);
+	}
+	
+	
 	
 }

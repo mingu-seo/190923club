@@ -6,6 +6,7 @@
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
+BoardVO vo = (BoardVO)request.getAttribute("vo");
 List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
@@ -70,14 +71,14 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 							%>
 							<tr class="board_art">
 								<td><a><%=list.get(i).getPost_id()%></a></td>
-								<td class="art_title"><a href="/board/writing/boardWriteView.do?id_post=<%=list.get(i).getPost_id()%>"><%=list.get(i).getTitle() %></a></td>
+								<td class="art_title"><a href="/board/writing/boardWriteView.do?board_id=2&post_id=<%=list.get(i).getPost_id()%>"><%=list.get(i).getTitle() %></a></td>
 								<td>김세영</td>
 								<td><%=util.Function.getYmd(list.get(i).getRegdate()) %></td>
 								<td>11</td>
-								<td>235</td>
+								<td><%=list.get(i).getView() %></td>
 						
 							</tr>	
-							<%
+							<% 
 							}
 							%>
 			  				
@@ -89,15 +90,10 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 					</div>
 	
 				<div class="boardSearch">
-					 	<select class="search_ctg">
-					 	<option value="작성자">작성자</option>
-					 	<option value="제목">제목</option>
-					 	<option value="내용">내용</option>
-					 	</select>
-					 	
-						<input type="text" name="boardSearch" id="boardSearch">
-						 
+					<form action="/board/writing/boardList.do" method="post">
+						<input type="text" name="search_word" id="boardSearch" value="<%=vo.getSearch_word() %>">
 						<input id="board_search_btn" type="submit" value="검색">
+					</form>
 				</div>	
 
 	

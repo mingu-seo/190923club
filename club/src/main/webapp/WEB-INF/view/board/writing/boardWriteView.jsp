@@ -2,11 +2,15 @@
     pageEncoding="UTF-8"%>
     <%@ page import ="java.util.HashMap" %>
 <%@ page import ="board.BoardVO" %>
+<%@ page import ="reply.ReplyVO" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-BoardVO vo = (BoardVO)request.getAttribute("vo"); 
+BoardVO vo = (BoardVO)request.getAttribute("vo");
+
+//댓글 리스트가져오는거
+List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
 %>				
 
 
@@ -62,44 +66,79 @@ BoardVO vo = (BoardVO)request.getAttribute("vo");
 					</div>
 					
 					<div class="view_repl_info">
-						<span class="view_like">♥</span>
-						<span>이 글을 N명이 좋아합니다.</span>
+						<span class="view_like">❤︎ 좋아요</span>
+						<span>35</span> 
+						<span>조회</span>
+						<span><%=vo.getView() %></span>  
 					</div>		
 				
 				<div class="repl_box">
 					<div id="replyBox">
 						<table id="reply">
-							<tr> 
-								<th class="repl_date">홍길동</th>
-								<td>어케 댓글창 만들지</td>
-								<th class="repl_date">2020-01-05</th>
-							</tr>
-							<tr>
-								<th class="repl_date">김길동</th>
-								<td>클낫다 클낫어</td>
-								<th class="repl_date">2020-01-06</th>
-							</tr>
-							<tr>
-								<th class="repl_date">박길동</th>
-								<td>대댓글창도 만들어야 하는디</td>
-								<th class="repl_date">2020-01-07</th>
-							</tr>
+								<% 
+								for(int i=0; i<rList.size(); i++) {
+								%>
+									<tr id="re_info"> 
+										<th class="repl_date">홍길동</th>
+										<td>
+										<% if(rList.get(i).getG_lev() > 0) {%>
+										<% for(int j=0; j<rList.get(i).getG_lev(); j++) {%>
+										&nbsp;&nbsp;
+										<% }%>└
+										<% }%>
+										<%=rList.get(i).getContents() %> <a href="#;" class="re_btn">답글</a></td>
+										<th class="repl_date"><%=rList.get(i).getRegdate() %></th>
+										<td id="repl_del">
+											<input type="button" value="삭제" onclick="location.href='/board/replyDelete.do?reply_num=<%=rList.get(i).getReply_num() %>&post_id=<%=rList.get(i).getPost_id()%>'">
+										</td>
+									</tr>
+									
+									<form action="/board/replyReply.do" method="post">
+										<input type="hidden" name="board_id" value="<%=vo.getBoard_id()%>">
+										<input type="hidden" name="post_id" value="<%=vo.getPost_id()%>">
+										<input type="hidden" name="reply_num" value="<%=rList.get(i).getReply_num()%>">
+										<input type="hidden" name="g_id" value="<%=rList.get(i).getG_id()%>">
+										<input type="hidden" name="g_lev" value="<%=rList.get(i).getG_lev()%>">
+										<input type="hidden" name="g_seq" value="<%=rList.get(i).getG_seq()%>"> 
+									<table>
+										<tr class="re_tr">
+											<td id="dndn">└</td>
+											<td>
+												<textarea class="re_reply" name="contents"></textarea>
+											</td>
+											<td> 
+												<input type="submit" class="repl_btn" value="등록" > 
+											</td>
+										</tr>
+										</table>
+									</form>
+								<%
+								}
+								%>
+							</table>
 							
-							<tr>
-								<td colspan="2">
-									<textarea id="replyText">댓글을 입력하세요</textarea>
-								</td>
-								<td> 
-									<input type="submit" id="repl_btn" value="등록"> 
-								</td>
-							</tr>
-						</table>
+							<!-- 댓글 폼 -->
+							<form action="/board/reply.do?board_id=2" method="post">
+									<input type="hidden" name="post_id" value="<%=vo.getPost_id()%>">
+									<input type="hidden" name="board_id" value="<%=vo.getBoard_id()%>">
+								<table>
+									<tr>
+										<td class="repForm">   
+											<textarea class="replyText" name="contents"></textarea>
+										</td>
+										<td class="repForm_sub"> 
+											<input type="submit" class="repl_btn" value="등록"> 
+										</td>
+									</tr>
+								</table>
+							</form> 
 					</div> 
 				</div>
 				
 				
 			</div>
 			<input type="button" value="삭제" class="btns" onclick="javascript:writingDel('<%=vo.getPost_id()%>');">
+			<input type="button" value="수정" class="btns" onclick="location.href='/board/writing/boardUpdateForm.do?board_id=2&post_id=<%=vo.getPost_id()%>'"> 
 			<input type="button" value="목록" class="btns" onclick="location.href='boardList.do'"> 
         </div>
         

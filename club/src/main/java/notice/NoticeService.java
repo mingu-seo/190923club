@@ -21,6 +21,19 @@ public class NoticeService {
 		return list;
 	}
 	
+	//페이징처리
+	public int[] noticeCount(NoticeVO vo) {
+		int listcount = noticeDAO.count(vo); // 전체 갯수
+		int totalpage = listcount / 10;		// 총페이지수
+		if (listcount % 10 > 0) totalpage++;
+		
+		int[] pagecount = new int[2];
+		pagecount[0] = listcount;
+		pagecount[1] = totalpage;
+		
+		return pagecount;
+	}
+	
 	public int noticeInsert(NoticeVO vo, MultipartFile file, HttpServletRequest req, int board_id) {
 		FileUtil fu = new FileUtil();
 		fu.fileUpload(file, req.getRealPath("/upload/"));
@@ -29,6 +42,7 @@ public class NoticeService {
 	}
 	
 	public NoticeVO noticeView(int post_id, int board_id) {
+		noticeDAO.noticeViewUpdate(post_id);
 		return noticeDAO.noticeView(post_id, board_id);
 	}
 	
@@ -45,5 +59,9 @@ public class NoticeService {
 		fu.fileUpload(file, req.getRealPath("/upload/"));
 		vo.setFile(fu.fileName);
 		return noticeDAO.noticeUpdate(vo);
+	}
+	
+	public List<NoticeVO> mainNoticeList(NoticeVO vo) {
+		return noticeDAO.mainNoticeList(vo); 
 	}
 }

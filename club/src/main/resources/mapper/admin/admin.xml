@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+	
+	<select id="idCheck" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM project.admin WHERE id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="admin.AdminVO">
+		insert into project.admin (id, password, name, email, tel , regdate)
+		values
+		(#{id}, md5(#{password}), #{name}, #{email}, #{tel}, now())
+	</insert>
+	
+</mapper>

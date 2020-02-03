@@ -13,7 +13,16 @@ public class ReplyVO {
 	private String writer; //작성자
 	private Timestamp regdate;
 	private int board_id;
+	private String url;
 	
+	
+	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	public int getBoard_id() {
 		return board_id;
 	}

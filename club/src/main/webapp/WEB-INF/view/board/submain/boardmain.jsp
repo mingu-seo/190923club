@@ -4,9 +4,14 @@
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import="notice.*" %>
+<%@ page import="board.*" %>
 <%
+//공지사항 리스트
 List<NoticeVO> nList = (List<NoticeVO>)request.getAttribute("list");
+//공지사항 속성
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
+//자유게시판 리스트
+List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
 %>
 
 <!DOCTYPE html>
@@ -90,42 +95,24 @@ NoticeVO vo = (NoticeVO)request.getAttribute("vo");
         		<div id="mm"><a href="/board/writing/boardList.do?board_id=2"><button class="view-more">더보기</button></a></div>
         		<table class="preboard">
 					
+					<%
+					for (int i=0; i<bList.size(); i++) {
+					%>
+					
         			<tr> <!-- 최대 갯수 지정 -->
         				<td>★</td>
-        				<td class="preboard-tt">해외여행 VS 국내여행 진짜 고민이예요.. 조언좀</td>
-        				<td>35</td>
+        				<td class="preboard-tt">
+        					<a href="/board/writing/boardWriteView.do?board_id=2&post_id=<%=bList.get(i).getPost_id() %>">
+        						<%=bList.get(i).getTitle() %>
+        					</a>
+        				</td>
+        				<td><%=bList.get(i).getView() %></td>
         			</tr>
+					
+					<%
+					}
+					%>        			
         			
-        			<tr>
-        				<td>★</td>
-        				<td class="preboard-tt">여기 어딘지 아시는 분~</td>
-        				<td>77</td>
-        			</tr>
-        			<tr>
-        				<td>★</td>
-        				<td class="preboard-tt">빚있는분들 보통 월급에서 얼마내세요?</td>
-        				<td>77</td>
-        			</tr>
-        			<tr>
-        				<td>★</td>
-        				<td class="preboard-tt">워크샵간다~</td>
-        				<td>77</td>
-        			</tr>
-        			<tr>
-        				<td>★</td>
-        				<td class="preboard-tt">이런남자 어떤가요?</td>
-        				<td>53</td>
-        			</tr>
-        			<tr>
-        				<td>★</td>
-        				<td class="preboard-tt">사랑의 불시착 재미있어요?</td>
-        				<td>53</td>
-        			</tr>
-        			<tr>
-        				<td>★</td>
-        				<td class="preboard-tt">저 회사에서 첨으로 울었어요...ㅋㅋㅋㅋㅋㅋㅋㅋ</td>
-        				<td>53</td>
-        			</tr>
         		</table>
         		</div>
         		</div>

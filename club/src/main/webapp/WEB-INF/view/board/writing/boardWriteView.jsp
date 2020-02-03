@@ -11,13 +11,20 @@ BoardVO vo = (BoardVO)request.getAttribute("vo");
 
 //댓글 리스트가져오는거
 List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
+ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 %>				
 
 
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 삭제 스크립트 -->
+<meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
+
+   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
+  
+	<!-- 삭제 스크립트 -->
 <script type="text/javascript">
    function writingDel(post_id) {
 	   if(confirm("삭제하시겠습니까?")) { 
@@ -26,14 +33,34 @@ List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
 		   return false;
 		   
    }
+   
+   $(function() {
+		$(".re_btn").click(function() {
+			var idx = $(this).index(".re_btn");
+			$(".re_tr").eq(idx).toggle();
+		});
+		getReplyList($(".post_id").val());
+	});
+   
+ 	//댓글 리스트 ajax 
+	function getReplyList(id) {
+		$.ajax({
+			async : false,
+			url : '/board/replyListAjax.do',
+			data : {
+				'post_id': id,
+				'board_id': 2
+			},
+			dataType:'HTML',
+			success: function(data) {
+				$("#replyListArea").html(data);
+			},
+			error:function(data) {
+				console.log(data);
+			}
+		});
+	}
 </script>
-<meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
-
-   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
-  
-
 </head>
 <body>
  
@@ -74,64 +101,67 @@ List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
 				
 				<div class="repl_box">
 					<div id="replyBox">
-						<table id="reply">
-								<% 
-								for(int i=0; i<rList.size(); i++) {
-								%>
-									<tr id="re_info"> 
-										<th class="repl_date">홍길동</th>
-										<td>
-										<% if(rList.get(i).getG_lev() > 0) {%>
-										<% for(int j=0; j<rList.get(i).getG_lev(); j++) {%>
-										&nbsp;&nbsp;
-										<% }%>└
-										<% }%>
-										<%=rList.get(i).getContents() %> <a href="#;" class="re_btn">답글</a></td>
-										<th class="repl_date"><%=rList.get(i).getRegdate() %></th>
-										<td id="repl_del">
-											<input type="button" value="삭제" onclick="location.href='/board/replyDelete.do?reply_num=<%=rList.get(i).getReply_num() %>&post_id=<%=rList.get(i).getPost_id()%>'">
-										</td>
-									</tr>
-									
-									<form action="/board/replyReply.do" method="post">
-										<input type="hidden" name="board_id" value="<%=vo.getBoard_id()%>">
-										<input type="hidden" name="post_id" value="<%=vo.getPost_id()%>">
-										<input type="hidden" name="reply_num" value="<%=rList.get(i).getReply_num()%>">
-										<input type="hidden" name="g_id" value="<%=rList.get(i).getG_id()%>">
-										<input type="hidden" name="g_lev" value="<%=rList.get(i).getG_lev()%>">
-										<input type="hidden" name="g_seq" value="<%=rList.get(i).getG_seq()%>"> 
-									<table>
-										<tr class="re_tr">
-											<td id="dndn">└</td>
-											<td>
-												<textarea class="re_reply" name="contents"></textarea>
-											</td>
-											<td> 
-												<input type="submit" class="repl_btn" value="등록" > 
-											</td>
-										</tr>
-										</table>
-									</form>
-								<%
-								}
-								%>
-							</table>
+						<div id="replyListArea">
+						
+						</div>
 							
 							<!-- 댓글 폼 -->
 							<form action="/board/reply.do?board_id=2" method="post">
-									<input type="hidden" name="post_id" value="<%=vo.getPost_id()%>">
-									<input type="hidden" name="board_id" value="<%=vo.getBoard_id()%>">
+									<input type="hidden" name="post_id" class="post_id" value="<%=vo.getPost_id()%>">
+									<input type="hidden" name="board_id" class="board_id" value="<%=vo.getBoard_id()%>">
+									<input type="hidden" name="url" value="board/writing/writingReplyAjax.do">
 								<table>
 									<tr>
 										<td class="repForm">   
 											<textarea class="replyText" name="contents"></textarea>
 										</td>
 										<td class="repForm_sub"> 
-											<input type="submit" class="repl_btn" value="등록"> 
+											<input type="button" class="repl_btn" value="등록" onclick="replyAjax()"> 
 										</td>
 									</tr>
 								</table>
-							</form> 
+							</form>
+							
+							<script>
+							function replyAjax() {
+								$.ajax({
+									async:false,
+									url:'/board/reply.do',
+									data: {
+										'post_id':$(".post_id").val(),
+										'board_id':$(".board_id").val(),
+										'contents':$(".replyText").val(),
+										'g_id':$("#g_id").val(),
+									},
+									dataType:'HTML',
+									success:function(data) {
+										//댓글이 정상적으로 저장되었을때
+										$(".replyText").val("");
+										getReplyList($(".post_id").val());
+									},
+									error:function(data) {
+										console.log(data);
+									}
+								});
+							}
+							
+							function replyAjax2(formId) {
+								$.ajax({
+									async:false,
+									url:'/board/replyReply.do',
+									method:'POST',
+									data: $("#"+formId).serialize(),
+									dataType:'HTML',
+									success:function(data) {
+										//댓글이 정상적으로 저장되었을때
+										getReplyList($(".post_id").val());
+									}, 
+									error:function(data) {
+										console.log(data);
+									}
+								});
+							}
+						</script>
 					</div> 
 				</div>
 				

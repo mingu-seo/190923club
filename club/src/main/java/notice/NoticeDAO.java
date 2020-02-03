@@ -23,7 +23,8 @@ public class NoticeDAO {
 	}
 	//글작성
 	public int noticeInsert(NoticeVO vo, int board_id) {
-		return sqlSession.insert("board.notice_insert", vo);
+		sqlSession.insert("board.notice_insert", vo);
+		return vo.getPost_id();
 	}
 	//상세
 	public NoticeVO noticeView(int post_id, @RequestParam("board_id")int board_id) {

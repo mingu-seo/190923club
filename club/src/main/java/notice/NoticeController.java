@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import file.FileVO;
 import reply.ReplyService;
 import reply.ReplyVO;
 
@@ -25,6 +26,9 @@ public class NoticeController {
 	
 	@Autowired
 	ReplyService rService;
+	
+	@Autowired
+	private file.FileService fService;
 	
 	//공지사항 목록 페이지
 	@RequestMapping("/board/notice/noticeList.do") 
@@ -49,7 +53,16 @@ public class NoticeController {
 	public String noticeInsert(NoticeVO vo, HttpServletRequest req, 
 			@RequestParam("file_tmp") MultipartFile file,
 			@RequestParam("board_id")int board_id) {
-		nService.noticeInsert(vo, file, req, board_id);
+		
+		//글 등록하고 pk가져와서 파일등록할때 씀
+		int post_id = nService.noticeInsert(vo,board_id);
+		
+		FileVO fv = new FileVO();
+		fv.setBoard_id(vo.getBoard_id());
+		fv.setPost_id(post_id);
+		fService.fileInsert(fv, file, req);
+		
+		
 		return "redirect:/board/notice/noticeList.do?board_id="+board_id;
 	}
 	//공지사항 상세보기 페이지
@@ -59,8 +72,18 @@ public class NoticeController {
 		ReplyVO rv = new ReplyVO();
 		rv.setBoard_id(board_id);
 		rv.setPost_id(post_id);
+		
 		List<ReplyVO> rList = rService.replyList(rv);
+		
+		//파일 선택
+		FileVO param_fvo = new FileVO();
+		param_fvo.setPost_id(vo.getPost_id());
+		param_fvo.setBoard_id(vo.getBoard_id());
+		System.out.println(param_fvo);
+		FileVO fv = fService.fileSelect(param_fvo);
+		
 		model.addAttribute("vo",vo);
+		model.addAttribute("fv",fv);
 		model.addAttribute("rList", rList);
 		return "board/notice/noticeWriteView";
 	}	

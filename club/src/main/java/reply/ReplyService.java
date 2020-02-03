@@ -28,6 +28,7 @@ public class ReplyService {
 	
 	public int replyReplyInsert(ReplyVO vo) {
 		//원글의 seq보다 크고, ref가 같은 모든 글의 seq+1
+		
 		//vo에다가 ref=원글의 ref, lev=원글의 lev+1, seq=원글의 seq+1
 		//insert
 		vo.setG_lev(vo.getG_lev()+1);

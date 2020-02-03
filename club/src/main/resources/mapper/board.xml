@@ -84,9 +84,13 @@
 		</select>
 	
 	<!-- 공지사항 글작성 -->
-		<insert id="notice_insert" parameterType="notice.NoticeVO">
-			insert into project.notice (title, contents, regdate, board_id, file)
-			values(#{title}, #{contents}, now(), #{board_id}, #{file})
+		<insert id="notice_insert" parameterType="notice.NoticeVO" useGeneratedKeys="true">
+			insert into project.notice (title, contents, regdate, board_id)
+			values(#{title}, #{contents}, now(), #{board_id})
+			
+			<selectKey keyProperty="post_id" resultType="Integer" order="AFTER">
+				SELECT last_insert_id()
+			</selectKey>
 		</insert>
 	
 	<!-- 공지사항 상세보기 -->
@@ -115,10 +119,19 @@
 		
 
 
+	<!-- 보드메인 자유게시글 -->
+		<select id="main_board" resultType="board.BoardVO">
+			select post_id, title, writer, view from project.writing 
+			order by regdate desc limit 0,7
+		</select>
+
+
 	<!-- 보드메인 공지 -->  
 		<select id="main_notice" resultType="notice.NoticeVO">
 			select post_id, title, writer, view from project.notice 
 			order by regdate desc limit 0,7
 		</select>
+		
+
 	
 </mapper>

@@ -75,7 +75,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 							%>
 							<tr class="board_art">
 								<td><%= list.get(i).getPost_id()%></td>
-								<td class="art_title"><a href="/board/notice/noticeWriteView.do?post_id=<%=list.get(i).getPost_id()%>&board_id=<%=list.get(i).getBoard_id()%>"><%=list.get(i).getTitle() %></td>
+								<td class="art_title"><a href="/board/notice/noticeWriteView.do?post_id=<%=list.get(i).getPost_id()%>&board_id=<%=list.get(i).getBoard_id()%>"><%=list.get(i).getTitle() %></a></td>
 								<td>조한빈</td>
 								<td><%=util.Function.getYmd(list.get(i).getRegdate())%></td>
 								<td>11</td>

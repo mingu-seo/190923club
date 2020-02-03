@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import util.FileUtil;
-
 @Service
 public class NoticeService {
 
@@ -34,10 +32,7 @@ public class NoticeService {
 		return pagecount;
 	}
 	
-	public int noticeInsert(NoticeVO vo, MultipartFile file, HttpServletRequest req, int board_id) {
-		FileUtil fu = new FileUtil();
-		fu.fileUpload(file, req.getRealPath("/upload/"));
-		vo.setFile(fu.fileName);
+	public int noticeInsert(NoticeVO vo, int board_id) {
 		return noticeDAO.noticeInsert(vo, board_id);
 	}
 	
@@ -55,9 +50,6 @@ public class NoticeService {
 	}
 	
 	public int noticeUpdate(NoticeVO vo, MultipartFile file, HttpServletRequest req) {
-		FileUtil fu = new FileUtil();
-		fu.fileUpload(file, req.getRealPath("/upload/"));
-		vo.setFile(fu.fileName);
 		return noticeDAO.noticeUpdate(vo);
 	}
 	

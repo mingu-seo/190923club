@@ -41,10 +41,13 @@ public class BoardController {
 	}
 	//게시판 메인 페이지
 	@RequestMapping("/board/submain/boardmain.do") 
-	public String boardMain(NoticeVO vo, Model model) {
+	public String boardMain(NoticeVO vo, Model model, BoardVO bVO) {
 		List<NoticeVO> list = nService.mainNoticeList(vo);
+		List<BoardVO> bList = bService.mainBoardList(bVO);
+		
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
+		model.addAttribute("bList", bList);
 		return "board/submain/boardmain";
 	}
 	
@@ -78,6 +81,7 @@ public class BoardController {
 		ReplyVO rv = new ReplyVO();
 		rv.setBoard_id(vo.getBoard_id());
 		rv.setPost_id(post_id);
+		
 		List<ReplyVO> rList = rService.replyList(rv);
 		
 		model.addAttribute("vo", vo);

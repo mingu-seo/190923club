@@ -7,7 +7,7 @@
 	</appender>
 	
 	<logger name="root">
-		<level value="error"/>
+		<level value="debug"/>
 		<appender-ref ref="stdout"/>
 	</logger>
 	

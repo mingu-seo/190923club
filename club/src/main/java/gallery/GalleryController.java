@@ -70,8 +70,8 @@ public class GalleryController {
 		
 		//갤러리 업데이트
 				@RequestMapping("/board/gallery/galleryUpdate.do") 
-				public String galleryUpdate(GalleryVO vo, @RequestParam("image_tmp") MultipartFile file, HttpServletRequest request) {
-				gService.galleryUpdate(vo, file, request);
+				public String galleryUpdate(GalleryVO vo, @RequestParam("image_tmp") MultipartFile file, @RequestParam("image_tmp2") MultipartFile file2, @RequestParam("image_tmp3") MultipartFile file3, HttpServletRequest request) {
+				gService.galleryUpdate(vo, file, file2, file3, request);
 				return "redirect:/board/gallery/galleryList.do";
 				}
 		

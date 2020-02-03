@@ -61,5 +61,17 @@ public class ReplyController {
 		rService.replyDelete(reply_num);
 		return "redirect:/board/notice/noticeWriteView.do?board_id=3&post_id="+rVO.getPost_id();
 	}
+	@RequestMapping("/board/reDelete.do")
+	public String reDelete(ReplyVO rVO, @RequestParam("reply_num")int reply_num) {
+		rService.replyDelete(reply_num);
+		return "include/return";
+	}
+	
+	
+	@RequestMapping("/board/reReply.do")
+	public String reReply( Model model, ReplyVO rVO) {
+		rService.replyReplyInsert(rVO);
+		return "board/gallery/replyAjax";
+	}
 	
 }

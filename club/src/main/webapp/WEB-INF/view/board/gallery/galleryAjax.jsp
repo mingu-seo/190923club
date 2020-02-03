@@ -8,5 +8,7 @@
 "image2" : "${vo.image2}",
 "image3" : "${vo.image3}",
 "post_id" : "${vo.post_id}",
-"board_id" : "${vo.board_id}"
+"board_id" : "${vo.board_id}",
+"view" : "${vo.view}",
+"search_word" : "${vo.search_word}"
 }

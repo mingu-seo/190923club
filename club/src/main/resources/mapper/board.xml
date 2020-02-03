@@ -39,8 +39,15 @@
 	
 	<!-- 갤러리 리스트 -->
 		<select id="gallery_list" parameterType="gallery.GalleryVO" resultType="gallery.GalleryVO">
-			select * from project.gallery order by regdate desc;
+			select * from project.gallery 
+			<where>
+				<if test="search_word != null and search_word != ''">
+					title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%'
+				</if>
+			</where> 
+			order by regdate desc;
 		</select>
+		
 	
 	<!--갤러리 글작성 -->
 
@@ -76,6 +83,14 @@
 			title=#{title}, contents=#{contents}
 			<if test="image != null">
 			, image=#{image}
+			</if>
+			
+			<if test="image2 != null">
+			, image2=#{image2}
+			</if>
+			
+			<if test="image3 != null">
+			, image3=#{image3}
 			</if>
 			where post_id=#{post_id}
 		</update>
@@ -126,12 +141,17 @@
 			update project.notice set view=view+1 where post_id=#{post_id}
 		</update>
 		
-
+		
 
 	<!-- 보드메인 공지 -->  
 		<select id="main_notice" resultType="notice.NoticeVO">
 			select post_id, title, writer, view from project.notice 
 			order by regdate desc limit 0,7
 		</select>
+		
+		<!-- 갤러리  조회수 -->
+		<update id="galleryCount" parameterType="Integer">
+			update project.gallery set view=view+1 where post_id=#{post_id}
+		</update>
 	
 </mapper>

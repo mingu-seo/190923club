@@ -49,10 +49,19 @@ public class GalleryService {
 		return galleryDao.galleryDelete(vo);
 	}
 	
-	public int galleryUpdate(GalleryVO vo, MultipartFile file, HttpServletRequest request) {
+	public int galleryUpdate(GalleryVO vo, MultipartFile file, MultipartFile file2, MultipartFile file3, HttpServletRequest request) {
 		FileUtil fu = new FileUtil();
+		FileUtil fu2 = new FileUtil();
+		FileUtil fu3 = new FileUtil();
 		fu.fileUpload(file, request.getRealPath("/upload/"));
 		vo.setImage(fu.fileName);
+		
+		fu2.fileUpload(file2, request.getRealPath("/upload/"));
+		vo.setImage2(fu2.fileName);
+		
+		fu3.fileUpload(file3, request.getRealPath("/upload/"));
+		vo.setImage3(fu3.fileName);
+		
 		return galleryDao.galleryUpdate(vo);
 	}
 }

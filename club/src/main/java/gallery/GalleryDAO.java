@@ -43,4 +43,7 @@ public class GalleryDAO {
 		public int galleryUpdate(GalleryVO vo) {
 			return sqlSession.update("board.gallery_update",vo);
 		}
+		public int galleryCount(GalleryVO vo) {
+			return sqlSession.update("board.galleryCount",vo);
+		}
 }

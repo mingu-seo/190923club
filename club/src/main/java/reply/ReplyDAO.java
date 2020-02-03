@@ -40,5 +40,8 @@ public class ReplyDAO {
 	public int replyDelete(int reply_num) {
 		return sqlSession.delete("reply.re_delete", reply_num);
 	}
+	public int replySeq(ReplyVO vo) {
+		return sqlSession.update("reply.replySeq", vo);
+	}
 
 }

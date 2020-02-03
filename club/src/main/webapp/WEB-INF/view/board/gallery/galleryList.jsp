@@ -341,16 +341,15 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
        		<div class="board_ctg_name">갤러리 목록</div><!-- 카테고리 이름 -->
 			<div class="board_writing"><a href="galleryWrite.do">글작성</a></div>
 	
-			<div class="board_seq">
-			 	<select>
-			 	<option value="작성자">작성자</option>
-			 	<option value="제목">제목</option>
-			 	<option value="내용">내용</option>
-			 	</select>
-			 	
-				 <input type="text" name="boardSearch" class="g_s">
-				 <input type="submit" value="검색" class="g_s">
+			
+		 	 <div class="boardSearch2">
+			 	<form action="/board/gallery/galleryList.do?board_id=1" method="post">
+				<input type="search" name="search_word" id="boardSearch" value="${gallery.serch_word }"> 
+				<input id="board_search_btn" type="submit" value="검색">
+				</form>
 			</div>
+				 
+				 
 			<div id="horizen"></div>
 	<div id=section>
 	 <section id="main-section">
@@ -480,15 +479,12 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 				}
 				
 				
-				function replyAjax2() {
+				function replyAjax2(formId) {
+					var data = $("#"+formId).serialize();
 					$.ajax({
 						async :false,
-						url:'/board/galleryReply.do',
-						data :{
-							'post_id':$("#reply_post_id").val(),
-							'board_id':$("#reply_board_id").val(),
-							'contents':$(".re_reply").val(),
-				    	},
+						url:'/board/reReply.do',
+						data :data,
 				    	dataType:'HTML',
 				    	success : function(data){
 				    		// 댓글이 정상적으로 저장됐을때
@@ -499,7 +495,26 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 				    		console.log(data);
 						}
 					});
-				}				</script>		  
+				}				
+				
+				
+				function deleteReply(res_num) {
+					$.ajax({
+						async :false,
+						url:'/board/reDelete.do',
+						data :{res_num : res_num},
+				    	dataType:'HTML',
+				    	success : function(data){
+				    		// 댓글이 정상적으로 저장됐을때
+				    		getReplyList($("#reply_post_id").val());
+				    	},
+				    	error:function(data){
+				    		console.log(data);
+						}
+					});
+				}
+				
+				</script>		  
 					</div> 
 				</div>
 				<a id="deleteHref"><input type="button" value="삭제" class="btns" ></a>

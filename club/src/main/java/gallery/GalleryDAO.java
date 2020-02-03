@@ -29,6 +29,12 @@ public class GalleryDAO {
 			return sqlSession.selectOne("board.gallery_view", id);
 		}
 
+		public GalleryVO galleryPre(int id) {
+			return sqlSession.selectOne("board.gallery_pre", id);
+		}
+		public GalleryVO galleryNext(int id) {
+			return sqlSession.selectOne("board.gallery_next", id);
+		}
 		
 		public int galleryDelete(GalleryVO vo) {
 			return sqlSession.delete("board.gallery_delete",vo);
@@ -36,5 +42,8 @@ public class GalleryDAO {
 		
 		public int galleryUpdate(GalleryVO vo) {
 			return sqlSession.update("board.gallery_update",vo);
+		}
+		public int galleryCount(GalleryVO vo) {
+			return sqlSession.update("board.galleryCount",vo);
 		}
 }

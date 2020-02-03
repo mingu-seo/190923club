@@ -59,15 +59,21 @@ function getThumbnailPrivew(html, $target) {
 						<th>파일 선택</th>
 						<td><input type="file" id="image" name="image_tmp" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" ></td>
 					</tr>
+					<tr>
+						<th>파일 선택</th>
+						<td><input type="file" id="image2" name="image_tmp2" onchange="getThumbnailPrivew(this,$('#thumb_img2'));" ></td>
+					</tr>
+					<tr>
+						<th>파일 선택</th>
+						<td><input type="file" id="image3" name="image_tmp3" onchange="getThumbnailPrivew(this,$('#thumb_img3'));" ></td>
+					</tr>
 					
 					<tr>
 						<td colspan="2" >
-						<div id="thumb_img1" onfocus="this.value='';"><%=vo.getImage()%>
-						<br>
-						<h2>새로운 사진/동영상을 원할 때만 파일을 새로 불러오세요.</h2></div>
+						<div id="thumb_img1" onfocus="this.value='';"><img src="/upload/<%=vo.getImage()%>"></div>
+						<div id="thumb_img2" onfocus="this.value='';"><img src="/upload/<%=vo.getImage2()%>"></div>
+						<div id="thumb_img3" onfocus="this.value='';"><img src="/upload/<%=vo.getImage3()%>"></div>
 					</tr>
-					
-					
 					<tr>		
 						<td colspan="2">
 							<textarea name="contents" id="contents"><%=vo.getContents()%></textarea>

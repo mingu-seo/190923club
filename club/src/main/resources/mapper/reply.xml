@@ -23,6 +23,20 @@
 		values(#{contents}, now(), #{post_id}, #{board_id}, #{g_id}, #{g_lev}, #{g_seq})
 	</insert>
 	
+	<!-- 갤러리 댓글 리스트 -->
+	<select id="relist" parameterType="gallery.GalleryVO" resultType="reply.ReplyVO">
+		select * from project.reply where post_id=#{post_id} and board_id=#{board_id}
+	</select>
+	
+	<select id="review" parameterType="gallery.GalleryVO" resultType="reply.ReplyVO">
+		select * from project.gallery where post_id=#{post_id} and board_id=#{board_id}
+	</select>
+	
+	<update id="replySeq" parameterType="reply.ReplyVO">
+	update project.reply set g_seq=g_seq+1
+	where g_id=#{g_id} and g_seq>#{g_seq}
+	</update>
+	
 	<delete id="re_delete" parameterType="Integer">
 		delete from project.reply where reply_num=#{reply_num}
 	</delete>

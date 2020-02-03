@@ -39,18 +39,38 @@
 	
 	<!-- 갤러리 리스트 -->
 		<select id="gallery_list" parameterType="gallery.GalleryVO" resultType="gallery.GalleryVO">
-			select * from project.gallery order by regdate desc;
+			select * from project.gallery 
+			<where>
+				<if test="search_word != null and search_word != ''">
+					title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%'
+				</if>
+			</where> 
+			order by regdate desc;
 		</select>
+		
 	
 	<!--갤러리 글작성 -->
-		<insert id="gallery_insert" parameterType="gallery.GalleryVO">
-			insert into project.gallery (title, contents, image, regdate) values(#{title}, #{contents}, #{image}, now()) 
-		</insert>
+
+	<insert id="gallery_insert" parameterType="gallery.GalleryVO">
+		insert into project.gallery (title, contents, image, image2, image3, regdate, board_id) values(#{title}, #{contents}, #{image}, #{image2}, #{image3}, now(), #{board_id}) 
+	</insert>
+
+	
 	
 	<!-- 갤러리 상세 -->
 		<select id="gallery_view" parameterType="Integer" resultType="gallery.GalleryVO">
 			select * from project.gallery where post_id=#{post_id}
 		</select>
+	
+	<!-- 갤러리 이전 -->
+	<select id="gallery_pre" parameterType="Integer" resultType="gallery.GalleryVO">
+		select * from project.gallery where #{post_id}>post_id order by post_id desc limit 0,1 ;
+	</select>
+	
+	<!-- 갤러리 다음 -->
+	<select id="gallery_next" parameterType="Integer" resultType="gallery.GalleryVO">
+		select * from project.gallery where post_id>#{post_id} order by post_id asc limit 0,1 ;
+	</select>
 	
 	<!-- 갤러리 삭제 -->
 		<select id="gallery_delete" parameterType="gallery.GalleryVO">
@@ -63,6 +83,14 @@
 			title=#{title}, contents=#{contents}
 			<if test="image != null">
 			, image=#{image}
+			</if>
+			
+			<if test="image2 != null">
+			, image2=#{image2}
+			</if>
+			
+			<if test="image3 != null">
+			, image3=#{image3}
 			</if>
 			where post_id=#{post_id}
 		</update>
@@ -117,7 +145,7 @@
 			update project.notice set view=view+1 where post_id=#{post_id}
 		</update>
 		
-
+		
 
 	<!-- 보드메인 자유게시글 -->
 		<select id="main_board" resultType="board.BoardVO">
@@ -132,6 +160,9 @@
 			order by regdate desc limit 0,7
 		</select>
 		
-
+		<!-- 갤러리  조회수 -->
+		<update id="galleryCount" parameterType="Integer">
+			update project.gallery set view=view+1 where post_id=#{post_id}
+		</update>
 	
 </mapper>

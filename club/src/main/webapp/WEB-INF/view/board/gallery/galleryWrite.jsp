@@ -23,6 +23,7 @@ function getThumbnailPrivew(html, $target) {
         reader.readAsDataURL(html.files[0]);
     }
 }
+
 </script>
 </head>
 <body>
@@ -43,7 +44,7 @@ function getThumbnailPrivew(html, $target) {
         	<div class="visualRight">
         		<div class="board_ctg_name">갤러리 목록</div><!-- 카테고리 이름 -->
 				<form action="galleryInsert.do" method="post" enctype="multipart/form-data" onsubmit="save();">
-				<input type="hidden" name="board_id" value="2">
+				<input type="hidden" name="board_id" value="1">
 				
 					<table id="boardTable" border="1">
 					<tr>		
@@ -57,10 +58,20 @@ function getThumbnailPrivew(html, $target) {
 						<th>파일 선택</th>
 						<td><input type="file" id="image" name="image_tmp" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" ></td>
 					</tr>
+					<tr>
+						<th>파일 선택</th>
+						<td><input type="file" id="image2" name="image_tmp2" onchange="getThumbnailPrivew(this,$('#thumb_img2'));" ></td>
+					</tr>
+					<tr>
+						<th>파일 선택</th>
+						<td><input type="file" id="image3" name="image_tmp3" onchange="getThumbnailPrivew(this,$('#thumb_img3'));" ></td>
+					</tr>
 					
 					<tr>
 						<td colspan="2" >
-						<div id="thumb_img1" onfocus="this.value='';">사진이나 동영상을 불러오세요</div>
+						<div id="thumb_img1" onfocus="this.value='';"><img src="/img/1.png"></div>
+						<div id="thumb_img2" onfocus="this.value='';"><img src="/img/1.png"></div>
+						<div id="thumb_img3" onfocus="this.value='';"><img src="/img/1.png"></div>
 					</tr>
 					
 					

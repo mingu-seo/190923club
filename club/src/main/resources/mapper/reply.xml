@@ -12,4 +12,20 @@
 		values(#{contents}, now(), #{post_id}, #{board_id}, #{g_id}, #{g_lev}, #{g_seq})
 	</insert>
 	
+	<!-- 갤러리 댓글 리스트 -->
+	<select id="relist" parameterType="gallery.GalleryVO" resultType="reply.ReplyVO">
+		select * from project.reply where post_id=#{post_id} and board_id=#{board_id}
+	</select>
+	
+	<select id="review" parameterType="gallery.GalleryVO" resultType="reply.ReplyVO">
+		select * from project.gallery where post_id=#{post_id} and board_id=#{board_id}
+	</select>
+	
+	
+	<select id="re_delete" parameterType="reply.ReplyVO">
+		delete from project.reply where reply_num=#{reply_num}
+	</select>
+	
+	
+	
 </mapper>

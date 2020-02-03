@@ -5,5 +5,8 @@
 "title" : "${vo.title}",
 "regdate" : "${vo.regdate}",
 "image" : "${vo.image}",
-"post_id" : "${vo.post_id}"
+"image2" : "${vo.image2}",
+"image3" : "${vo.image3}",
+"post_id" : "${vo.post_id}",
+"board_id" : "${vo.board_id}"
 }

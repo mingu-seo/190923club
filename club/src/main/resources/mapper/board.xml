@@ -30,12 +30,22 @@
 	
 	<!--갤러리 글작성 -->
 	<insert id="gallery_insert" parameterType="gallery.GalleryVO">
-		insert into project.gallery (title, contents, image, regdate) values(#{title}, #{contents}, #{image}, now()) 
+		insert into project.gallery (title, contents, image, image2, image3, regdate, board_id) values(#{title}, #{contents}, #{image}, #{image2}, #{image3}, now(), #{board_id}) 
 	</insert>
 	
 	<!-- 갤러리 상세 -->
 	<select id="gallery_view" parameterType="Integer" resultType="gallery.GalleryVO">
 		select * from project.gallery where post_id=#{post_id}
+	</select>
+	
+	<!-- 갤러리 이전 -->
+	<select id="gallery_pre" parameterType="Integer" resultType="gallery.GalleryVO">
+		select * from project.gallery where #{post_id}>post_id order by post_id desc limit 0,1 ;
+	</select>
+	
+	<!-- 갤러리 다음 -->
+	<select id="gallery_next" parameterType="Integer" resultType="gallery.GalleryVO">
+		select * from project.gallery where post_id>#{post_id} order by post_id asc limit 0,1 ;
 	</select>
 	
 	<!-- 갤러리 삭제 -->

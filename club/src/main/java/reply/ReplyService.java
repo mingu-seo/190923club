@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import gallery.GalleryVO;
 import notice.NoticeVO;
 
 @Service
@@ -28,4 +29,13 @@ public class ReplyService {
 		return replyDao.replyInsert(vo);
 	}
 
+	public ReplyVO replyView(int id) {
+		//galleryDao.updateView(id);
+		return replyDao.replyView(id);
+	}
+	
+	public int replyDelete(ReplyVO vo) {
+		return replyDao.replyDelete(vo);
+	}
+	
 }

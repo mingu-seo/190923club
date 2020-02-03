@@ -5,9 +5,13 @@
 <%@ page import="java.util.List" %>
 <%@ page import ="gallery.GalleryVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import ="reply.ReplyVO" %>
+
 <%
 List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
 GalleryVO vo = (GalleryVO)request.getAttribute("vo");
+List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
+ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 %>
 <!DOCTYPE html>
 <html>
@@ -20,6 +24,8 @@ GalleryVO vo = (GalleryVO)request.getAttribute("vo");
         <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
         <script>
+        var images = []; // 이미지 담을 배열
+        var imageIdx = 0; // 이미지 현재 인덱스
         //페이지
         $(document).ready(function(){
             $('#main-section').imagesLoaded(function(){
@@ -47,17 +53,18 @@ GalleryVO vo = (GalleryVO)request.getAttribute("vo");
         
         
         <script>
+        function showLightBox(){
+            $('#darken-background').show();
+            $('#darken-background').css('top', $(window).scrollTop());
+            $('body').css('overflow', 'hidden');
+        }
+        function hideLightBox(){
+            $('#darken-background').hide();
+            $('body').css('overflow', '');
+        }
                 //라이트박스
                 $(document).ready(function(){
-                    function showLightBox(){
-                        $('#darken-background').show();
-                        $('#darken-background').css('top', $(window).scrollTop());
-                        $('body').css('overflow', 'hidden');
-                    }
-                    function hideLightBox(){
-                        $('#darken-background').hide();
-                        $('body').css('overflow', '');
-                    }
+                    
         			
                     
         
@@ -83,21 +90,125 @@ GalleryVO vo = (GalleryVO)request.getAttribute("vo");
 	                	dataType:'JSON',
 	                	success : function(data){
 	                		console.log(data);
+	                		images = [];
+	                		if (data.image != '') images.push(data.image);
+	                		if (data.image2 != '') images.push(data.image2);
+	                		if (data.image3 != '') images.push(data.image3);
+	                		//images = [data.image, data.image2, data.image3];
 	                		$(".paper-text2").text(data.title);	
-	                		$(".paper-contents").text(data.contents);	
+	                		$(".paper-contents").text(data.contents);
 		                	$(".paper-each2").attr("src", "/upload/"+data.image);
-		                	$("#nextHref").attr("href", "galleryAjax.do?id="+id);
+		                	$("#prePost").attr("onclick", "moveView("+data.post_id+", 'prev')");
+		                	$("#nextPost").attr("onclick", "moveView("+data.post_id+", 'next')");
 		                	$("#deleteHref").attr("href", "galleryDelete.do?post_id="+id);
 		                	$("#detailHref").attr("href", "galleryEdit.do?post_id="+id);
 		               		$("#readCount").text(data.readcount);
+		               		$("#reply_post_id").val(id);
+		               		showLightBox();
+		               		getReplyList(id);
 	                	},
 	                	error:function(data){
 	                		console.log(data);
                 		}
                 	});
-	                	showLightBox();
+	                	
                 }
                 
+                function replyView(id){
+                	$.ajax({
+                		async :false,
+                		url:'replyAjax.do',
+                		data :{
+                			'id':id
+	                	},
+	                	dataType:'JSON',
+	                	success : function(data){
+	                		console.log(data);
+	                		$(".reply-contents").text(data.contents);
+		               		showLightBox();
+	                	},
+	                	error:function(data){
+	                		console.log(data);
+                		}
+                	});
+	                	
+                }
+                
+                function getReplyList(id) {
+                	$.ajax({
+                		async :false,
+                		url:'/board/replyList.do',
+                		data :{
+                			'post_id':id,
+                			'board_id':1
+	                	},
+	                	dataType:'HTML',
+	                	success : function(data){
+	                		$("#replyListArea").html(data);
+	                	},
+	                	error:function(data){
+	                		console.log(data);
+                		}
+                	});
+                }
+                
+                function preHref() {
+                	console.log("pre");
+                	imageIdx--;
+                	if (imageIdx == -1) imageIdx = images.length-1;
+                	$(".paper-each2").attr("src", "/upload/"+images[imageIdx]);
+                	
+                };
+                function nextHref() {
+                	imageIdx++;
+                	if (imageIdx >= images.length) imageIdx = 0;
+                	$(".paper-each2").attr("src", "/upload/"+images[imageIdx]);
+                };
+                
+                function moveView(id, type){
+                	var url = "";
+                	if (type == "prev") {
+                		url = "galleryNext.do";
+                	} else {
+                		url = "galleryPre.do";
+                	}
+                	$.ajax({
+                		async :false,
+                		url:url,
+                		data :{
+                			'post_id':id
+	                	},
+	                	dataType:'JSON',
+	                	success : function(data){
+	                		console.log(data);
+	                		if (data.post_id) {
+	                			images = [];
+		                		if (data.image != '') images.push(data.image);
+		                		if (data.image2 != '') images.push(data.image2);
+		                		if (data.image3 != '') images.push(data.image3);
+		                		//images = [data.image, data.image2, data.image3];
+		                		$(".paper-text2").text(data.title);	
+		                		$(".paper-contents").text(data.contents);
+			                	$(".paper-each2").attr("src", "/upload/"+data.image);
+			                	$("#prePost").attr("onclick", "moveView("+data.post_id+", 'prev')");
+			                	$("#nextPost").attr("onclick", "moveView("+data.post_id+", 'next')");
+			                	$("#deleteHref").attr("href", "galleryDelete.do?post_id="+data.post_id);
+			                	$("#detailHref").attr("href", "galleryEdit.do?post_id="+data.post_id);
+			               		$("#readCount").text(data.readcount);
+			               		$("#reply_post_id").val(data.post_id);
+			               		showLightBox();
+			               		getReplyList(id);
+	                		} else {
+	                			alert("마지막 글입니다.");
+	                		}
+	                	},
+	                	error:function(data){
+	                		console.log(data);
+	                		alert("에러");
+                		}
+                	});
+	                	
+                }
                 
                 
                 
@@ -291,7 +402,8 @@ GalleryVO vo = (GalleryVO)request.getAttribute("vo");
 					<span class="galleryClose">X</span>     
 				</div>
                <form action="galleryEdit.do" method="post">
-               <input type="hidden" id="hidden_id" name="post_id">
+               <input type="hidden" id="post_id" name="post_id">
+                 <input type="hidden" id="board_id" name="board_id">
                
                 <div class="user-information">
                     <a class="user-information-image" href="#">
@@ -306,9 +418,11 @@ GalleryVO vo = (GalleryVO)request.getAttribute("vo");
                 <hr class="lightbox-splitter">
                 
                 <div class="galleryImage"> 
-	                <a href="">◀</a>
+	                <a id="prePost" href="#;">◁</a>
+	                <a id="preHref" href="#;" onclick="preHref();">◀</a>
 	                <img class="paper-each2" src="/upload/${gallery.image }">
-	                <a id="nextHref">▶</a>
+	                <a id="nextHref" href="#;" onclick="nextHref();">▶</a>
+	                <a  id="nextPost"  href="#;">▷</a>
                 </div>  
                 
                 </form>
@@ -319,34 +433,74 @@ GalleryVO vo = (GalleryVO)request.getAttribute("vo");
 					<span class="view_like">♥</span>
 					<span>이 글을 N명이 좋아합니다.</span>
 				</div>
-					
+				<div class="repl_box">	
 				<div id="replyBox">
-					<table id="reply">
-						<tr> 
-							<th class="repl_date">홍길동</th>
-							<td>어케 댓글창 만들지</td>
-							<th class="repl_date">2020-01-05</th>
-						</tr>
-						<tr>
-							<th class="repl_date">김길동</th>
-							<td>클낫다 클낫어</td>
-							<th class="repl_date">2020-01-06</th>
-						</tr>
-						<tr>
-							<th class="repl_date">박길동</th>
-							<td>대댓글창도 만들어야 하는디</td>
-							<th class="repl_date">2020-01-07</th>
-						</tr>
+					<div id="replyListArea">
 					
-						<tr>
-							<td colspan="2">
-								<textarea id="replyText" onfocus="this.value='';">댓글을 입력하세요</textarea>
-							</td>
-							<td> 
-								<input type="submit" id="repl_btn" value="등록"> 
-							</td>
-						</tr>
-					</table>
+					</div>
+					
+					<!-- 댓글 폼 -->
+						<form action="/board/galleryReply.do" method="post">
+								<input type="hidden" name="post_id" id="reply_post_id" value="">
+								<input type="hidden" name="board_id" id="reply_board_id" value="1">
+								<input type="hidden" name="reply_num" id="reply_num" value="">
+							<table>
+								<tr>
+									<td class="repForm" colspan="2">   
+										<textarea class="replyText" name="contents" placeholder="댓글을 입력하세요"></textarea>
+									</td>
+									
+									<td class="repForm_sub"> 
+										<input type="button" class="repl_btn" value="등록" onclick="replyAjax();"> 
+									</td>
+									
+								</tr>
+							</table>
+						</form> 
+				<script>
+				function replyAjax() {
+					$.ajax({
+                		async :false,
+                		url:'/board/galleryReply.do',
+                		data :{
+                			'post_id':$("#reply_post_id").val(),
+                			'board_id':$("#reply_board_id").val(),
+                			'contents':$(".replyText").val(),
+	                	},
+	                	dataType:'HTML',
+	                	success : function(data){
+	                		// 댓글이 정상적으로 저장됐을때
+	                		$(".replyText").val("");
+	                		getReplyList($("#reply_post_id").val());
+	                	},
+	                	error:function(data){
+	                		console.log(data);
+                		}
+                	});
+				}
+				
+				
+				function replyAjax2() {
+					$.ajax({
+						async :false,
+						url:'/board/galleryReply.do',
+						data :{
+							'post_id':$("#reply_post_id").val(),
+							'board_id':$("#reply_board_id").val(),
+							'contents':$(".re_reply").val(),
+				    	},
+				    	dataType:'HTML',
+				    	success : function(data){
+				    		// 댓글이 정상적으로 저장됐을때
+				    		$(".replyText").val("");
+				    		getReplyList($("#reply_post_id").val());
+				    	},
+				    	error:function(data){
+				    		console.log(data);
+						}
+					});
+				}				</script>		  
+					</div> 
 				</div>
 				<a id="deleteHref"><input type="button" value="삭제" class="btns" ></a>
 				<a id="detailHref"><input type="button" value="수정" class="btns" ></a>

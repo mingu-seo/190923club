@@ -10,7 +10,21 @@ public class GalleryVO {
 	private String writer;
 	private String title;
 	private String image;
+	private String image2;
+	private String image3;
 	
+	public String getImage2() {
+		return image2;
+	}
+	public void setImage2(String image2) {
+		this.image2 = image2;
+	}
+	public String getImage3() {
+		return image3;
+	}
+	public void setImage3(String image3) {
+		this.image3 = image3;
+	}
 	public String getImage() {
 		return image;
 	}

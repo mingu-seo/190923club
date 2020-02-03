@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="java.util.HashMap" %>
+<%@ page import ="board.BoardVO" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="notice.*" %>
-<%@ page import="file.*" %>
 <%
-NoticeVO vo = (NoticeVO)request.getAttribute("vo");
-FileVO fv = (FileVO)request.getAttribute("");
+BoardVO vo = (BoardVO)request.getAttribute("vo");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,38 +64,31 @@ FileVO fv = (FileVO)request.getAttribute("");
         	
         	<!-- 오른쪽 contents -->
         	<div class="visualRight">
-        		<div class="board_ctg_name">공지사항 목록</div>
+        		<div class="board_ctg_name">게시판 목록</div>
         		
         		<div>
-				<form action="noticeUpdate.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
-				<input type="hidden" name="post_id" value="<%=vo.getPost_id() %>">
-				
+				<form action="boardUpdate.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
+					<input type="hidden" name="post_id" value="<%=vo.getPost_id()%>">
 					<table id="boardTable">
+												
 						<tr>		
 							<th>제목</th>
 								<td class="writing_box">
-									<input type="text" name="title" class="tableRight" value="<%=vo.getTitle() %>">
-								</td>
-						</tr>
-						
-						<tr>		
-							<th>첨부파일</th>
-								<td class="writing_box">
-									<input type="file" name="file_tmp" class="tableRight" value="">
+									<input type="text" name="title" class="tableRight" value="<%=vo.getTitle()%>">
 								</td>
 						</tr>
 						
 						<tr>		
 							<td colspan="2">
-								<textarea name="contents" id="contents"><%=vo.getContents() %></textarea>
+								<textarea name="contents" id="contents"><%=vo.getContents()%></textarea>
 							</td>
 						</tr>
 					</table>
 						
 						<div class="writing_btns">
-							<input type="submit" value="작성완료" class="btns">
-							<input type="reset" value="다시 작성" class="btns"/>
-							<input type="button" value="목록" class="btns" onclick="location.href='/board/notice/noticeList.do?board_id=3'">
+							<span><input type="submit" value="작성완료" class="btns"></span>
+							<span><input type="reset" value="다시 작성" class="btns"/></span>
+							<span><input type="button" value="목록" class="btns" onclick="location.href='/board/writing/boardList.do?'"></span>
 						</div>
 				</form>
 			</div>

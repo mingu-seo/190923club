@@ -6,6 +6,7 @@
 
 <%
 	String fileName = request.getParameter("file_name");
+	String orgName = request.getParameter("orgName");
 
 	String savePath = "upload";
 	ServletContext context = getServletContext();
@@ -24,11 +25,11 @@
 	boolean ieBrowser = (agent.indexOf("MSIE")>-1) || (agent.indexOf("Trident")>-1);
 	
 	if(ieBrowser) {
-		fileName = URLEncoder.encode(fileName,"UTF-8").replaceAll("\\+","%20");
+		orgName = URLEncoder.encode(orgName,"UTF-8").replaceAll("\\+","%20");
 		} else {
-			fileName = new String(fileName.getBytes("UTF-8"), "iso-8859-1");
+			orgName = new String(orgName.getBytes("UTF-8"), "iso-8859-1");
 		}
-	response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+	response.setHeader("Content-Disposition", "attachment; filename=" + orgName);
 	
 	ServletOutputStream out2 = response.getOutputStream();
 	int numRead;

@@ -27,8 +27,23 @@ public class BoardDAO {
 		return sqlSession.selectOne("board.board_view", post_id);
 	}
 	
+	//조회수
+	public void boardViewUpdate(int post_id) {
+		sqlSession.update("board.boardUpdateReadcount", post_id);
+	}
+	
+	//자유게시판 글수정
+	public int boardUpdate(BoardVO vo) {
+		return sqlSession.update("board.board_update", vo);
+	}
+	
 	//자유게시판 글삭제
 	public int boardDelete(int post_id) {
 		return sqlSession.delete("board.board_delete", post_id);
+	}
+	
+	//보드메인 자유게시판
+	public List<BoardVO> mainBoardList(BoardVO vo) {
+		return sqlSession.selectList("board.main_board", vo);
 	}
 }

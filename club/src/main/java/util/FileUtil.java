@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUtil {
 	
 	public String fileName;
+	public String orgName;
 
 	public void fileUpload(MultipartFile file, String uploadPath) {
 		if (!file.isEmpty()) {
@@ -18,6 +19,7 @@ public class FileUtil {
 			}
 			String fileName = new Date().getTime()+ext;
 			this.fileName = fileName;
+			this.orgName = file.getOriginalFilename();
 			
 			// 파일저장
 			System.out.println(uploadPath);

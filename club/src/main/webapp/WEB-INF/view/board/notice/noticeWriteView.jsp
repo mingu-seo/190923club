@@ -6,16 +6,6 @@
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<%
-	request.setCharacterEncoding("UTF-8");
-	String name=request.getParameter("name");
-	String subject=request.getParameter("subject");
-	String filename1=request.getParameter("filename1");
-	String filename2=request.getParameter("filename2");
-	String origfilename1=request.getParameter("origfilename1");
-	String origfilename2=request.getParameter("origfilename2");
-	
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +15,7 @@
    <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
 <%
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
+FileVO fv = (FileVO)request.getAttribute("fv");
 List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
 ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 %>
@@ -46,11 +37,13 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 			return false;
    }
    
+   
 	$(function() {
 		$(".re_btn").click(function() {
 			var idx = $(this).index(".re_btn");
 			$(".re_tr").eq(idx).toggle();
 		});
+		getReplyList($(".post_id").val());
 	});
 	
 	//댓글 리스트 ajax 
@@ -64,7 +57,6 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 			},
 			dataType:'HTML',
 			success: function(data) {
-				console.log(data);
 				$("#replyListArea").html(data);
 			},
 			error:function(data) {
@@ -103,15 +95,16 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 						</div>
 					</div>
 					<div class="view_file">
-						<a href="file_down.jsp?file_name=<%=filename1 %>"><%=origfilename1 %>
-						<%=origfilename1 %></a><br>
+						<% if (fv != null) { %>
+							<a href="/smarteditor/file_load/file_down.jsp?file_name=<%=fv.getServer_name() %>&orgName=<%=fv.getFront_name()%>"><%=fv.getFront_name()%></a><br>
+						<% } %>
 					</div>
 					<div class="view_ctt">
-						<%=vo.getContents() %>
+						<%=vo.getContents() %> 
 					</div>
 					
 					<div class="view_repl_info">
-						<span class="view_like">❤︎ 좋아요</span>
+						<span class="view_like" onclick="javascript:">❤︎ 좋아요</span>
 						<span>35</span> 
 						<span>조회</span>
 						<span><%=vo.getView() %></span>  
@@ -127,6 +120,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 						<form action="/board/reply.do?board_id=3" method="post">
 								<input type="hidden" name="post_id" class="post_id" value="<%=vo.getPost_id() %>">
 								<input type="hidden" name="board_id" class="board_id" value="<%=vo.getBoard_id()%>">
+								<input type="hidden" name="url" value="board/notice/noticeReplyAjax.do">
 							<table>
 								<tr>
 									<td class="repForm">   
@@ -148,6 +142,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 										'post_id':$(".post_id").val(),
 										'board_id':$(".board_id").val(),
 										'contents':$(".replyText").val(),
+										'g_id':$("#g_id").val(),
 									},
 									dataType:'HTML',
 									success:function(data) {
@@ -155,29 +150,24 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 										$(".replyText").val("");
 										getReplyList($(".post_id").val());
 									},
-									error:function(date) {
+									error:function(data) {
 										console.log(data);
 									}
 								});
 							}
 							
-							function replyAjax2() {
+							function replyAjax2(formId) {
 								$.ajax({
 									async:false,
-									url:'/board/reply.do',
-									data: {
-										'post_id':$(".post_id").val(),
-										'board_id':$(".board_id").val(),
-										'contents':$(".replyText").val(),
-									},
+									url:'/board/replyReply.do',
+									method:'POST',
+									data: $("#"+formId).serialize(),
 									dataType:'HTML',
 									success:function(data) {
 										//댓글이 정상적으로 저장되었을때
-										$(".replyText").val("");
-										
 										getReplyList($(".post_id").val());
 									}, 
-									error:function(date) {
+									error:function(data) {
 										console.log(data);
 									}
 								});

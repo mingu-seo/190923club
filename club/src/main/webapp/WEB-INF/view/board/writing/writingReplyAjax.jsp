@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import ="notice.NoticeVO" %>
+<%@ page import ="board.BoardVO" %>
 <%@ page import ="reply.ReplyVO" %>
 <%@ page import="file.FileVO" %>
 <%@ page import ="java.util.HashMap" %>

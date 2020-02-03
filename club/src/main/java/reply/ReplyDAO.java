@@ -6,6 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import gallery.GalleryVO;
+import notice.NoticeVO;
+
 @Repository
 public class ReplyDAO {
 
@@ -28,8 +31,17 @@ public class ReplyDAO {
 		return sqlSession.insert("reply.reRe_insert", vo);
 	}
 	
+	
+	public ReplyVO replyView(int id) {
+		return sqlSession.selectOne("reply.review", id);
+	}
+	
+	
 	public int replyDelete(int reply_num) {
 		return sqlSession.delete("reply.re_delete", reply_num);
+	}
+	public int replySeq(ReplyVO vo) {
+		return sqlSession.update("reply.replySeq", vo);
 	}
 
 }

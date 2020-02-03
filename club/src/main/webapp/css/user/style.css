@@ -39,7 +39,7 @@ body{
 .boxcontainer{
     margin:0 auto; 
     width : 1200px;
-    background-color: #b3a5c2b0;
+    background-color: f4f4f4;
     overflow: hidden;
 }
 .boxcontainer > div.center{
@@ -49,32 +49,45 @@ body{
 
 div.lcontents1{
     float: left;
-    background-color: #f5cfa8;
-    width: 30%; height: 300px;
-    line-height: 300px;
+    background-color: #f4f4f4;
+    width: 50%; 
+}
+div.lcontents1 > div.button{
+	padding: 20px;
+}
+
+.img{
+	width: 20%;
+	height: 8%;
+	float: left;
+	margin-bottom: 20px;
+}
+.spotname{
+	padding : 2px;
+	font-weight: bold;
+	
+}
+.spotcontent{
+	padding : 2px;
+}
+.spotuser{
+	padding : 2px;
+}
+.spotleader{
+	padding : 2px;
 }
 div.content1{
     float: right;
-    background-color: #a5c2a7;
-    width: 70%; height: 300px;
-    line-height: 300px;
+    background-color: rgba(0, 0, 0, 0.1); 
+    width: 50%;
+}
+div.content1 > .button{
+	padding: 20px;
 }
 
-div.lcontents2{
-    float: left;
-    background-color: white;
-    width: 30%; height: 300px;
-    line-height: 300px;
-}
-div.content2{
-    float: right;
-    background-color: #a5c2a7;
-    width: 70%; height: 300px;
-    line-height: 300px;
-}
 div.circlecontainer{
     background-color: rgba(106, 94, 112, 0.74);
-    height: 250px;            
+    height: 200px;            
 }
 .categorycontainer > div.center{
     width: 510px;

@@ -58,7 +58,4 @@ public class SpotCategoryService {
 		return r;
 	}
 
-
-
-
 }

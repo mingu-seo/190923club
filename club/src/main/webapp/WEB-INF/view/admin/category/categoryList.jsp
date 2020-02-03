@@ -101,8 +101,7 @@ function ajaxView(num){
 });
      	showLightBox();
      }
-     </script>
-<script>
+     
 function updateConfirm(num) {
 	if (confirm("수정하시겠습니까?")) {
 		location.href="categoryUpdateForm.do?num="+num;

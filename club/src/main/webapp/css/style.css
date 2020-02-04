@@ -190,25 +190,26 @@
 		}
 		
 		#clubName {
-		font-size:32px;
+		font-size:25px;
 		font-weight:bold;
 		margin:10px;
 		text-align:left;
 		}
 		
 		.clubInfo {
-		font-size:20px;
+		font-size:14px;
 		margin:10px;
 		text-align:left;
 		}
 		
 		.clubIntro {
-		font-size:18px;
+		font-size:12px;
 		margin:10px;
+		text-align: left;
 		}
 		
 		#clubImage {
-		margin:10px;
+		width: 95%;
 		}
 		
 

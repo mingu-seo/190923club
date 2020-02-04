@@ -166,6 +166,7 @@ function deleteConfirm(num) {
          </div>
      </div>
      </form>
+     <form  action="spotView.do" method="post">
     <div class="container">
         <div class="lcontents1">
         	<%
@@ -173,7 +174,7 @@ function deleteConfirm(num) {
 				if(j %2 == 0){
 			%>
 	            <div class="button">
-	                <a href="javascript:ajaxView('<%=spot.get(j).getNum() %>');"  data-num="<%=spot.get(j).getNum() %>" class="">
+	                <a href="spotView.do?num=<%=spot.get(j).getNum() %>" target="_blank">
 	              		<img class="img" src="/upload/images/<%=spot.get(j).getFile()%>">
 	               		<div class="spotname"> 
 	                		<%=spot.get(j).getName()%>
@@ -199,7 +200,7 @@ function deleteConfirm(num) {
 				if(j %2 == 1){
 			%>
 	            <div class="button">
-	                <a href="javascript:ajaxView('<%=spot.get(j).getNum() %>');"  data-num="<%=spot.get(j).getNum() %>" class="">
+	                <a href="spotView.do?num=<%=spot.get(j).getNum() %>" target="_blank">
 	              		<img class="img" src="/upload/images/<%=spot.get(j).getFile()%>">
 	               		<div class="spotname"> 
 	                		<%=spot.get(j).getName()%>
@@ -220,6 +221,7 @@ function deleteConfirm(num) {
 			%>
         </div>
     </div>
+    </form>
     <div class="container">
 		<!-- S T A R T :: footerArea-->
 		<%@ include file="/WEB-INF/view/user/include/bottom.jsp" %>

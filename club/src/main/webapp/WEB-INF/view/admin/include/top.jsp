@@ -13,14 +13,16 @@ function OpenWinCount(URL,width,height) {
 	window.open(URL,'remote',str);
 }
 
-$(window).load(function(){
+//$(window).load(function(){
+$(function() {
 	// 1depth 메뉴들
 	var parent = $(".parent");
 	
 	//현재 주소
 	// 주소중 manage이후 폴더 경로 자르기 ex) /admin/board/index.jsp -> board
 	var curUrl = document.location.pathname;
-	curUrl = curUrl.substring(curUrl.indexOf("manage")+12,curUrl.length);
+	curUrl = curUrl.substring(curUrl.indexOf("admin")+10,curUrl.length);
+	console.log(curUrl);
 	if (curUrl.indexOf("/") > 0) {
 		curUrl = curUrl.substring(curUrl,curUrl.indexOf("/"));
 	}

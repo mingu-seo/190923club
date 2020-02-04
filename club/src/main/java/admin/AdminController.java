@@ -109,13 +109,7 @@ public class AdminController {
 	public String post() {
 		return "admin/board/post";
 	}
-	// spot 관리
-	@RequestMapping("/admin/board/club.do")
-	public String club() {
-		return "admin/board/club";
-	}
-	
-	
+
 	
 	
 	

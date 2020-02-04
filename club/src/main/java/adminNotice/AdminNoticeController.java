@@ -83,6 +83,17 @@ public class AdminNoticeController {
 		return "redirect:/admin/notice/noticeList.do";
 	}
 	
+	@RequestMapping("/admin/notice/noticeGroupDelete.do")
+	public String amdinNoticeGroupDelete(HttpServletRequest request) {
+		String[] nums = request.getParameterValues("num");
+		for (int i=0; i<nums.length; i++) {
+			int num = Integer.parseInt(nums[i]);
+			adminNoticeService.amdinNoticeDelete(num);
+		}
+		
+		return "redirect:/admin/notice/noticeList.do";
+	}
+	
 	/* 공지사항 E N D  */
 	
 }

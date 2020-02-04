@@ -33,22 +33,22 @@ public class SpotController {
 	
 	//HOT SPOT 등록
 	@RequestMapping("/spot/spotInsert.do")
-	public String spotInsert(SpotVO spotvo, @RequestParam("filename_tmp") MultipartFile file , HttpServletRequest request) {
+	public String spotInsert(Model model,SpotVO spotvo, @RequestParam("filename_tmp") MultipartFile file , HttpServletRequest request) {
 		int r = spotService.spotInsert(spotvo, file,request);
+		model.addAttribute("list", spotvo);
 		//if(r < 0)
-		return "re-----------do";
+		return "board/submain/submain";
 	}	
 	
 
-	//HOT SPOT 상세보기
-	@RequestMapping("/spot/Ajax.do")
-	public String spotView(Model model,@RequestParam(name="page",required=false) String page, @RequestParam("num") int num) {
-		SpotVO spotvo = spotService.spotView(num);
-		model.addAttribute("list", spotvo);
-		model.addAttribute("nowPage", page);
-		return "spot/spotAjax";
-		
-	}
+//	//HOT SPOT 상세보기
+//	@RequestMapping("/spot/spotView.do")
+//	public String spotView(Model model,@RequestParam(name="page",required=false) String page, @RequestParam("num") int num) {
+//		SpotVO spotvo = spotService.spotView(num);
+//		model.addAttribute("list", spotvo);
+//		return "board/submain/submain";
+//		
+//	}
 	
 	//HOT SPOT 수정 폼
 	@RequestMapping("/spot/UpdateForm.do")
@@ -62,7 +62,6 @@ public class SpotController {
 	@RequestMapping("/spot/Update.do")
 	public String spotUpdate(SpotVO spotvo, @RequestParam("filename_tmp") MultipartFile file, HttpServletRequest request) {
 		spotService.spotUpdate(spotvo, file, request);
-
 		return "redirect:/spot/spotList.do";
 	}
 	
@@ -88,7 +87,7 @@ public class SpotController {
 		String url = "";
 		if (r > 0) {
 			msg = "정상적으로 가입되었습니다.";
-			url = "/user//spotList.do";
+			url = "/user/spotList.do";
 		} else {
 			msg = "회원가입 실패";
 			url = "/spot/joinForm.do";

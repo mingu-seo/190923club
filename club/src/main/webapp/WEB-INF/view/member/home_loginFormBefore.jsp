@@ -4,138 +4,117 @@
 <html>
 <head>
     <title></title>
-    <script src="js/jquery.1.2.3.js"></script>
-    <script src="js/swiper.min.js"></script>
-    <script src="js/script.js"></script>
-    <link rel="stylesheet" href="swiper.css">
-    <link rel="stylesheet" href="reset.css">
-    <style>
-        .wrap {
-            width:1200px;
-            margin:0 auto;
-        }
-        .header {
-            background-color:#433727;
-            height:500px;
-            width:1200px;
-            position: relative;
-            color:black;
-            text-align:center;
-        }
-        .login > table {
-            width:300px;
-            height:200px;
-            position: absolute;
-            background-color: white;
-            border-radius: 10px;
-            left:450px;
-            top: 250px;
-        }
-        
-        .container {
-            width:100%;
-            position: relative;
-            background-color:#a5c2a7;
-            overflow: hidden;
-            height:auto;
-        }
-        .container > .content {
-            width:1130px;
-            height:500px;
-            margin: 0 auto;
-            line-height:500px;
-        }
-        .container > .content > .club{
-            border: solid 2px black;
-            float:left;
-            width: 350px;
-            height: 220px;
-        	margin:1%;
-        }
-        .description {
-            width:100%;
-            position: relative;
-            background-color:#f5cfa8;
-            height:500px;
-            float:left;
-            text-align:center;
-        }
-        .description > .swiper-slide{
-            position: absolute;
-            margin: 0 auto;
-        }
-        .visual{
-        	clear:both;
-        	height: 500px;
-        	width: 100%;
-        	color: #ffffff;
-            text-align: center;
-            z-index: 1;
-        }
-        .swiper {
-        	height:500px;
-        }
-        .footer {
-            position: relative;
-            overflow: hidden;
-            width:100%;
-            background-color:#221f1f;
-			color:#999;
-			padding:20px 0;
-        }
-        .footer > .size{
-        	width:1200px;
-        	margin:0 auto;
-        }
-        .footer > .size > .sns_area{
-        	position:absolute;
-        	bottom: 10px;
-        	right:0;
-        }
-         .footer > .size > .info > p{
-            width:50%;
-         	line-height: 22px;
-         }
-         .footer > .size > .sns_area > a{
-         	margin: 10px;
-         }
-         
-    </style>
+    <script src="/js/jquery.1.2.3.js"></script>
+    <script src="/js/swiper.min.js"></script>
+    <link rel="stylesheet" href="/css/test/swiper.css">
+    <link rel="stylesheet" href="/css/test/reset.css">
+    <link rel="stylesheet" href="/css/test/home_loginFormBefore.css">   
+    <script>
+    	$(function() {
+    		var swiper = new Swiper('.swiper', {
+                slidesPerView: 'auto',
+                loop: true,
+	            navigation: {
+	                nextEl: '.swiper-button-next',
+	                prevEl: '.swiper-button-prev',
+	            },
+	            pagination: {
+	                el: '.swiper-pagination'
+	            },
+        	});
+    	});
+    	
+    	function login() {	// 로그인 버튼
+    		if ($("#id").val().trim() == "") {
+    			alert("아이디를 입력해 주세요");
+    			$("#id").focus();
+    			return false;
+    		} else if ($("#password").val() == "") {
+    			alert("비밀번호를 입력해 주세요");
+    			$("#password").focus();
+    			return false;
+    		}
+    		var con = true;
+    		var data = $("#userLogin").serialize();
+    		//console.log(data);
+    		$.ajax({
+    			url : "/member/userLogin.do",
+    			data : {id:$("#id").val()},
+    			type : "POST",
+    			async : false,
+    			success : function(data) {
+    				//console.log(data);
+    				if (data.trim() != "") {
+    				} else {
+    					alert("dk입니다.");
+    					$("#id").val("");
+    					$("#id").focus();
+    					con = false;
+    				}
+    			}
+    		});
+    		if (con == false) {
+    			return false;
+    		}
+    		if ($("#id").val().trim() == "") {
+    			alert("존재하지 않는 아이디 입니다.");
+    			$("#id").focus();
+    			return false;
+    		}
+    		if ($("#password").val().trim() == "") {
+    			alert("비밀번호를 입력해 주세요");
+    			$("#password").focus();
+    			return false;
+    		}
+    		if ($("#password").val().trim() != $("#password_re").val().trim()) {
+    			alert("비밀번호와 일치하지 않습니다.");
+    			$("#password_re").val("");
+    			$("#password_re").focus();
+    			return false;
+    		}
+
+    		$("#userLogin").submit();
+    	}
+    </script>
 </head>
 <body>
     <div class="wrap">
-        <div class="header">
-            <a href="" style="float: right; padding: 30px;"><input type="button" value="회원가입"></a>
-            <div class="login">
-                <table>
-                    <th colspan="2">로그인</th>
-                    <tr>
-                        <td><label for="id">아이디</label></td>
-                        <td><input type="text" id="id"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="password">비밀번호</label></td>
-                        <td><input type="password" id="password"></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="submit" value="로그인">
-                        </td>
-                        <td>
-                            <input type="button" value="비밀번호 찾기">
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+        <form id="userLogin" action="userLogin.do" post="post">
+	        <div class="header">
+	            <a href="/member/joinForm1.do" style="float: right; padding: 30px;"><input style="padding: 5px 10px;" type="button" value="회원가입"></a>
+	            	<div class="login">
+		                <table>
+		                    <th class="loginHeader" colspan="2">로그인</th class="loginHeader">
+		                    <tr>
+		                        <td><label for="id" style="font-size:20px">아이디</label></td>
+		                        <td><input type="text" id="id" name="id"></td>
+		                    </tr>
+		                    <tr>
+		                        <td><label for="password" style="font-size:20px">비밀번호</label></td>
+		                        <td><input type="password" id="password" name="password"></td>
+		                    </tr>
+		                    <tr>
+		                        <td colspan="2">
+		                            <div class="loginBtnArea">
+		                                <a href="script:login()">
+		                                	<input style="float: left; margin: 0 10px; padding: 5px; width: 85px;" type="submit" id="userLogin" value="로그인">
+		                                </a>
+		                                <input style="float: right; margin: 0 10px; padding: 5px; width: 85px;" type="button" value="비밀번호 찾기">
+		                            </div>
+		                        </td>
+		                    </tr>
+		                </table>
+		            </div>
+		        </div>
+            </form>
         <div class="description">
             <div class="visual">
 	       	 <div class="swiper swiper-container">
 	       	 	<div class="swiper-wrapper">
-	       	 		<div class="swiper-slide" style="background-image:url('img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
-	       	 		<div class="swiper-slide" style="background-image:url('img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
-	       	 		<div class="swiper-slide" style="background-image:url('img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
-	       	 		<div class="swiper-slide" style="background-image:url('img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
+	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
+	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
+	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
+	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
 	       	 	</div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
@@ -146,22 +125,22 @@
         <div class="container">
             <div class="content">
                 <div class="club">
-                    <a href=""><img scr=""><div class=club_description></div></a>
+                    <a href=""><img src=""><div class=club_description></div></a>
                 </div>
                 <div class="club">
-                    <a href=""><img scr=""></a>
+                    <a href=""><img src=""></a>
                 </div>
                 <div class="club">
-                    <a href=""><img scr=""></a>
+                    <a href=""><img src=""></a>
                 </div>
                 <div class="club">
-                    <a href=""><img scr=""></a>
+                    <a href=""><img src=""></a>
                 </div>
                 <div class="club">
-                    <a href=""><img scr=""></a>
+                    <a href=""><img src=""></a>
                 </div>
                 <div class="club">
-                    <a href=""><img scr=""></a>
+                    <a href=""><img src=""></a>
                 </div>
             </div>
         </div>
@@ -175,9 +154,9 @@
                    <p>사업자등록번호 111-11-22222</p>
                </div>
                <div class="sns_area">
-                   <a href=""><img src="img/facebook.png"></a>
-                   <a href=""><img src="img/instar.png"></a>
-                   <a href=""><img src="img/blog.png"></a>
+                   <a href=""><img src="/css/test/img/facebook.png"></a>
+                   <a href=""><img src="/css/test/img/instar.png"></a>
+                   <a href=""><img src="/css/test/img/blog.png"></a>
                </div>
             </div>
        </div>

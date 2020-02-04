@@ -43,7 +43,6 @@ public class SpotController {
 		//SpotVO spotvo = spotService.spotView(num);
 		//model.addAttribute("list", spotvo);
 		//return "board/submain/submain";
-		
 	//}
 	
 	//HOT SPOT 수정 폼

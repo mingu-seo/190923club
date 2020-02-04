@@ -1,128 +1,56 @@
+<%@page import="member.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% MemberVO vo = (MemberVO)session.getAttribute("sess"); %>
 <!DOCTYPE html>
 <html>
 <head>
     <title></title>
-    <script src="js/jquery.1.2.3.js"></script>
-    <script src="js/swiper.min.js"></script>
-    <script src="js/script.js"></script>
-    <link rel="stylesheet" href="swiper.css">
-    <link rel="stylesheet" href="reset.css">
-    <style>
-        .wrap {
-            width:1200px;
-            margin:0 auto;
-        }
-        .header {
-            background-color:#433727;
-            height:500px;
-            width:1200px;
-            position: relative;
-            color:black;
-            text-align:center;
-        }
-        .login > table {
-            width:300px;
-            height:200px;
-            position: absolute;
-            background-color: white;
-            border-radius: 10px;
-            left:450px;
-            top: 250px;
-        }
-        .joined_club{
-            float: right;
-            margin: 5px;
-        }
-        .container {
-            width:100%;
-            position: relative;
-            background-color:#a5c2a7;
-            overflow: hidden;
-            height:auto;
-        }
-        .container > .content {
-            width:1130px;
-            height:600px;
-            margin: 0 auto;
-            line-height:500px;
-        }
-        .container > .content > .club{
-            border: solid 2px black;
-            float:left;
-            width: 350px;
-            height: 220px;
-        	margin:1%;
-        }
-        .description {
-            width:100%;
-            position: relative;
-            background-color:#f5cfa8;
-            height:500px;
-            float:left;
-            text-align:center;
-        }
-        .description > .swiper-slide{
-            position: absolute;
-            margin: 0 auto;
-        }
-        .visual{
-        	clear:both;
-        	height: 500px;
-        	width: 100%;
-        	color: #ffffff;
-            text-align: center;
-            z-index: 1;
-        }
-        .swiper {
-        	height:500px;
-        }
-        .footer {
-            position: relative;
-            overflow: hidden;
-            width:100%;
-            background-color:#221f1f;
-			color:#999;
-			padding:20px 0;
-        }
-        .footer > .size{
-        	width:1200px;
-        	margin:0 auto;
-        }
-        .footer > .size > .sns_area{
-        	position:absolute;
-        	bottom: 10px;
-        	right:0;
-        }
-         .footer > .size > .info > p{
-            width:50%;
-         	line-height: 22px;
-         }
-         .footer > .size > .sns_area > a{
-         	margin: 10px;
-         }
-         
-    </style>
+    <script src="/js/jquery.1.2.3.js"></script>
+    <script src="/js/swiper.min.js"></script>
+    <link rel="stylesheet" href="/css/test/swiper.css">
+    <link rel="stylesheet" href="/css/test/reset.css">
+    <link rel="stylesheet" href="/css/test/home_loginFormAfter_user.css">
+    <script>
+    	$(function() {
+    		var swiper = new Swiper('.swiper', {
+                slidesPerView: 'auto',
+                loop: true,
+	            navigation: {
+	                nextEl: '.swiper-button-next',
+	                prevEl: '.swiper-button-prev',
+	            },
+	            pagination: {
+	                el: '.swiper-pagination'
+	            },
+        	});
+    	});
+    </script>
 </head>
 <body>
     <div class="wrap">
         <div class="header">
-            <a href="" style="float: right; padding: 30px;"><input type="button" value="로그아웃"></a>
+            <a href="/member/userLogout.do" style="float: right; padding: 30px;">
+            	<input style="padding: 5px 10px;" type="button" value="로그아웃">
+            </a>
             <div class="login">
                 <table>
                     <tr>
-                        <td><div><img style="width: 100px; height: 100px;" src="img/person.png"></div></td>
-                        <td>이름<br>내정보보기<br><br>더보기</td>
+                        <td>
+                        	<div>
+                        		<img style="width: 100px; height: 100px; border-radius: 10%;" 
+                        			src=<%if(vo.getProfile()==null){ %>/css/test/img/profile.jpeg
+	                    			<%} else{%>
+	                    			/profileImg/<%=vo.getProfile()%>
+	                    			<%} %>>
+	                    	</div>
+	                    </td>
+                        <td style="font-size: 20px; text-align: left;"><%=vo.getName() %><br><br><a href="/member/mypageView.do">내정보보기</a></td>
                     </tr>
                     <tr>
                         <td colspan="2">
                             <div class="login_club-swiper-slide">
-                                <div class="swiper-wrapper">
-                                    <div class="joined_club"><img style="width: 90px; height: 90px;" src="img/jam.jpg"></div>
-                                    <div class="joined_club"><img style="width: 90px; height: 90px;" src="img/jam.jpg"></div>
-                                    <div class="joined_club"><img style="width: 90px; height: 90px;" src="img/jam.jpg"></div>
-                                </div>
+                                <input type="button" value="나의 핫스팟" style="padding: 5px 45px;">
                             </div>
                         </td>
                     </tr>
@@ -133,10 +61,10 @@
             <div class="visual">
 	       	 <div class="swiper swiper-container">
 	       	 	<div class="swiper-wrapper">
-	       	 		<div class="swiper-slide" style="background-image:url('img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
-	       	 		<div class="swiper-slide" style="background-image:url('img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
-	       	 		<div class="swiper-slide" style="background-image:url('img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
-	       	 		<div class="swiper-slide" style="background-image:url('img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
+	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
+	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
+	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
+	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
 	       	 	</div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
@@ -176,9 +104,9 @@
                    <p>사업자등록번호 111-11-22222</p>
                </div>
                <div class="sns_area">
-                   <a href=""><img src="img/facebook.png"></a>
-                   <a href=""><img src="img/instar.png"></a>
-                   <a href=""><img src="img/blog.png"></a>
+                   <a href=""><img src="/css/test/img/facebook.png"></a>
+                   <a href=""><img src="/css/test/img/instar.png"></a>
+                   <a href=""><img src="/css/test/img/blog.png"></a>
                </div>
             </div>
        </div>

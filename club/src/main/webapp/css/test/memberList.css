@@ -1,0 +1,47 @@
+/* 회원 리스트 */
+.tableTitle {
+	background-color: #dbeef4;
+	margin: 10px 0;
+}
+
+.content {
+	margin: 70px 30px;
+}
+
+.btnRight {
+	width: 25%;
+	float: right;
+}
+
+.page {
+	margin-top: 20px;
+    font-size: 15px;
+    width: 250px;
+    margin: 0 auto;
+}
+
+.profileImg {
+	width: 130px;
+	height: 80px;
+}
+
+.profileImg > img {
+	width: 75px;
+	height: 75px;
+}
+
+.btn{
+	height:70px;
+	margin-top: 20px;
+}
+
+.btns{
+	border: solid 1px gray;
+    border-radius: 18%;
+    left: 0;
+}
+
+.search{
+	margin: 0 auto;
+    width: 400px;
+}

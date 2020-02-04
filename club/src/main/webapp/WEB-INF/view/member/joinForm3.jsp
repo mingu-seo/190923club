@@ -4,103 +4,8 @@
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" href="reset.css">
-    <style>
-        .wrap {
-            width:1200px;
-            margin:0 auto;
-        }
-        .header {
-            height:100px;
-            width:100%;
-            color:black;
-            text-align:center;
-            font-size: 60px;
-            line-height:100px;
-        }
-        .menu {
-            width:100%;
-            height:40px;
-            margin: 20px 0 80px 0;
-        }
-        .menu > ul > li {
-            list-style-type: none;
-            float:left;
-            width:400px;
-            text-align:center;
-            line-height: 40px;
-            border:1px solid #000000;
-            box-sizing: border-box;
-        }
-        .container {
-            position: relative;
-            width:1200px;
-            height: 1000px;
-        }
-        .container > .content {
-            position: absolute;
-            width:400px;
-            height:1000px;
-            text-align: center;
-        }
-        .content-form {
-            margin:10px auto;
-            width: 300px;
-            height: 100px;
-            text-align: center;
-            line-height: 20px;
-        }
-        .footer {
-            position: relative;
-            overflow: hidden;
-            width:100%;
-            background-color:#221f1f;
-			color:#999;
-			padding:20px 0;
-        }
-        .footer > .size{
-        	width:1200px;
-        	margin:0 auto;
-        }
-        .footer > .size > .sns_area{
-        	position:absolute;
-        	bottom: 10px;
-        	right:0;
-        }
-         .footer > .size > .info > p{
-            width:50%;
-         	line-height: 22px;
-         }
-         .footer > .size > .sns_area > a{
-         	margin: 10px;
-         }
-         /* 가입완료 창 */
-        .container > .contract{
-            width:350px;
-            height: 200px;
-            text-align: center;
-            margin: 0 auto;
-            border: solid 2px black;
-        }
-        .container > .contract > .head{
-            width: 100%;
-            height: 45%;
-            font-size: 25px;
-            font-weight: 800;
-            text-align: center;
-            line-height: 60px;
-        }
-        .container > .contract > .content{
-        width: 100%;
-        height: 30%;
-        margin: 0 auto;
-        }
-        .container > .contract > .btn{
-            width:100%;
-            height: 10%;
-            margin: 0 auto;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/test/joinForm3.css">
 </head>
 <body>
     <div class="wrap">
@@ -123,7 +28,9 @@
                     <p>가입이 완료되었습니다.</p>
                 </div>
                 <div class="btn">
-                    <input type="button" value="확인">
+                    <a href="/member/loginFormBefore.do">
+                    	<input style="padding: 5px 20px;" type="button" value="확인">
+                    </a>
                 </div>
             </div>
         </div>
@@ -137,9 +44,9 @@
                    <p>사업자등록번호 111-11-22222</p>
                </div>
                <div class="sns_area">
-                   <a href=""><img src="img/facebook.png"></a>
-                   <a href=""><img src="img/instar.png"></a>
-                   <a href=""><img src="img/blog.png"></a>
+                   <a href=""><img src="/css/test/img/facebook.png"></a>
+                   <a href=""><img src="/css/test/img/instar.png"></a>
+                   <a href=""><img src="/css/test/img/blog.png"></a>
                </div>
             </div>
        </div>

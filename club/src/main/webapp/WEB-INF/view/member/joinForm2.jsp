@@ -4,110 +4,102 @@
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" href="reset.css">
-    <style>
-        .wrap {
-            width:1200px;
-            margin:0 auto;
-        }
-        .header {
-            height:100px;
-            width:100%;
-            color:black;
-            text-align:center;
-            font-size: 60px;
-            line-height:100px;
-        }
-        .menu {
-            width:100%;
-            height:40px;
-            margin: 20px 0 80px 0;
-        }
-        .menu > ul > li {
-            list-style-type: none;
-            float:left;
-            width:400px;
-            text-align:center;
-            line-height: 40px;
-            border:1px solid #000000;
-            box-sizing: border-box;
-        }
-        .container {
-            position: relative;
-            width:1200px;
-            height: 1000px;
-        }
-        .container > .content {
-            position: absolute;
-            width:400px;
-            height:1000px;
-            text-align: center;
-        }
-        .content-form {
-            margin:10px auto;
-            width: 300px;
-            height: 100px;
-            text-align: center;
-            line-height: 20px;
-        }
-        .footer {
-            position: relative;
-            overflow: hidden;
-            width:100%;
-            background-color:#221f1f;
-			color:#999;
-			padding:20px 0;
-        }
-        .footer > .size{
-        	width:1200px;
-        	margin:0 auto;
-        }
-        .footer > .size > .sns_area{
-        	position:absolute;
-        	bottom: 10px;
-        	right:0;
-        }
-         .footer > .size > .info > p{
-            width:50%;
-         	line-height: 22px;
-         }
-         .footer > .size > .sns_area > a{
-         	margin: 10px;
-         }
-         /* 회원가입 영역 */
-         .cf_top, .cf_bottom {
-             margin:10px 0;
-         }
-         .cf_top_title {
-             text-align:left;
-             font-size:30px;
-             font-weight: 800;
-         }
-         .cf_bottom_left {
-             float:left;
-             width:70%;
-         }
-         .cf_bottom_right {
-             float:left;
-             width:30%;
-         }
-         .content-form  input[type='text'], .content-form  input[type='password'] {
-             height : 24px;
-             width:100%;
-         }
-         .content-form input[type='button'] {
-             height:30px;
-         }
-         .cf_bottom {
-            text-align:left;
-         }
-         
-    </style>
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/test/joinForm2.css">
+<script>
+	function join() {	// 다음 버튼
+		if ($("#id").val().trim() == "") {
+			alert("아이디를 입력해 주세요");
+			$("#id").focus();
+			return false;
+		}
+		var con = true;
+		var data = $("#joinform").serialize();
+		//console.log(data);
+		$.ajax({
+			url : "/member/idCheck.do",
+			data : {id:$("#id").val()},
+			type : "POST",
+			async : false,
+			success : function(data) {
+				//console.log(data);
+				if (data.trim() == "0") {
+				} else {
+					alert("중복된 아이디입니다.");
+					$("#id").val("");
+					$("#id").focus();
+					con = false;
+				}
+			}
+		});
+		if (con == false) {
+			return false;
+		}
+		if ($("#password").val().trim() == "") {
+			alert("비밀번호를 입력해 주세요");
+			$("#password").focus();
+			return false;
+		}
+		if ($("#password_re").val().trim() == "") {
+			alert("비밀번호 재확인을 입력해 주세요");
+			$("#password_re").focus();
+			return false;
+		}
+		if ($("#password").val().trim() != $("#password_re").val().trim()) {
+			alert("비밀번호와 일치하지 않습니다.");
+			$("#password_re").val("");
+			$("#password_re").focus();
+			return false;
+		}
+		if ($("#name").val().trim() == "") {
+			alert("이름을 입력해 주세요");
+			$("#name").focus();
+			return false;
+		}
+		if ($("#email").val().trim() == "") {
+			alert("메일 주소 입력해 주세요");
+			$("#email").focus();
+			return false;
+		}
+		if ($("#tel").val().trim() == "") {
+			alert("휴대전화를 입력해 주세요");
+			$("#tel").focus();
+			return false;
+		}
+
+		$("#joinform").submit();
+	}
+	
+	$(function() {	// 중복확인 버튼
+		$("#duplicateCheck").click(function() {
+			if ($("#id").val().trim() == "") {
+				alert("아이디를 입력해 주세요");
+			} else {
+				$.ajax({
+					url : "/member/idCheck.do",
+					data : {id:$("#id").val()},
+					type : "POST",
+					success : function(data) {
+						console.log(data);
+						if (data.trim() == "0") {
+							alert("사용 가능");
+							$("#id").attr("readonly", "readonly");
+						} else {
+							alert("사용 불가");
+						}
+					}
+				});
+			}
+		});
+	});
+	
+</script>
 </head>
 <body>
     <div class="wrap">
         <div class="header">
-            회원가입
+            	회원가입
         </div>    
         <div class="menu">
             <ul>
@@ -117,12 +109,12 @@
             </ul>
         </div>
         <div class="container">
-            <form action="" method="post">
+            <form id="joinform" name="joinform" action="join.do" method="post">
                 <div class="content">
                     <div class="content-form">
                         <div class="cf_top">
                             <div class="cf_top_title">
-                                <lable for="id">아이디</lable>
+                                <label for="id">아이디</label>
                             </div>
                         </div>
                         <div class="cf_bottom">
@@ -130,14 +122,14 @@
                                 <input type="text" name="id" id="id" placeholder="아이디를 입력해 주세요"/>
                             </div>
                             <div class="cf_bottom_right">
-                                <input type="button" value="중복체크">
+                                <input type="button" id="duplicateCheck" value="중복체크">
                             </div>
                         </div>
                     </div>
                     <div class="content-form">
                         <div class="cf_top">
                             <div class="cf_top_title">
-                                <lable for="password">비밀번호</lable>
+                                <label for="password">비밀번호</label>
                             </div>
                         </div>
                         <div class="cf_bottom">
@@ -147,11 +139,11 @@
                     <div class="content-form">
                         <div class="cf_top">
                             <div class="cf_top_title">
-                                <lable for="password">비밀번호 재확인</lable>
+                                <label for="password_re">비밀번호 재확인</label>
                             </div>
                         </div>
                         <div class="cf_bottom">
-                            <input type="password" name="password-confirm" id="password-confirm" placeholder="비밀번호를 입력해 주세요"/>
+                            <input type="password" name="password_re" id="password_re" placeholder="비밀번호를 입력해 주세요"/>
                         </div>
                     </div>  
                     <div class="content-form">
@@ -167,7 +159,7 @@
                     <div class="content-form">
                         <div class="cf_top">
                             <div class="cf_top_title">
-                                <lable for="email">메일 주소</lable>
+                                <label for="email">메일 주소</label>
                             </div>
                         </div>
                         <div class="cf_bottom">
@@ -177,11 +169,11 @@
                     <div class="content-form">
                         <div class="cf_top">
                             <div class="cf_top_title">
-                                <lable for="password">생년월일</lable>
+                                <label for="birth">생년월일</label>
                             </div>
                         </div>
                         <div class="cf_bottom">
-                            <select name="user_birth_year">
+                            <select name="birth">
                                 <option value="2000" selected>1990</option>
                                 <option value="2000" selected>1991</option>
                                 <option value="2000" selected>1992</option>
@@ -198,8 +190,8 @@
                                 <option value="2003" selected>2003</option>
                                 <option value="2004" selected>2004</option>
                             </select>
-                            년
-                            <select name="user_birth_month">
+                            	년
+                            <select name="birth">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -213,8 +205,8 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
-                            월
-                            <select name="user_birth_day">
+                            	월
+                            <select name="birth">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -247,6 +239,7 @@
                                 <option value="30">30</option>
                                 <option value="31">31</option>
                             </select>
+                            	일	
                         </div>
                     </div>  
                     <div class="content-form">
@@ -256,24 +249,24 @@
                             </div>
                         </div>
                         <div class="cf_bottom">
-                            <input type="radio" name="gender" value="m"/>
+                            <input type="radio" name="gender" value="1" checked/>
                             <label for="man">남자</label>
-                            <input type="radio" name="gender" value="w"/>
+                            <input type="radio" name="gender" value="2"/>
                             <label for="woman">여자</label>
                         </div>
                     </div>  
                     <div class="content-form">
                         <div class="cf_top">
                             <div class="cf_top_title">
-                                <lable for="password">휴대전화</lable>
+                                <lable for="tel">휴대전화</lable>
                             </div>
                         </div>
                         <div class="cf_bottom">
-                            <input type="text" name="password" id="password" placeholder="휴대전화를 입력해 주세요 (숫자만)"/>
+                            <input type="text" name="tel" id="tel" placeholder="휴대전화를 입력해 주세요 (숫자만)"/>
                         </div>
                     </div>  
                     <div class="content-form">
-                        <input type="submit" value="가입완료">
+                        <a href="javascript:join();"><input style="padding: 0 25px;" type="button" value="다음"></a>
                     </div>
                 </div>
             </form>
@@ -288,9 +281,9 @@
                    <p>사업자등록번호 111-11-22222</p>
                </div>
                <div class="sns_area">
-                   <a href=""><img src="img/facebook.png"></a>
-                   <a href=""><img src="img/instar.png"></a>
-                   <a href=""><img src="img/blog.png"></a>
+                   <a href=""><img src="/css/test/img/facebook.png"></a>
+                   <a href=""><img src="/css/test/img/instar.png"></a>
+                   <a href=""><img src="/css/test/img/blog.png"></a>
                </div>
             </div>
        </div>

@@ -41,14 +41,14 @@ public class SpotController {
 	}	
 	
 
-	//HOT SPOT 상세보기
-	@RequestMapping("/spot/spotView.do")
-	public String spotView(Model model,@RequestParam(name="page",required=false) String page, @RequestParam("num") int num) {
-		SpotVO spotvo = spotService.spotView(num);
-		model.addAttribute("list", spotvo);
-		return "board/submain/submain";
-		
-	}
+//	//HOT SPOT 상세보기
+//	@RequestMapping("/spot/spotView.do")
+//	public String spotView(Model model,@RequestParam(name="page",required=false) String page, @RequestParam("num") int num) {
+//		SpotVO spotvo = spotService.spotView(num);
+//		model.addAttribute("list", spotvo);
+//		return "board/submain/submain";
+//		
+//	}
 	
 	//HOT SPOT 수정 폼
 	@RequestMapping("/spot/UpdateForm.do")

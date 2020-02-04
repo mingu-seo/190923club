@@ -84,6 +84,15 @@ public class AdminQnaController {
 		return "redirect:/admin/qna/qnaList.do";
 	}
 	
+	@RequestMapping("/admin/qna/qnaGroupDelete.do")
+	public String amdinQnaGroupDelete(HttpServletRequest request) {
+		String[] nums = request.getParameterValues("num");
+		for (int i=0; i<nums.length; i++) {
+			int num = Integer.parseInt(nums[i]);
+			adminQnaService.amdinQnaDelete(num);
+		}
+		return "redirect:/admin/qna/qnaList.do";
+	}
 	//Q & A 답변
 	@RequestMapping("/admin/qna/qnaReplyForm.do")
 	public String adminQnaReplyForm(Model model, AdminQnaVO vo) {

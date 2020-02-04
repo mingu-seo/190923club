@@ -146,7 +146,7 @@ function deleteConfirm(num) {
                     <span id="name"></span>
                 </div>
 	                <hr class="lightbox-splitter">
-	            <div>
+	            <div class="user-infomation-img">
 	                <img id="file" src="http://placehold.it/600x750">
 	        	</div> 
 			</div>

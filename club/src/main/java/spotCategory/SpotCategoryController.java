@@ -100,7 +100,7 @@ public class SpotCategoryController {
 		model.addAttribute("spotvo",spotvo);
 		model.addAttribute("list",list);
 		model.addAttribute("vo",vo);
-		return "spot/spotList";
+		return "/spot/spotList";
 	}
 
 }

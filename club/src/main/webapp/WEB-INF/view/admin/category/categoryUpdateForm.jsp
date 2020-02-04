@@ -35,7 +35,7 @@ function getThumbnailPrivew(html, $target) {
 <%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 <!-- E N D :: headerArea-->
 <form method="post" name="frm" id="frm" action="categoryUpdate.do" enctype="multipart/form-data">
-<input type="hidden" name="name" value="${vo.num}">
+<input type="hidden" name="num" value="${vo.num}">
 <div class="wrap">
     <div class="container">
         <h2 style="padding : 10 0px;">Category 수정</h2>

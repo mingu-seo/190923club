@@ -17,7 +17,7 @@
              <div class="search-bar">
                  <div class="headerLeft">
                  	<div class="header_logo">
-                 		<a href=""><img src="/img/board/logo.png"></a>
+                 		<a href="/spot/spotList.do"><img src="/img/board/logo.png"></a>
                  	</div>
                  	<div class="header_search">
 	                    <input type="text" class="input-search">

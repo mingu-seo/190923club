@@ -14,6 +14,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script>
+function check(){
+	if($("#allChk").prop("checked")){
+		$("input[name='num']").prop("checked", true);
+	}else{
+		$("input[name='num']").prop("checked", false);
+	}
+}
+function deleteConfirm() {
+	if (confirm("삭제하시겠습니까?")) {
+		$("#frm").submit();
+	}
+}
+</script>
 </head>
 <body> 
 <div id="wrap">
@@ -35,7 +49,7 @@
 					<div id="bbs">
 						<div id="blist">
 							<p><span><strong>총 <%=listcount%>개</strong>  |  <%=vo.getPage()%>/<%=totalpage%>페이지</span></p>
-							<form name="frm" id="frm" action="process.do" method="post">
+							<form name="frm" id="frm" action="qnaGroupDelete.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w3" />
@@ -50,7 +64,7 @@
 								%>
 								<thead>
 									<tr>
-										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check(this, document.frm.no)"/></th>
+										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check()"/></th>
 										<th scope="col">번호</th>
 										<th scope="col">제목</th> 
 										<th scope="col">작성일</th> 
@@ -63,7 +77,7 @@
 								%>
 								<tbody>
 									<tr>
-										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
+										<td class="first"><input type="checkbox" name="num" value="<%=list.get(i).getNum() %>"/></td>
 										<td><%=list.get(i).getNum()%></td>
 										<td class="title"><a href="qnaDetail.do?num=<%=list.get(i).getNum()%>&page=<%=vo.getPage()%>">
 										<%=list.get(i).getSubject() %></a></td>							
@@ -80,7 +94,7 @@
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="#" onclick=""><strong>삭제</strong> </a>
+									<a class="btns" href="#" onclick="deleteConfirm();"><strong>삭제</strong> </a>
 								</div>
 								<div class="btnRight">
 									<a class="wbtn" href="qnaWrite.do"><strong>등록</strong> </a>
@@ -92,12 +106,12 @@
 							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="qnaList.do"  method="post">
 								<div class="search">
-									<select name="stype" title="검색을 선택해주세요">
-										<option value="all"<c:if test="${vo.searchOption == 'all'}">selected</c:if>>전체</option>
-										<option value="title"<c:if test="${vo.searchOption == 'title'}">selected</c:if>>제목</option>
-										<option value="contents"<c:if test="${vo.searchOption == 'contents'}">selected</c:if>>내용</option>
+									<select name="searchOption" title="검색을 선택해주세요">
+										<option value="all">전체</option>
+										<option value="subject" <c:if test="${vo.searchOption == 'subject'}">selected</c:if>>제목</option>
+										<option value="content" <c:if test="${vo.searchOption == 'content'}">selected</c:if>>내용</option>
 									</select>
-									<input type="text" name="sval" value="${vo.keyword}" title="검색할 내용을 입력해주세요" />
+									<input type="text" name="keyword" value="${vo.keyword}" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
 								</div>
 							</form>

@@ -13,7 +13,14 @@ public class BoardVO {
 	private int view;
 	private String search_word;
 	private int like_cnt;
+	private int spot_num;
 	
+	public int getSpot_num() {
+		return spot_num;
+	}
+	public void setSpot_num(int spot_num) {
+		this.spot_num = spot_num;
+	}
 	public int getLike_cnt() {
 		return like_cnt;
 	}

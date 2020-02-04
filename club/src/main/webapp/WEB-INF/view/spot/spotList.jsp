@@ -174,12 +174,12 @@ function deleteConfirm(num) {
 				if(j %2 == 0){
 			%>
 	            <div class="button">
-	                <a href="spotView.do?num=<%=spot.get(j).getNum() %>" target="_blank">
+	                <a href="/board/submain/submain.do?spot_num=<%=spot.get(j).getNum() %>" target="_blank">
 	              		<img class="img" src="/upload/images/<%=spot.get(j).getFile()%>">
 	               		<div class="spotname"> 
 	                		<%=spot.get(j).getName()%>
 	                	</div>
-	                	<div class="spotcontent">
+	                	<div class="spotcontent">  
 	                		<%=spot.get(j).getContent()%>
 	                	</div>
 	                	<span class="spotuser">
@@ -200,7 +200,7 @@ function deleteConfirm(num) {
 				if(j %2 == 1){
 			%>
 	            <div class="button">
-	                <a href="spotView.do?num=<%=spot.get(j).getNum() %>" target="_blank">
+	                <a href="/board/submain/submain.do?spot_num=<%=spot.get(j).getNum() %>" target="_blank">
 	              		<img class="img" src="/upload/images/<%=spot.get(j).getFile()%>">
 	               		<div class="spotname"> 
 	                		<%=spot.get(j).getName()%>

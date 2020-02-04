@@ -12,8 +12,5 @@ public class LikeService {
 	public int likeInsert(LikeVO vo) {
 		return likeDao.likeInsert(vo);
 	}
-	
-	public int likeDelete(LikeVO vo) {
-		return likeDao.likeDelete(vo);
-	}
+
 }

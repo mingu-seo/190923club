@@ -13,6 +13,7 @@ public class NoticeVO {
 	private int view;
 	private String search_word;
 	private int like_cnt;
+	private int spot_num;
 	
 	//페이지
 	private int page; //사용자가 요청한 페이지번호
@@ -25,6 +26,12 @@ public class NoticeVO {
 	}
 	public void setLike_cnt(int like_cnt) {
 		this.like_cnt = like_cnt;
+	}
+	public int getSpot_num() {
+		return spot_num;
+	}
+	public void setSpot_num(int spot_num) {
+		this.spot_num = spot_num;
 	}
 	public NoticeVO() {
 		this.page = 1;

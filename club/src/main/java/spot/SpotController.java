@@ -1,8 +1,6 @@
 package spot;
 
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import spot.SpotVO;
 
 
 
@@ -41,14 +37,14 @@ public class SpotController {
 	}	
 	
 
-	//HOT SPOT 상세보기
-	@RequestMapping("/spot/spotView.do")
-	public String spotView(Model model,@RequestParam(name="page",required=false) String page, @RequestParam("num") int num) {
-		SpotVO spotvo = spotService.spotView(num);
-		model.addAttribute("list", spotvo);
-		return "board/submain/submain";
+	//HOT SPOT 상세보기(세영 주석처리해놓음)
+	//@RequestMapping("/spot/spotView.do")
+	//public String spotView(Model model,@RequestParam(name="page",required=false) String page, @RequestParam("num") int num) {
+		//SpotVO spotvo = spotService.spotView(num);
+		//model.addAttribute("list", spotvo);
+		//return "board/submain/submain";
 		
-	}
+	//}
 	
 	//HOT SPOT 수정 폼
 	@RequestMapping("/spot/UpdateForm.do")

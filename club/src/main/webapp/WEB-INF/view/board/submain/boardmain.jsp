@@ -7,7 +7,7 @@
 <%@ page import="board.*" %>
 <%
 //공지사항 리스트
-List<NoticeVO> nList = (List<NoticeVO>)request.getAttribute("list");
+List<NoticeVO> nList = (List<NoticeVO>)request.getAttribute("nlist");
 //공지사항 속성
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 //자유게시판 리스트
@@ -92,7 +92,7 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
         		<div class="pre-board">
         		<div class="preBoard-name">게시판</div>
         		<div class=rightBoard>
-        		<div id="mm"><a href="/board/writing/boardList.do?board_id=2"><button class="view-more">더보기</button></a></div>
+        		<div id="mm"><a href="/board/writing/boardList.do?spot_num=<%=spot_num %>&board_id=2"><button class="view-more">더보기</button></a></div> 
         		<table class="preboard">
 					
 					<%
@@ -120,7 +120,7 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
         		<div class="pre-board">
         		<div class="preBoard-name">공지</div>
         		<div class=rightBoard>
-        		<div id="mm"><a href="/board/notice/noticeList.do?board_id=3"><button class="view-more">더보기</button></a></div>
+        		<div id="mm"><a href="/board/notice/noticeList.do?spot_num=<%=spot_num %>&board_id=3"><button class="view-more">더보기</button></a></div>
         		<table class="preboard">
         			<!--  -->
         			<%

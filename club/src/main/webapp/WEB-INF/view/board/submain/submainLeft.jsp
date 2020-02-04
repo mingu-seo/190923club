@@ -3,7 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="spot.SpotVO"%>
 <%
-SpotVO list = (SpotVO)request.getAttribute("list");
+SpotVO list = (SpotVO)request.getAttribute("spot_vo");
 %>
 <!DOCTYPE html>
 <html>

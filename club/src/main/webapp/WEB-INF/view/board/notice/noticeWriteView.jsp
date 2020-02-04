@@ -64,6 +64,26 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 			}
 		});
 	}
+	
+	//좋아요 ajax
+	function likeAjax() { 
+	 	$.ajax({
+	 		async : false,
+	 		url : '/board/likeInsert.do', 
+	 		data : {
+	 			'post_id' : $(".post_id").val(), 
+	 			'board_id' : $(".board_id").val(),
+	 			'member_id' : 10
+	 		},
+	 		dataType :'HTML',
+	 		success : function(data) {
+	 			alert("좋아요 증가되었습니다.")
+	 		},
+	 		error:function(data) {
+	 			alert("ajax실패")
+	 		}
+	 	});
+	}
 
    </script>
 </head>
@@ -104,8 +124,13 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 					</div>
 					
 					<div class="view_repl_info">
-						<span class="view_like" onclick="javascript:">❤︎ 좋아요</span>
-						<span>35</span> 
+						<form id="like_form">
+							<input type="hidden" name="post_id" value="<%= vo.getPost_id()%>">
+							<input type="hidden" name="board_id" value="<%= vo.getBoard_id()%>">
+								<span class="view_like" onclick="likeAjax()">❤ </span> 
+								<span class="like_cnt">35</span>
+						</form>
+						 
 						<span>조회</span>
 						<span><%=vo.getView() %></span>  
 					</div>		

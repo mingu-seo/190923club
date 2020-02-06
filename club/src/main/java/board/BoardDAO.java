@@ -41,4 +41,9 @@ public class BoardDAO {
 	public int boardDelete(int post_id) {
 		return sqlSession.delete("board.board_delete", post_id);
 	}
+	
+	//보드메인 자유게시판
+	public List<BoardVO> mainBoardList(BoardVO vo) {
+		return sqlSession.selectList("board.main_board", vo);
+	}
 }

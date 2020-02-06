@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import spot.SpotService;
+import spot.SpotVO;
+
 
 
 @Controller
@@ -20,6 +23,9 @@ public class SpotCategoryController {
 	
 	@Autowired
 	private SpotCategoryService spotCategoryService;
+	
+	@Autowired
+	private SpotService spotService;
 	
 	//카테고리 등록 폼
 	@RequestMapping("/admin/category/categoryRegistForm.do")
@@ -87,11 +93,14 @@ public class SpotCategoryController {
 	}
 	//유저가 보는 spotCategory 선택 뷰
 	@RequestMapping("/spot/spotList.do")
-	public String userSpotList(Model model, SpotCategoryVO vo) {
+	public String userSpotList(Model model, SpotCategoryVO vo,SpotVO spotvo) {
 		List<SpotCategoryVO> list = spotCategoryService.spotCategoryList(vo);
+		List<SpotVO> spotArticle = spotService.spotList(spotvo);
+		model.addAttribute("spot",spotArticle);
+		model.addAttribute("spotvo",spotvo);
 		model.addAttribute("list",list);
 		model.addAttribute("vo",vo);
-		return "spot/spotList";
+		return "/spot/spotList";
 	}
-	
+
 }

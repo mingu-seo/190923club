@@ -8,14 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import util.FileUtil;
-
 @Service
 public class NoticeService {
 
 	@Autowired
 	NoticeDAO noticeDAO;
 	
+	//목록
 	public List<NoticeVO> noticeList(NoticeVO vo, int board_id) {
 		List<NoticeVO> list = noticeDAO.noticeList(vo, board_id);
 		return list;
@@ -34,30 +33,24 @@ public class NoticeService {
 		return pagecount;
 	}
 	
-	public int noticeInsert(NoticeVO vo, MultipartFile file, HttpServletRequest req, int board_id) {
-		FileUtil fu = new FileUtil();
-		fu.fileUpload(file, req.getRealPath("/upload/"));
-		vo.setFile(fu.fileName);
-		return noticeDAO.noticeInsert(vo, board_id);
+	public int noticeInsert(NoticeVO vo) {
+		return noticeDAO.noticeInsert(vo);
 	}
 	
-	public NoticeVO noticeView(int post_id, int board_id) {
-		noticeDAO.noticeViewUpdate(post_id);
-		return noticeDAO.noticeView(post_id, board_id);
+	public NoticeVO noticeView(NoticeVO vo) {
+		noticeDAO.noticeViewUpdate(vo.getPost_id());
+		return noticeDAO.noticeView(vo);
 	}
 	
 	public int noticeDelete(int post_id) {
 		return noticeDAO.noticeDelete(post_id);
 	}
 	
-	public NoticeVO noticeUpdateForm(int post_id, int board_id) {
-		return noticeDAO.noticeView(post_id, board_id);
+	public NoticeVO noticeUpdateForm(NoticeVO vo) {
+		return noticeDAO.noticeView(vo);
 	}
 	
 	public int noticeUpdate(NoticeVO vo, MultipartFile file, HttpServletRequest req) {
-		FileUtil fu = new FileUtil();
-		fu.fileUpload(file, req.getRealPath("/upload/"));
-		vo.setFile(fu.fileName);
 		return noticeDAO.noticeUpdate(vo);
 	}
 	

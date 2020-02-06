@@ -1,0 +1,115 @@
+.wrap {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.header {
+	background-color: #433727;
+	height: 500px;
+	width: 1200px;
+	position: relative;
+	color: black;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.login>table {
+	width: 300px;
+	height: 200px;
+	position: absolute;
+	background-color: white;
+	border-radius: 10px;
+	left: 450px;
+	top: 250px;
+}
+
+.container {
+	width: 1200px;
+	position: relative;
+	background-color: #a5c2a7;
+	overflow: hidden;
+	height: auto;
+	margin: 0 auto;
+}
+
+.container>.content {
+	width: 1130px;
+	height: 500px;
+	margin: 0 auto;
+	line-height: 500px;
+}
+
+.container>.content>.club {
+	border: solid 2px black;
+	float: left;
+	width: 350px;
+	height: 220px;
+	margin: 1%;
+}
+
+.description {
+	width: 1200px;
+	position: relative;
+	background-color: #f5cfa8;
+	height: 500px;
+	margin: 0 auto;
+}
+
+.description>.swiper-slide {
+	position: absolute;
+	margin: 0 auto;
+}
+
+.visual {
+	clear: both;
+	height: 500px;
+	width: 100%;
+	color: #ffffff;
+	text-align: center;
+	z-index: 1;
+}
+
+.swiper {
+	height: 500px;
+}
+
+.footer {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	background-color: #221f1f;
+	color: #999;
+	padding: 20px 0;
+}
+
+.footer>.size {
+	width: 1200px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.footer>.size>.sns_area {
+	position: absolute;
+	bottom: 10px;
+	right: 0;
+}
+
+.footer>.size>.info>p {
+	width: 50%;
+	line-height: 22px;
+}
+
+.footer>.size>.sns_area>a {
+	margin: 10px;
+}
+
+.loginHeader {
+	font-size: 35px;
+	font-weight: 550;
+}
+
+.loginBtnArea {
+	width: 225px;
+	height: 27px;
+	margin: 0 auto;
+}

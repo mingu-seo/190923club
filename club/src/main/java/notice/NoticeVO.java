@@ -11,8 +11,9 @@ public class NoticeVO {
 	private String title;
 	private String contents;
 	private int view;
-	private String file;
 	private String search_word;
+	private int like_cnt;
+	private int spot_num;
 	
 	//페이지
 	private int page; //사용자가 요청한 페이지번호
@@ -20,6 +21,18 @@ public class NoticeVO {
 	private int startIndex; //limit 시작 인덱스
 	private int maxPage; //총페이지수
 	
+	public int getLike_cnt() {
+		return like_cnt;
+	}
+	public void setLike_cnt(int like_cnt) {
+		this.like_cnt = like_cnt;
+	}
+	public int getSpot_num() {
+		return spot_num;
+	}
+	public void setSpot_num(int spot_num) {
+		this.spot_num = spot_num;
+	}
 	public NoticeVO() {
 		this.page = 1;
 		this.limit = 15;
@@ -58,12 +71,6 @@ public class NoticeVO {
 	}
 	public void setSearch_word(String search_word) {
 		this.search_word = search_word;
-	}
-	public String getFile() {
-		return file;
-	}
-	public void setFile(String file) {
-		this.file = file;
 	}
 	public int getBoard_id() {
 		return board_id;

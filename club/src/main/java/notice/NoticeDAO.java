@@ -5,7 +5,6 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Repository
 public class NoticeDAO {
@@ -22,12 +21,13 @@ public class NoticeDAO {
 		return sqlSession.selectOne("board.count", vo);
 	}
 	//글작성
-	public int noticeInsert(NoticeVO vo, int board_id) {
-		return sqlSession.insert("board.notice_insert", vo);
+	public int noticeInsert(NoticeVO vo) {
+		sqlSession.insert("board.notice_insert", vo);
+		return vo.getPost_id();
 	}
 	//상세
-	public NoticeVO noticeView(int post_id, @RequestParam("board_id")int board_id) {
-		return sqlSession.selectOne("board.notice_view", post_id);
+	public NoticeVO noticeView(NoticeVO vo) {
+		return sqlSession.selectOne("board.notice_view", vo);
 	}
 	//삭제
 	public int noticeDelete(int post_id) {

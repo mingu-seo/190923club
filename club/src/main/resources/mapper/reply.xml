@@ -33,11 +33,12 @@
 	</select>
 	
 	<update id="replySeq" parameterType="reply.ReplyVO">
-	update project.reply set g_seq=g_seq+1
-	where g_id=#{g_id} and g_seq>#{g_seq}
+		update project.reply set g_seq=g_seq+1
+		where g_id=#{g_id} and g_seq>#{g_seq}
 	</update>
 	
 	<delete id="re_delete" parameterType="Integer">
 		delete from project.reply where reply_num=#{reply_num}
 	</delete>
+	
 </mapper>

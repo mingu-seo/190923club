@@ -13,4 +13,23 @@
 		(#{category_num},#{name}, #{file}, #{content}, #{tel}, #{email},now(), null, #{question})
 	</insert>
 	
+	<select id="spotView" resultType="spot.SpotVO" parameterType="integer">
+		SELECT * FROM project.spot WHERE num = #{num}
+	</select>
+	
+	<update id="spotUpdate" parameterType="spot.SpotVO">
+		UPDATE project.spot SET
+		name=#{name}
+		<if test="file != null">
+			, file=#{file}
+		</if>
+		WHERE num=#{num}
+	</update>
+	
+	<delete id="spotDelete" parameterType="integer">
+		DELETE FROM project.spot WHERE num=#{num}
+	</delete>
+	<select id="spotList" resultType="spot.SpotVO" parameterType="spot.SpotVO">
+		SELECT * FROM project.spot
+	</select>
 </mapper>

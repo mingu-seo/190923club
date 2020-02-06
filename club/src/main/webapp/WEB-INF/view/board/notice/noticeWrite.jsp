@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="notice.NoticeVO" %>
+<%@ page import ="file.FileVO" %>
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
+FileVO fv = (FileVO)request.getAttribute("fv");
 %>
 
 <!DOCTYPE html>

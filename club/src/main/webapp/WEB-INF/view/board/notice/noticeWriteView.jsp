@@ -6,16 +6,6 @@
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<%
-	request.setCharacterEncoding("UTF-8");
-	String name=request.getParameter("name");
-	String subject=request.getParameter("subject");
-	String filename1=request.getParameter("filename1");
-	String filename2=request.getParameter("filename2");
-	String origfilename1=request.getParameter("origfilename1");
-	String origfilename2=request.getParameter("origfilename2");
-	
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +15,7 @@
    <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
 <%
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
+FileVO fv = (FileVO)request.getAttribute("fv");
 List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
 ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 %>
@@ -73,6 +64,26 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 			}
 		});
 	}
+	
+	//좋아요 ajax
+	function likeAjax() { 
+	 	$.ajax({
+	 		async : false,
+	 		url : '/board/likeInsert.do', 
+	 		data : {
+	 			'post_id' : $(".post_id").val(), 
+	 			'board_id' : $(".board_id").val(),
+	 			'member_id' : 10
+	 		},
+	 		dataType :'HTML',
+	 		success : function(data) {
+	 			alert("좋아요 증가되었습니다.")
+	 		},
+	 		error:function(data) {
+	 			alert("ajax실패")
+	 		}
+	 	});
+	}
 
    </script>
 </head>
@@ -104,16 +115,22 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 						</div>
 					</div>
 					<div class="view_file">
-						<a href="file_down.jsp?file_name=<%=filename1 %>"><%=origfilename1 %>
-						<%=origfilename1 %></a><br>
+						<% if (fv != null) { %>
+							<a href="/smarteditor/file_load/file_down.jsp?file_name=<%=fv.getServer_name() %>&orgName=<%=fv.getFront_name()%>"><%=fv.getFront_name()%></a><br>
+						<% } %>
 					</div>
 					<div class="view_ctt">
-						<%=vo.getContents() %>
+						<%=vo.getContents() %> 
 					</div>
 					
 					<div class="view_repl_info">
-						<span class="view_like" onclick="javascript:">❤︎ 좋아요</span>
-						<span>35</span> 
+						<form id="like_form">
+							<input type="hidden" name="post_id" value="<%= vo.getPost_id()%>">
+							<input type="hidden" name="board_id" value="<%= vo.getBoard_id()%>">
+								<span class="view_like" onclick="likeAjax()">❤ </span> 
+								<span class="like_cnt">35</span>
+						</form>
+						 
 						<span>조회</span>
 						<span><%=vo.getView() %></span>  
 					</div>		
@@ -128,6 +145,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 						<form action="/board/reply.do?board_id=3" method="post">
 								<input type="hidden" name="post_id" class="post_id" value="<%=vo.getPost_id() %>">
 								<input type="hidden" name="board_id" class="board_id" value="<%=vo.getBoard_id()%>">
+								<input type="hidden" name="url" value="board/notice/noticeReplyAjax.do">
 							<table>
 								<tr>
 									<td class="repForm">   

@@ -36,7 +36,7 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
         	
 	        <div class="visualRight">
 		        	<div class="board_ctg_name">게시판 목록</div><!-- 카테고리 이름 -->
-					<div class="board_writing"><a href="boardWrite.do">글작성</a></div>
+					<div class="board_writing"><a href="boardWrite.do?spot_num=<%=spot_num%>">글작성</a></div>
 			
 					<div class="board_seq">
 					<select>
@@ -71,7 +71,9 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 							%>
 							<tr class="board_art">
 								<td><a><%=list.get(i).getPost_id()%></a></td>
-								<td class="art_title"><a href="/board/writing/boardWriteView.do?board_id=2&post_id=<%=list.get(i).getPost_id()%>"><%=list.get(i).getTitle() %></a></td>
+								<td class="art_title"><a href="/board/writing/boardWriteView.do?board_id=2&post_id=<%=list.get(i).getPost_id()%>">
+									<%=list.get(i).getTitle() %></a>
+								</td>
 								<td>김세영</td>
 								<td><%=util.Function.getYmd(list.get(i).getRegdate()) %></td>
 								<td>11</td>

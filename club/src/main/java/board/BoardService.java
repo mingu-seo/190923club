@@ -29,5 +29,8 @@ public class BoardService {
 	public int boardDelete(int post_id) {
 		return boardDAO.boardDelete(post_id);
 	}
+	public List<BoardVO> mainBoardList(BoardVO vo) {
+		return boardDAO.mainBoardList(vo);
+	}
 	
 }

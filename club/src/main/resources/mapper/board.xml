@@ -21,12 +21,12 @@
 	
 	<!-- 자유게시판 글작성 -->
 		<insert id="board_insert" parameterType="board.BoardVO">
-			insert into project.writing (title, contents, regdate) values(#{title}, #{contents}, now()) 
+			insert into project.writing (title, contents, regdate, spot_num) values(#{title}, #{contents}, now(), #{spot_num}) 
 		</insert>
 	
 	<!-- 자유게시판 상세보기 -->
 		<select id="board_view" parameterType="Integer" resultType="board.BoardVO">
-			select * from project.writing where post_id=#{post_id}
+			select * from project.writing where post_id=#{post_id} and spot_num=#{spot_num}
 		</select>
 	<!-- 자유게시판 글수정 -->
 		<update id="board_update" parameterType="board.BoardVO">
@@ -34,7 +34,7 @@
 		</update>
 	<!-- 자유게시판 글삭제 -->
 		<delete id="board_delete" parameterType="Integer">
-			delete from project.writing where post_id=#{post_id}
+			delete from project.writing where post_id=#{post_id} and spot_num=#{spot_num=#{spot_num}}
 		</delete>
 	
 	<!-- 갤러리 리스트 -->
@@ -117,19 +117,23 @@
 		</select>
 	
 	<!-- 공지사항 글작성 -->
-		<insert id="notice_insert" parameterType="notice.NoticeVO">
-			insert into project.notice (title, contents, regdate, board_id, file)
-			values(#{title}, #{contents}, now(), #{board_id}, #{file})
+		<insert id="notice_insert" parameterType="notice.NoticeVO" useGeneratedKeys="true">
+			insert into project.notice (title, contents, regdate, board_id, spot_num)
+			values(#{title}, #{contents}, now(), #{board_id}, #{spot_num})
+			
+			<selectKey keyProperty="post_id" resultType="Integer" order="AFTER">
+				SELECT last_insert_id()
+			</selectKey>
 		</insert>
 	
 	<!-- 공지사항 상세보기 -->
-		<select id="notice_view" parameterType="Integer" resultType="notice.NoticeVO">
-			select * from project.notice where post_id = #{post_id}
+		<select id="notice_view" parameterType="notice.NoticeVO" resultType="notice.NoticeVO">
+			select * from project.notice where post_id = #{post_id} and spot_num=#{spot_num}
 		</select>
 	
 	<!-- 공지사항 글삭제 -->
 		<delete id="notice_delete" parameterType="Integer">
-			delete from project.notice where post_id=#{post_id}
+			delete from project.notice where post_id=#{post_id} and spot_num=#{spot_num}
 		</delete>
 	
 	<!-- 공지사항 글수정-->
@@ -143,10 +147,17 @@
 	
 	<!-- 공지사항 조회수 -->
 		<update id="updateReadcount" parameterType="Integer">
-			update project.notice set view=view+1 where post_id=#{post_id}
+			update project.notice set view=view+1 where post_id=#{post_id} and spot_num=#{spot_num}
 		</update>
 		
 		
+
+	<!-- 보드메인 자유게시글 -->
+		<select id="main_board" resultType="board.BoardVO">
+			select post_id, title, writer, view from project.writing 
+			order by regdate desc limit 0,7
+		</select>
+
 
 	<!-- 보드메인 공지 -->  
 		<select id="main_notice" resultType="notice.NoticeVO">

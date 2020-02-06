@@ -12,7 +12,21 @@ public class BoardVO {
 	private String contents;
 	private int view;
 	private String search_word;
+	private int like_cnt;
+	private int spot_num;
 	
+	public int getSpot_num() {
+		return spot_num;
+	}
+	public void setSpot_num(int spot_num) {
+		this.spot_num = spot_num;
+	}
+	public int getLike_cnt() {
+		return like_cnt;
+	}
+	public void setLike_cnt(int like_cnt) {
+		this.like_cnt = like_cnt;
+	}
 	public String getSearch_word() {
 		return search_word==null ? "" : search_word;
 	}

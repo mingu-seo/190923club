@@ -20,39 +20,10 @@
         <div class="visual">
 	
 		
-        	<div class="visualLeft">
-        	<div class="visualLeftInner">
-        		<div>
-        		<!--<br><br>동아리 소개 사진  -->
-        		<img id="clubImage" src="/img/board/pic.jpg"><br>
-	        		<div id="clubName">
-		        		스키 동아리
-		        	</div>
-		        	<div class="clubInfo">
-		        		멤버 88명<br>
-		        		회장 김구디
-		        	</div>
-        		</div>
-        		<div>
-        		<br><br>동아리 소개 <br>
-        		저희는 스키를 사랑하는 사람들이 모여<br>
-        		겨울에는 강원도에 가고<br>
-        		스위스에도 가고<br>
-        		여기저기 보드도 타러 다니고<br>
-        		즐거운 동아리 어쩌구 <br>
-        		<br>
-        		<br>
-        		<br>
-        		</div> 
-        		<div class="clubInfo">
-        		가입신청
-        		</div>
-        		<div class="clubInfo">
-        		동아리 설정
-        		<a href=""><img src="/img/board/set.png"></a>
-        		</div>
-        	</div>
-        	</div>
+        	<!-- 왼쪽메뉴 -->
+        	<%@ include file="submainLeft.jsp" %>
+        	<!-- /왼쪽메뉴 -->
+        	
         	<div class="visualRight">
         		<div class="visualRightInner">
         			<div id="categorySet">카테고리 설정

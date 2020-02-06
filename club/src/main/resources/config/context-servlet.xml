@@ -18,6 +18,9 @@
 	<context:component-scan base-package="gallery"/>
 	<context:component-scan base-package="notice"/>
 	<context:component-scan base-package="reply"/>
+	<context:component-scan base-package="file"/>
+	<context:component-scan base-package="like"/>
+	<context:component-scan base-package="member"/>
 	
 	
 	<!-- annotation 활성화 -->

@@ -4,8 +4,10 @@
 <%@ page import ="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="notice.*" %>
+<%@ page import="file.*" %>
 <%
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
+FileVO fv = (FileVO)request.getAttribute("");
 %>
 
 <!DOCTYPE html>
@@ -82,7 +84,7 @@ NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 						<tr>		
 							<th>첨부파일</th>
 								<td class="writing_box">
-									<input type="file" name="file_tmp" class="tableRight" value="<%=vo.getFile() %>">
+									<input type="file" name="file_tmp" class="tableRight" value="">
 								</td>
 						</tr>
 						

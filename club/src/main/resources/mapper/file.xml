@@ -4,13 +4,15 @@
 <mapper namespace="file">
 
 	<!-- 파일선택 -->
-	<select id="file_select" parameterType="notice.NoticeVO">
-		select * from project.reply where post_id=#{post_id} and board_id=#{board_id}
+	<select id="file_select" parameterType="file.FileVO" resultType="file.FileVO">
+		select front_name, server_name from project.file 
+		where post_id=#{post_id} and board_id=#{board_id}
 	</select>
-
-	<insert id="file_insert" parameterType="reply.ReplyVO">
-		insert into project.reply (contents, regdate, post_id, board_id, g_id, g_lev, g_seq) 
-		values(#{contents}, now(), #{post_id}, #{board_id}, #{g_id}, #{g_lev}, #{g_seq})
-	</insert>
 	
+	<!-- 파일 저장 -->
+	<insert id="file_insert" parameterType="file.FileVO">
+		insert into project.file (file_num, post_id, board_id, front_name, server_name, regdate) 
+		values(#{file_num}, #{post_id}, #{board_id}, #{front_name}, #{server_name}, now())
+	</insert>
+	  
 </mapper>

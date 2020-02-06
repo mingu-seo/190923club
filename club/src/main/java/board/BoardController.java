@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import notice.NoticeVO;
 import gallery.GalleryVO;
 import reply.ReplyVO;
+import spot.SpotService;
+import spot.SpotVO;
 
 
 
@@ -33,9 +35,15 @@ public class BoardController {
 	@Autowired
 	private reply.ReplyService rService;
 	
+	@Autowired
+	private SpotService spotService;
+	
 	//서브메인 페이지
 	@RequestMapping("/board/submain/submain.do")
-	public String subMain() {
+	public String subMain(Model model, @RequestParam("spot_num") String spot_num) {
+		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		model.addAttribute("spot_num", spot_num);
+		model.addAttribute("spot_vo", spotvo);
 		return "board/submain/submain";
 	}
 	//게시판 관리 페이지
@@ -45,13 +53,20 @@ public class BoardController {
 	}
 	//게시판 메인 페이지
 	@RequestMapping("/board/submain/boardmain.do") 
-	public String boardMain(NoticeVO vo, GalleryVO gvo, Model model) {
-		List<NoticeVO> list = nService.mainNoticeList(vo);
-		model.addAttribute("vo", vo);
-		model.addAttribute("list", list);
+	public String boardMain(NoticeVO vo, Model model, BoardVO bVO, GalleryVO gvo, @RequestParam("spot_num") String spot_num) {
+		List<NoticeVO> nlist = nService.mainNoticeList(vo);
+		List<BoardVO> bList = bService.mainBoardList(bVO);
+		
+		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		model.addAttribute("spot_num", spot_num);
+		model.addAttribute("spot_vo", spotvo);
+		
+		
 		List<GalleryVO> glist = gService.mainGalleryList(gvo);
 		model.addAttribute("gvo", gvo);
 		model.addAttribute("glist", glist);
+		model.addAttribute("nlist", nlist);
+		model.addAttribute("bList", bList);
 		return "board/submain/boardmain";
 	}
 	
@@ -59,9 +74,12 @@ public class BoardController {
 	@RequestMapping("/board/writing/boardList.do") 
 	public String boardList(Model model, 
 			HttpServletRequest req, 
-			BoardVO vo) {
+			BoardVO vo, @RequestParam("spot_num") int num) {
 			List<BoardVO> list = boardDao.boardList(vo);
+			//스팟번호
+			SpotVO spot_vo = spotService.spotView(num);
 			
+			model.addAttribute("spot_vo", spot_vo);
 			model.addAttribute("list", list);
 			model.addAttribute("vo",vo);
 		return "board/writing/boardList";
@@ -69,7 +87,11 @@ public class BoardController {
 	
 	//자유게시판 작성페이지
 	@RequestMapping("/board/writing/boardWrite.do") 
-	public String boardWrite() {
+	public String boardWrite(Model model, @RequestParam("spot_num") int spot_num) {
+		
+		//스팟번호
+		model.addAttribute("spot_num", spot_num);
+		
 		return "board/writing/boardWrite";
 	}
 	//자유게시판 작성
@@ -85,6 +107,7 @@ public class BoardController {
 		ReplyVO rv = new ReplyVO();
 		rv.setBoard_id(vo.getBoard_id());
 		rv.setPost_id(post_id);
+		
 		List<ReplyVO> rList = rService.replyList(rv);
 		
 		model.addAttribute("vo", vo);

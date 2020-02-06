@@ -164,7 +164,7 @@
 		text-align: right;
 		margin:20px 40px;
 		border-top: 1px dotted #e5e5e5;
-		font-size: 18px;
+		font-size: 25px;
 	}
 	.view_like {
 		color:red;
@@ -261,6 +261,9 @@
 	.view_file {
 		margin:20px;
 		font-weight: bold;
+		text-align: right;
+	    font-size: 15px;
+	    text-decoration: underline;
 	}
 	
 	.re_tr {
@@ -293,6 +296,11 @@
 	.reply-contents {
 		text-align:left;
 	}
+<<<<<<< HEAD
 	 
 	 
+=======
+	
+
+>>>>>>> branch 'master' of https://github.com/mingu-seo/190923club.git
 }

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="spot.SpotVO"%>
+<%
+SpotVO list = (SpotVO)request.getAttribute("spot_vo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,26 +13,21 @@
 </head>
 <body>
 <div class="visualLeft">
+        	<input type="hidden" name="num" value="<%=list.getNum()%>">
         	<div class="visualLeftInner">
         		<div>
         			<!--<br><br>동아리 소개 사진  -->
-	        		<img id="clubImage" src="/img/board/pic.jpg"><br>
+	        		<img id="clubImage" src="/upload/images/<%=list.getFile()%>"><br>
 		        		<div id="clubName">
-			        		스키 동아리
+			        		<%=list.getName()%>
 			        	</div>
 			        	<div class="clubInfo">
-			        		멤버 88명<br>
-			        		회장 김구디
+			        		멤버 00명<br>
+			        		회장 홍길동
 			        	</div>
         		</div>
-        		
         		<div class="clubIntro">
-        		동아리 소개 
-        		저희는 스키를 사랑하는 사람들이 모여
-        		겨울에는 강원도에 가고
-        		스위스에도 가고 
-        		여기저기 보드도 타러 다니고
-        		즐거운 동아리 어쩌구
+					<%=list.getContent() %>
         		</div> 
         		
         		<div class="clubInfo">

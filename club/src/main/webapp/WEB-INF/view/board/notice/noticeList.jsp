@@ -40,7 +40,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
         	
 	        <div class="visualRight">
 		        	<div class="board_ctg_name">공지사항 목록</div><!-- 카테고리 이름 -->
-					<div class="board_writing"><a href="noticeWrite.do">글작성</a></div>
+					<div class="board_writing"><a href="noticeWrite.do?spot_num=<%=spot_vo.getNum()%>">글작성</a></div>
 			
 					<div class="board_seq">
 					<select>
@@ -75,7 +75,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 							%>
 							<tr class="board_art">
 								<td><%= list.get(i).getPost_id()%></td>
-								<td class="art_title"><a href="/board/notice/noticeWriteView.do?post_id=<%=list.get(i).getPost_id()%>&board_id=<%=list.get(i).getBoard_id()%>"><%=list.get(i).getTitle() %></td>
+								<td class="art_title"><a href="/board/notice/noticeWriteView.do?post_id=<%=list.get(i).getPost_id()%>&board_id=<%=list.get(i).getBoard_id()%>"><%=list.get(i).getTitle() %></a></td>
 								<td>조한빈</td>
 								<td><%=util.Function.getYmd(list.get(i).getRegdate())%></td>
 								<td>11</td>

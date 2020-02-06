@@ -49,34 +49,33 @@ function getThumbnailPrivew(html, $target) {
 					<table id="boardTable" border="1">
 					<tr>		
 						<th>제목</th>
-							<td class="writing_box">
-								<input type="text" name="title" class="tableRight">
+							<td colspan="2" class="writing_box">
+								<input type="text" name="title" class="tableRight" required>
 							</td>
 					</tr>
 					
 					<tr>
 						<th>파일 선택</th>
-						<td><input type="file" id="image" name="image_tmp" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" ></td>
+						<td colspan="2"><input type="file" id="image" name="image_tmp" onchange="getThumbnailPrivew(this,$('#thumb_img1'));" required></td>
 					</tr>
 					<tr>
 						<th>파일 선택</th>
-						<td><input type="file" id="image2" name="image_tmp2" onchange="getThumbnailPrivew(this,$('#thumb_img2'));" ></td>
+						<td colspan="2"><input type="file" id="image2" name="image_tmp2" onchange="getThumbnailPrivew(this,$('#thumb_img2'));" ></td>
 					</tr>
 					<tr>
 						<th>파일 선택</th>
-						<td><input type="file" id="image3" name="image_tmp3" onchange="getThumbnailPrivew(this,$('#thumb_img3'));" ></td>
+						<td colspan="2"><input type="file" id="image3" name="image_tmp3" onchange="getThumbnailPrivew(this,$('#thumb_img3'));" ></td>
 					</tr>
 					
 					<tr>
-						<td colspan="2" >
-						<div id="thumb_img1" onfocus="this.value='';"><img src="/img/1.png"></div>
-						<div id="thumb_img2" onfocus="this.value='';"><img src="/img/1.png"></div>
-						<div id="thumb_img3" onfocus="this.value='';"><img src="/img/1.png"></div>
+						<td><div id="thumb_img1" onfocus="this.value='';"><img style="max-width:150px;" src="/img/1.png"></div></td>
+						<td><div id="thumb_img2" onfocus="this.value='';"><img style="max-width:150px;" src="/img/1.png"></div></td>
+						<td><div id="thumb_img3" onfocus="this.value='';"><img style="max-width:150px;" src="/img/1.png"></div></td>
 					</tr>
 					
 					
 					<tr>		
-						<td colspan="2">
+						<td colspan="3">
 							<textarea name="contents" id="contents" onfocus="this.value='';">내용을 입력하세요</textarea>
 						</td>
 					</tr>

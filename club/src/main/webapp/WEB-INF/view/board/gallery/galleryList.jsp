@@ -359,7 +359,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 		%>
      	<div class="paper" onclick="ajaxView('<%=list.get(i).getPost_id()%>');">
 	          <div class="paper-holder">
-	             <p>사용자 이름</p>
+	             <p><%=list.get(i).getWriter()%></p>
 				 <p class="paper-description"><%=util.Function.getYmd(list.get(i).getRegdate()) %></p><!-- 날짜 불러오기 -->
 		     </div>
 	         <div class="paper-content">
@@ -502,7 +502,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 					$.ajax({
 						async :false,
 						url:'/board/reDelete.do',
-						data :{res_num : res_num},
+						data :{reply_num : res_num},
 				    	dataType:'HTML',
 				    	success : function(data){
 				    		// 댓글이 정상적으로 저장됐을때

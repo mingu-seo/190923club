@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import notice.NoticeVO;
+
 
 
 @Repository
@@ -45,5 +47,14 @@ public class GalleryDAO {
 		}
 		public int galleryCount(GalleryVO vo) {
 			return sqlSession.update("board.galleryCount",vo);
+		}
+
+		public List<GalleryVO> mainGalleryList(GalleryVO vo) {
+			return sqlSession.selectList("board.main_gallery", vo);
+		}
+
+		//조회수
+		public void galleryViewUpdate(int post_id) {
+			sqlSession.update("board.updateRead", post_id);
 		}
 }

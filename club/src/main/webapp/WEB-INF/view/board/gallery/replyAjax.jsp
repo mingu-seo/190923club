@@ -8,6 +8,7 @@ $(function() {
 		var idx = $(this).index(".re_btn");
 		$(".re_tr").eq(idx).toggle();
 	});
+	
 });
 </script>
 

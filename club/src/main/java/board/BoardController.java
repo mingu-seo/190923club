@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import notice.NoticeVO;
+import gallery.GalleryVO;
 import reply.ReplyVO;
 
 
@@ -27,6 +28,9 @@ public class BoardController {
 	private notice.NoticeService nService;
 	
 	@Autowired
+	private gallery.GalleryService gService;
+	
+	@Autowired
 	private reply.ReplyService rService;
 	
 	//서브메인 페이지
@@ -41,10 +45,13 @@ public class BoardController {
 	}
 	//게시판 메인 페이지
 	@RequestMapping("/board/submain/boardmain.do") 
-	public String boardMain(NoticeVO vo, Model model) {
+	public String boardMain(NoticeVO vo, GalleryVO gvo, Model model) {
 		List<NoticeVO> list = nService.mainNoticeList(vo);
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
+		List<GalleryVO> glist = gService.mainGalleryList(gvo);
+		model.addAttribute("gvo", gvo);
+		model.addAttribute("glist", glist);
 		return "board/submain/boardmain";
 	}
 	

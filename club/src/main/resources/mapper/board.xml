@@ -94,6 +94,11 @@
 			</if>
 			where post_id=#{post_id}
 		</update>
+		
+		<!-- 갤러리 조회수 -->
+		<update id="updateRead" parameterType="Integer">
+			update project.gallery set view=view+1 where post_id=#{post_id}
+		</update>
 	
 	<!-- 공지사항 리스트 -->
 		<select id="notice_list" parameterType="notice.NoticeVO" resultType="notice.NoticeVO">
@@ -147,6 +152,11 @@
 		<select id="main_notice" resultType="notice.NoticeVO">
 			select post_id, title, writer, view from project.notice 
 			order by regdate desc limit 0,7
+		</select>
+		
+		<select id="main_gallery" resultType="gallery.GalleryVO">
+			select post_id, title, writer, image from project.gallery
+			order by regdate desc limit 0,4
 		</select>
 		
 		<!-- 갤러리  조회수 -->

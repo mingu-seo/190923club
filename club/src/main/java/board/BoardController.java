@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import notice.NoticeVO;
+import gallery.GalleryVO;
 import reply.ReplyVO;
 import spot.SpotService;
 import spot.SpotVO;
@@ -27,6 +28,9 @@ public class BoardController {
 	
 	@Autowired
 	private notice.NoticeService nService;
+	
+	@Autowired
+	private gallery.GalleryService gService;
 	
 	@Autowired
 	private reply.ReplyService rService;
@@ -52,7 +56,7 @@ public class BoardController {
 	}
 	//게시판 메인 페이지
 	@RequestMapping("/board/submain/boardmain.do") 
-	public String boardMain(NoticeVO vo, Model model, BoardVO bVO, @RequestParam("spot_num") String spot_num) {
+	public String boardMain(NoticeVO vo, Model model, BoardVO bVO, GalleryVO gvo, @RequestParam("spot_num") String spot_num) {
 		List<NoticeVO> nlist = nService.mainNoticeList(vo);
 		List<BoardVO> bList = bService.mainBoardList(bVO);
 		
@@ -60,7 +64,10 @@ public class BoardController {
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);
 		
-		model.addAttribute("vo", vo);
+		
+		List<GalleryVO> glist = gService.mainGalleryList(gvo);
+		model.addAttribute("gvo", gvo);
+		model.addAttribute("glist", glist);
 		model.addAttribute("nlist", nlist);
 		model.addAttribute("bList", bList);
 		return "board/submain/boardmain";

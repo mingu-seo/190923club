@@ -299,6 +299,7 @@
 	.reply-contents {
 		text-align:left;
 	}
-	
-
+	.listImg {
+		max-width:300px;
+	}
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import notice.NoticeVO;
 import util.FileUtil;
 
 @Service
@@ -36,6 +37,7 @@ public class GalleryService {
 	}
 	
 	public GalleryVO galleryView(int id) {
+		galleryDao.galleryViewUpdate(id);
 		return galleryDao.galleryView(id);
 	}
 	public GalleryVO galleryPre(int id) {
@@ -64,4 +66,12 @@ public class GalleryService {
 		
 		return galleryDao.galleryUpdate(vo);
 	}
+
+	public List<GalleryVO> mainGalleryList(GalleryVO vo) {
+		return galleryDao.mainGalleryList(vo); 
+	}
+	
+
+	
+	
 }

@@ -44,7 +44,7 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
             });
         });
         </script>
-        
+
        <!-- 삭제확인 --> 
        <script>
        $(function() {
@@ -90,7 +90,7 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
                 function ajaxView(id){
                 	$.ajax({
                 		async :false,
-                		url:'galleryAjax.do',
+                		url:'/board/gallery/galleryAjax.do',
                 		data :{
                 			'id':id
 	                	},
@@ -124,7 +124,7 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
                 function replyView(id){
                 	$.ajax({
                 		async :false,
-                		url:'replyAjax.do',
+                		url:'/board/gallery/replyAjax.do',
                 		data :{
                 			'id':id
 	                	},
@@ -144,7 +144,7 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
                 function getReplyList(id) {
                 	$.ajax({
                 		async :false,
-                		url:'/board/replyList.do',
+                		url:'replyList.do',
                 		data :{
                 			'post_id':id,
                 			'board_id':1
@@ -358,7 +358,7 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
         		<div class=rightBoard>
         		
         			<div class="galarybox">
-        				<div id="mm"><a href="/board/gallery/galleryList.do?board_id=1"><button class="view-more">더보기</button></a></div>
+        				<div id="mm"><a href="/board/gallery/galleryList.do?spot_num=<%=spot_num %>&board_id=1"><button class="view-more">더보기</button></a></div>
         			
         			<%
         			for (int i=0; i<gList.size(); i++) { 
@@ -368,7 +368,7 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
 					<div class="pregalary-title"><%=gList.get(i).getTitle() %></div>
 					<div class="pregalary-writer">작성자 <%=gList.get(i).getWriter()%> </div>
 					<div class="pregalary-dn">
-					<span class="pregalary-day"><%=gList.get(i).getRegdate()%></span>&nbsp;&nbsp;<span class="pregalary-num">조회수 <%=gList.get(i).getView()%></span>
+					<span class="pregalary-day"><%=util.Function.getYmd(gList.get(i).getRegdate())%></span>&nbsp;&nbsp;<span class="pregalary-num">조회수 <%=gList.get(i).getView()%></span>
 					</div>
 					</div>
         			

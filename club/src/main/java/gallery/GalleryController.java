@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import spot.SpotService;
+import spot.SpotVO;
 
 
 @Controller
@@ -23,11 +24,18 @@ public class GalleryController {
 		@Autowired
 		GalleryService gService;
 		
+		@Autowired
+		private SpotService spotService;
+		
 		//갤러리 목록 페이지
 		@RequestMapping("/board/gallery/galleryList.do") 
-		public String galleryList(Model model, HttpServletRequest req, GalleryVO vo) {
+		public String galleryList(Model model, GalleryVO vo, @RequestParam("board_id")int board_id, @RequestParam("spot_num") int num) {
 				List<GalleryVO> list = galleryDao.galleryList(vo);
 				model.addAttribute("list", list); 
+				//스팟번호
+				SpotVO spot_vo = spotService.spotView(num);
+				model.addAttribute("spot_vo", spot_vo);
+				
 			return "board/gallery/galleryList";
 		}
 		

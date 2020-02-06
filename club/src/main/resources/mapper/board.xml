@@ -166,7 +166,7 @@
 		</select>
 		
 		<select id="main_gallery" resultType="gallery.GalleryVO">
-			select post_id, title, writer, image from project.gallery
+			select post_id, title, writer, image, regdate, view from project.gallery
 			order by regdate desc limit 0,4
 		</select>
 		

@@ -67,9 +67,9 @@ function getThumbnailPrivew(html, $target) {
 					</tr>
 					
 					<tr>
-						<td><div id="thumb_img1" onfocus="this.value='';"><img style="max-width:150px;" src="/img/1.png"></div></td>
-						<td><div id="thumb_img2" onfocus="this.value='';"><img style="max-width:150px;" src="/img/1.png"></div></td>
-						<td><div id="thumb_img3" onfocus="this.value='';"><img style="max-width:150px;" src="/img/1.png"></div></td>
+						<td><div id="thumb_img1" onfocus="this.value='';"><img src="/img/1.png"></div></td>
+						<td><div id="thumb_img2" onfocus="this.value='';"><img src="/img/1.png"></div></td>
+						<td><div id="thumb_img3" onfocus="this.value='';"><img src="/img/1.png"></div></td>
 					</tr>
 					
 					

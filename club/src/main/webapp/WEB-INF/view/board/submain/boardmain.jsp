@@ -26,6 +26,7 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
     <title></title>
    <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
    <link rel="stylesheet" type="text/css" href="/css/board/boardmain.css">
+   <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
 
   <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
         <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>

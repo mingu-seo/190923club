@@ -35,6 +35,7 @@ public class GalleryController {
 				//스팟번호
 				SpotVO spot_vo = spotService.spotView(num);
 				model.addAttribute("spot_vo", spot_vo);
+				model.addAttribute("spot_num", num+"");
 				
 			return "board/gallery/galleryList";
 		}

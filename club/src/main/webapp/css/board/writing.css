@@ -296,11 +296,7 @@
 	.reply-contents {
 		text-align:left;
 	}
-<<<<<<< HEAD
-	 
-	 
-=======
-	
-
->>>>>>> branch 'master' of https://github.com/mingu-seo/190923club.git
+	.listImg {
+		max-width:300px;
+	}
 }

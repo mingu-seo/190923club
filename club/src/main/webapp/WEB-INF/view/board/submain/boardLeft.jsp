@@ -18,8 +18,8 @@ String board_type = request.getParameter("board_type");
 			        	<div>
 			        		<ul>
 			        			<li><a href="/board/gallery/galleryList.do?spot_num=<%=spot_num %>&board_id=1" <%="1".equals(board_type) ? "class='menu_on'":"" %>><span class="ctg-s">┗</span>생일</a></li> <!-- 내용수정가능하게/추가삭제 가능하게 -->	
-			        			<li><a href="/board/gallery/galleryList.do?spot_num=<%=spot_num %>board_id=1" <%="2".equals(board_type) ? "class='menu_on'":"" %>><span class="ctg-s">┗</span>대회</a></li> <!-- 내용수정가능하게/추가삭제 가능하게 -->	
-			        			<li><a href="/board/gallery/galleryList.do?spot_num=<%=spot_num %>board_id=1" <%="3".equals(board_type) ? "class='menu_on'":"" %>><span class="ctg-s">┗</span>회식</a></li> <!-- 내용수정가능하게/추가삭제 가능하게 -->	
+			        			<li><a href="/board/gallery/galleryList.do?spot_num=<%=spot_num %>&board_id=1" <%="2".equals(board_type) ? "class='menu_on'":"" %>><span class="ctg-s">┗</span>대회</a></li> <!-- 내용수정가능하게/추가삭제 가능하게 -->	
+			        			<li><a href="/board/gallery/galleryList.do?spot_num=<%=spot_num %>&board_id=1" <%="3".equals(board_type) ? "class='menu_on'":"" %>><span class="ctg-s">┗</span>회식</a></li> <!-- 내용수정가능하게/추가삭제 가능하게 -->	
 			        		</ul>
 						</div>
 	        		</div>
@@ -30,9 +30,9 @@ String board_type = request.getParameter("board_type");
 		        		<div class="board-title">게시판</div> <!-- 위치수정가능하게 -->
 		        		<div>
 		        			<ul>
-		        				<li><a href="/board/writing/boardList.do?spot_num=<%=spot_num %>board_id=2"><span class="ctg-s">┗</span>공감해주셈</a></li> <!-- 내용수정가능하게/추가삭제 가능하게 -->
-		        				<li><a href="/board/writing/boardList.do?spot_num=<%=spot_num %>board_id=2"><span class="ctg-s">┗</span>웃긴글</a></li> <!-- 내용수정가능하게/추가삭제 가능하게 -->	
-		        				<li><a href="/board/writing/boardList.do?spot_num=<%=spot_num %>board_id=2"><span class="ctg-s">┗</span>어쩌구</a></li> <!-- 내용수정가능하게/추가삭제 가능하게 -->	
+		        				<li><a href="/board/writing/boardList.do?spot_num=<%=spot_num %>&board_id=2"><span class="ctg-s">┗</span>공감해주셈</a></li> <!-- 내용수정가능하게/추가삭제 가능하게 -->
+		        				<li><a href="/board/writing/boardList.do?spot_num=<%=spot_num %>&board_id=2"><span class="ctg-s">┗</span>웃긴글</a></li> <!-- 내용수정가능하게/추가삭제 가능하게 -->	
+		        				<li><a href="/board/writing/boardList.do?spot_num=<%=spot_num %>&board_id=2"><span class="ctg-s">┗</span>어쩌구</a></li> <!-- 내용수정가능하게/추가삭제 가능하게 -->	
 		        			</ul>
 	        			</div>
 	        		</div>
@@ -43,7 +43,7 @@ String board_type = request.getParameter("board_type");
 						<div class="board-title">공지사항</div>
 						<div>
 							<ul>
-							<li><a href="/board/notice/noticeList.do?spot_num=<%=spot_num %>board_id=3"><span class="ctg-s">┗</span>이벤트 공지</a></li>
+							<li><a href="/board/notice/noticeList.do?spot_num=<%=spot_num %>&board_id=3"><span class="ctg-s">┗</span>이벤트 공지</a></li>
 							</ul>
 						</div>
 						

@@ -18,6 +18,24 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("vo");
 			$(".re_tr").eq(idx).toggle();
 		});
 	});
+	
+	function replDel(id, reply_num) {
+		if(confirm("삭제하시겠습니까?")) {
+			$.ajax({
+				async : false,
+				url : '/board/replyDelete.do?reply_num='+reply_num,
+				dataType:'HTML',
+				success: function(data) {
+					getReplyList(id);
+				},
+				error:function(data) { 
+					console.log(data);
+				}
+			});
+		} else
+			return false;
+   }
+	
 </script>
 
 <table id="reply">
@@ -36,7 +54,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("vo");
 					<%=list.get(i).getContents() %> <a href="#;" class="re_btn">답글</a></td> 
 					<th class="repl_date"><%=list.get(i).getRegdate() %></th>
 					<td id="repl_del">
-						<input type="button" value="삭제" onclick="location.href='/board/replyDelete.do?reply_num=<%=list.get(i).getReply_num() %>&post_id=<%=list.get(i).getPost_id()%>'">
+						<input type="button" value="삭제" onclick="replDel('<%=list.get(i).getPost_id()%>','<%=list.get(i).getReply_num()%>')">
 					</td>
 				</tr>
 				

@@ -69,14 +69,15 @@ BoardVO vo = (BoardVO)request.getAttribute("vo");
         		<div>
 				<form action="boardUpdate.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
 					<input type="hidden" name="post_id" value="<%=vo.getPost_id()%>">
-					<table id="boardTable">
+					<input type="hidden" name="spot_num" value="<%=spot_num %>">
+					<table id="boardTable"> 
 												
 						<tr>		
 							<th>제목</th>
 								<td class="writing_box">
 									<input type="text" name="title" class="tableRight" value="<%=vo.getTitle()%>">
 								</td>
-						</tr>
+						</tr> 
 						
 						<tr>		
 							<td colspan="2">
@@ -88,7 +89,7 @@ BoardVO vo = (BoardVO)request.getAttribute("vo");
 						<div class="writing_btns">
 							<span><input type="submit" value="작성완료" class="btns"></span>
 							<span><input type="reset" value="다시 작성" class="btns"/></span>
-							<span><input type="button" value="목록" class="btns" onclick="location.href='/board/writing/boardList.do?'"></span>
+							<span><input type="button" value="목록" class="btns" onclick="location.href='/board/writing/boardList.do?spot_num=<%=spot_num%>'"></span>
 						</div>
 				</form>
 			</div>

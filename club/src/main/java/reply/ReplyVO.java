@@ -14,9 +14,16 @@ public class ReplyVO {
 	private Timestamp regdate;
 	private int board_id;
 	private String url;
+	private int spot_num;
 	
 	
 	
+	public int getSpot_num() {
+		return spot_num;
+	}
+	public void setSpot_num(int spot_num) {
+		this.spot_num = spot_num;
+	}
 	public String getUrl() {
 		return url;
 	}

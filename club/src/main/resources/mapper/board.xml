@@ -26,15 +26,16 @@
 	
 	<!-- 자유게시판 상세보기 -->
 		<select id="board_view" parameterType="Integer" resultType="board.BoardVO">
-			select * from project.writing where post_id=#{post_id} and spot_num=#{spot_num}
+			select * from project.writing where post_id=#{post_id}
 		</select>
+		
 	<!-- 자유게시판 글수정 -->
-		<update id="board_update" parameterType="board.BoardVO">
-			update project.writing set title=#{title}, contents=#{contents}
+		<update id="board_update" parameterType="board.BoardVO">    
+			update project.writing set title=#{title}, contents=#{contents} where post_id=#{post_id}
 		</update>
 	<!-- 자유게시판 글삭제 -->
 		<delete id="board_delete" parameterType="Integer">
-			delete from project.writing where post_id=#{post_id} and spot_num=#{spot_num=#{spot_num}}
+			delete from project.writing where post_id=#{post_id}
 		</delete>
 	
 	<!-- 갤러리 리스트 -->
@@ -122,30 +123,25 @@
 		</insert>
 	
 	<!-- 공지사항 상세보기 -->
-		<select id="notice_view" parameterType="notice.NoticeVO" resultType="notice.NoticeVO">
-			select * from project.notice where post_id = #{post_id} and spot_num=#{spot_num}
+		<select id="notice_view" parameterType="Integer" resultType="notice.NoticeVO">
+			select * from project.notice where post_id = #{post_id} 
 		</select>
 	
 	<!-- 공지사항 글삭제 -->
 		<delete id="notice_delete" parameterType="Integer">
-			delete from project.notice where post_id=#{post_id} and spot_num=#{spot_num}
+			delete from project.notice where post_id=#{post_id}
 		</delete>
 	
 	<!-- 공지사항 글수정-->
 		<update id="notice_update" parameterType="notice.NoticeVO">
 			update project.notice set title=#{title}, contents=#{contents}
-		<if test="file!=null">
-			, file=#{file}
-		</if>
 			where post_id=#{post_id}
 		</update>
 	
 	<!-- 공지사항 조회수 -->
 		<update id="updateReadcount" parameterType="Integer">
-			update project.notice set view=view+1 where post_id=#{post_id} and spot_num=#{spot_num}
+			update project.notice set view=view+1 where post_id=#{post_id}
 		</update>
-		
-		
 
 	<!-- 보드메인 자유게시글 -->
 		<select id="main_board" resultType="board.BoardVO">
@@ -160,7 +156,7 @@
 			order by regdate desc limit 0,7
 		</select>
 		
-		<!-- 갤러리  조회수 -->
+	<!-- 갤러리  조회수 -->
 		<update id="galleryCount" parameterType="Integer">
 			update project.gallery set view=view+1 where post_id=#{post_id}
 		</update>

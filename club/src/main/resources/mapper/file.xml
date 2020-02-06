@@ -14,5 +14,11 @@
 		insert into project.file (file_num, post_id, board_id, front_name, server_name, regdate) 
 		values(#{file_num}, #{post_id}, #{board_id}, #{front_name}, #{server_name}, now())
 	</insert>
+	
+	<!-- 파일수정 -->
+	<update id="file_update" parameterType="file.FileVO">
+		update project.file set front_name=#{front_name}, server_name=#{server_name} 
+		where post_id = #{post_id} and board_id=#{board_id}
+	</update>
 	  
 </mapper>

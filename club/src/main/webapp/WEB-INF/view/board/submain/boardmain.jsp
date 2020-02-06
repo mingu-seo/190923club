@@ -39,7 +39,7 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
         	
         	<div class="visualRight"> 
         		<div id="preview">
-        		미리보기<a href="admincategory.do"><img src="/img/board/set.png"></a>
+        		미리보기<a href="admincategory.do?spot_num=<%=spot_num%>"><img src="/img/board/set.png"></a>
         		</div>
 	        	
         		<div><!-- 갤러리, 게시판, 공지 div를 감싸고 있음 -->
@@ -102,10 +102,11 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
         			<tr> <!-- 최대 갯수 지정 -->
         				<td>★</td>
         				<td class="preboard-tt">
-        					<a href="/board/writing/boardWriteView.do?board_id=2&post_id=<%=bList.get(i).getPost_id() %>">
+        					<a href="/board/writing/boardWriteView.do?spot_num=<%=spot_num %>&board_id=2&post_id=<%=bList.get(i).getPost_id() %>">
         						<%=bList.get(i).getTitle() %>
         					</a>
         				</td>
+        				<td>홍길동</td>
         				<td><%=bList.get(i).getView() %></td>
         			</tr>
 					
@@ -122,7 +123,7 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
         		<div class=rightBoard>
         		<div id="mm"><a href="/board/notice/noticeList.do?spot_num=<%=spot_num %>&board_id=3"><button class="view-more">더보기</button></a></div>
         		<table class="preboard">
-        			<!--  -->
+        		
         			<%
         			for (int i=0; i<nList.size(); i++) {
         			%>
@@ -130,9 +131,9 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
         			<tr> <!-- 최대 갯수 지정(7개정도) -->
         				<td>★</td>
         				<td class="preboard-tt">
-        					<a href="/board/notice/noticeWriteView.do?board_id=3&post_id=<%=nList.get(i).getPost_id()%>">
+        					<a href="/board/notice/noticeWriteView.do?spot_num=<%=spot_num %>&board_id=3&post_id=<%=nList.get(i).getPost_id()%>">
         						<%=nList.get(i).getTitle() %>  
-        					</a></td>
+        					</a></td> 
         				<td>홍길동</td>
         				<td><%=nList.get(i).getView() %></td>
         			</tr>

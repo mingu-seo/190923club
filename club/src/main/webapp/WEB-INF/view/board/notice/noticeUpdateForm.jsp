@@ -6,6 +6,7 @@
 <%@ page import="notice.*" %>
 <%@ page import="file.*" %>
 <%
+NoticeVO nvo = (NoticeVO)request.getAttribute("nvo");
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 FileVO fv = (FileVO)request.getAttribute("");
 %>
@@ -71,34 +72,36 @@ FileVO fv = (FileVO)request.getAttribute("");
         		
         		<div>
 				<form action="noticeUpdate.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
-				<input type="hidden" name="post_id" value="<%=vo.getPost_id() %>">
+				<input type="hidden" name="post_id" value="<%=nvo.getPost_id() %>">
+				<input type="hidden" name="board_id" value="<%=nvo.getBoard_id() %>"> 
+				<input type="hidden" name="spot_num" value="<%=spot_num %>"> 
 				
 					<table id="boardTable">
 						<tr>		
 							<th>제목</th>
 								<td class="writing_box">
-									<input type="text" name="title" class="tableRight" value="<%=vo.getTitle() %>">
+									<input type="text" name="title" class="tableRight" value="<%=nvo.getTitle() %>">
 								</td>
 						</tr>
 						
 						<tr>		
 							<th>첨부파일</th>
 								<td class="writing_box">
-									<input type="file" name="file_tmp" class="tableRight" value="">
+									<input type="file" name="file_tmp" class="tableRight" >
 								</td>
 						</tr>
 						
 						<tr>		
 							<td colspan="2">
-								<textarea name="contents" id="contents"><%=vo.getContents() %></textarea>
+								<textarea name="contents" id="contents"><%=nvo.getContents() %></textarea>
 							</td>
 						</tr>
-					</table>
+					</table> 
 						
 						<div class="writing_btns">
 							<input type="submit" value="작성완료" class="btns">
 							<input type="reset" value="다시 작성" class="btns"/>
-							<input type="button" value="목록" class="btns" onclick="location.href='/board/notice/noticeList.do?board_id=3'">
+							<input type="button" value="목록" class="btns" onclick="location.href='/board/notice/noticeList.do?spot_num=<%=spot_num%>&board_id=3'">
 						</div>
 				</form>
 			</div>

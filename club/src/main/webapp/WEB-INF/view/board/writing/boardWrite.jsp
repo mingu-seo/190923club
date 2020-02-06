@@ -65,7 +65,9 @@
         		<div class="board_ctg_name">게시판 목록</div>
         		
         		<div>
-				<form action="boardInsert.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
+				<form action="boardInsert.do" method="post" name="writeForm" id="writeForm" enctype="multipart/form-data" onsubmit="save();">
+					<input type="hidden" name="spot_num" value="<%=spot_num%>">
+					<input type="hidden" name="board_id" value="2">
 					<table id="boardTable">
 												
 						<tr>		
@@ -83,7 +85,7 @@
 					</table>
 						
 						<div class="writing_btns">
-							<span><input type="submit" value="작성완료" class="btns"></span>
+							<span><input type="button" value="작성완료" class="btns" onclick="$('#writeForm').submit();"></span>
 							<span><input type="reset" value="다시 작성" class="btns"/></span>
 							<span><input type="button" value="목록" class="btns"></span>
 						</div>

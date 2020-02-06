@@ -3,15 +3,33 @@
 
 <mapper namespace="like">
 
-	<!-- 좋아요 인서트 -->
+	<!-- 1. 좋아요 조회 -->
+	<select id="like_select" parameterType="like.LikeVO" resultType="like.LikeVO">
+		select * 
+		from project.like 
+		where post_id=#{post_id} and board_id=#{board_id} and member_id=#{member_id}
+	</select>
+	
+	<!-- 2. 해당멤버가 좋아요 클릭한 적 없으면 좋아요 인서트 -->
 	<insert id="like_insert" parameterType="like.LikeVO">
-		insert into project.like (post_id, board_id, member_id) 
-		values(#{post_id}, #{board_id}, #{member_id})
+		insert into project.like 
+		(post_id, board_id, member_id) 
+		values
+		(#{post_id}, #{board_id}, #{member_id})
 	</insert>
 	
-	<!-- 좋아요 취소 -->
+	<!-- 3. 해당멤버가 좋아요 클릭한 적 있으면 좋아요 취소 -->
 	<delete id="like_delete" parameterType="like.LikeVO">
-		delete from project.like where post_id=#{post_id} and board_id=#{board_id} and member_id=#{member_id}
+		delete from project.like 
+		where post_id=#{post_id} and board_id=#{board_id} and member_id=#{member_id}
 	</delete>
 	
+	<!-- 좋아요 증가 -->
+	<delete id="like_up" parameterType="java.util.Map">
+		update project.${tableName} set like_cnt = like_cnt+1 WHERE board_id=#{board_id} AND post_id=#{post_id}
+	</delete>	
+	<!-- 좋아요 감소 -->
+	<delete id="like_down" parameterType="java.util.Map">
+		update project.${tableName} set like_cnt = like_cnt-1 WHERE board_id=#{board_id} AND post_id=#{post_id}
+	</delete>	
 </mapper>

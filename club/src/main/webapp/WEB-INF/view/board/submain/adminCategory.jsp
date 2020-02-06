@@ -40,19 +40,16 @@
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div> 
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div>
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div>
         			</div>
@@ -69,19 +66,16 @@
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div> 
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div>
         				
         				<div class="boardAdd">
         				<input class="addBox" type="text" placeholder="추가하세요!">
-        				<img class="categorySeq" src="/img/board/up.PNG"><!-- 카테고리 순서변경 -->
         				<input class="categoryBtn" type="button" value="수정">&nbsp;&nbsp;&nbsp;<input class="categoryBtn" type="button" value="삭제">
         				</div>
         			</div>
@@ -114,7 +108,7 @@
         				</div>
         			</div>
         			
-        		</div>
+        		</div> 
         </div>
        
     </div>

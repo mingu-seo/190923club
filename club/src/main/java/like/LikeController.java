@@ -14,12 +14,20 @@ public class LikeController {
 	@RequestMapping("/board/likeInsert.do")
 	public String likeInsert(LikeVO vo, Model model) {
 		
-		lService.likeInsert(vo);
 		int value = 0;
-		// 있어서 삭제, 카운트-1
-		value = 1;
-		// 없어서 등록, 카운트+1
-		value = 0;
+		
+		if (lService.like_select(vo) != null) {
+			// 있어서 삭제, 카운트-1
+			lService.likeDelete(vo);
+			lService.like_up(false, vo.getTableName(), vo.getBoard_id(), vo.getPost_id());
+			value = 1;
+		} else {
+			// 없어서 등록, 카운트+1
+			lService.likeInsert(vo);
+			lService.like_up(true, vo.getTableName(), vo.getBoard_id(), vo.getPost_id());
+			value = 0;
+		}
+		
 		model.addAttribute("value", value);
 		return "spot/include/return";
 	}

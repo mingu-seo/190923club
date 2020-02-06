@@ -158,7 +158,10 @@
 		margin:40px 40px;
 		heigh:auto;
 		
-	} 
+	}
+	.view_ctt img {
+		max-width:850px;
+	}
 	
 	.view_repl_info {
 		text-align: right;

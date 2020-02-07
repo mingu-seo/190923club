@@ -47,6 +47,8 @@ function getThumbnailPrivew(html, $target) {
         		<div class="board_ctg_name">갤러리 목록</div><!-- 카테고리 이름 -->
 				<form action="galleryUpdate.do" method="post" enctype="multipart/form-data" onsubmit="save();">
 					<input type="hidden" name="post_id" value="<%=vo.getPost_id() %>">
+					<input type="hidden" name="board_id" value="<%=vo.getBoard_id() %>">
+					<input type="hidden" name="spot_num" value="<%=spot_num%>">
 					
 					<table id="boardTable" border="1">
 					<tr>		

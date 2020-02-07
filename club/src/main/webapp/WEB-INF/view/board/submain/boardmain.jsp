@@ -8,6 +8,7 @@
 <%@ page import="gallery.*" %>
 <%@ page import="board.*" %>
 <%
+
 //공지사항 리스트
 List<NoticeVO> nList = (List<NoticeVO>)request.getAttribute("nlist");
 //공지사항 속성
@@ -18,6 +19,7 @@ GalleryVO gvo = (GalleryVO)request.getAttribute("gvo");
 
 //자유게시판 리스트
 List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
+SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 %>
 
 <!DOCTYPE html>
@@ -108,8 +110,8 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
 		                	$(".paper-each2").attr("src", "/upload/"+data.image);
 		                	$("#prePost").attr("onclick", "moveView("+data.post_id+", 'prev')");
 		                	$("#nextPost").attr("onclick", "moveView("+data.post_id+", 'next')");
-		                	$("#deleteHref").attr("href", "galleryDelete.do?post_id="+id);
-		                	$("#detailHref").attr("href", "galleryEdit.do?post_id="+id);
+		                	$("#deleteHref").attr("href", "/board/gallery/galleryDelete.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&post_id="+id);
+		                	$("#detailHref").attr("href", "/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&post_id="+id);
 		               		$("#readCount").text(data.readcount);
 		               		$("#reply_post_id").val(id);
 		               		showLightBox();
@@ -145,7 +147,7 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
                 function getReplyList(id) {
                 	$.ajax({
                 		async :false,
-                		url:'replyList.do',
+                		url:'/board/replyList.do',
                 		data :{
                 			'post_id':id,
                 			'board_id':1
@@ -455,14 +457,14 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
             	<div>
 					<span class="galleryClose">X</span>     
 				</div>
-               <form action="galleryEdit.do" method="post">
+               <form action="/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
                <input type="hidden" id="post_id" name="post_id">
                  <input type="hidden" id="board_id" name="board_id">
                
                 <div class="user-information">
                     <a class="user-information-image" href="#">
                         <img src="http://placekitten.com/70/70">
-                    </a>
+                    </a>    
                     <div class="user-information-text">
                         <h3>작성자</h3>
                         <div class="paper-text2">${gallery.title }</div>
@@ -514,7 +516,7 @@ List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
 				<script>
 				function replyAjax() {
 					$.ajax({
-                		async :false,
+                		async :false,    
                 		url:'/board/galleryReply.do',
                 		data :{
                 			'post_id':$("#reply_post_id").val(),

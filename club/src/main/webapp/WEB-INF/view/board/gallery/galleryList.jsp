@@ -11,8 +11,6 @@
 <%
 List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
 GalleryVO vo = (GalleryVO)request.getAttribute("vo");
-List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
-ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 %>
 <!DOCTYPE html>
@@ -102,8 +100,8 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 		                	$(".paper-each2").attr("src", "/upload/"+data.image);
 		                	$("#prePost").attr("onclick", "moveView("+data.post_id+", 'prev')");
 		                	$("#nextPost").attr("onclick", "moveView("+data.post_id+", 'next')");
-		                	$("#deleteHref").attr("href", "galleryDelete.do?post_id="+id);
-		                	$("#detailHref").attr("href", "galleryEdit.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&post_id="+id);
+		                	$("#deleteHref").attr("href", "/board/gallery/galleryDelete.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&post_id="+id);
+		                	$("#detailHref").attr("href", "/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&post_id="+id);
 		               		$("#readCount").text(data.readcount);
 		               		$("#reply_post_id").val(id);
 		               		showLightBox();
@@ -115,7 +113,7 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
                 	});
 	                	
                 }
-                
+                   
                 function replyView(id){
                 	$.ajax({
                 		async :false,
@@ -402,7 +400,7 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
             	<div>
 					<span class="galleryClose">X</span>     
 				</div>
-               <form action="galleryEdit.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
+               <form action="/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
                <input type="hidden" id="post_id" name="post_id">
                  <input type="hidden" id="board_id" name="board_id">
                  <input type="hidden" id="spot_num" name="<%=spot_vo.getNum() %>" >

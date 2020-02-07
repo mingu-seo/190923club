@@ -10,8 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import notice.NoticeVO;
+import category.CategoryVO;
 import gallery.GalleryVO;
+import notice.NoticeVO;
 import reply.ReplyVO;
 import spot.SpotService;
 import spot.SpotVO;
@@ -38,6 +39,9 @@ public class BoardController {
 	@Autowired
 	private SpotService spotService;
 	
+	@Autowired
+	private category.CategoryService cService;
+	
 	//서브메인 페이지
 	@RequestMapping("/board/submain/submain.do")
 	public String subMain(Model model, @RequestParam("spot_num") String spot_num) {
@@ -48,8 +52,16 @@ public class BoardController {
 	}
 	//게시판 관리 페이지
 	@RequestMapping("/board/submain/admincategory.do")
-	public String adminCategory(Model model,@RequestParam("spot_num") String spot_num) {
+	public String adminCategory(Model model,@RequestParam("spot_num") String spot_num, CategoryVO vo) {
+		//카테고리 리스트 가져오기
+		List<CategoryVO> gcList = cService.gCategoryList(vo);
+		List<CategoryVO> wcList = cService.wCategoryList(vo);
+		List<CategoryVO> ncList = cService.nCategoryList(vo);
+		
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		model.addAttribute("gcList", gcList);
+		model.addAttribute("wcList", wcList);
+		model.addAttribute("ncList", ncList);
 		model.addAttribute("spot_vo", spotvo);
 		model.addAttribute("spot_num", spot_num);
 		return "board/submain/adminCategory";

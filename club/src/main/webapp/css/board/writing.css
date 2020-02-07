@@ -297,9 +297,15 @@
 	}
 	
 	.reply-contents {
-		text-align:left;
+		text-align:left; 
 	}
 	.listImg {
 		max-width:300px;
+	}
+	
+	.cgAdd {
+		font-size:18px;
+		font-weight: bold;
+		
 	}
 }

@@ -88,7 +88,7 @@ function ajaxView(num){
      
 function deleteConfirm(num) {
 	if (confirm("삭제하시겠습니까?")) {
-		location.href="categoryDelete.do?num="+num;
+		location.href="spotDelete.do?num="+num;
 	}
 }
 </script>
@@ -108,7 +108,7 @@ function deleteConfirm(num) {
 					<h2>SPOT</h2>
 				</div>
 				<form name="searchForm" id="searchForm" action="spotList.do"  method="post">
-					<h10>HOT SPOT 관리 페이지</h10>
+					<div class="spot_title">HOT SPOT 관리 페이지</div>
 					<div class="search">
 						<select name="searchOption" title="검색을 선택해주세요">
 							<option value="all">전체</option>

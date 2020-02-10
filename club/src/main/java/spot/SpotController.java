@@ -61,7 +61,7 @@ public class SpotController {
 	}
 	
 	//HOT SPOT 삭제하기
-	@RequestMapping("/spot/Delete.do")
+	@RequestMapping("/spot/spotDelete.do")
 	public String spotDelete(HttpServletRequest request) {
 		int num = Integer.parseInt(request.getParameter("num"));
 		spotService.spotDelete(num);

@@ -392,3 +392,8 @@ label{
     vertical-align: middle;
     display: inline;
 }
+.spot_title{
+	font-size: 20px;
+    padding: 20px;
+    font-weight: bold;
+}

@@ -367,7 +367,8 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 					if(gList.isEmpty()) { 
 					%>
 						<div class="contents_empty">
-							<a href="/board/gallery/galleryWrite.do?spot_num=<%=spot_num%>&board_num=1"><img class="contents_empty_img" src="/img/board/color.png"></a><br>
+							<a href="/board/gallery/galleryWrite.do?spot_num=<%=spot_num%>&board_num=1">
+								<img class="contents_empty_img" src="/img/board/color.png"></a><br>
 							등록된 내용이 없습니다.
 						</div>
         			
@@ -405,7 +406,8 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 					if(bList.isEmpty()) { 
 					%>
 						<div class="contents_empty">
-							<img class="contents_empty_img" src="/img/board/pen.png"> <br>
+							<a href="/board/writing/boardWrite.do?spot_num=<%=spot_num%>&board_num=2">
+								<img class="contents_empty_img" src="/img/board/pen.png"></a><br>
 							등록된 내용이 없습니다.
 						</div>
 					<%
@@ -444,7 +446,8 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
         			if(nList.isEmpty()) {
         			%>
         				<div class="contents_empty">
-							<img class="contents_empty_img" src="/img/board/pen.png"> <br>
+							<a href="/board/notice/noticeWrite.do?spot_num=<%=spot_num%>&board_num=3"> 
+								<img class="contents_empty_img" src="/img/board/pen.png"></a><br>
 							등록된 내용이 없습니다.
 						</div>
         			<%}

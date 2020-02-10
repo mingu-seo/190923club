@@ -142,8 +142,14 @@
 		.contents_empty {
 			font-size: 25px;
 		}
-		.contents_empty_img {
+		.contents_empty_img { 
 			width:40px;
 			height:40px; 
 			margin:10px;
+		}
+		.footer_menu span {
+			font-size:18px;  
+		} 
+		#spot_name {
+			color:#c71585;
 		}

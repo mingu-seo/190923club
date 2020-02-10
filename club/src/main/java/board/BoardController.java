@@ -89,14 +89,15 @@ public class BoardController {
 	@RequestMapping("/board/writing/boardList.do") 
 	public String boardList(Model model, 
 			HttpServletRequest req, 
-			BoardVO vo, @RequestParam("spot_num") String spot_num) {
+			BoardVO vo, CategoryVO cVO, @RequestParam("spot_num") String spot_num) {
 			
 			List<BoardVO> list = boardDao.boardList(vo);
+			List<CategoryVO> category_wList = cService.wCategoryList(cVO);
 			
 			SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 			model.addAttribute("spot_num", spot_num);
 			model.addAttribute("spot_vo", spotvo);
-			
+			model.addAttribute("category_wList", category_wList);
 			model.addAttribute("list", list);
 			model.addAttribute("vo",vo);
 		return "board/writing/boardList";
@@ -104,11 +105,12 @@ public class BoardController {
 	
 	//자유게시판 작성페이지
 	@RequestMapping("/board/writing/boardWrite.do") 
-	public String boardWrite(Model model, @RequestParam("spot_num") String spot_num) {
+	public String boardWrite(Model model, CategoryVO cVO, @RequestParam("spot_num") String spot_num) {
+		List<CategoryVO> category_wList = cService.wCategoryList(cVO);
 		
 		//스팟번호
 		model.addAttribute("spot_num", spot_num);
-		
+		model.addAttribute("category_wList", category_wList);
 		return "board/writing/boardWrite";
 	}
 	//자유게시판 작성

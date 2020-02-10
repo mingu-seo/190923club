@@ -131,7 +131,8 @@ $(function() {
 	        				for(int i=0; i<wcList.size(); i++) {
 	        				%>
 	        				<div class="boardAdd"> 
-		        				<input class="addBox" type="text" name="name" value="<%=wcList.get(i).getName()%>"> 
+		        				<input class="addBox" type="text" name="name" value="<%=wcList.get(i).getName()%>">
+		        				<input type="hidden" name="category_ids" value="<%=wcList.get(i).getCategory_id()%>">  
 		        				<input class="categoryBtn deleteBtn" type="button" value="삭제">
 	        				</div>
 	        				<%

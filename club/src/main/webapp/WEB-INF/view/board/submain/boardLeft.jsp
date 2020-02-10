@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="spot.*" %>
+<%@ page import ="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="category.*" %>
 <%
 String board_type = request.getParameter("board_type");
-
+List<CategoryVO> category_wList = (List<CategoryVO>)request.getAttribute("category_wList");  
 %>
 <style>
 	.menu_on {
@@ -38,19 +41,18 @@ String board_type = request.getParameter("board_type");
         			<div class="leftMenu">
 		        		<div class="board-title">게시판</div>
 		        		<div>
-		        			<ul>  
+		        			<ul>
+		        				<%
+		        					//카테고리 리스트 
+		        					for(int i=0; i<category_wList.size(); i++) {
+		        				%>  
 		        				<li>
 			        				<a href="/board/writing/boardList.do?spot_num=<%=spot_num %>&board_id=2">
-			        				<span class="ctg-s">┗</span>공감해주셈</a>
+			        				<span class="ctg-s">┗</span><%=category_wList.get(i).getName() %></a> 
 		        				</li>
-		        				<li>
-			        				<a href="/board/writing/boardList.do?spot_num=<%=spot_num %>&board_id=2">
-			        				<span class="ctg-s">┗</span>웃긴글</a>
-		        				</li>
-		        				<li>
-			        				<a href="/board/writing/boardList.do?spot_num=<%=spot_num %>&board_id=2">
-			        				<span class="ctg-s">┗</span>어쩌구</a>
-		        				</li>
+		        				<%
+		        				}
+		        				%>
 		        			</ul>
 	        			</div>
 	        		</div>

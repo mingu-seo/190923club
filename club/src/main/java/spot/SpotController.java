@@ -33,7 +33,7 @@ public class SpotController {
 		int r = spotService.spotInsert(spotvo, file,request);
 		model.addAttribute("list", spotvo);
 		//if(r < 0)
-		return "board/submain/submain";
+		return "redirect:/board/submain/submain.do?spot_num="+r;
 	}	
 	
 

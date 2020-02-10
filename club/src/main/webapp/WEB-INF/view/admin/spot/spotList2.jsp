@@ -16,8 +16,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ include file="/WEB-INF/view/admin/include/spotheadHtml.jsp" %>
+<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
+function check(){
+	if($("#allChk").prop("checked")){
+		$("input[name='num']").prop("checked", true);
+	}else{
+		$("input[name='num']").prop("checked", false);
+	}
+}
+function deleteConfirm() {
+	if (confirm("삭제하시겠습니까?")) {
+		$("#frm").submit();
+	}
+}
 
 function showLightBox(){
     //라이트박스를 보이게 합니다.
@@ -41,6 +53,8 @@ function hideLightBox(){
 
 //라이트박스
 $(function(){
+    
+    
     //라이트 박스 제거 이벤트
     $('#darken-background').click(function(){
     	console.log(1);
@@ -60,21 +74,16 @@ $('body').css('overflow','hidden');
 }
 function ajaxView(num){
     $.ajax({
-		url : 'spotAjax.do',
+		url : 'categoryAjax.do',
 		async: false, //싱크를 맞춰줌
 		data : {
 		'num' : num
 	},
 	dataType : 'JSON',
 	success : function(data){
-		$("#category_name").text(data.category_name);
 		$("#name").text(data.name);
-		$("#spot_file").attr("src","/upload/images/"+data.file);
-		$("#spot_content").text(data.content);
-		$("#tel").text(data.tel);
-		$("#email").text(data.email);
-		$("#regdate").text(data.regdate);
-		$("#question").text(data.question);
+		$("#file").attr("src","/upload/images/"+data.file);
+		$("#category_name").text(data.category_name);
 		$("#num").val(num);
 		$("#editBtn").attr("onclick","updateConfirm("+num+");");
 		$("#delBtn").attr("onclick","deleteConfirm("+num+");");
@@ -86,6 +95,11 @@ function ajaxView(num){
      	showLightBox();
      }
      
+function updateConfirm(num) {
+	if (confirm("수정하시겠습니까?")) {
+		location.href="categoryUpdateForm.do?num="+num;
+	}
+}
 function deleteConfirm(num) {
 	if (confirm("삭제하시겠습니까?")) {
 		location.href="categoryDelete.do?num="+num;
@@ -107,21 +121,10 @@ function deleteConfirm(num) {
 				<div class="con_tit">
 					<h2>SPOT</h2>
 				</div>
-				<form name="searchForm" id="searchForm" action="spotList.do"  method="post">
-					<h10>HOT SPOT 관리 페이지</h10>
-					<div class="search">
-						<select name="searchOption" title="검색을 선택해주세요">
-							<option value="all">전체</option>
-							<option value="category" <c:if test="${spotvo.searchOption == 'category'}">selected</c:if>>카테고리</option>
-							<option value="name" <c:if test="${spotvo.searchOption == 'name'}">selected</c:if>>제목</option>
-							<option value="content" <c:if test="${spotvo.searchOption == 'content'}">selected</c:if>>내용</option>
-						</select>
-						<input type="text" name="keyword" value="${spotvo.keyword}" title="검색할 내용을 입력해주세요" />
-						<input type="image"  src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
-					</div>
-				</form>
-				<div class="spotcon">
+				<!-- //con_tit -->
+				<div class="con">
 					<!-- 내용 : s -->
+					<div id="bbs">
 						<div id="blist">
 							     <form  action="spotView.do" method="post">
 								    <div class="container">
@@ -131,7 +134,7 @@ function deleteConfirm(num) {
 												if(j %2 == 0){
 											%>
 									            <div class="button">
-									            	<a href="javascript:ajaxView('<%=spot.get(j).getNum() %>');"  data-num="<%=spot.get(j).getNum() %>">
+									                <a href="/board/submain/submain.do?spot_num=<%=spot.get(j).getNum() %>" target="_blank">
 									              		<img class="img" src="/upload/images/<%=spot.get(j).getFile()%>">
 									               		<div class="spotname"> 
 									                		<%=spot.get(j).getName()%>
@@ -157,7 +160,7 @@ function deleteConfirm(num) {
 												if(j %2 == 1){
 											%>
 									            <div class="button">
-									                <a href="javascript:ajaxView('<%=spot.get(j).getNum() %>');"  data-num="<%=spot.get(j).getNum() %>">
+									                <a href="/board/submain/submain.do?spot_num=<%=spot.get(j).getNum() %>" target="_blank">
 									              		<img class="img" src="/upload/images/<%=spot.get(j).getFile()%>">
 									               		<div class="spotname"> 
 									                		<%=spot.get(j).getName()%>
@@ -179,10 +182,30 @@ function deleteConfirm(num) {
 								        </div>
 								    </div>
 								    </form>
+							<div class="btn">
+								<div class="btnLeft">
+									<a class="btns" href="#" onclick="deleteConfirm();"><strong>삭제</strong> </a>
+								</div>
+							</div>
+							<!--//btn-->
+							<form name="searchForm" id="searchForm" action="spotList.do"  method="post">
+								<div class="search">
+									<select name="searchOption" title="검색을 선택해주세요">
+										<option value="all">전체</option>
+										<option value="category" <c:if test="${spotvo.searchOption == 'category'}">selected</c:if>>카테고리</option>
+										<option value="name" <c:if test="${spotvo.searchOption == 'name'}">selected</c:if>>제목</option>
+										<option value="content" <c:if test="${spotvo.searchOption == 'content'}">selected</c:if>>내용</option>
+									</select>
+									<input type="text" name="keyword" value="${spotvo.keyword}" title="검색할 내용을 입력해주세요" />
+									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+								</div>
+							</form>
 							<!-- //search --> 
 							
 						</div>
 						<!-- //blist -->
+					</div>
+					<!-- //bbs --> 
 					<!-- 내용 : e -->
 				</div>
 				<!--//con -->
@@ -198,24 +221,21 @@ function deleteConfirm(num) {
 	    <div id="lightbox">
 		    <form action="spotUpdateForm.do" method="post">
 		    <input type="hidden" id="num" name="num" value="0"> 
-	           <div class="spot-information">
-	               <div class="spot-information-text">
-	                                 카테고리 번호: <span id="category_name"></span></br>
-	                   SPOT 이름: <span id="name"></span>
+	           <div class="user-information">
+	               <div class="user-information-text">
+	                   <span id="name"></span>
 	               </div>
 	                <hr class="lightbox-splitter">
-	           			<div class="spot-infomation-img">
-	                		<img id="spot_file" src="http://placehold.it/300x300">
+	           			<div class="user-infomation-img">
+	                		<img id="file" src="http://placehold.it/600x750">
 	        			</div> 
-		        		<div class="spot_content">
-		                	<p>SPOT 소개 : <span id="spot_content"></span></p>
-		                	<p>전화번호 : <span id="tel"></span></p>
-		                	<p>이메일 : <span id="email"></span></p>
-		                	<p>SPOT 생성일 : <span id="regdate"></span></p>
-		                	<p>SPOT 가입질문 : <span id="question"></span></p>
-		                </div>
-				</div>
+	                	<div id="category_name">
+	                		카테고리 :
+	                	</div>
+					</div>
 	  		</form>
+			<input type="button" value="목록" onclick="location.href='categoryList.do';">
+			<input type="button" id="editBtn" value="수정" onclick="updateConfirm(num);">
 			<input type="button" id="delBtn" value="삭제" onclick="deleteConfirm(num);">
 		</div>  
    	</div>

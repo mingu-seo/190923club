@@ -7,10 +7,14 @@
 		SELECT COUNT(*) FROM project.spot WHERE name=#{name}
 	</select>
 	
-	<insert id="spotInsert" parameterType="spot.SpotVO">
+	<insert id="spotInsert" parameterType="spot.SpotVO" useGeneratedKeys="true">
 		insert into project.spot (category_num, name, file, content, tel, email, regdate, modifydate ,question)
 		values
 		(#{category_num},#{name}, #{file}, #{content}, #{tel}, #{email},now(), null, #{question})
+		
+		<selectKey keyProperty="num" resultType="Integer" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
 	</insert>
 	
 	<select id="spotView" resultType="spot.SpotVO" parameterType="integer">
@@ -31,5 +35,44 @@
 	</delete>
 	<select id="spotList" resultType="spot.SpotVO" parameterType="spot.SpotVO">
 		SELECT * FROM project.spot
+		<include refid="search"></include>
+		limit #{startIndex},#{limit}
 	</select>
+	
+	<select id="count" resultType="integer" parameterType="spot.SpotVO">
+		SELECT count(*) FROM project.spot
+		<where>
+			<if test="keyword != null and keyword != ''">
+				name like '%${keyword}%' OR category_num like '%${keyword}%' OR content like '%${keyword}%'
+			</if>
+		</where>
+	</select>
+	
+	<!--  게시글 레코드 갯수 -->
+	<select id="countArticle" resultType="integer">
+		SELECT count(*) FROM project.spot
+		<include refid="search"></include>
+	</select>
+	
+	<!-- 반복되는 sql의 일부를 sql태그를 이용해서 뺄 수 있다. -->
+	<sql id="search">
+		<where>
+			<!-- 검색옵션이 전체 검색일 경우 -->
+			<if test="searchOption =='all' and keyword != null and keyword != ''">
+				category_num in (select num from project.spotcategory where name like '%${keyword}%')
+				OR content like '%${keyword}%' 
+				OR name like '%${keyword}%' 
+				OR tel like '%${keyword}%' 
+			</if>
+	
+			<!-- 전체 검색이 아닐 경우 -->
+			<if test="searchOption =='category' and keyword != null and keyword != ''">
+				category_num in (select num from project.spotcategory where name like '%${keyword}%') 
+			</if>
+			<if test="searchOption !='all' and searchOption !='category' and keyword != null and keyword != ''">
+				${searchOption} like '%${keyword}%'
+			</if>
+		</where>
+	</sql>
+
 </mapper>

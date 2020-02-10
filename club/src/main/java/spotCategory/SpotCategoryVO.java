@@ -6,6 +6,8 @@ public class SpotCategoryVO {
 	private String name;
 	private String file;
 	
+	private String keyword;
+	private String searchOption;
 	
 	public int getNum() {
 		return num;
@@ -24,6 +26,18 @@ public class SpotCategoryVO {
 	}
 	public void setFile(String file) {
 		this.file = file;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getSearchOption() {
+		return searchOption;
+	}
+	public void setSearchOption(String searchOption) {
+		this.searchOption = searchOption;
 	}
 	
 	

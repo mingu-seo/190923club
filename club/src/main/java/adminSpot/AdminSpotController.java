@@ -1,5 +1,7 @@
 package adminSpot;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import adminQna.AdminQnaVO;
 import spot.SpotDAO;
 import spot.SpotService;
 import spot.SpotVO;
+import spotCategory.SpotCategoryService;
+import spotCategory.SpotCategoryVO;
 
 @Controller
 public class AdminSpotController {
@@ -20,29 +25,38 @@ public class AdminSpotController {
 	private SpotService spotService;
 
 	@Autowired
+	private SpotCategoryService spotCategoryService;
+	
+	@Autowired
 	private SpotDAO spotDao;
 	
 	// spot 관리
 	@RequestMapping("/admin/spot/spotList.do")
-	public String adminSpotList() {
+	public String adminSpotList(Model model ,SpotCategoryVO vo,SpotVO spotvo) {
+		int[] listCount = spotService.count(spotvo);
+		List<SpotCategoryVO> list = spotCategoryService.spotCategoryList(vo);
+		List<SpotVO> spotArticle = spotService.spotList(spotvo);
+		model.addAttribute("listCount", listCount[0]);
+		model.addAttribute("totalpage", listCount[1]);
+		
+		model.addAttribute("spot",spotArticle);
+		model.addAttribute("spotvo",spotvo);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("vo", vo);		
 		return "admin/spot/spotList";
 	}
 	
-	//HOT SPOT 등록 폼
-	@RequestMapping("/admin/spot/spotRegist.do")
-	public String adminSpotWrite() {
-		return "spot/spotRegistForm";
-	}
-	
-	//HOT SPOT 등록
-	@RequestMapping("/admin/spot/spotInsert.do")
-	public String adminSpotInsert(Model model,SpotVO spotvo, @RequestParam("filename_tmp") MultipartFile file , HttpServletRequest request) {
-		int r = spotService.spotInsert(spotvo, file,request);
-		model.addAttribute("list", spotvo);
-		//if(r < 0)	
-		return "board/submain/submain";
+	//HOT SPOT Ajax 
+	@RequestMapping("/admin/spot/spotAjax.do")
+	public String adminSpotView(Model model, @RequestParam("num") int num) {
+		SpotVO spotvo = spotService.spotView(num);
+		model.addAttribute("spotvo", spotvo);
+		return "admin/spot/spotAjax";
+		
 	}	
 	
+
 	//HOT SPOT 수정 폼
 	@RequestMapping("/admin/spot/UpdateForm.do")
 	

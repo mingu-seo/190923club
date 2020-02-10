@@ -10,6 +10,7 @@
 				<if test="search_word != null and search_word != ''">
 					title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%'
 				</if>
+				spot_num = #{spot_num}
 			</where>  
 			order by regdate desc
 		</select>
@@ -108,6 +109,7 @@
 				<if test="search_word != null and search_word != ''">
 					title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%'
 				</if>
+				spot_num = #{spot_num}
 			</where>  
 			order by regdate desc limit #{startIndex}, #{limit}
 		</select>
@@ -150,20 +152,20 @@
 
 	<!-- 보드메인 자유게시글 -->
 		<select id="main_board" resultType="board.BoardVO">
-			select post_id, title, writer, view from project.writing 
+			select post_id, title, writer, view from project.writing where spot_num=#{spot_num}
 			order by regdate desc limit 0,7
 		</select>
 
 
 	<!-- 보드메인 공지 -->  
 		<select id="main_notice" resultType="notice.NoticeVO">
-			select post_id, title, writer, view from project.notice 
+			select post_id, title, writer, view from project.notice where spot_num=#{spot_num}
 			order by regdate desc limit 0,7
 		</select>
 		
 
 		<select id="main_gallery" resultType="gallery.GalleryVO">
-			select post_id, title, writer, image, regdate, view from project.gallery
+			select post_id, title, writer, image, regdate, view from project.gallery where spot_num=#{spot_num}
 			order by regdate desc limit 0,4
 		</select>
 		

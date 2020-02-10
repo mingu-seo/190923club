@@ -364,19 +364,29 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
         				<div id="mm"><a href="/board/gallery/galleryList.do?spot_num=<%=spot_num %>&board_id=1"><button class="view-more">더보기</button></a></div>
         			
         			<%
+					if(gList.isEmpty()) { 
+					%>
+						<div class="contents_empty">
+							<a href="/board/gallery/galleryWrite.do?spot_num=<%=spot_num%>&board_num=1"><img class="contents_empty_img" src="/img/board/color.png"></a><br>
+							등록된 내용이 없습니다.
+						</div>
+        			
+        			<%}
+					else {
         			for (int i=0; i<gList.size(); i++) { 
-        			%>
+        				%> 
         			<div class="pregalary-info">
 					<img class="pregalary-img" src="/upload/<%=gList.get(i).getImage()%>" onclick="ajaxView('<%=gList.get(i).getPost_id()%>');"><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
 					<div class="pregalary-title"><%=gList.get(i).getTitle() %></div>
 					<div class="pregalary-writer">작성자 <%=gList.get(i).getWriter()%> </div>
 					<div class="pregalary-dn">
 					<span class="pregalary-day"><%=util.Function.getYmd(gList.get(i).getRegdate())%></span>&nbsp;&nbsp;<span class="pregalary-num">조회수 <%=gList.get(i).getView()%></span>
-					</div>
+					</div> 
 					</div>
         			
         			<%
-        			}
+        				}
+					}
         			%>
 					
 					
@@ -386,13 +396,21 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
         		</div>
         		
         		<div class="pre-board">
-        		<div class="preBoard-name">게시판</div>
+        		<div class="preBoard-name">게시판</div> 
         		<div class=rightBoard>
         		<div id="mm"><a href="/board/writing/boardList.do?spot_num=<%=spot_num %>&board_id=2"><button class="view-more">더보기</button></a></div> 
         		<table class="preboard">
-					
+
 					<%
-					for (int i=0; i<bList.size(); i++) {
+					if(bList.isEmpty()) { 
+					%>
+						<div class="contents_empty">
+							<img class="contents_empty_img" src="/img/board/pen.png"> <br>
+							등록된 내용이 없습니다.
+						</div>
+					<%
+					} else {
+						for (int i=0; i<bList.size(); i++) {
 					%>
 					
         			<tr> <!-- 최대 갯수 지정 -->
@@ -405,14 +423,16 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
         				<td>홍길동</td>
         				<td><%=bList.get(i).getView() %></td>
         			</tr>
+        			
 					
 					<%
+						} //else닫기
 					}
 					%>        			
         			
         		</table>
         		</div>
-        		</div>
+        		</div> 
 
         		<div class="pre-board">
         		<div class="preBoard-name">공지</div>
@@ -421,6 +441,14 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
         		<table class="preboard">
         		
         			<%
+        			if(nList.isEmpty()) {
+        			%>
+        				<div class="contents_empty">
+							<img class="contents_empty_img" src="/img/board/pen.png"> <br>
+							등록된 내용이 없습니다.
+						</div>
+        			<%}
+        			else {
         			for (int i=0; i<nList.size(); i++) {
         			%>
         			
@@ -434,8 +462,9 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
         				<td><%=nList.get(i).getView() %></td>
         			</tr>
         			
-        			<%  
-        			}
+        			<%   
+        				} //for 닫기
+        			} //else 닫기
         			%>
         		</table>
         		</div>

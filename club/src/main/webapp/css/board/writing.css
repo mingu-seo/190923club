@@ -158,7 +158,10 @@
 		margin:40px 40px;
 		heigh:auto;
 		
-	} 
+	}
+	.view_ctt img {
+		max-width:850px;
+	}
 	
 	.view_repl_info {
 		text-align: right;
@@ -294,8 +297,15 @@
 	}
 	
 	.reply-contents {
-		text-align:left;
+		text-align:left; 
+	}
+	.listImg {
+		max-width:300px;
 	}
 	
-
+	.cgAdd {
+		font-size:18px;
+		font-weight: bold;
+		
+	}
 }

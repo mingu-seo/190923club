@@ -10,6 +10,7 @@
 				<if test="search_word != null and search_word != ''">
 					title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%'
 				</if>
+				spot_num = #{spot_num}
 			</where>  
 			order by regdate desc
 		</select>
@@ -26,15 +27,16 @@
 	
 	<!-- 자유게시판 상세보기 -->
 		<select id="board_view" parameterType="Integer" resultType="board.BoardVO">
-			select * from project.writing where post_id=#{post_id} and spot_num=#{spot_num}
+			select * from project.writing where post_id=#{post_id}
 		</select>
+		
 	<!-- 자유게시판 글수정 -->
-		<update id="board_update" parameterType="board.BoardVO">
-			update project.writing set title=#{title}, contents=#{contents}
+		<update id="board_update" parameterType="board.BoardVO">    
+			update project.writing set title=#{title}, contents=#{contents} where post_id=#{post_id}
 		</update>
 	<!-- 자유게시판 글삭제 -->
 		<delete id="board_delete" parameterType="Integer">
-			delete from project.writing where post_id=#{post_id} and spot_num=#{spot_num=#{spot_num}}
+			delete from project.writing where post_id=#{post_id}
 		</delete>
 	
 	<!-- 갤러리 리스트 -->
@@ -94,6 +96,11 @@
 			</if>
 			where post_id=#{post_id}
 		</update>
+		
+		<!-- 갤러리 조회수 -->
+		<update id="updateRead" parameterType="Integer">
+			update project.gallery set view=view+1 where post_id=#{post_id}
+		</update>
 	
 	<!-- 공지사항 리스트 -->
 		<select id="notice_list" parameterType="notice.NoticeVO" resultType="notice.NoticeVO">
@@ -102,6 +109,7 @@
 				<if test="search_word != null and search_word != ''">
 					title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%'
 				</if>
+				spot_num = #{spot_num}
 			</where>  
 			order by regdate desc limit #{startIndex}, #{limit}
 		</select>
@@ -122,42 +130,43 @@
 		</insert>
 	
 	<!-- 공지사항 상세보기 -->
-		<select id="notice_view" parameterType="notice.NoticeVO" resultType="notice.NoticeVO">
-			select * from project.notice where post_id = #{post_id} and spot_num=#{spot_num}
+		<select id="notice_view" parameterType="Integer" resultType="notice.NoticeVO">
+			select * from project.notice where post_id = #{post_id} 
 		</select>
 	
 	<!-- 공지사항 글삭제 -->
 		<delete id="notice_delete" parameterType="Integer">
-			delete from project.notice where post_id=#{post_id} and spot_num=#{spot_num}
+			delete from project.notice where post_id=#{post_id}
 		</delete>
 	
 	<!-- 공지사항 글수정-->
 		<update id="notice_update" parameterType="notice.NoticeVO">
 			update project.notice set title=#{title}, contents=#{contents}
-		<if test="file!=null">
-			, file=#{file}
-		</if>
 			where post_id=#{post_id}
 		</update>
 	
 	<!-- 공지사항 조회수 -->
 		<update id="updateReadcount" parameterType="Integer">
-			update project.notice set view=view+1 where post_id=#{post_id} and spot_num=#{spot_num}
+			update project.notice set view=view+1 where post_id=#{post_id}
 		</update>
-		
-		
 
 	<!-- 보드메인 자유게시글 -->
 		<select id="main_board" resultType="board.BoardVO">
-			select post_id, title, writer, view from project.writing 
+			select post_id, title, writer, view from project.writing where spot_num=#{spot_num}
 			order by regdate desc limit 0,7
 		</select>
 
 
 	<!-- 보드메인 공지 -->  
 		<select id="main_notice" resultType="notice.NoticeVO">
-			select post_id, title, writer, view from project.notice 
+			select post_id, title, writer, view from project.notice where spot_num=#{spot_num}
 			order by regdate desc limit 0,7
+		</select>
+		
+
+		<select id="main_gallery" resultType="gallery.GalleryVO">
+			select post_id, title, writer, image, regdate, view from project.gallery where spot_num=#{spot_num}
+			order by regdate desc limit 0,4
 		</select>
 		
 		<!-- 갤러리  조회수 -->

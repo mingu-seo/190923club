@@ -6,7 +6,15 @@ public class LikeVO {
 	private int post_id;
 	private int board_id;
 	private int member_id;
+	private String tableName;
 	
+	
+	public String getTableName() {
+		return tableName;
+	}
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
 	public int getLike_no() {
 		return like_no;
 	}

@@ -15,6 +15,7 @@
    <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
 <%
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
+NoticeVO nvo = (NoticeVO)request.getAttribute("nvo");
 FileVO fv = (FileVO)request.getAttribute("fv");
 List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
 ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
@@ -22,9 +23,9 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 
 <!-- 삭제 스크립트 -->
 <script type="text/javascript">
-   function noticeDel(post_id) {
+   function noticeDel(post_id,spot_num) {
 	   if(confirm("삭제하시겠습니까?")) { 
-		   location.href="/board/notice/noticeDelete.do?post_id="+post_id;
+		   location.href="/board/notice/noticeDelete.do?spot_num="+spot_num+"&post_id="+post_id;
 	   } else
 		   return false;
 		   
@@ -73,11 +74,16 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 	 		data : {
 	 			'post_id' : $(".post_id").val(), 
 	 			'board_id' : $(".board_id").val(),
-	 			'member_id' : 10
+	 			'member_id' : 10,
+	 			'tableName' : 'notice'
 	 		},
 	 		dataType :'HTML',
 	 		success : function(data) {
-	 			alert("좋아요 증가되었습니다.")
+	 			if (data.trim() == "0") {
+	 				$(".like_cnt").text(Number($(".like_cnt").text())+1);
+	 			} else {
+	 				$(".like_cnt").text(Number($(".like_cnt").text())-1);
+	 			}
 	 		},
 	 		error:function(data) {
 	 			alert("ajax실패")
@@ -107,11 +113,11 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
         	<div class="visualRight">
         		<div class="board_ctg_name">게시판 목록</div>
         	<div class="view_wrap">
-					<div class="view_tt"><%=vo.getTitle() %>
+					<div class="view_tt"><%=nvo.getTitle() %>
 						<div class="view_info">
 							<span>김세영</span>
 							<span>|</span> 
-							<span><%=vo.getRegdate() %></span>
+							<span><%=nvo.getRegdate() %></span>  
 						</div>
 					</div>
 					<div class="view_file">
@@ -120,19 +126,19 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 						<% } %>
 					</div>
 					<div class="view_ctt">
-						<%=vo.getContents() %> 
+						<%=nvo.getContents()%> 
 					</div>
 					
 					<div class="view_repl_info">
 						<form id="like_form">
-							<input type="hidden" name="post_id" value="<%= vo.getPost_id()%>">
-							<input type="hidden" name="board_id" value="<%= vo.getBoard_id()%>">
+							<input type="hidden" name="post_id" value="<%=nvo.getPost_id()%>">
+							<input type="hidden" name="board_id" value="<%=nvo.getBoard_id()%>">
 								<span class="view_like" onclick="likeAjax()">❤ </span> 
-								<span class="like_cnt">35</span>
+								<span class="like_cnt"><%=nvo.getLike_cnt() %></span>
 						</form>
 						 
 						<span>조회</span>
-						<span><%=vo.getView() %></span>  
+						<span><%=nvo.getView() %></span>  
 					</div>		
 				
 				<div class="repl_box">
@@ -143,8 +149,8 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 						
 						<!-- 댓글 폼 -->
 						<form action="/board/reply.do?board_id=3" method="post">
-								<input type="hidden" name="post_id" class="post_id" value="<%=vo.getPost_id() %>">
-								<input type="hidden" name="board_id" class="board_id" value="<%=vo.getBoard_id()%>">
+								<input type="hidden" name="post_id" class="post_id" value="<%=nvo.getPost_id() %>">
+								<input type="hidden" name="board_id" class="board_id" value="<%=nvo.getBoard_id()%>">
 								<input type="hidden" name="url" value="board/notice/noticeReplyAjax.do">
 							<table>
 								<tr>
@@ -203,9 +209,9 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 				</div>
 			</div>
 			  
-			<input type="button" value="삭제" class="btns" onclick="javascript:noticeDel('<%=vo.getPost_id()%>');">
-			<input type="button" value="수정" class="btns" onclick="location.href='noticeUpdateForm.do?board_id=3&post_id=<%=vo.getPost_id() %>'">
-			<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?board_id=3'"> 
+			<input type="button" value="삭제" class="btns" onclick="javascript:noticeDel('<%=nvo.getPost_id()%>','<%=spot_num%>');">
+			<input type="button" value="수정" class="btns" onclick="location.href='noticeUpdateForm.do?spot_num=<%=spot_num%>&board_id=3&post_id=<%=nvo.getPost_id() %>'">
+			<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?spot_num=<%=spot_num%>&board_id=3'"> 
         
         </div>
         

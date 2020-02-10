@@ -18,4 +18,7 @@ public class FileDAO {
 	public FileVO fileSelect(FileVO vo) {
 		return sqlSession.selectOne("file.file_select", vo);
 	}
+	public int fileUpdate(FileVO vo) {
+		return sqlSession.update("file.file_update", vo);
+	}
 }

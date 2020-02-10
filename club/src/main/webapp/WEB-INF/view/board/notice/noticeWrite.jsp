@@ -70,8 +70,9 @@ FileVO fv = (FileVO)request.getAttribute("fv");
         		<div class="board_ctg_name">공지사항 목록</div>
         		
         		<div>
-				<form action="noticeInsert.do?board_id=3" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
+				<form action="noticeInsert.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
 					<input type="hidden" name="board_id" value="3">
+					<input type="hidden" name="spot_num" value="<%=spot_num %>">
 					<table id="boardTable">
 												
 						<tr>		
@@ -99,7 +100,7 @@ FileVO fv = (FileVO)request.getAttribute("fv");
 						<div class="writing_btns">
 							<input type="submit" value="작성완료" class="btns">
 							<input type="reset" value="다시 작성" class="btns"/>
-							<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?board_id=3'">
+							<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?spot_num=<%=spot_num%>&board_id=3'">
 						</div>
 				</form>
 			</div>

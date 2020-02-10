@@ -6,12 +6,12 @@
 <%@ page import ="gallery.GalleryVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import ="reply.ReplyVO" %>
+<%@ page import="spot.*"%>
 
 <%
 List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
 GalleryVO vo = (GalleryVO)request.getAttribute("vo");
-List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
-ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
+SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 %>
 <!DOCTYPE html>
 <html>
@@ -100,8 +100,8 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 		                	$(".paper-each2").attr("src", "/upload/"+data.image);
 		                	$("#prePost").attr("onclick", "moveView("+data.post_id+", 'prev')");
 		                	$("#nextPost").attr("onclick", "moveView("+data.post_id+", 'next')");
-		                	$("#deleteHref").attr("href", "galleryDelete.do?post_id="+id);
-		                	$("#detailHref").attr("href", "galleryEdit.do?post_id="+id);
+		                	$("#deleteHref").attr("href", "/board/gallery/galleryDelete.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&post_id="+id);
+		                	$("#detailHref").attr("href", "/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&post_id="+id);
 		               		$("#readCount").text(data.readcount);
 		               		$("#reply_post_id").val(id);
 		               		showLightBox();
@@ -113,7 +113,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
                 	});
 	                	
                 }
-                
+                   
                 function replyView(id){
                 	$.ajax({
                 		async :false,
@@ -333,17 +333,17 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
         <div class="visual">
         	<div class="visualLeft">
         <%@ include file="/WEB-INF/view/board/submain/boardLeft.jsp" %>
-
+ 
         </div>
         	
         	
         <div class="visualRight">
        		<div class="board_ctg_name">갤러리 목록</div><!-- 카테고리 이름 -->
-			<div class="board_writing"><a href="galleryWrite.do">글작성</a></div>
+			<div class="board_writing"><a href="galleryWrite.do?spot_num=<%=spot_vo.getNum() %>&board_id=1">글작성</a></div>
 	
 			
 		 	 <div class="boardSearch2">
-			 	<form action="/board/gallery/galleryList.do?board_id=1" method="post">
+			 	<form action="/board/gallery/galleryList.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
 				<input type="search" name="search_word" id="boardSearch" value="${gallery.serch_word }"> 
 				<input id="board_search_btn" type="submit" value="검색">
 				</form>
@@ -359,7 +359,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 		%>
      	<div class="paper" onclick="ajaxView('<%=list.get(i).getPost_id()%>');">
 	          <div class="paper-holder">
-	             <p>사용자 이름</p>
+	             <p><%=list.get(i).getWriter()%></p>
 				 <p class="paper-description"><%=util.Function.getYmd(list.get(i).getRegdate()) %></p><!-- 날짜 불러오기 -->
 		     </div>
 	         <div class="paper-content">
@@ -400,9 +400,10 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
             	<div>
 					<span class="galleryClose">X</span>     
 				</div>
-               <form action="galleryEdit.do" method="post">
+               <form action="/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
                <input type="hidden" id="post_id" name="post_id">
                  <input type="hidden" id="board_id" name="board_id">
+                 <input type="hidden" id="spot_num" name="<%=spot_vo.getNum() %>" >
                
                 <div class="user-information">
                     <a class="user-information-image" href="#">
@@ -439,7 +440,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 					</div>
 					
 					<!-- 댓글 폼 -->
-						<form action="/board/galleryReply.do" method="post">
+						<form action="/board/galleryReply.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
 								<input type="hidden" name="post_id" id="reply_post_id" value="">
 								<input type="hidden" name="board_id" id="reply_board_id" value="1">
 								<input type="hidden" name="reply_num" id="reply_num" value="">
@@ -502,7 +503,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 					$.ajax({
 						async :false,
 						url:'/board/reDelete.do',
-						data :{res_num : res_num},
+						data :{reply_num : res_num},
 				    	dataType:'HTML',
 				    	success : function(data){
 				    		// 댓글이 정상적으로 저장됐을때

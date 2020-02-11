@@ -13,6 +13,7 @@
 	<context:component-scan base-package="adminNotice"/>
 	<context:component-scan base-package="adminQna"/>
 	<context:component-scan base-package="adminSpot"/>
+	<context:component-scan base-package="adminInfo"/>
 	<context:component-scan base-package="spotCategory"/>
 	<context:component-scan base-package="spot"/>
 	<context:component-scan base-package="board"/>
@@ -64,16 +65,16 @@
 	</bean>
 	
 	<!-- 인터셉터:가로채기 -->
-<!-- 	<mvc:interceptors>
+ 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**"/>
-			<mvc:exclude-mapping path="/admin/login.do"/>
-			<mvc:exclude-mapping path="/admin/loginProcess.do"/>
+			<mvc:exclude-mapping path="/admin/index.do"/>
+			<mvc:exclude-mapping path="/admin/adminLogin.do"/>
 			<bean class="interceptor.AdminInterceptor"/>
 		</mvc:interceptor>
 
 	</mvc:interceptors>
- -->
+
  	
  	<mvc:interceptors>
 		<mvc:interceptor>

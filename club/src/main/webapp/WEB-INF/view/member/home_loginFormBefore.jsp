@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="adminInfo.AdminInfoVO"%>
+<%@ page import="spot.SpotVO" %>   
+<%
+	List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
+	SpotVO spotvo = (SpotVO)request.getAttribute("spotvo");
+	List<AdminInfoVO> infolist = (List<AdminInfoVO>)request.getAttribute("info_article");
+	AdminInfoVO infovo = (AdminInfoVO)request.getAttribute("infovo");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,45 +43,6 @@
     			$("#password").focus();
     			return false;
     		}
-    		var con = true;
-    		var data = $("#userLogin").serialize();
-    		//console.log(data);
-    		$.ajax({
-    			url : "/member/userLogin.do",
-    			data : {id:$("#id").val()},
-    			type : "POST",
-    			async : false,
-    			success : function(data) {
-    				//console.log(data);
-    				if (data.trim() != "") {
-    				} else {
-    					alert("dk입니다.");
-    					$("#id").val("");
-    					$("#id").focus();
-    					con = false;
-    				}
-    			}
-    		});
-    		if (con == false) {
-    			return false;
-    		}
-    		if ($("#id").val().trim() == "") {
-    			alert("존재하지 않는 아이디 입니다.");
-    			$("#id").focus();
-    			return false;
-    		}
-    		if ($("#password").val().trim() == "") {
-    			alert("비밀번호를 입력해 주세요");
-    			$("#password").focus();
-    			return false;
-    		}
-    		if ($("#password").val().trim() != $("#password_re").val().trim()) {
-    			alert("비밀번호와 일치하지 않습니다.");
-    			$("#password_re").val("");
-    			$("#password_re").focus();
-    			return false;
-    		}
-
     		$("#userLogin").submit();
     	}
     </script>
@@ -111,10 +81,15 @@
             <div class="visual">
 	       	 <div class="swiper swiper-container">
 	       	 	<div class="swiper-wrapper">
-	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
-	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
-	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
-	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
+	                 <%
+	               		for(int i=0; i<infolist.size(); i++){ 
+	               	 %>
+	                  <div class="swiper-slide">
+	                      <img src="/upload/images/<%=infolist.get(i).getFile() %>"></br></br><%=infolist.get(i).getName()%><%=infolist.get(i).getContent()%>
+	                  </div>    
+	                 <%
+	                      }
+	                 %>
 	       	 	</div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
@@ -122,44 +97,67 @@
 	       	 </div>
 	      </div>
         </div>
-        <div class="container">
-            <div class="content">
-                <div class="club">
-                    <a href=""><img src=""><div class=club_description></div></a>
-                </div>
-                <div class="club">
-                    <a href=""><img src=""></a>
-                </div>
-                <div class="club">
-                    <a href=""><img src=""></a>
-                </div>
-                <div class="club">
-                    <a href=""><img src=""></a>
-                </div>
-                <div class="club">
-                    <a href=""><img src=""></a>
-                </div>
-                <div class="club">
-                    <a href=""><img src=""></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="size">
-               <div class="info">
-                   <p>구디아카데미</p>
-                   <p>서울시 서울구 서울로 서울동 서울호</p>
-                   <p>02-2000-2000 | 010-2222-2222</p>
-                   <p>대표자 김철수 | 책임자 김수철</p>
-                   <p>사업자등록번호 111-11-22222</p>
-               </div>
-               <div class="sns_area">
-                   <a href=""><img src="/css/test/img/facebook.png"></a>
-                   <a href=""><img src="/css/test/img/instar.png"></a>
-                   <a href=""><img src="/css/test/img/blog.png"></a>
-               </div>
-            </div>
-       </div>
+        <form  action="spotView.do" method="post">
+	    <div class="container">
+	        <div class="lcontents1">
+	        	<%
+				for (int j=0; j<spot.size(); j++){
+					if(j %2 == 0){
+				%>
+		            <div class="button">
+		                <a href="/board/submain/submain.do?spot_num=<%=spot.get(j).getNum() %>" target="_blank">
+		              		<img class="img" src="/upload/images/<%=spot.get(j).getFile()%>">
+		               		<div class="spotname"> 
+		                		<%=spot.get(j).getName()%>
+		                	</div>
+		                	<div class="spotcontent">  
+		                		<%=spot.get(j).getContent()%>
+		                	</div>
+		                	<span class="spotuser">
+		                		회원수 : 00명
+		                	</span>
+		                	<span class="spotleader">리더 : 홍길동</span>
+		                </a> 
+		                
+		            </div>    
+	           	<%
+					}
+				}
+				%>
+	        </div>
+	        <div class="content1">
+	            <%
+				for (int j=0; j<spot.size(); j++){
+					if(j %2 == 1){
+				%>
+		            <div class="button">
+		                <a href="/board/submain/submain.do?spot_num=<%=spot.get(j).getNum() %>" target="_blank">
+		              		<img class="img" src="/upload/images/<%=spot.get(j).getFile()%>">
+		               		<div class="spotname"> 
+		                		<%=spot.get(j).getName()%>
+		                	</div>
+		                	<div class="spotcontent">
+		                		<%=spot.get(j).getContent()%>
+		                	</div>
+		                	<span class="spotuser">
+		                		회원수 : 00명
+		                	</span>
+		                	<span class="spotleader">리더 : 홍길동</span>
+		                </a> 
+		                
+		            </div>    
+	           	<%
+					}
+				}
+				%>
+	        </div>
+	    </div>
+	    </form>
+	    <div class="container">
+			<!-- S T A R T :: footerArea-->
+			<%@ include file="/WEB-INF/view/user/include/bottom.jsp" %>
+			<!-- E N D :: footerArea-->
+	    </div>
     </div>
 </body>
 </html>

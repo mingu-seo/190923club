@@ -75,7 +75,7 @@ $(function() {
   				<li><span>기본 설정</span>
 					<div class="standard_left">
 					<ul>
-						<li><a href="/admin/board/hotspotInfo.do"><span>HOTSPOT 정보</span></a></li>
+						<li><a href="/admin/info/infoList.do"><span>HOTSPOT 정보</span></a></li>
 						<li><a href="/admin/board/hotspotSetting.do"><span>꾸미기 설정</span></a></li>
 					</ul>
 					</div>

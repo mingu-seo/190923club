@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/view/admin/include/spotheadHtml.jsp" %>
 <script>
 function check() {
 	if ($("#allChk").prop("checked")) {

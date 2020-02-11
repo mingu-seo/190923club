@@ -17,7 +17,11 @@ public class AdminDAO {
 		return sqlSession.selectOne("admin.idCheck", id);
 	}
 	
-	public int insert(AdminVO vo) {
-		return sqlSession.insert("admin.insert", vo);
+	public int insert(AdminVO adminvo) {
+		return sqlSession.insert("admin.insert", adminvo);
+	}
+
+	public AdminVO adminLogin(AdminVO adminvo) {
+		return sqlSession.selectOne("admin.adminLogin", adminvo);
 	}
 }

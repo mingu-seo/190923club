@@ -7,10 +7,18 @@
 		SELECT COUNT(*) FROM project.admin WHERE id=#{id}
 	</select>
 	
+	<!-- admin 회원가입 -->
 	<insert id="insert" parameterType="admin.AdminVO">
 		insert into project.admin (id, password, name, email, tel , regdate)
 		values
 		(#{id}, md5(#{password}), #{name}, #{email}, #{tel}, now())
 	</insert>
+	
+	<!-- admin 로그인 -->
+	<select id="adminLogin" parameterType="admin.AdminVO" resultType="admin.AdminVO">
+		SELECT * FROM project.admin WHERE id=#{id} AND password=md5(#{password})
+	</select>
+	
+	
 	
 </mapper>

@@ -8,6 +8,7 @@
 <%@ page import="notice.*" %>
 <%
 List<NoticeVO> list = (List<NoticeVO>)request.getAttribute("list");
+CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 int listcount = (Integer)request.getAttribute("listcount"); //전체갯수
 int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지수
@@ -36,11 +37,11 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
         	<div class="visualLeft">
         		<%@ include file="/WEB-INF/view/board/submain/boardLeft.jsp" %>
         	</div>
-        	
+        	 
         	
 	        <div class="visualRight">
-		        	<div class="board_ctg_name">공지사항 목록</div><!-- 카테고리 이름 -->
-					<div class="board_writing"><a href="noticeWrite.do?spot_num=<%=spot_num%>">글작성</a></div>
+		        	<div class="board_ctg_name"><%=cate_name.getName() %></div><!-- 카테고리 이름 -->
+					<div class="board_writing"><a href="noticeWrite.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>">글작성</a></div>
 			
 					<div class="board_seq">
 					<select>
@@ -76,7 +77,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 							<tr class="board_art">
 								<td><%= list.get(i).getPost_id()%></td>
 								<td class="art_title">
-									<a href="/board/notice/noticeWriteView.do?spot_num=<%=spot_num %>&board_id=<%=list.get(i).getBoard_id()%>&post_id=<%=list.get(i).getPost_id()%>">
+									<a href="/board/notice/noticeWriteView.do?spot_num=<%=spot_num %>&board_id=<%=list.get(i).getBoard_id()%>&category_id=<%=list.get(i).getCategory_id() %>&post_id=<%=list.get(i).getPost_id()%>">
 									<%=list.get(i).getTitle() %></a>
 								</td>
 								<td>조한빈</td>

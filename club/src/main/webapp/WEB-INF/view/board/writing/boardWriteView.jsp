@@ -27,9 +27,9 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
   
 	<!-- 삭제 스크립트 -->
 <script type="text/javascript">
-   function writingDel(post_id, spot_num) {
+   function writingDel(post_id, spot_num, category_id) {
 	   if(confirm("삭제하시겠습니까?")) { 
-		   location.href="/board/writing/boardDelete.do?spot_num="+spot_num+"&post_id="+post_id;
+		   location.href="/board/writing/boardDelete.do?spot_num="+spot_num+"&category_id="+category_id+"&post_id="+post_id;
 	   } else
 		   return false;
 		   
@@ -197,11 +197,11 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 					</div> 
 				</div>
 				
-				
+				 
 			</div>
-			<input type="button" value="삭제" class="btns" onclick="javascript:writingDel('<%=vo.getPost_id()%>','<%=spot_num%>');">
+			<input type="button" value="삭제" class="btns" onclick="javascript:writingDel('<%=vo.getPost_id()%>','<%=spot_num%>','<%=vo.getCategory_id()%>');">
 			<input type="button" value="수정" class="btns" onclick="location.href='/board/writing/boardUpdateForm.do?spot_num=<%=spot_num%>&board_id=2&post_id=<%=vo.getPost_id()%>'"> 
-			<input type="button" value="목록" class="btns" onclick="location.href='boardList.do?spot_num=<%=spot_num%>&board_id=2'"> 
+			<input type="button" value="목록" class="btns" onclick="location.href='boardList.do?spot_num=<%=spot_num%>&board_id=2&category_id=<%=vo.getCategory_id()%>'">  
         </div>
         
         

@@ -74,6 +74,7 @@ FileVO fv = (FileVO)request.getAttribute("");
 				<form action="noticeUpdate.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
 				<input type="hidden" name="post_id" value="<%=nvo.getPost_id() %>">
 				<input type="hidden" name="board_id" value="<%=nvo.getBoard_id() %>"> 
+				<input type="hidden" name="category_id" value="<%=nvo.getCategory_id() %>"> 
 				<input type="hidden" name="spot_num" value="<%=spot_num %>"> 
 				
 					<table id="boardTable">

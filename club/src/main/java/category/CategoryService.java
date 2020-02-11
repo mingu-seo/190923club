@@ -26,15 +26,20 @@ public class CategoryService {
 		}
 	}
 	
-	public List<CategoryVO> gCategoryList(CategoryVO vo) {
-		return categoryDao.gCategoryList(vo);
+	public List<CategoryVO>[] categoryList(CategoryVO vo) {
+		List<CategoryVO>[] listArr = new List[3];
+		listArr[0] = categoryDao.gCategoryList(vo);
+		listArr[1] = categoryDao.wCategoryList(vo);
+		listArr[2] = categoryDao.nCategoryList(vo);
+		return listArr;
 	}
 	
-	public List<CategoryVO> wCategoryList(CategoryVO vo) {
-		return categoryDao.wCategoryList(vo);
+	public CategoryVO cateMin_num(int spot_num) {
+		return categoryDao.cateMin_num(spot_num);
 	}
 	
-	public List<CategoryVO> nCategoryList(CategoryVO vo) {
-		return categoryDao.nCategoryList(vo);
+	public CategoryVO cateName_select(int category_id) {
+		return categoryDao.cateName_select(category_id);
 	}
+	
 }

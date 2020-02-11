@@ -72,6 +72,9 @@
 		height:32px;
 	}
 	
+	#board_search_btn:hover {
+		box-shadow: 0 0 10px gray;  
+	}
 	#board_search_btn {
 			background-color:#9cb3c5;
 			color:white;
@@ -80,6 +83,7 @@
 			border-radius: 12px;
 			margin:10px;
 			padding: 0 5px;
+			cursor:pointer;
 	}
 	
 	#pageList {

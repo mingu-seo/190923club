@@ -19,7 +19,7 @@
         <div class="visual">
         	
         	<!-- 왼쪽메뉴 -->
-        	<%@ include file="/WEB-INF/view/board/submain/submainLeft.jsp" %>
+<%--         	<%@ include file="/WEB-INF/view/board/submain/submainLeft.jsp" %> --%>
         	<!-- /왼쪽메뉴 -->
         	
         	<div class="visualRight">
@@ -43,7 +43,9 @@
                     </li>
                     <li class="settingItem">
                         <div class="itemContent">멤버 관리</div>
-                        <div class="itemSide"><input style="padding: 11px;" type="button" value="변경"></div>
+                        <div class="itemSide">
+                        	<a href="/member/memberList.do"><input style="padding: 11px;" type="button" value="변경"></a>
+                        </div>
                     </li>
                     <li class="settingItem">
                         <div class="itemContent">리더 위임</div>

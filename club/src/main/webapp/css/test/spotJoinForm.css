@@ -1,0 +1,43 @@
+.joinForm{
+    width: 420px;
+    height: 160px;
+    border: solid 1px rgb(238, 137, 43);
+    border-radius: 2%;
+    margin: 70px auto;
+}
+.joinTitle{
+    width: 400px;
+    height: 20%;
+    margin:0 auto;
+    text-align: center;
+}
+.titleText{
+    line-height: 40px;
+}
+.titleText > h2{
+    font-size: 25px;
+    font-weight: 600;
+}
+.titleText > p{
+    font-size: 15px;
+    border-bottom: solid 1px #ffdfc1;
+}
+.joinContent{
+    width: 400px;
+    height: 70%;
+    margin:0 auto;
+    text-align: center;
+}
+.joinContent > textarea{
+	height: 330px;
+}
+.joinBtn{
+    text-align: center;
+    padding-top: 30px;
+}
+.joinBtn > input{
+    border: solid 1px rgb(238, 137, 43);
+    background-color: #ffdfc1;
+    border-radius:20%;
+    padding: 3px 15px;
+}

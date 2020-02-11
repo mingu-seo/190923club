@@ -72,6 +72,7 @@ FileVO fv = (FileVO)request.getAttribute("fv");
         		<div>
 				<form action="noticeInsert.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
 					<input type="hidden" name="board_id" value="3">
+					<input type="hidden" name="category_id" value="<%=vo.getCategory_id()%>">
 					<input type="hidden" name="spot_num" value="<%=spot_num %>">
 					<table id="boardTable">
 												
@@ -100,7 +101,7 @@ FileVO fv = (FileVO)request.getAttribute("fv");
 						<div class="writing_btns">
 							<input type="submit" value="작성완료" class="btns">
 							<input type="reset" value="다시 작성" class="btns"/>
-							<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?spot_num=<%=spot_num%>&board_id=3'">
+							<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>&board_id=3'">
 						</div>
 				</form>
 			</div>

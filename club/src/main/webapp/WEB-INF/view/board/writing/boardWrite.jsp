@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import ="java.util.HashMap" %>
+<%@ page import ="category.CategoryVO" %>
 <%@ page import ="board.BoardVO" %>
-<%@ page import ="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%
+//CategoryVO cVO = (CategoryVO)request.getAttribute("cVO");
+BoardVO vo = (BoardVO)request.getAttribute("vo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,6 +70,7 @@
 				<form action="boardInsert.do" method="post" name="writeForm" id="writeForm" enctype="multipart/form-data" onsubmit="save();">
 					<input type="hidden" name="spot_num" value="<%=spot_num%>">
 					<input type="hidden" name="board_id" value="2">
+					<input type="hidden" name="category_id" value="<%=vo.getCategory_id()%>">
 					<table id="boardTable">
 												
 						<tr>		

@@ -3,10 +3,32 @@ package category;
 public class CategoryVO {
 
 	private int category_id;
+	private int category_id1;
+	private int category_id2;
+	private int category_id3;
 	private String name;
 	private int board_id;
 	private int spot_num;
 	
+	
+	public int getCategory_id1() {
+		return category_id1;
+	}
+	public void setCategory_id1(int category_id1) {
+		this.category_id1 = category_id1;
+	}
+	public int getCategory_id2() {
+		return category_id2;
+	}
+	public void setCategory_id2(int category_id2) {
+		this.category_id2 = category_id2;
+	}
+	public int getCategory_id3() {
+		return category_id3;
+	}
+	public void setCategory_id3(int category_id3) {
+		this.category_id3 = category_id3;
+	}
 	public int getCategory_id() {
 		return category_id;
 	}

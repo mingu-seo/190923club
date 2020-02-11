@@ -4,9 +4,7 @@
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%
-List<CategoryVO> gcList = (List<CategoryVO>)request.getAttribute("gcList"); 
-List<CategoryVO> wcList = (List<CategoryVO>)request.getAttribute("wcList"); 
-List<CategoryVO> ncList = (List<CategoryVO>)request.getAttribute("ncList"); 
+List<CategoryVO>[] categoryList = (List<CategoryVO>[])request.getAttribute("categoryList"); 
 %>
 <!DOCTYPE html>
 <html> 
@@ -97,10 +95,10 @@ $(function() {
 	        				<span class="cgAdd">카테고리 추가</span> 
 	        				</div> 
 	        				<%
-	        				for(int i=0; i<gcList.size(); i++) {
+	        				for(int i=0; i<categoryList[0].size(); i++) {
 	        				%>
 	        				<div class="boardAdd"> 
-		        				<input class="addBox" type="text" name="name" value="<%=gcList.get(i).getName()%>"> 
+		        				<input class="addBox" type="text" name="name" value="<%=categoryList[0].get(i).getName()%>"> 
 		        				<input class="categoryBtn deleteBtn" type="button" value="삭제">
 	        				</div>
 	        				<%
@@ -128,11 +126,11 @@ $(function() {
 	        				</div>
 	        				
 	        				<%
-	        				for(int i=0; i<wcList.size(); i++) {
+	        				for(int i=0; i<categoryList[1].size(); i++) {
 	        				%>
 	        				<div class="boardAdd"> 
-		        				<input class="addBox" type="text" name="name" value="<%=wcList.get(i).getName()%>">
-		        				<input type="hidden" name="category_ids" value="<%=wcList.get(i).getCategory_id()%>">  
+		        				<input class="addBox" type="text" name="name" value="<%=categoryList[1].get(i).getName()%>">
+		        				<input type="hidden" name="category_ids" value="<%=categoryList[1].get(i).getCategory_id()%>">  
 		        				<input class="categoryBtn deleteBtn" type="button" value="삭제">
 	        				</div>
 	        				<%
@@ -157,14 +155,14 @@ $(function() {
 	        				<span class="cgAdd">카테고리 추가</span> 
 	        				</div>
 	        				<%
-		        				for(int i=0; i<ncList.size(); i++) {
+		        				for(int i=0; i<categoryList[2].size(); i++) {
 		        				%>
 		        				<div class="boardAdd"> 
-			        				<input class="addBox" type="text" name="name" value="<%=ncList.get(i).getName()%>">
-			        				<input type="hidden" name="category_ids" value="<%=ncList.get(i).getCategory_id()%>">
+			        				<input class="addBox" type="text" name="name" value="<%=categoryList[2].get(i).getName()%>">
+			        				<input type="hidden" name="category_ids" value="<%=categoryList[2].get(i).getCategory_id()%>">
 			        				<input class="categoryBtn deleteBtn" type="button" value="삭제">
 		        				</div>
-		        				<%
+		        				<% 
 		        				}
 		        				%>
 	        			</div>

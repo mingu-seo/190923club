@@ -8,9 +8,9 @@
 			select * from project.writing 
 			<where>
 				<if test="search_word != null and search_word != ''">
-					title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%'
-				</if>
-				spot_num = #{spot_num}
+					(title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%')
+				</if>   
+				and spot_num = #{spot_num} and category_id = #{category_id}
 			</where>  
 			order by regdate desc
 		</select>
@@ -22,7 +22,10 @@
 	
 	<!-- 자유게시판 글작성 -->
 		<insert id="board_insert" parameterType="board.BoardVO">
-			insert into project.writing (title, contents, regdate, spot_num) values(#{title}, #{contents}, now(), #{spot_num}) 
+			insert into project.writing 
+			(title, contents, regdate, spot_num, category_id) 
+			values
+			(#{title}, #{contents}, now(), #{spot_num}, #{category_id}) 
 		</insert>
 	
 	<!-- 자유게시판 상세보기 -->
@@ -109,7 +112,7 @@
 				<if test="search_word != null and search_word != ''">
 					title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%'
 				</if>
-				spot_num = #{spot_num}
+				and spot_num = #{spot_num} and category_id=#{category_id}
 			</where>  
 			order by regdate desc limit #{startIndex}, #{limit}
 		</select>
@@ -121,8 +124,10 @@
 	
 	<!-- 공지사항 글작성 -->
 		<insert id="notice_insert" parameterType="notice.NoticeVO" useGeneratedKeys="true">
-			insert into project.notice (title, contents, regdate, board_id, spot_num)
-			values(#{title}, #{contents}, now(), #{board_id}, #{spot_num})
+			insert into project.notice 
+			(title, contents, regdate, board_id, spot_num, category_id)
+			values
+			(#{title}, #{contents}, now(), #{board_id}, #{spot_num}, #{category_id})
 			
 			<selectKey keyProperty="post_id" resultType="Integer" order="AFTER">
 				SELECT last_insert_id()

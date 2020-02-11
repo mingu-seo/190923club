@@ -23,9 +23,9 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 
 <!-- 삭제 스크립트 -->
 <script type="text/javascript">
-   function noticeDel(post_id,spot_num) {
+   function noticeDel(post_id,spot_num, category_id) {
 	   if(confirm("삭제하시겠습니까?")) { 
-		   location.href="/board/notice/noticeDelete.do?spot_num="+spot_num+"&post_id="+post_id;
+		   location.href="/board/notice/noticeDelete.do?spot_num="+spot_num+"&category_id="+category_id+"&post_id="+post_id;
 	   } else
 		   return false;
 		   
@@ -209,9 +209,9 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 				</div>
 			</div>
 			  
-			<input type="button" value="삭제" class="btns" onclick="javascript:noticeDel('<%=nvo.getPost_id()%>','<%=spot_num%>');">
-			<input type="button" value="수정" class="btns" onclick="location.href='noticeUpdateForm.do?spot_num=<%=spot_num%>&board_id=3&post_id=<%=nvo.getPost_id() %>'">
-			<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?spot_num=<%=spot_num%>&board_id=3'"> 
+			<input type="button" value="삭제" class="btns" onclick="javascript:noticeDel('<%=nvo.getPost_id()%>','<%=spot_num%>','<%=nvo.getCategory_id()%>');">
+			<input type="button" value="수정" class="btns" onclick="location.href='noticeUpdateForm.do?spot_num=<%=spot_num%>&board_id=3&category_id=<%=nvo.getCategory_id()%>&post_id=<%=nvo.getPost_id() %>'">
+			<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?spot_num=<%=spot_num%>&category_id=<%=nvo.getCategory_id() %>&board_id=3'"> 
         
         </div>
         

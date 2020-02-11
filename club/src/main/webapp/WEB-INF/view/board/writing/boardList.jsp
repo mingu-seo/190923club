@@ -2,12 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="board.BoardVO" %>
+<%@ page import ="category.CategoryVO" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 BoardVO vo = (BoardVO)request.getAttribute("vo");
 List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
+CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 %>
 <!DOCTYPE html>
 <html>
@@ -30,13 +32,13 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
         <div class="visual">
 		
         	<div class="visualLeft">
-        		<%@ include file="/WEB-INF/view/board/submain/boardLeft.jsp" %>
+        		<%@ include file="/WEB-INF/view/board/submain/boardLeft.jsp" %> 
         	</div>
         	
-        	
+        	 
 	        <div class="visualRight">
-		        	<div class="board_ctg_name">게시판 목록</div><!-- 카테고리 이름 -->
-					<div class="board_writing"><a href="boardWrite.do?spot_num=<%=spot_num%>">글작성</a></div>
+		        	<div class="board_ctg_name"><%=cate_name.getName()%></div><!-- 카테고리 이름 --> 
+					<div class="board_writing"><a href="boardWrite.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>">글작성</a></div>
 			
 					<div class="board_seq">
 					<select>
@@ -72,7 +74,7 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 							<tr class="board_art">
 								<td><a><%=list.get(i).getPost_id()%></a></td>
 								<td class="art_title">
-									<a href="/board/writing/boardWriteView.do?spot_num=<%=spot_num %>&board_id=2&post_id=<%=list.get(i).getPost_id()%>">
+									<a href="/board/writing/boardWriteView.do?spot_num=<%=spot_num %>&board_id=2&category_id=<%=list.get(i).getCategory_id() %>&post_id=<%=list.get(i).getPost_id()%>">
 									<%=list.get(i).getTitle() %></a>
 								</td>
 								<td>김세영</td>
@@ -96,12 +98,12 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 					<form action="/board/writing/boardList.do" method="post">
 						<input type="hidden" name="spot_num" value="<%=spot_num %>">
 						<input type="hidden" name="board_id" value="<%=vo.getBoard_id() %>">
+						<input type="hidden" name="category_id" value="<%=vo.getCategory_id() %>"> 
 						<input type="text" name="search_word" id="boardSearch" value="<%=vo.getSearch_word() %>">
 						<input id="board_search_btn" type="submit" value="검색">
 					</form>
 				</div>	
-
-	
+				
 				<div id="pageList">
 					<span>[이전]</span>
 					<span><a href="">1</a></span>

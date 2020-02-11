@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import category.CategoryVO;
 import file.FileVO;
 import reply.ReplyService;
 import reply.ReplyVO;
-import spot.SpotService;
 
 @Controller
 public class NoticeController {
@@ -32,26 +32,36 @@ public class NoticeController {
 	private file.FileService fService;
 	
 	@Autowired
-	private SpotService spotService;
+	private category.CategoryService cService;
+	
+	
+	
 	
 	//공지사항 목록 페이지
 	@RequestMapping("/board/notice/noticeList.do") 
-	public String noticeList(NoticeVO vo, Model model, @RequestParam("board_id")int board_id, @RequestParam("spot_num") String spot_num) {
+	public String noticeList(NoticeVO vo, Model model, CategoryVO cVO, @RequestParam("board_id")int board_id, @RequestParam("spot_num") String spot_num) {
+		
 		List<NoticeVO> list = nService.noticeList(vo, board_id);
+		CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
 		int[] listcount = nService.noticeCount(vo); //전체 갯수와 총페이지수
-		//스팟번호
+		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
+		model.addAttribute("categoryList", categoryList);
 		
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("listcount", listcount[0]);
 		model.addAttribute("totalpage", listcount[1]);
 		model.addAttribute("list", list);
+		model.addAttribute("cate_name", cate_name);
 		model.addAttribute("vo",vo);
 		return "board/notice/noticeList";
 	}
 	//공지사항 작성페이지
 	@RequestMapping("/board/notice/noticeWrite.do")
-	public String noticeWrite(Model model, @RequestParam("spot_num") String spot_num) {
+	public String noticeWrite(Model model, CategoryVO cVO, NoticeVO vo, @RequestParam("spot_num") String spot_num) {
+		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("spot_num", spot_num);
+		model.addAttribute("vo", vo);
 		return "board/notice/noticeWrite";
 	}
 	
@@ -70,12 +80,16 @@ public class NoticeController {
 		fService.fileInsert(fv, file, req);
 		
 		
-		return "redirect:/board/notice/noticeList.do?spot_num="+spot_num+"&board_id="+vo.getBoard_id();
+		return "redirect:/board/notice/noticeList.do?spot_num="+spot_num+"&category_id="+vo.getCategory_id()+"&board_id="+vo.getBoard_id();
 	}
 	//공지사항 상세보기 페이지
 	@RequestMapping("/board/notice/noticeWriteView.do") 
-	public String noticeWriteView(Model model, NoticeVO vo, @RequestParam("spot_num")String spot_num) {
+	public String noticeWriteView(Model model, NoticeVO vo, CategoryVO cVO, @RequestParam("spot_num")String spot_num) {
 		NoticeVO nvo = nService.noticeView(vo);
+		
+		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
+		model.addAttribute("categoryList", categoryList);
+		
 		ReplyVO rv = new ReplyVO();
 		rv.setBoard_id(vo.getBoard_id());
 		rv.setPost_id(vo.getPost_id());
@@ -102,14 +116,18 @@ public class NoticeController {
 	@RequestMapping("/board/notice/noticeDelete.do")
 	public String noticeDelete(@RequestParam("post_id")int post_id, NoticeVO vo, @RequestParam("spot_num")String spot_num) {
 		nService.noticeDelete(post_id);
-		return "redirect:/board/notice/noticeList.do?spot_num="+spot_num+"&board_id=3";
+		return "redirect:/board/notice/noticeList.do?spot_num="+spot_num+"&category_id="+vo.getCategory_id()+"&board_id=3";
 	}
 	//공지사항 수정하기 페이지
 	@RequestMapping("/board/notice/noticeUpdateForm.do")
-	public String noticeUpdateForm(NoticeVO vo,Model model, @RequestParam("spot_num")String spot_num) {
+	public String noticeUpdateForm(NoticeVO vo,CategoryVO cVO, Model model, @RequestParam("spot_num")String spot_num) {
 		NoticeVO nvo = nService.noticeView(vo);
+		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
+		
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("nvo", nvo);
 		model.addAttribute("spot_num",spot_num);
+		
 		return "board/notice/noticeUpdateForm";
 	}
 	//공지사항 수정
@@ -122,11 +140,11 @@ public class NoticeController {
 		//글 등록하고 pk가져와서 파일등록할때 씀
 		FileVO fv = new FileVO();
 		fv.setBoard_id(vo.getBoard_id());
-		fv.setPost_id(vo.getPost_id());
+		fv.setPost_id(vo.getPost_id()); 
 		fService.fileUpdate(fv, file, req);
 		
 		nService.noticeUpdate(vo, file, req);
-		return "redirect:/board/notice/noticeWriteView.do?spot_num="+spot_num+"&board_id=3&post_id="+vo.getPost_id();
+		return "redirect:/board/notice/noticeWriteView.do?spot_num="+spot_num+"&board_id=3&category_id="+vo.getCategory_id()+"&post_id="+vo.getPost_id();
 	}
 	
 	

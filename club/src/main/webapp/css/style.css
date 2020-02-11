@@ -50,6 +50,7 @@
       	.depth1{
         	background-color: lightsteelblue;
         	height:120px;
+        	border-radius: 20px 20px 20px 0;
         }
 
         
@@ -86,6 +87,7 @@
         overflow: hidden; 
         background: #eef0f3;
         box-shadow:5px 10px 10px #999;
+        border-radius: 0 0 20px 20px;
         }
         
         
@@ -165,6 +167,7 @@
 		
 		.boardBox {
 		border:1px solid black;
+		border-radius:20px;
 		text-align:left; 
 		margin:30px;
 		padding:20px;

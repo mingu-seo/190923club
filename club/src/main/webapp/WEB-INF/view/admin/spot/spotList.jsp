@@ -1,30 +1,94 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="adminQna.AdminQnaVO" %>
+<%@ page import="spotCategory.SpotCategoryVO" %>
+<%@ page import="spot.SpotVO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="util.Page"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%
     int listcount = (Integer)request.getAttribute("listCount"); 
-	List<AdminQnaVO> list= (List<AdminQnaVO>)request.getAttribute("list");
-	AdminQnaVO vo = (AdminQnaVO)request.getAttribute("vo");
+	List<SpotCategoryVO> list= (List<SpotCategoryVO>)request.getAttribute("list");
+	SpotCategoryVO vo = (SpotCategoryVO)request.getAttribute("vo");
+	List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
+	SpotVO spotvo = (SpotVO)request.getAttribute("spotvo");
 	int totalpage = (Integer)request.getAttribute("totalpage");
 %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/view/admin/include/spotheadHtml.jsp" %>
 <script>
-function check(){
-	if($("#allChk").prop("checked")){
-		$("input[name='num']").prop("checked", true);
-	}else{
-		$("input[name='num']").prop("checked", false);
-	}
+
+function showLightBox(){
+    //라이트박스를 보이게 합니다.
+    $('#darken-background').show();
+    $('#darken-background').css('top',$(window).scrollTop());
+    //스크롤을 못하게 합니다.
+    $('body').css('overflow','hidden');
 }
-function deleteConfirm() {
+function ajax(x){
+	link = x.url;
+	//성공했다면
+	x.success();
+}
+function hideLightBox(){
+    //라이트 박스를 보이지 않게 합니다.
+    $('#darken-background').hide();
+    
+    //스크롤을 하게 합니다.
+    $('body').css('overflow','');
+}
+
+//라이트박스
+$(function(){
+    //라이트 박스 제거 이벤트
+    $('#darken-background').click(function(){
+    	console.log(1);
+        hideLightBox();
+    });
+    
+$('#lightbox').click(function(event){
+    event.stopPropagation()
+});
+}); 
+function showLightBox(){
+//라이트박스를 보이게 합니다.
+$('#darken-background').show();
+$('#darken-background').css('top',$(window).scrollTop());
+//스크롤을 못하게 합니다.
+$('body').css('overflow','hidden');
+}
+function ajaxView(num){
+    $.ajax({
+		url : 'spotAjax.do',
+		async: false, //싱크를 맞춰줌
+		data : {
+		'num' : num
+	},
+	dataType : 'JSON',
+	success : function(data){
+		$("#category_name").text(data.category_name);
+		$("#name").text(data.name);
+		$("#spot_file").attr("src","/upload/images/"+data.file);
+		$("#spot_content").text(data.content);
+		$("#tel").text(data.tel);
+		$("#email").text(data.email);
+		$("#regdate").text(data.regdate);
+		$("#question").text(data.question);
+		$("#num").val(num);
+		$("#editBtn").attr("onclick","updateConfirm("+num+");");
+		$("#delBtn").attr("onclick","deleteConfirm("+num+");");
+	},
+	error : function(data){
+		console.log(data)
+	}
+});
+     	showLightBox();
+     }
+     
+function deleteConfirm(num) {
 	if (confirm("삭제하시겠습니까?")) {
-		$("#frm").submit();
+		location.href="spotDelete.do?num="+num;
 	}
 }
 </script>
@@ -41,85 +105,84 @@ function deleteConfirm() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>Q & A - [목록]</h2>
+					<h2>SPOT</h2>
 				</div>
-				<!-- //con_tit -->
-				<div class="con">
+				<form name="searchForm" id="searchForm" action="spotList.do"  method="post">
+					<div class="spot_title">HOT SPOT 관리 페이지</div>
+					<div class="search">
+						<select name="searchOption" title="검색을 선택해주세요">
+							<option value="all">전체</option>
+							<option value="category" <c:if test="${spotvo.searchOption == 'category'}">selected</c:if>>카테고리</option>
+							<option value="name" <c:if test="${spotvo.searchOption == 'name'}">selected</c:if>>제목</option>
+							<option value="content" <c:if test="${spotvo.searchOption == 'content'}">selected</c:if>>내용</option>
+						</select>
+						<input type="text" name="keyword" value="${spotvo.keyword}" title="검색할 내용을 입력해주세요" />
+						<input type="image"  src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+					</div>
+				</form>
+				<div class="spotcon">
 					<!-- 내용 : s -->
-					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>총 <%=listcount%>개</strong>  |  <%=vo.getPage()%>/<%=totalpage%>페이지</span></p>
-							<form name="frm" id="frm" action="qnaGroupDelete.do" method="post">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
-								<colgroup>
-									<col class="w3" />
-									<col class="w4" />
-									<col class="" />
-									<col class="w10" />
-									<col class="w5" />
-									<col class="w6" />
-								</colgroup>
-								<%
-									if(list !=null && listcount > 0 ){
-								%>
-								<thead>
-									<tr>
-										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check()"/></th>
-										<th scope="col">번호</th>
-										<th scope="col">제목</th> 
-										<th scope="col">작성일</th> 
-										<th scope="col">작성자</th> 
-										<th scope="col" class="last">조회수</th>
-									</tr>
-								</thead>
-								<%
-								for (int i=0; i<list.size(); i++){
-								%>
-								<tbody>
-									<tr>
-										<td class="first"><input type="checkbox" name="num" value="<%=list.get(i).getNum() %>"/></td>
-										<td><%=list.get(i).getNum()%></td>
-										<td class="title"><a href="qnaDetail.do?num=<%=list.get(i).getNum()%>&page=<%=vo.getPage()%>">
-										<%=list.get(i).getSubject() %></a></td>							
-										<td><%=list.get(i).getDate() %></td>
-										<td><%=list.get(i).getName() %></td>
-										<td class="last"><%=list.get(i).getReadcount() %></td>
-									</tr>
-									<%
-										}
-									}
-									%>
-								</tbody>
-							</table>
-							</form>
-							<div class="btn">
-								<div class="btnLeft">
-									<a class="btns" href="#" onclick="deleteConfirm();"><strong>삭제</strong> </a>
-								</div>
-								<div class="btnRight">
-									<a class="wbtn" href="qnaWrite.do"><strong>등록</strong> </a>
-								</div>
-							</div>
-							<!--//btn-->
-							<!-- 페이징 처리 -->
-								<div class='page'><%=Page.getPageList(vo.getPage(), totalpage, "qnaList.do")%></div>
-							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="qnaList.do"  method="post">
-								<div class="search">
-									<select name="searchOption" title="검색을 선택해주세요">
-										<option value="all">전체</option>
-										<option value="subject" <c:if test="${vo.searchOption == 'subject'}">selected</c:if>>제목</option>
-										<option value="content" <c:if test="${vo.searchOption == 'content'}">selected</c:if>>내용</option>
-									</select>
-									<input type="text" name="keyword" value="${vo.keyword}" title="검색할 내용을 입력해주세요" />
-									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
-								</div>
-							</form>
+							     <form  action="spotView.do" method="post">
+								    <div class="container">
+								        <div class="lcontents1">
+								        	<%
+											for (int j=0; j<spot.size(); j++){
+												if(j %2 == 0){
+											%>
+									            <div class="button">
+									            	<a href="javascript:ajaxView('<%=spot.get(j).getNum() %>');"  data-num="<%=spot.get(j).getNum() %>">
+									              		<img class="img" src="/upload/images/<%=spot.get(j).getFile()%>">
+									               		<div class="spotname"> 
+									                		<%=spot.get(j).getName()%>
+									                	</div>
+									                	<div class="spotcontent">  
+									                		<%=spot.get(j).getContent()%>
+									                	</div>
+									                	<span class="spotuser">
+									                		회원수 : 00명
+									                	</span>
+									                	<span class="spotleader">리더 : 홍길동</span>
+									                </a> 
+									                
+									            </div>    
+								           	<%
+												}
+											}
+											%>
+								        </div>
+								        <div class="content1">
+								            <%
+											for (int j=0; j<spot.size(); j++){
+												if(j %2 == 1){
+											%>
+									            <div class="button">
+									                <a href="javascript:ajaxView('<%=spot.get(j).getNum() %>');"  data-num="<%=spot.get(j).getNum() %>">
+									              		<img class="img" src="/upload/images/<%=spot.get(j).getFile()%>">
+									               		<div class="spotname"> 
+									                		<%=spot.get(j).getName()%>
+									                	</div>
+									                	<div class="spotcontent">
+									                		<%=spot.get(j).getContent()%>
+									                	</div>
+									                	<span class="spotuser">
+									                		회원수 : 00명
+									                	</span>
+									                	<span class="spotleader">리더 : 홍길동</span>
+									                </a> 
+									                
+									            </div>    
+								           	<%
+												}
+											}
+											%>
+								        </div>
+								    </div>
+								    </form>
 							<!-- //search --> 
+							
 						</div>
 						<!-- //blist -->
-					</div>
-					<!-- //bbs --> 
 					<!-- 내용 : e -->
 				</div>
 				<!--//con -->
@@ -128,8 +191,34 @@ function deleteConfirm() {
 		</div>
 		<!--//container --> 
 		<!-- E N D :: containerArea-->
+		
 	</div>
 	<!--//canvas -->
+    <div id="darken-background">
+	    <div id="lightbox">
+		    <form action="spotUpdateForm.do" method="post">
+		    <input type="hidden" id="num" name="num" value="0"> 
+	           <div class="spot-information">
+	               <div class="spot-information-text">
+	                                 카테고리 번호: <span id="category_name"></span></br>
+	                   SPOT 이름: <span id="name"></span>
+	               </div>
+	                <hr class="lightbox-splitter">
+	           			<div class="spot-infomation-img">
+	                		<img id="spot_file" src="http://placehold.it/300x300">
+	        			</div> 
+		        		<div class="spot_content">
+		                	<p>SPOT 소개 : <span id="spot_content"></span></p>
+		                	<p>전화번호 : <span id="tel"></span></p>
+		                	<p>이메일 : <span id="email"></span></p>
+		                	<p>SPOT 생성일 : <span id="regdate"></span></p>
+		                	<p>SPOT 가입질문 : <span id="question"></span></p>
+		                </div>
+				</div>
+	  		</form>
+			<input type="button" id="delBtn" value="삭제" onclick="deleteConfirm(num);">
+		</div>  
+   	</div>
 </div>
 <!--//wrap -->
 

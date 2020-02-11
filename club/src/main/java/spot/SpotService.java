@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import spot.SpotVO;
+import spotCategory.SpotCategoryVO;
 import util.FileUtil;
 
 @Service
@@ -60,5 +61,16 @@ public class SpotService {
 	public int insert(SpotVO spotvo) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	public int[] count(SpotVO spotvo) {
+		int listCount = spotDao.count(spotvo);  //전체 갯수
+		int totalpage = listCount / 10;		// 총페이지수
+		if(listCount % 10 > 0) totalpage ++;
+		
+		int[] pageCount = new int[2];
+		pageCount[0] = listCount;
+		pageCount[1] = totalpage;
+		
+		return pageCount;
 	}
 }

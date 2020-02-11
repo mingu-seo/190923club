@@ -71,7 +71,8 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 							%>
 							<tr class="board_art">
 								<td><a><%=list.get(i).getPost_id()%></a></td>
-								<td class="art_title"><a href="/board/writing/boardWriteView.do?board_id=2&post_id=<%=list.get(i).getPost_id()%>">
+								<td class="art_title">
+									<a href="/board/writing/boardWriteView.do?spot_num=<%=spot_num %>&board_id=2&post_id=<%=list.get(i).getPost_id()%>">
 									<%=list.get(i).getTitle() %></a>
 								</td>
 								<td>김세영</td>
@@ -79,7 +80,7 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 								<td>11</td>
 								<td><%=list.get(i).getView() %></td>
 						
-							</tr>	
+							</tr>	  
 							<% 
 							}
 							%>
@@ -93,6 +94,8 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 	
 				<div class="boardSearch">
 					<form action="/board/writing/boardList.do" method="post">
+						<input type="hidden" name="spot_num" value="<%=spot_num %>">
+						<input type="hidden" name="board_id" value="<%=vo.getBoard_id() %>">
 						<input type="text" name="search_word" id="boardSearch" value="<%=vo.getSearch_word() %>">
 						<input id="board_search_btn" type="submit" value="검색">
 					</form>

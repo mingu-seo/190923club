@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import spot.SpotService;
+import spot.SpotVO;
 
 
 @Controller
@@ -23,26 +24,35 @@ public class GalleryController {
 		@Autowired
 		GalleryService gService;
 		
+		@Autowired
+		private SpotService spotService;
+		
 		//갤러리 목록 페이지
 		@RequestMapping("/board/gallery/galleryList.do") 
-		public String galleryList(Model model, HttpServletRequest req, GalleryVO vo) {
-				List<GalleryVO> list = galleryDao.galleryList(vo);
+		public String galleryList(Model model, GalleryVO vo, @RequestParam("board_id")int board_id, @RequestParam("spot_num") int num) {
+				List<GalleryVO> list = galleryDao.galleryList(vo, board_id);
 				model.addAttribute("list", list); 
+				//스팟번호
+				SpotVO spot_vo = spotService.spotView(num);
+				model.addAttribute("spot_vo", spot_vo);
+				model.addAttribute("spot_num", num+"");
+				
 			return "board/gallery/galleryList";
 		}
 		
 		
 		//갤러리 작성페이지
 		@RequestMapping("/board/gallery/galleryWrite.do") 
-		public String galleryWrite() {
+		public String galleryWrite(Model model, @RequestParam("spot_num") int num) {
+			model.addAttribute("spot_num", num+"");
 			return "board/gallery/galleryWrite";
 		}
 		
 		//갤러리 작성
 		@RequestMapping("/board/gallery/galleryInsert.do")
-		public String galleryInsert(GalleryVO vo, @RequestParam("image_tmp") MultipartFile file, @RequestParam("image_tmp2") MultipartFile file2, @RequestParam("image_tmp3") MultipartFile file3, HttpServletRequest request, @RequestParam("board_id") int board_id) {
+		public String galleryInsert(GalleryVO vo, @RequestParam("image_tmp") MultipartFile file, @RequestParam("image_tmp2") MultipartFile file2, @RequestParam("image_tmp3") MultipartFile file3, HttpServletRequest request, @RequestParam("board_id") int board_id, @RequestParam("spot_num") int num) {
 			gService.galleryInsert(vo, file, file2, file3, request, board_id);
-			return "redirect:/board/gallery/galleryList.do";
+			return "redirect:/board/gallery/galleryList.do?spot_num="+num+"&board_id="+board_id;
 		}
 		
 		//갤러리 ajax
@@ -55,24 +65,27 @@ public class GalleryController {
 		
 		//갤러리삭제
 			@RequestMapping("/board/gallery/galleryDelete.do")
-			public String galleryDelete(GalleryVO vo) {
-			gService.galleryDelete(vo);
-			return "redirect:/board/gallery/galleryList.do";
+			public String galleryDelete(GalleryVO vo, @RequestParam("board_id")int board_id, @RequestParam("spot_num") int num) {
+			gService.galleryDelete(vo, board_id);
+			return "redirect:/board/gallery/galleryList.do?spot_num="+num+"&board_id="+board_id;
 			}
 			
 		//갤러리 수정
 		@RequestMapping("/board/gallery/galleryEdit.do") 
-		public String galleryEdit(Model model, @RequestParam("post_id") int id) {
+		public String galleryEdit(Model model, @RequestParam("post_id") int id, @RequestParam("spot_num") int num) {
 			GalleryVO vo = gService.galleryView(id);
 			model.addAttribute("vo", vo);
+			model.addAttribute("spot_num", num+"");
+
 			return "board/gallery/galleryEdit";
 		}
 		
 		//갤러리 업데이트
 				@RequestMapping("/board/gallery/galleryUpdate.do") 
-				public String galleryUpdate(GalleryVO vo, @RequestParam("image_tmp") MultipartFile file, @RequestParam("image_tmp2") MultipartFile file2, @RequestParam("image_tmp3") MultipartFile file3, HttpServletRequest request) {
-				gService.galleryUpdate(vo, file, file2, file3, request);
-				return "redirect:/board/gallery/galleryList.do";
+				public String galleryUpdate(Model model, GalleryVO vo, @RequestParam("image_tmp") MultipartFile file, @RequestParam("image_tmp2") MultipartFile file2, @RequestParam("image_tmp3") MultipartFile file3, HttpServletRequest request, @RequestParam("board_id")int board_id, @RequestParam("spot_num") int num) {
+				gService.galleryUpdate(vo, file, file2, file3, request, board_id);
+				model.addAttribute("spot_num", num+"");
+				return "redirect:/board/gallery/galleryList.do?spot_num="+num+"&board_id="+board_id;
 				}
 		
 

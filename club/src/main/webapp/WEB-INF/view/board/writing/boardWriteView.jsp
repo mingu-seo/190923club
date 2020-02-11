@@ -12,6 +12,7 @@ BoardVO vo = (BoardVO)request.getAttribute("vo");
 //댓글 리스트가져오는거
 List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
 ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
+
 %>				
 
 
@@ -26,9 +27,9 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
   
 	<!-- 삭제 스크립트 -->
 <script type="text/javascript">
-   function writingDel(post_id) {
+   function writingDel(post_id, spot_num) {
 	   if(confirm("삭제하시겠습니까?")) { 
-		   location.href="/board/writing/boardDelete.do?post_id="+post_id;
+		   location.href="/board/writing/boardDelete.do?spot_num="+spot_num+"&post_id="+post_id;
 	   } else
 		   return false;
 		   
@@ -54,6 +55,32 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 			dataType:'HTML',
 			success: function(data) {
 				$("#replyListArea").html(data);
+			},
+			error:function(data) {
+				console.log(data);
+			}
+		});
+	}
+ 	
+ 	//좋아요 ajax 
+	function likeAjax(id) {
+		$.ajax({
+			async : false,
+			url : '/board/likeInsert.do',
+			data : {
+				'post_id': id,
+				'board_id': 2,
+				'member_id':9,
+				'tableName':'writing'
+			},
+			dataType:'HTML',
+			success: function(data) {
+				//include return.jsp에서 받아온 값이 data
+				if(data.trim() == "0") {
+					$(".like_cnt").text(Number($(".like_cnt").text())+1); 
+				} else {
+					$(".like_cnt").text(Number($(".like_cnt").text())-1); 
+				}
 			},
 			error:function(data) {
 				console.log(data);
@@ -93,8 +120,13 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 					</div>
 					
 					<div class="view_repl_info">
-						<span class="view_like">❤︎ 좋아요</span>
-						<span>35</span> 
+						<form id="like_form">
+							<input type="hidden" name="post_id" value="<%=vo.getPost_id()%>">
+							<input type="hidden" name="board_id" value="<%=vo.getBoard_id()%>">
+								<span class="view_like" onclick="likeAjax()">❤ </span> 
+								<span class="like_cnt"><%=vo.getLike_cnt() %></span>
+						</form>
+						 
 						<span>조회</span>
 						<span><%=vo.getView() %></span>  
 					</div>		
@@ -167,9 +199,9 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 				
 				
 			</div>
-			<input type="button" value="삭제" class="btns" onclick="javascript:writingDel('<%=vo.getPost_id()%>');">
-			<input type="button" value="수정" class="btns" onclick="location.href='/board/writing/boardUpdateForm.do?board_id=2&post_id=<%=vo.getPost_id()%>'"> 
-			<input type="button" value="목록" class="btns" onclick="location.href='boardList.do'"> 
+			<input type="button" value="삭제" class="btns" onclick="javascript:writingDel('<%=vo.getPost_id()%>','<%=spot_num%>');">
+			<input type="button" value="수정" class="btns" onclick="location.href='/board/writing/boardUpdateForm.do?spot_num=<%=spot_num%>&board_id=2&post_id=<%=vo.getPost_id()%>'"> 
+			<input type="button" value="목록" class="btns" onclick="location.href='boardList.do?spot_num=<%=spot_num%>&board_id=2'"> 
         </div>
         
         

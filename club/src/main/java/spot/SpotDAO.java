@@ -18,7 +18,8 @@ public class SpotDAO {
 		return sqlSession.selectOne("spot.nameCheck", name);
 	}
 	public int spotInsert(SpotVO spotvo) {
-		return sqlSession.insert("spot.spotInsert",spotvo);
+		sqlSession.insert("spot.spotInsert",spotvo);
+		return spotvo.getNum();
 	}
 	// SPOT 전체 목록
 	public List<SpotVO> spotList(SpotVO spotvo){
@@ -35,5 +36,9 @@ public class SpotDAO {
 
 	public int spotDelete(int num) {
 		return sqlSession.delete("spot.spotDelete",num);
+	}
+	public int count(SpotVO spotvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("spot.count", spotvo);
 	}
 }

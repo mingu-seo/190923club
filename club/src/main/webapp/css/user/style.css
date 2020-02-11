@@ -63,6 +63,7 @@ div.lcontents1 > div.button{
 	margin-bottom: 20px;
 }
 .spotname{
+	height: 20px;
 	padding : 2px;
 	font-weight: bold;
 	

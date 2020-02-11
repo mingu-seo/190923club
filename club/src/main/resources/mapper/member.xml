@@ -13,6 +13,12 @@
 		VALUES(
 		#{id}, md5(#{password}), #{name}, #{email}, #{birth}, #{gender}, #{tel}, #{profile});
 	</insert>
+	
+	<!-- spot 회원가입 -->
+	<insert id="insertSpot" parameterType="member.MemberVO">
+		INSERT INTO project.joinspot(member_num, spot_num, grade, date) 
+		VALUES(#{member_num}, #{spot_num}, #{grade}, now());
+	</insert>
 
 	
 	<!-- 유저 로그인 -->
@@ -36,13 +42,33 @@
 	</update>
 	
 	
- 	<!-- 회원 리스트 -->    
+ 	<!-- 전체 회원 리스트 -->    
 	<select id="memberList" parameterType="member.MemberVO" resultType="member.MemberVO">
-		SELECT * FROM project.member
+		SELECT * FROM project.member 
+		<include refid="searchword"/>
+		limit #{startIndex}, #{limit}
+	</select> 
+	
+	
+	<!-- 스팟 회원 리스트 --> 
+	
+
+	<!-- 페이징 처리 -->
+	<select id="count" resultType="Integer" parameterType="member.MemberVO">
+		SELECT count(*) FROM project.member
+		<include refid="searchword"/>
 	</select>
 	
-	<!-- 페이징 처리 -->
-	<select id="count" resultType="Integer">
-		SELECT count(*) FROM project.member
-	</select>
+	<!-- 회원 검색 -->
+	<sql id="searchword"> 
+		<choose>
+			<when test="searchword != null and searchword != '' and stype == 'all'">			
+				WHERE name like '%${searchword}%'
+				OR id like '%${searchword}%'
+			</when>
+			<when test="searchword != null and searchword != ''">
+				WHERE ${stype} LIKE '%${searchword}%'
+			</when>
+		</choose>
+	</sql>
 </mapper>

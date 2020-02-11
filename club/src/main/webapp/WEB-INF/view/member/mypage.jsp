@@ -41,7 +41,7 @@ function update() {		// 수정 버튼
         <div class="visual">
         	
         	<!-- 왼쪽메뉴 -->
-        	<%@ include file="/WEB-INF/view/board/submain/submainLeft.jsp" %>
+        	<%@ include file="/WEB-INF/view/member/mypageLeft.jsp" %>
         	<!-- /왼쪽메뉴 -->
         	
         	<div class="visualRight">

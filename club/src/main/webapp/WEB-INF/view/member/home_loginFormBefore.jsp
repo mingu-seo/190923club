@@ -4,7 +4,7 @@
 <html>
 <head>
     <title></title>
-    <script src="/js/jquery.1.2.3.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="/js/swiper.min.js"></script>
     <link rel="stylesheet" href="/css/test/swiper.css">
     <link rel="stylesheet" href="/css/test/reset.css">

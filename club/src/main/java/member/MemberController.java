@@ -1,8 +1,8 @@
 package member;
 
-import java.util.List;  
+import java.util.List;
 
-import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import board.BoardDAO;
+import board.BoardService;
+import spot.SpotService;
+import spot.SpotVO;
+
 
 @Controller
 public class MemberController {
 	
 	@Autowired
 	MemberService memberService;	
+	
+	@Autowired
+	private BoardDAO boardDao;
+	
+	@Autowired
+	private BoardService bService;
+	
+	@Autowired
+	private notice.NoticeService nService;
+	
+	@Autowired
+	private reply.ReplyService rService;
+	
+	@Autowired
+	private SpotService spotService;
 	
 	// 회원가입
 	@RequestMapping("/member/joinForm1.do")
@@ -74,14 +94,18 @@ public class MemberController {
 		if (mv == null) {
 			msg = "아이디와 비밀번호를 확인해주세요.";
 			url = "/member/loginFormBefore.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "member/include/alert";
 		} else {
 			session.setAttribute("sess", mv);
-			msg = "로그인 되었습니다.";
-			url = "/member/loginFormAfter_user.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "redirect:/member/loginFormAfter_user.do";
 		}
-		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
-		return "member/include/alert";
+//		model.addAttribute("msg", msg);
+//		model.addAttribute("url", url);
+//		return "member/include/alert";
 	}
 	
 	@RequestMapping("/member/loginFormAfter_user.do")
@@ -101,7 +125,7 @@ public class MemberController {
 	public String mypageView(HttpSession session, Model model) {
 		MemberVO vo = (MemberVO)session.getAttribute("sess");
 		MemberVO mv = memberService.mypageView(vo.getNum());
-		// 인터셉터 해야함
+		
 		model.addAttribute("vo", mv);
 		return "member/mypage";
 	}	
@@ -121,13 +145,33 @@ public class MemberController {
 	
 	// 회원 리스트
 	@RequestMapping("/member/memberList.do")
-	public String memberList(MemberVO vo, Model model) {
-		int[] listcount = memberService.pageCount();	// 전체 갯수
+	public String memberList(MemberVO vo, Model model, @RequestParam("spot_num") String spot_num) {
+		int[] listcount = memberService.pageCount(vo);	// 전체 갯수
 		List<MemberVO> list = memberService.MemberList(vo);
+		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		model.addAttribute("spot_num", spot_num);
+		model.addAttribute("spot_vo", spotvo);
 		model.addAttribute("listcount", listcount[0]);
 		model.addAttribute("totalpage", listcount[1]);
-		model.addAttribute("list", list);
+		model.addAttribute("memberList", list);
 		model.addAttribute("vo", vo);
 		return "member/memberList";
+	}
+	
+	
+	// 동아리 가입
+	@RequestMapping("/member/spotJoinForm.do")
+	public String spotJoinForm(Model model, @RequestParam("spot_num") String spot_num) {
+		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		model.addAttribute("spot_num", spot_num);
+		model.addAttribute("spot_vo", spotvo);
+		return "member/spotJoinForm";
+	}
+	
+	
+	// 동아리 수정(관리자)
+	@RequestMapping("/member/clubSetting.do")
+	public String clubSetting() {
+		return "member/clubSetting";
 	}
 }

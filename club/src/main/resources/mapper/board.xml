@@ -13,7 +13,7 @@
 				and spot_num = #{spot_num} and category_id = #{category_id}
 			</where>  
 			order by regdate desc
-		</select>
+		</select>  
 		
 	<!-- 자유게시판 조회수 -->
 		<update id="boardUpdateReadcount" parameterType="Integer">
@@ -40,6 +40,10 @@
 	<!-- 자유게시판 글삭제 -->
 		<delete id="board_delete" parameterType="Integer">
 			delete from project.writing where post_id=#{post_id}
+		</delete>
+	<!-- 카테고리 삭제로 인한 모든정보 삭제 -->
+		<delete id="allBoard_delete" parameterType="Integer">
+			delete from project.writing where category_id=#{category_id}
 		</delete>
 	
 	<!-- 갤러리 리스트 -->
@@ -125,9 +129,9 @@
 	<!-- 공지사항 글작성 -->
 		<insert id="notice_insert" parameterType="notice.NoticeVO" useGeneratedKeys="true">
 			insert into project.notice 
-			(title, contents, regdate, board_id, spot_num, category_id)
+			(title, contents, regdate, spot_num, category_id)
 			values
-			(#{title}, #{contents}, now(), #{board_id}, #{spot_num}, #{category_id})
+			(#{title}, #{contents}, now(), #{spot_num}, #{category_id})
 			
 			<selectKey keyProperty="post_id" resultType="Integer" order="AFTER">
 				SELECT last_insert_id()
@@ -157,21 +161,21 @@
 
 	<!-- 보드메인 자유게시글 -->
 		<select id="main_board" resultType="board.BoardVO">
-			select post_id, title, writer, view from project.writing where spot_num=#{spot_num}
+			select post_id, title, writer, view, category_id from project.writing where spot_num=#{spot_num}
 			order by regdate desc limit 0,7
 		</select>
 
 
 	<!-- 보드메인 공지 -->  
 		<select id="main_notice" resultType="notice.NoticeVO">
-			select post_id, title, writer, view from project.notice where spot_num=#{spot_num}
+			select post_id, title, writer, view, category_id from project.notice where spot_num=#{spot_num}
 			order by regdate desc limit 0,7
 		</select>
-		
+		     
 
 		<select id="main_gallery" resultType="gallery.GalleryVO">
 			select post_id, title, writer, image, regdate, view from project.gallery where spot_num=#{spot_num}
-			order by regdate desc limit 0,4
+			order by regdate desc limit 0,4  
 		</select>
 		
 		<!-- 갤러리  조회수 -->

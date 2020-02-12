@@ -16,8 +16,13 @@ public class CategoryDAO {
 	public CategoryVO cateName_select(int category_id) {
 		return sqlSession.selectOne("category.cateName_select", category_id);
 	}
+	//카테고리 생성
 	public int categoryInsert(CategoryVO vo) {
 		return sqlSession.insert("category.cg_insert", vo);
+	}
+	//카테고리 삭제
+	public int categoryDelete(CategoryVO vo) {
+		return sqlSession.delete("category.cg_delete", vo);
 	}
 	//갤러리 리스트
 	public List<CategoryVO> gCategoryList(CategoryVO vo) {

@@ -29,6 +29,10 @@ public class BoardService {
 	public int boardDelete(int post_id) {
 		return boardDAO.boardDelete(post_id);
 	}
+	//카테고리 삭제로 인한 게시판 글삭제
+	public int allBoard_delete(int category_id) {
+		return boardDAO.allBoard_delete(category_id);
+	}
 	public List<BoardVO> mainBoardList(BoardVO vo) {
 		return boardDAO.mainBoardList(vo);
 	}

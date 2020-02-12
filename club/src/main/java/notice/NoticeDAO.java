@@ -13,7 +13,7 @@ public class NoticeDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	//목록
-	public List<NoticeVO> noticeList(NoticeVO vo, int board_id) {
+	public List<NoticeVO> noticeList(NoticeVO vo) {
 		return sqlSession.selectList("board.notice_list", vo);
 	}
 	//목록 카운트

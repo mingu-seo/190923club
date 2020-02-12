@@ -26,6 +26,10 @@ public class CategoryService {
 		}
 	}
 	
+	public void categoryDelete(CategoryVO vo) {
+		categoryDao.categoryDelete(vo);
+	}
+	
 	public List<CategoryVO>[] categoryList(CategoryVO vo) {
 		List<CategoryVO>[] listArr = new List[3];
 		listArr[0] = categoryDao.gCategoryList(vo);
@@ -33,11 +37,11 @@ public class CategoryService {
 		listArr[2] = categoryDao.nCategoryList(vo);
 		return listArr;
 	}
-	
+	//카테고리번호 제일 작은 값 불러오기
 	public CategoryVO cateMin_num(int spot_num) {
 		return categoryDao.cateMin_num(spot_num);
 	}
-	
+	//카테고리 이름 불러오기
 	public CategoryVO cateName_select(int category_id) {
 		return categoryDao.cateName_select(category_id);
 	}

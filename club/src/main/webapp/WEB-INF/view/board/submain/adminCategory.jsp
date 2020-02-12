@@ -25,27 +25,28 @@ function addBox(idx) {
 	//이벤트 중첩 방지 
 	$(".deleteBtn").off("click");
 	
+	//DB에 저장되지 않은 카테고리 삭제하는 기능
 	$(".deleteBtn").click(function() {
 		console.log("click");
 		var idx = $(this).index(".deleteBtn");
 		$(".boardAdd").eq(idx).remove();
 	});
 }
-
+//DB에 저장되어있는 카테고리와 정보들을 삭제하는 기능
 $(function() {
 	$(".deleteBtn").click(function() {
-		if(confirm("삭제하시면 해당 카테고리 안의 내용이 모두 삭제됩니다. 그래도 삭제하시겠습니까?")) {
+		var idx = $(this).index(".deleteBtn"); 
+		if(confirm("카테고리를 삭제하시면 해당 카테고리 안의 내용을 모두 잃게됩니다.\n그래도 삭제하시겠습니까?")) {
 			$.ajax({
 				async : false,
-				url : '삭제url',
-				data : {
-					'spot_num': spot_num,
-					'board_id': 3
+				url : '/board/categoryDelete.do',
+				data : { //input태그이면서 name이 category_ids인 인덱스 몇번째의 데이터를 가져오는것
+					'category_id': $("input[name='category_ids']").eq(idx).val(), 
 				},
 				dataType:'HTML',
 				success: function(data) {
-					var idx = $(this).index(".deleteBtn");
 					$(".boardAdd").eq(idx).remove();
+					alert("삭제되었습니다.");
 				},
 				error:function(data) {
 					console.log(data);
@@ -63,7 +64,7 @@ $(function() {
 
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->  
         <%@ include file="menu.jsp" %>
        
@@ -116,7 +117,7 @@ $(function() {
         				<h1>▼ 자유게시판</h1>
         			</div>
         			<form action="/board/categoryInsert.do" method="post">
-        			<input type="hidden" name="board_id" value="2"> 
+        			<input type="hidden" name="board_id" value="2">
         			<input type="hidden" name="spot_num" value="<%=spot_num%>">
         			
 	        			<div class="boardBox">

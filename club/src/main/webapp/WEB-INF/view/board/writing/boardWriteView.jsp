@@ -8,6 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 BoardVO vo = (BoardVO)request.getAttribute("vo");
+CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 
 //댓글 리스트가져오는거
 List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
@@ -95,7 +96,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->
     <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
         <div class="visual">
@@ -105,7 +106,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
         	</div>
         	
         	<div class="visualRight">
-        		<div class="board_ctg_name">게시판 목록</div>
+        		<div class="board_ctg_name"><%=cate_name.getName() %></div>
         	<div class="view_wrap">
 					<div class="view_tt"><%=vo.getTitle() %>
 						<div class="view_info">
@@ -197,13 +198,13 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 					</div> 
 				</div>
 				
-				 
+				  
 			</div>
 			<input type="button" value="삭제" class="btns" onclick="javascript:writingDel('<%=vo.getPost_id()%>','<%=spot_num%>','<%=vo.getCategory_id()%>');">
-			<input type="button" value="수정" class="btns" onclick="location.href='/board/writing/boardUpdateForm.do?spot_num=<%=spot_num%>&board_id=2&post_id=<%=vo.getPost_id()%>'"> 
-			<input type="button" value="목록" class="btns" onclick="location.href='boardList.do?spot_num=<%=spot_num%>&board_id=2&category_id=<%=vo.getCategory_id()%>'">  
+			<input type="button" value="수정" class="btns" onclick="location.href='/board/writing/boardUpdateForm.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id() %>&post_id=<%=vo.getPost_id()%>'"> 
+			<input type="button" value="목록" class="btns" onclick="location.href='boardList.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>'">  
         </div>
-        
+         
         
     </div>
     <%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>

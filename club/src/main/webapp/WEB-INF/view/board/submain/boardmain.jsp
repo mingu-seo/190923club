@@ -12,11 +12,9 @@
 
 //공지사항 리스트
 List<NoticeVO> nList = (List<NoticeVO>)request.getAttribute("nlist");
-BoardVO bVO = (BoardVO)request.getAttribute("bVO");
 
 //갤러리 리스트
 List<GalleryVO> gList=(List<GalleryVO>)request.getAttribute("glist");
-GalleryVO gvo = (GalleryVO)request.getAttribute("gvo");
 
 //자유게시판 리스트
 List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
@@ -344,7 +342,7 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
 
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->  
         <%@ include file="menu.jsp" %>
        
@@ -357,7 +355,7 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
         	
         	<div class="visualRight"> 
         		<div id="preview">
-        		미리보기<a href="admincategory.do?spot_num=<%=spot_num%>"><img src="/img/board/set.png"></a>
+        		미리보기<a href="admincategory.do?spot_num=<%=spot_vo.getNum()%>"><img src="/img/board/set.png"></a>
         		</div>
 	        	
         		<div><!-- 갤러리, 게시판, 공지 div를 감싸고 있음 -->
@@ -366,14 +364,14 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
         		<div class=rightBoard>
         		
         			<div class="galarybox">
-        				<div id="mm"><a href="/board/gallery/galleryList.do?spot_num=<%=spot_num %>&category_id=<%=cate_minNum.getCategory_id1()%>&board_id=1"><button class="view-more">더보기</button></a></div>
+        				<div id="mm"><a href="/board/gallery/galleryList.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=cate_minNum.getCategory_id1()%>&board_id=1"><button class="view-more">더보기</button></a></div>
         			
         			<%
 					if(gList.isEmpty()) { 
 					%>
 						<div class="contents_empty">
-							<a href="/board/gallery/galleryWrite.do?spot_num=<%=spot_num%>&board_num=1">
-								<img class="contents_empty_img" src="/img/board/color.png"></a><br>
+							
+							<img class="contents_empty_img" src="/img/board/color.png"><br>
 							등록된 내용이 없습니다.
 						</div>
         			
@@ -402,17 +400,17 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
         		</div>
         		
         		<div class="pre-board">
-        		<div class="preBoard-name">게시판</div> 
+        		<div class="preBoard-name">게시판</div>  
         		<div class=rightBoard>
-        		<div id="mm"><a href="/board/writing/boardList.do?spot_num=<%=spot_num %>&category_id=<%=cate_minNum.getCategory_id2()%>&board_id=2"><button class="view-more">더보기</button></a></div> 
+        		<div id="mm"><a href="/board/writing/boardList.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=cate_minNum.getCategory_id2()%>"><button class="view-more">더보기</button></a></div> 
         		<table class="preboard">
 
 					<%
 					if(bList.isEmpty()) { 
 					%>
 						<div class="contents_empty">
-							<a href="/board/writing/boardWrite.do?spot_num=<%=spot_num%>&board_num=2">
-								<img class="contents_empty_img" src="/img/board/pen.png"></a><br>
+							
+								<img class="contents_empty_img" src="/img/board/pen.png"><br>
 							등록된 내용이 없습니다.
 						</div>
 					<%
@@ -422,11 +420,11 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
 					
         			<tr> <!-- 최대 갯수 지정 -->
         				<td>★</td>
-        				<td class="preboard-tt">
-        					<a href="/board/writing/boardWriteView.do?spot_num=<%=spot_num %>&board_id=2&post_id=<%=bList.get(i).getPost_id() %>">
+        				<td class="preboard-tt"> 
+        					<a href="/board/writing/boardWriteView.do?spot_num=<%=spot_vo.getNum() %>&post_id=<%=bList.get(i).getPost_id() %>&category_id=<%=bList.get(i).getCategory_id()%>">
         						<%=bList.get(i).getTitle() %>
         					</a>
-        				</td>
+        				</td> 
         				<td>홍길동</td>
         				<td><%=bList.get(i).getView() %></td>
         			</tr>
@@ -444,28 +442,28 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
         		<div class="pre-board">
         		<div class="preBoard-name">공지</div>
         		<div class=rightBoard>
-        		<div id="mm"><a href="/board/notice/noticeList.do?spot_num=<%=spot_num %>&category_id=<%=cate_minNum.getCategory_id3()%>&board_id=3"><button class="view-more">더보기</button></a></div>
+        		<div id="mm"><a href="/board/notice/noticeList.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=cate_minNum.getCategory_id3()%>"><button class="view-more">더보기</button></a></div>
         		<table class="preboard">
         		
         			<%
         			if(nList.isEmpty()) { 
         			%>
         				<div class="contents_empty">
-							<a href="/board/notice/noticeWrite.do?spot_num=<%=spot_num%>&board_num=3"> 
-								<img class="contents_empty_img" src="/img/board/pen.png"></a><br>
+							 
+								<img class="contents_empty_img" src="/img/board/pen.png"><br>
 							등록된 내용이 없습니다.
 						</div>
         			<%}
         			else {
         			for (int i=0; i<nList.size(); i++) {
-        			%>
+        			%> 
         			
         			<tr> <!-- 최대 갯수 지정(7개정도) -->
         				<td>★</td>
         				<td class="preboard-tt">
-        					<a href="/board/notice/noticeWriteView.do?spot_num=<%=spot_num %>&board_id=3&post_id=<%=nList.get(i).getPost_id()%>">
+        					<a href="/board/notice/noticeWriteView.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=nList.get(i).getCategory_id() %>&post_id=<%=nList.get(i).getPost_id()%>">
         						<%=nList.get(i).getTitle() %>  
-        					</a></td> 
+        					</a></td>  
         				<td>홍길동</td>
         				<td><%=nList.get(i).getView() %></td>
         			</tr>

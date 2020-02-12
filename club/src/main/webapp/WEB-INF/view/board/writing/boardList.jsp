@@ -24,7 +24,7 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->  
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
@@ -37,7 +37,10 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
         	
         	 
 	        <div class="visualRight">
-		        	<div class="board_ctg_name"><%=cate_name.getName()%></div><!-- 카테고리 이름 --> 
+		        	<div class="board_ctg_name">
+		        		<%=cate_name.getName()%>
+ 		        	
+		        	</div><!-- 카테고리 이름 --> 
 					<div class="board_writing"><a href="boardWrite.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>">글작성</a></div>
 			
 					<div class="board_seq">
@@ -70,16 +73,16 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 
 							<%
 							for (int i=0; i<list.size(); i++) {
-							%>
+							%> 
 							<tr class="board_art">
 								<td><a><%=list.get(i).getPost_id()%></a></td>
-								<td class="art_title">
-									<a href="/board/writing/boardWriteView.do?spot_num=<%=spot_num %>&board_id=2&category_id=<%=list.get(i).getCategory_id() %>&post_id=<%=list.get(i).getPost_id()%>">
+								<td class="art_title"> 
+									<a href="/board/writing/boardWriteView.do?spot_num=<%=spot_num %>&category_id=<%=list.get(i).getCategory_id() %>&post_id=<%=list.get(i).getPost_id()%>">
 									<%=list.get(i).getTitle() %></a>
 								</td>
 								<td>김세영</td>
 								<td><%=util.Function.getYmd(list.get(i).getRegdate()) %></td>
-								<td>11</td>
+								<td><%=list.get(i).getLike_cnt() %></td>
 								<td><%=list.get(i).getView() %></td>
 						
 							</tr>	  
@@ -97,7 +100,6 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 				<div class="boardSearch">
 					<form action="/board/writing/boardList.do" method="post">
 						<input type="hidden" name="spot_num" value="<%=spot_num %>">
-						<input type="hidden" name="board_id" value="<%=vo.getBoard_id() %>">
 						<input type="hidden" name="category_id" value="<%=vo.getCategory_id() %>"> 
 						<input type="text" name="search_word" id="boardSearch" value="<%=vo.getSearch_word() %>">
 						<input id="board_search_btn" type="submit" value="검색">

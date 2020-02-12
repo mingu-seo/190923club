@@ -8,6 +8,7 @@
 <%
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 FileVO fv = (FileVO)request.getAttribute("fv");
+CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 %>
 
 <!DOCTYPE html>
@@ -44,6 +45,26 @@ FileVO fv = (FileVO)request.getAttribute("fv");
 				function save(){
 					oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);//에디터의 내용을 textarea(id-content)에 적용
 				}
+				
+				function check() {
+					if($("#title").val().trim()=="") {
+						alert("제목을 입력해 주세요.")
+						$("#title").focus();
+						return false;
+					}
+					if($("#file_tmp").val()=="") {
+						alert("파일을 선택해 주세요.")
+						$("#file_tmp").focus();
+						return false;
+					}
+					oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
+					if($("#contents").val().trim()=="" || $("#contents").val() == "<p>&nbsp;</p>") {
+						alert("내용을 입력해 주세요.")
+						oEditors.getById["contents"].exec("FOCUS"); 
+						return false;
+					}
+					$("#writeForm").submit();
+				}
 				</script>
 
 
@@ -53,7 +74,7 @@ FileVO fv = (FileVO)request.getAttribute("fv");
 
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
@@ -67,11 +88,10 @@ FileVO fv = (FileVO)request.getAttribute("fv");
         	
         	<!-- 오른쪽 contents -->
         	<div class="visualRight">
-        		<div class="board_ctg_name">공지사항 목록</div>
+        		<div class="board_ctg_name"><%=cate_name.getName() %></div>
         		
         		<div>
-				<form action="noticeInsert.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
-					<input type="hidden" name="board_id" value="3">
+				<form action="noticeInsert.do" method="post" name="writeForm" id="writeForm" enctype="multipart/form-data" onsubmit="save();">
 					<input type="hidden" name="category_id" value="<%=vo.getCategory_id()%>">
 					<input type="hidden" name="spot_num" value="<%=spot_num %>">
 					<table id="boardTable">
@@ -79,7 +99,7 @@ FileVO fv = (FileVO)request.getAttribute("fv");
 						<tr>		
 							<th>제목</th>
 								<td class="writing_box">
-									<input type="text" name="title" class="tableRight">
+									<input type="text" name="title" id="title" class="tableRight">
 								</td>
 						</tr>
 						
@@ -87,7 +107,7 @@ FileVO fv = (FileVO)request.getAttribute("fv");
 						<tr>		
 							<th>첨부파일</th>
 								<td class="writing_box">
-									<input type="file" name="file_tmp" class="tableRight">
+									<input type="file" name="file_tmp" id="file_tmp">
 								</td>
 						</tr>
 						
@@ -99,9 +119,9 @@ FileVO fv = (FileVO)request.getAttribute("fv");
 					</table>
 						
 						<div class="writing_btns">
-							<input type="submit" value="작성완료" class="btns">
+							<input type="button" value="작성완료" class="btns" onclick="check();">
 							<input type="reset" value="다시 작성" class="btns"/>
-							<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>&board_id=3'">
+							<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>'">
 						</div>
 				</form>
 			</div>

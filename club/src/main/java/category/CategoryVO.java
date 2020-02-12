@@ -9,8 +9,15 @@ public class CategoryVO {
 	private String name;
 	private int board_id;
 	private int spot_num;
+	private String empty_name;
 	
 	
+	public String getEmpty_name() {
+		return empty_name;
+	}
+	public void setEmpty_name(String empty_name) {
+		this.empty_name = empty_name;
+	}
 	public int getCategory_id1() {
 		return category_id1;
 	}

@@ -42,6 +42,11 @@ public class BoardDAO {
 		return sqlSession.delete("board.board_delete", post_id);
 	}
 	
+	//카테고리 삭제로 인한 게시판 글삭제
+	public int allBoard_delete(int category_id) {
+		return sqlSession.delete("board.allBoard_delete", category_id);
+	}
+	
 	//보드메인 자유게시판
 	public List<BoardVO> mainBoardList(BoardVO vo) {
 		return sqlSession.selectList("board.main_board", vo);

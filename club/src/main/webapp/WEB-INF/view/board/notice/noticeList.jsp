@@ -27,7 +27,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 
 
     <div class="wrap">
-    	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+    	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
        
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
@@ -77,12 +77,12 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 							<tr class="board_art">
 								<td><%= list.get(i).getPost_id()%></td>
 								<td class="art_title">
-									<a href="/board/notice/noticeWriteView.do?spot_num=<%=spot_num %>&board_id=<%=list.get(i).getBoard_id()%>&category_id=<%=list.get(i).getCategory_id() %>&post_id=<%=list.get(i).getPost_id()%>">
+									<a href="/board/notice/noticeWriteView.do?spot_num=<%=spot_num %>&category_id=<%=list.get(i).getCategory_id() %>&post_id=<%=list.get(i).getPost_id()%>">
 									<%=list.get(i).getTitle() %></a>
 								</td>
 								<td>조한빈</td>
 								<td><%=util.Function.getYmd(list.get(i).getRegdate())%></td>
-								<td>11</td>
+								<td><%=list.get(i).getLike_cnt() %></td>
 								<td><%=list.get(i).getView() %></td>
 							</tr>  
 							
@@ -98,17 +98,16 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 	
 				 <div class="boardSearch">
 					 	<form action="/board/notice/noticeList.do" method="post">
-					 		<input type="hidden" name="board_id" value="<%=vo.getBoard_id() %>">
 					 		<input type="hidden" name="spot_num" value="<%=spot_num%>">
 							<input type="search" name="search_word" id="boardSearch" value="<%=vo.getSearch_word() %>"> 
 							<input id="board_search_btn" type="submit" value="검색">
 						</form>
 				</div>
-	
+	 
 				<div id="pageList">
-					<%=util.BoardPage.getPageList(vo.getPage(), totalpage, "/board/notice/noticeList.do?board_id=3") %>
+					<%=util.BoardPage.getPageList(vo.getPage(), totalpage, "/board/notice/noticeList.do?spot_num="+ spot_num + "&category_id=" + vo.getCategory_id()) %>
 				</div>
-				
+				 
 	        </div>
    		</div>
         

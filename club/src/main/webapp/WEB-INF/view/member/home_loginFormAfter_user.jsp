@@ -1,7 +1,17 @@
-<%@page import="member.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% MemberVO vo = (MemberVO)session.getAttribute("sess"); %>
+<%@page import="member.MemberVO"%>
+<%@ page import="java.util.List" %>
+<%@ page import="adminInfo.AdminInfoVO"%>
+<%@ page import="spot.SpotVO" %>   
+<% 
+	MemberVO vo = (MemberVO)session.getAttribute("sess"); 
+	List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
+	SpotVO spotvo = (SpotVO)request.getAttribute("spotvo");
+	List<AdminInfoVO> infolist = (List<AdminInfoVO>)request.getAttribute("info_article");
+	AdminInfoVO infovo = (AdminInfoVO)request.getAttribute("infovo");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +20,7 @@
     <script src="/js/swiper.min.js"></script>
     <link rel="stylesheet" href="/css/test/swiper.css">
     <link rel="stylesheet" href="/css/test/reset.css">
-    <link rel="stylesheet" href="/css/test/home_loginFormAfter_user.css">
+    <link rel="stylesheet" href="/css/test/home_loginFormBefore.css">
     <script>
     	$(function() {
     		var swiper = new Swiper('.swiper', {
@@ -34,37 +44,50 @@
             	<input style="padding: 5px 10px;" type="button" value="로그아웃">
             </a>
             <div class="login">
-                <table>
-                    <tr>
-                        <td>
-                        	<div>
-                        		<img style="width: 100px; height: 100px; border-radius: 10%;" 
-                        			src=<%if(vo.getProfile()==null){ %>/css/test/img/profile.jpeg
-	                    			<%} else{%>
-	                    			/profileImg/<%=vo.getProfile()%>
-	                    			<%} %>>
-	                    	</div>
-	                    </td>
-                        <td style="font-size: 20px; text-align: left;"><%=vo.getName() %><br><br><a href="/member/mypageView.do">내정보보기</a></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <div class="login_club-swiper-slide">
-                                <a href="/spot/spotList.do"><input type="button" value="나의 핫스팟" style="padding: 5px 45px;"></a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+                <div class="loginHeader">
+		              <div class="login_after_Form">
+		                   <h1 class="login_title">HOT SPOT</h1>
+		                   	<div class="lform">
+		                      	<div class="member_profile">
+		                        	<img src=<%if(vo.getProfile()==null){ %>/css/test/img/profile.jpeg
+			                    			<%} else{%>
+			                    			/profileImg/<%=vo.getProfile()%>
+			                    			<%} %> class="member_img">
+			                  	</div>
+		                  	</div>
+		                  	<div class="rform">
+		                      	<div class="member_name">
+		                      		<%=vo.getName() %>님
+		                      	</div>
+		                      	<div class="member_info">
+		                      		<a href="/member/mypageView.do">내정보보기</a>
+		                      	</div>
+			                      	<div class="member_joinspot">
+			                            <a href="/spot/spotList.do">My HOT SPOT</a>
+			                      	</div>
+	                      	</div>
+                     </div>
+                 </div>      
             </div>
+        </div>
+        <div class="container"> 
+       		<h1 class="hotspot_info">HOT SPOT을 소개합니다.</h1>
         </div>
         <div class="description">
             <div class="visual">
 	       	 <div class="swiper swiper-container">
 	       	 	<div class="swiper-wrapper">
-	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
-	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
-	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
-	       	 		<div class="swiper-slide" style="background-image:url('/css/test/img/sample.jpg');background-repeat: no-repeat;background-position: center;"></div>
+	                 <%
+	               		for(int i=0; i<infolist.size(); i++){ 
+	               	 %>
+	                  <div class="swiper-slide">
+	                      <img src="/upload/images/<%=infolist.get(i).getFile() %>" class="sw_img">
+	                      <div class="sw_title"><%=infolist.get(i).getName()%></div>
+	                      <div class="sw_content"><%=infolist.get(i).getContent()%></div>
+	                  </div>    
+	                 <%
+	                      }
+	                 %>
 	       	 	</div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
@@ -72,44 +95,71 @@
 	       	 </div>
 	      </div>
         </div>
-        <div class="container">
-            <div class="content">
-                <div class="club">
-                    <a href=""><img scr=""><div class=club_description></div></a>
-                </div>
-                <div class="club">
-                    <a href=""><img scr=""></a>
-                </div>
-                <div class="club">
-                    <a href=""><img scr=""></a>
-                </div>
-                <div class="club">
-                    <a href=""><img scr=""></a>
-                </div>
-                <div class="club">
-                    <a href=""><img scr=""></a>
-                </div>
-                <div class="club">
-                    <a href=""><img scr=""></a>
-                </div>
-            </div>
+        <div class="container"> 
+       		<h1 class="hotspot_info">당신에게 맞는 HOT SPOT을 찾아보세요!</h1>
+       		<a href="/spot/spotList.do" class="hotspot_more">더 보기</a>
         </div>
-        <div class="footer">
-            <div class="size">
-               <div class="info">
-                   <p>구디아카데미</p>
-                   <p>서울시 서울구 서울로 서울동 서울호</p>
-                   <p>02-2000-2000 | 010-2222-2222</p>
-                   <p>대표자 김철수 | 책임자 김수철</p>
-                   <p>사업자등록번호 111-11-22222</p>
-               </div>
-               <div class="sns_area">
-                   <a href=""><img src="/css/test/img/facebook.png"></a>
-                   <a href=""><img src="/css/test/img/instar.png"></a>
-                   <a href=""><img src="/css/test/img/blog.png"></a>
-               </div>
-            </div>
-       </div>
+        <form  action="spotView.do" method="post">
+	    <div class="container">
+	        <div class="lcontents1">
+	        	<%
+				for (int j=0; j<spot.size(); j++){
+					if(j %2 == 0){
+				%>
+		            <div class="button">
+		                <a href="/board/submain/submain.do?spot_num=<%=spot.get(j).getNum() %>" target="_blank">
+		              		<img class="img" src="/upload/images/<%=spot.get(j).getFile()%>">
+		               		<div class="spotname"> 
+		                		<%=spot.get(j).getName()%>
+		                	</div>
+		                	<div class="spotcontent">  
+		                		<%=spot.get(j).getContent()%>
+		                	</div>
+		                	<span class="spotuser">
+		                		회원수 : 00명
+		                	</span>
+		                	<span class="spotleader">리더 : 홍길동</span>
+		                </a> 
+		                
+		            </div>    
+	           	<%
+					}
+				}
+				%>
+	        </div>
+	        <div class="content1">
+	            <%
+				for (int j=0; j<spot.size(); j++){
+					if(j %2 == 1){
+				%>
+		            <div class="button">
+		                <a href="/board/submain/submain.do?spot_num=<%=spot.get(j).getNum() %>" target="_blank">
+		              		<img class="img" src="/upload/images/<%=spot.get(j).getFile()%>">
+		               		<div class="spotname"> 
+		                		<%=spot.get(j).getName()%>
+		                	</div>
+		                	<div class="spotcontent">
+		                		<%=spot.get(j).getContent()%>
+		                	</div>
+		                	<span class="spotuser">
+		                		회원수 : 00명
+		                	</span>
+		                	<span class="spotleader">리더 : 홍길동</span>
+		                </a> 
+		                
+		            </div>    
+	           	<%
+					}
+				}
+				%>
+	        </div>
+	    </div>
+	    </form>
+	    <div class="container">
+			<!-- S T A R T :: footerArea-->
+			<%@ include file="/WEB-INF/view/user/include/bottom.jsp" %>
+			<!-- E N D :: footerArea-->
+	    </div>
     </div>
 </body>
 </html>

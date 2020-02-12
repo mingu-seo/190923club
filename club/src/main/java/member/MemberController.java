@@ -128,7 +128,16 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/loginFormAfter_user.do")
-	public String userHome() {
+	public String userHome(Model model, SpotCategoryVO vo,SpotVO spotvo ,AdminInfoVO infovo) {
+		List<SpotCategoryVO> list = spotCategoryService.spotCategoryList(vo);
+		List<SpotVO> spotArticle = spotService.spotList(spotvo);
+		List<AdminInfoVO> infoArticle = adminInfoService.adminInfoList(infovo);
+		model.addAttribute("info_article",infoArticle);
+		model.addAttribute("infovo",infovo);
+		model.addAttribute("spot",spotArticle);
+		model.addAttribute("spotvo",spotvo);
+		model.addAttribute("list",list);
+		model.addAttribute("vo",vo);
 		return "member/home_loginFormAfter_user";
 	}
 	

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,11 +27,11 @@
 		            <div class="joinForm">
 				        <div class="joinTitle">
 				            <div class="titleText">
-				                <h2>spot 이름</h2>
-				                <p>XXspot에 가입하시겠습니까?</p>
+				                <h2><%=list.getName() %></h2>
+				                <p><%=list.getName() %>에 가입하시겠습니까?</p>
 				            </div>
 					        <div class="joinBtn">
-					            <input type="button" value="가입신청">
+					            <a href="/spotJoin/joinSpot.do?spot_num=<%=spot_num%>"><input type="button" value="가입신청"></a>
 					        </div>
 				        </div>
 		    		</div>

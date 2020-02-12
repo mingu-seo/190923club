@@ -26,6 +26,7 @@ public class MemberService {
 		return memberDAO.memberInsert(vo);
 	}
 
+
 	
 	// 유저 로그인
 	public MemberVO userLogin(MemberVO vo) {

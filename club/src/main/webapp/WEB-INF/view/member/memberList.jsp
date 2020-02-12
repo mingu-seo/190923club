@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="member.MemberVO"%>
+<%@page import="joinSpot.JoinSpotVO"%>
 <%@page import="util.Page"%>
 <%@page import="java.util.List"%>
 <% 
 List<MemberVO> memberList = (List<MemberVO>)request.getAttribute("memberList");
 MemberVO vo = (MemberVO)request.getAttribute("vo");
+JoinSpotVO jv = (JoinSpotVO)request.getAttribute("js");
 int listcount = (Integer)request.getAttribute("listcount"); // 전체 갯수 (model에 저장한 "listcount")
 int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지수 (model에 저장한 "totalpage")
 %>
@@ -29,7 +31,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
         	<!-- 왼쪽메뉴 -->
         	<div class="visualRight">
         		<div class="content">
-            		<form name="frm" id="frm" action="process.do" method="post">
+            		<form name="frm" id="frm" action="spotMemberSleep.do" method="post">
 			            <table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 			                <colgroup>
 			                    <col class="w5" />
@@ -58,7 +60,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
 			                for (int i=0; i<memberList.size(); i++) {
 			                %>
 			                    <tr>
-			                        <td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
+			                        <td class="first"><input type="checkbox" name="num" id="no" value=""/></td>
 			                        <td><%=memberList.get(i).getNum()%></td>
 			                        <td class="profileImg"><img src="/profileImg/<%=memberList.get(i).getProfile()%>"></td>
 			                        <td><%=memberList.get(i).getId() %></td>
@@ -77,17 +79,16 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
 		            </form>
 					<!-- 페이징 처리 -->
 						<div class='page'>
-							
-							<%=Page.getPageList(vo.getPage(), totalpage, "memberList.do") %>
-						</div>
-					<!--//btn-->
+							<%=Page.getMemberPageList(vo.getPage(), totalpage, "memberList.do?spot_num="+request.getAttribute("spot_num")+"&searchword="+vo.getSearchword()+"&stype="+vo.getStype()) %>
+						</div> 
+					<!--btn-->
 		            <div class="btn">
 						<div class="btnRight">
 							<a class="btns" href="#" onclick=""><strong>강제 탈퇴</strong> </a>
-							<a class="btns" href="write.do"><strong>휴면</strong> </a>
+							<a class="btns" href="/member/spotMemberSleep.do?spot_num=<%=spot_num %><%-- &?num=<%=jv.getNum() %> --%>"><strong>휴면</strong> </a>
 						</div>
-						<!-- //페이징 처리 -->
-						<form name="searchForm" id="searchForm" action="memberList.do"  method="post">
+						<!-- 페이징 처리 -->
+						<form name="searchForm" id="searchForm" action="memberList.do?spot_num=<%=spot_num %>" method="post">
 							<div class="search">
 								<select name="stype" title="검색을 선택해주세요">
 									<option value="all"<%if("all".equals(vo.getStype())) { %>selected<%} %>>전체</option>

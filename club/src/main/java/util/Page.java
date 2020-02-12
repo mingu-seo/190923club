@@ -59,6 +59,36 @@ public class Page {
 		return result;
 	}
 	
+	public static String getMemberPageList(int page, int totalpage, String url) {
+		// 시작페이지
+		int startPage = (page-1)/10*10+1; //15-1 /10*10+1
+		// 종료페이지
+		int endPage = startPage+10-1;
+		if (endPage > totalpage) endPage = totalpage;
+				
+		String result = "<section id='pageList'>";
+		
+		// 이전 링크
+		if (page <= 1) result += "[이전]";
+		else result += "<a href='"+url+"&page="+(page-1)+"'>[이전]</a>&nbsp;";
+		
+		// 반복
+		for (int i=startPage; i<=endPage; i++) {
+			if (i == page) {
+				result +="["+i+"]";
+			} else {
+				result += "<a href='"+url+"&page="+i+"'>["+i+"]</a>&nbsp;";
+			}
+		}
+		
+		// 다음 링크
+		if (page >= totalpage) result += "[다음]";
+		else result += "<a href='"+url+"&page="+(page+1)+"'>[다음]</a>&nbsp;";
+		
+		result += "</section>";
+		return result;
+	}
+	
 	public static  void main(String[] args) {
 		String p = getPageList(1, 3, "test.do");
 		System.out.println(p);

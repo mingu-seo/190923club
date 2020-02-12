@@ -13,6 +13,7 @@ public class MemberVO {
 	private String tel;
 	private String profile;
 	private int state;
+	private int spot_num;
 	
 	private int page;	// 사용자가 요청한 페이지번호
 	private int limit;	// 페이지당 로우 수
@@ -23,6 +24,12 @@ public class MemberVO {
 	private String stype;
 
 	
+	public int getSpot_num() {
+		return spot_num;
+	}
+	public void setSpot_num(int spot_num) {
+		this.spot_num = spot_num;
+	}
 	public int getState() {
 		return state;
 	}	

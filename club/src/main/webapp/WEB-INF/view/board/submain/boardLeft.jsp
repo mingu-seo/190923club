@@ -6,7 +6,7 @@
 <%@ page import="category.*" %>
 <%
 String board_type = request.getParameter("board_type");
-List<CategoryVO> category_wList = (List<CategoryVO>)request.getAttribute("category_wList");  
+List<CategoryVO>[] categoryList = (List<CategoryVO>[])request.getAttribute("categoryList");  
 %>
 <style>
 	.menu_on {
@@ -18,20 +18,19 @@ List<CategoryVO> category_wList = (List<CategoryVO>)request.getAttribute("catego
   <div class="visualLeftInner">
 	        		<div class="leftMenu">
 		        		<div class="board-title">갤러리</div> <!-- 위치수정가능하게 -->
-			        	<div>
+			        	<div> 
 			        		<ul>
-			        			<li>
-				        			<a href="/board/gallery/galleryList.do?spot_num=<%=spot_num %>&board_id=1" <%="1".equals(board_type) ? "class='menu_on'":"" %>>
-				        			<span class="ctg-s">┗</span>생일</a>
-			        			</li> <!-- 내용수정가능하게/추가삭제 가능하게 -->	
-			        			<li>
-				        			<a href="/board/gallery/galleryList.do?spot_num=<%=spot_num %>&board_id=1" <%="2".equals(board_type) ? "class='menu_on'":"" %>>
-				        			<span class="ctg-s">┗</span>대회</a>
-			        			</li> <!-- 내용수정가능하게/추가삭제 가능하게 -->	
-			        			<li>
-				        			<a href="/board/gallery/galleryList.do?spot_num=<%=spot_num %>&board_id=1" <%="3".equals(board_type) ? "class='menu_on'":"" %>>
-				        			<span class="ctg-s">┗</span>회식</a>
-			        			</li> <!-- 내용수정가능하게/추가삭제 가능하게 -->	
+			        			<%
+		        					//카테고리 리스트 
+		        					for(int i=0; i<categoryList[0].size(); i++) {
+		        				%>  
+		        				<li>
+			        				<a href="/board/gallery/galleryList.do?spot_num=<%=spot_num %>&category_id=<%=categoryList[0].get(i).getCategory_id()%>">
+			        				<span class="ctg-s">┗</span><%=categoryList[0].get(i).getName() %></a> 
+		        				</li> 
+		        				<%
+		        				}
+		        				%>
 			        		</ul>
 						</div>
 	        		</div>
@@ -44,11 +43,11 @@ List<CategoryVO> category_wList = (List<CategoryVO>)request.getAttribute("catego
 		        			<ul>
 		        				<%
 		        					//카테고리 리스트 
-		        					for(int i=0; i<category_wList.size(); i++) {
+		        					for(int i=0; i<categoryList[1].size(); i++) {
 		        				%>  
 		        				<li>
-			        				<a href="/board/writing/boardList.do?spot_num=<%=spot_num %>&board_id=2">
-			        				<span class="ctg-s">┗</span><%=category_wList.get(i).getName() %></a> 
+			        				<a href="/board/writing/boardList.do?spot_num=<%=spot_num %>&category_id=<%=categoryList[1].get(i).getCategory_id()%>">
+			        				<span class="ctg-s">┗</span><%=categoryList[1].get(i).getName() %></a> 
 		        				</li>
 		        				<%
 		        				}
@@ -56,14 +55,23 @@ List<CategoryVO> category_wList = (List<CategoryVO>)request.getAttribute("catego
 		        			</ul>
 	        			</div>
 	        		</div>
-	        			
-	        		
+
 	        		
         			<div class="leftMenu">
 						<div class="board-title">공지사항</div>
 						<div>
 							<ul>
-							<li><a href="/board/notice/noticeList.do?spot_num=<%=spot_num %>&board_id=3"><span class="ctg-s">┗</span>이벤트 공지</a></li>
+							<%
+	        					//카테고리 리스트 
+	        					for(int i=0; i<categoryList[2].size(); i++) {
+	        				%>  
+	        				<li>
+		        				<a href="/board/notice/noticeList.do?spot_num=<%=spot_num %>&category_id=<%=categoryList[2].get(i).getCategory_id()%>">
+		        				<span class="ctg-s">┗</span><%=categoryList[2].get(i).getName() %></a> 
+	        				</li> 
+	        				<%
+	        				}
+	        				%>
 							</ul>
 						</div>
 						

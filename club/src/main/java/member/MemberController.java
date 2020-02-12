@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import adminInfo.AdminInfoService;
+import adminInfo.AdminInfoVO;
 import board.BoardDAO;
 import board.BoardService;
 import spot.SpotService;
 import spot.SpotVO;
+import spotCategory.SpotCategoryService;
+import spotCategory.SpotCategoryVO;
 
 
 @Controller
@@ -38,6 +42,12 @@ public class MemberController {
 	
 	@Autowired
 	private SpotService spotService;
+	
+	@Autowired
+	private SpotCategoryService spotCategoryService;
+	
+	@Autowired
+	private AdminInfoService adminInfoService;
 	
 	// 회원가입
 	@RequestMapping("/member/joinForm1.do")
@@ -82,7 +92,16 @@ public class MemberController {
 	
 	// 로그인
 	@RequestMapping("/member/loginFormBefore.do")
-	public String loginForm() {
+	public String loginForm(Model model, SpotCategoryVO vo,SpotVO spotvo ,AdminInfoVO infovo) {
+		List<SpotCategoryVO> list = spotCategoryService.spotCategoryList(vo);
+		List<SpotVO> spotArticle = spotService.spotList(spotvo);
+		List<AdminInfoVO> infoArticle = adminInfoService.adminInfoList(infovo);
+		model.addAttribute("info_article",infoArticle);
+		model.addAttribute("infovo",infovo);
+		model.addAttribute("spot",spotArticle);
+		model.addAttribute("spotvo",spotvo);
+		model.addAttribute("list",list);
+		model.addAttribute("vo",vo);
 		return "member/home_loginFormBefore";
 	}
 

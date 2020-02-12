@@ -74,8 +74,8 @@
 			font-size:14px;
 		}
 		
-		mm .view-more : hover {
-			box-shadow: 1px 1px 20px red;  
+		.view-more:hover {
+			box-shadow: 0 0 10px gray;   
 		} 
 		.view-more {
 			background-color:#9cb3c5;
@@ -108,7 +108,7 @@
 		/*submain css*/
 		
 		.main_post_div {
-			border:1px solid pink;
+			border:1px solid black;
 			margin:40px; 
 			padding:30px;
 		}

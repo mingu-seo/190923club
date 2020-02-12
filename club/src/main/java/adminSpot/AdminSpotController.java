@@ -74,11 +74,11 @@ public class AdminSpotController {
 	}
 	
 	//HOT SPOT 삭제하기
-	@RequestMapping("/admin/spot/Delete.do")
+	@RequestMapping("/admin/spot/spotDelete.do")
 	public String adminSpotDelete(HttpServletRequest request) {
 		int num = Integer.parseInt(request.getParameter("num"));
 		spotService.spotDelete(num);
-		return "redirect:/spot/spotList.do";
+		return "redirect:/admin/spot/spotList.do";
 	}
 	
 	@RequestMapping("/admin/spot/nameCheck.do")

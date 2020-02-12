@@ -57,5 +57,9 @@ public class SpotCategoryService {
 		int r = spotCategoryDao.spotCategoryDelete(num);
 		return r;
 	}
+	
+	public List spotAjax(int category_num) {
+		return spotCategoryDao.spotAjax(category_num);
+	}
 
 }

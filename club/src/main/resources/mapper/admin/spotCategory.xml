@@ -33,4 +33,8 @@
 		DELETE FROM project.spotcategory WHERE num=#{num}
 	</delete>
 	
+	<select id="spotAjax" parameterType="Integer" resultType="spot.SpotVO">
+		select * from spot where category_num=#{category_num}
+	</select>
+	
 </mapper>

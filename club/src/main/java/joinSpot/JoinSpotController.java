@@ -1,0 +1,104 @@
+package joinSpot;
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import board.BoardDAO;
+import board.BoardService;
+import member.MemberService;
+import member.MemberVO;
+import spot.SpotService;
+import spot.SpotVO;
+
+@Controller
+public class JoinSpotController {
+
+	@Autowired
+	MemberService memberService;	
+	
+	@Autowired
+	private BoardDAO boardDao;
+	
+	@Autowired
+	private BoardService bService;
+	
+	@Autowired
+	private notice.NoticeService nService;
+	
+	@Autowired
+	private reply.ReplyService rService;
+	
+	@Autowired
+	private SpotService spotService;
+	
+	@Autowired
+	private JoinSpotService joinSpotService;
+
+	// spot 가입
+	@RequestMapping("/spotJoin/spotJoinForm.do")
+	public String spotJoinForm(Model model, @RequestParam("spot_num") String spot_num) {
+		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		model.addAttribute("spot_num", spot_num);
+		model.addAttribute("spot_vo", spotvo);
+		return "member/spotJoinForm";
+	}
+	
+	@RequestMapping("/spotJoin/joinSpot.do")
+	public String spotJoin(Model model, HttpSession session, @RequestParam("spot_num") String spot_num) {
+		MemberVO vo = (MemberVO)session.getAttribute("sess");
+		JoinSpotVO jv = new JoinSpotVO();
+		jv.setMember_num(vo.getNum());
+		jv.setSpot_num(Integer.parseInt(spot_num));
+		jv.setGrade(2);
+		int r = joinSpotService.joinSpot(jv);
+		return "redirect:/spotJoin/spotJoinEnd.do?spot_num="+spot_num;
+	}
+
+	@RequestMapping("/spotJoin/spotJoinEnd.do")
+	public String spotJoinEnd(Model model, @RequestParam("spot_num") String spot_num) {
+		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		model.addAttribute("spot_num", spot_num);
+		model.addAttribute("spot_vo", spotvo);
+		return "member/spotJoinEnd";
+	}
+	
+	
+	// spot 회원 리스트
+	@RequestMapping("/member/memberList.do")
+	public String memberList(MemberVO vo, Model model, @RequestParam("spot_num") String spot_num) {
+		int[] listcount = joinSpotService.pageCount(vo);	// 전체 갯수
+		List<MemberVO> list = joinSpotService.spotMemberList(vo);
+		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		model.addAttribute("spot_num", spot_num);
+		model.addAttribute("spot_vo", spotvo);
+		model.addAttribute("listcount", listcount[0]);
+		model.addAttribute("totalpage", listcount[1]);
+		model.addAttribute("memberList", list);
+		model.addAttribute("vo", vo);
+		return "member/memberList";
+	}
+	
+	
+	// spot 회원 휴면
+	@RequestMapping("/member/spotMemberSleep.do")
+	public String spotMemberSleep(
+			JoinSpotVO jv,
+			Model model,
+			@RequestParam("spot_num") String spot_num, 
+			@RequestParam("num") String num) {
+		
+		jv.setSpot_num(Integer.parseInt(spot_num));
+		jv.setNum(Integer.parseInt(num));
+		int r = joinSpotService.spotMemberSleep(jv);
+		model.addAttribute("jv", jv);
+		return "redirect:/spotJoin/spotJoinEnd.do?spot_num="+spot_num;
+	}
+	
+}

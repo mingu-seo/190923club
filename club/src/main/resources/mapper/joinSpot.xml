@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="joinSpot">
+	
+	<!-- spot 가입 -->
+	<insert id="joinSpot" parameterType="joinSpot.JoinSpotVO">
+		INSERT INTO project.joinspot(member_num, spot_num, grade, date) 
+		VALUES(#{member_num}, #{spot_num}, #{grade}, now());
+	</insert>
+
+	
+	<!-- 스팟 회원 리스트 --> 
+	<select id="spotMemberList" parameterType="member.MemberVO" resultType="member.MemberVO">
+		SELECT * FROM project.member JOIN project.joinSpot 
+		ON project.member.num = project.joinSpot.member_num AND joinspot.spot_num=#{spot_num}
+		<include refid="searchword"/>
+		limit #{startIndex}, #{limit}
+	</select>    
+	
+	
+	<!-- 페이징 처리 -->
+	<select id="spotMemberCount" resultType="Integer" parameterType="member.MemberVO">
+		SELECT count(*) FROM project.member JOIN project.joinSpot 
+		ON project.member.num = project.joinspot.member_num AND joinspot.spot_num=#{spot_num}
+		<include refid="searchword"/>
+	</select>
+	
+	
+	<!-- 회원 검색 -->
+	<sql id="searchword"> 
+		<choose>
+			<when test="searchword != null and searchword != '' and stype == 'all'">			
+				AND (project.member.name like '%${searchword}%'
+				OR project.member.id like '%${searchword}%')
+			</when>
+			<when test="searchword != null and searchword != ''">
+				AND project.member.${stype} LIKE '%${searchword}%'
+			</when>
+		</choose>
+	</sql>
+   
+   
+   <!-- 회원 상태 휴면 -->
+   <update id="spotMemberSleep" parameterType="joinSpot.JoinSpotVO">
+   		UPDATE project.joinSpot SET grade=3 WHERE num=#{num} AND spot_num=#{spot_num}
+   </update>
+
+</mapper>

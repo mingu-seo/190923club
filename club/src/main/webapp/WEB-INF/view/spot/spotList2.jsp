@@ -54,63 +54,7 @@ $(function(){
         });
     });
 });
-function showLightBox(){
-    //라이트박스를 보이게 합니다.
-    $('#darken-background').show();
-    $('#darken-background').css('top',$(window).scrollTop());
-    //스크롤을 못하게 합니다.
-    $('body').css('overflow','hidden');
-}
-function ajax(x){
-	link = x.url;
-	//성공했다면
-	x.success();
-}
-function hideLightBox(){
-    //라이트 박스를 보이지 않게 합니다.
-    $('#darken-background').hide();
-    
-    //스크롤을 하게 합니다.
-    $('body').css('overflow','');
-}
 
-//라이트박스
-$(function(){
-    //라이트 박스 제거 이벤트
-    $('#darken-background').click(function(){
-    	console.log(1);
-        hideLightBox();
-    });
-    
-$('#lightbox').click(function(event){
-    event.stopPropagation()
-});
-}); 
-function showLightBox(){
-//라이트박스를 보이게 합니다.
-$('#darken-background').show();
-$('#darken-background').css('top',$(window).scrollTop());
-//스크롤을 못하게 합니다.
-$('body').css('overflow','hidden');
-}
-function ajaxView(num){
-    $.ajax({
-		url : 'spotAjax.do',
-		async: false, //싱크를 맞춰줌
-		data : {
-		'category_num' : num
-	},
-	dataType : 'HTML',
-	success : function(data){
-		$("#categoryListArea").html(data);
-	},
-	error : function(data){
-		console.log(data)
-	}
-});
-     	showLightBox();
-     }
-     
 </script>     
 </head>
 <body>
@@ -139,10 +83,8 @@ function ajaxView(num){
 	               		for(int i=0; i<list.size()-1; i++){ 
 	               	%>
 	                  <div class="swiper-slide">
-                  		  <a href="javascript:ajaxView('<%=spot.get(i).getCategory_num() %>');"  data-num="<%=spot.get(i).getNum() %>">
-	                      <img src="/upload/images/<%=list.get(i).getFile() %>" class="circle"><div class="cate_name"><%=list.get(i).getName()%></div>
-	                      </a> 
-	                  </div> 
+	                      <div class="circle"><img src="/upload/images/<%=list.get(i).getFile() %>"></br></br><%=list.get(i).getName()%></div>
+	                  </div>    
 	                 <%
 	                      }
 	                 %>
@@ -153,7 +95,7 @@ function ajaxView(num){
          </div>
      </div>
      </form>
-     <div class="container" id="categoryListArea">
+    <div class="container">
         <div class="lcontents1">
         	<%
 			for (int j=0; j<spot.size(); j++){

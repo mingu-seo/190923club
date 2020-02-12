@@ -128,6 +128,12 @@ div.circlecontainer{
     background-color: #f4f4f4;
     margin : 30px;
     border-radius: 50%;
+    padding-bottom: 50px;
+}
+.cate_name{
+	position: absolute;
+    bottom: 50px;
+    width: 100%;
 }
 .circle_title {
 	height:50px;

@@ -38,4 +38,8 @@ public class SpotCategoryDAO {
 	public int spotCategoryDelete(int num) {
 		return sqlSession.delete("spotCategory.spotCategoryDelete",num);
 	}
+	
+	public List spotAjax(int category_num) {
+		return sqlSession.selectList("spotCategory.spotAjax", category_num);
+	}
 }

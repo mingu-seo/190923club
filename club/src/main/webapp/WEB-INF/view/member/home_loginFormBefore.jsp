@@ -85,7 +85,9 @@
 	               		for(int i=0; i<infolist.size(); i++){ 
 	               	 %>
 	                  <div class="swiper-slide">
-	                      <img src="/upload/images/<%=infolist.get(i).getFile() %>"></br></br><%=infolist.get(i).getName()%><%=infolist.get(i).getContent()%>
+	                      <img src="/upload/images/<%=infolist.get(i).getFile() %>" class="sw_img">
+	                      <div class="sw_title"><%=infolist.get(i).getName()%></div>
+	                      <div class="sw_content"><%=infolist.get(i).getContent()%></div>
 	                  </div>    
 	                 <%
 	                      }

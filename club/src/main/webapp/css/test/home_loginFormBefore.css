@@ -134,11 +134,54 @@
 }
 .loginBtnArea {
 	padding: 5px;
-	width: 250px;
+	width: 350px;
     height: 40px;
 	margin: 0 auto;
 }
-
+.login_after_Form{
+	opacity: 0.9;
+	width: 360px;
+	height: 180px;
+    margin: 0 auto;
+    background-color: slategrey;
+    border-radius: 30px;
+    
+}
+.login_after_Form > .lform{
+	width: 50%;
+	float: left;
+}
+.login_after_Form > .rform{
+	width: 50%;	
+}
+.lform > .member_profile{
+	padding: 6px;
+	font-size: 17px;
+}
+.rform > .member_name{
+    width: 41%;
+    bottom: 56%;
+    position: absolute;
+    font-size: 22px;
+    color: antiquewhite;
+}
+.rform > .member_info{
+    width: 40%;
+    position: absolute;
+    bottom: 40%;
+    font-size: 15px;
+    color: white;
+}
+.rform > .member_joinspot{
+	width: 40%;
+    position: absolute;
+    bottom: 16%;
+    font-size: 25px;
+    color: white;
+}
+.member_img{
+	width: 60%;
+}
 div.content1{
     float: right;
     background-color: rgba(0, 0, 0, 0.1); 

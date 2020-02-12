@@ -53,30 +53,25 @@
 	        <div class="header">
 	            <a href="/member/joinForm1.do" style="float: right; padding: 30px;"><input style="padding: 5px 10px;" type="button" value="회원가입"></a>
 	            	<div class="login">
-		                <table>
-		                    <th class="loginHeader" colspan="2">로그인</th class="loginHeader">
-		                    <tr>
-		                        <td><label for="id" style="font-size:20px">아이디</label></td>
-		                        <td><input type="text" id="id" name="id"></td>
-		                    </tr>
-		                    <tr>
-		                        <td><label for="password" style="font-size:20px">비밀번호</label></td>
-		                        <td><input type="password" id="password" name="password"></td>
-		                    </tr>
-		                    <tr>
-		                        <td colspan="2">
-		                            <div class="loginBtnArea">
-		                                <a href="script:login()">
-		                                	<input style="float: left; margin: 0 10px; padding: 5px; width: 85px;" type="submit" id="userLogin" value="로그인">
-		                                </a>
-		                                <input style="float: right; margin: 0 10px; padding: 5px; width: 85px;" type="button" value="비밀번호 찾기">
-		                            </div>
-		                        </td>
-		                    </tr>
-		                </table>
+		                    <div class="loginHeader">
+		                    	<div class="loginForm">
+		                    		<h1 class="login_title">HOT SPOT</h1>
+			                        <div class="login_id"><input type="text" id="id" name="id" placeholder="아이디를 입력하세요"></div>
+			                        <div class="login_password"><input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요"></div>
+			                        <div class="loginBtnArea">
+			                                <a href="script:login()">
+			                                	<input type="submit" id="userLogin" value="로그인">
+			                                </a>
+			                                <input type="button" value="비밀번호 찾기">
+			                        </div>
+		                        </div>
+		                    </div>
 		            </div>
 		        </div>
             </form>
+        <div class="container"> 
+       		<h1 class="hotspot_info">HOT SPOT을 소개합니다.</h1>
+        </div>
         <div class="description">
             <div class="visual">
 	       	 <div class="swiper swiper-container">
@@ -85,7 +80,9 @@
 	               		for(int i=0; i<infolist.size(); i++){ 
 	               	 %>
 	                  <div class="swiper-slide">
-	                      <img src="/upload/images/<%=infolist.get(i).getFile() %>"></br></br><%=infolist.get(i).getName()%><%=infolist.get(i).getContent()%>
+	                      <img src="/upload/images/<%=infolist.get(i).getFile() %>" class="sw_img">
+	                      <div class="sw_title"><%=infolist.get(i).getName()%></div>
+	                      <div class="sw_content"><%=infolist.get(i).getContent()%></div>
 	                  </div>    
 	                 <%
 	                      }
@@ -96,6 +93,10 @@
                     <div class="swiper-pagination"></div>
 	       	 </div>
 	      </div>
+        </div>
+        <div class="container"> 
+       		<h1 class="hotspot_info">당신에게 맞는 HOT SPOT을 찾아보세요!</h1>
+       		<a href="spot/spotList.do" class="hotspot_more">더 보기</a>
         </div>
         <form  action="spotView.do" method="post">
 	    <div class="container">

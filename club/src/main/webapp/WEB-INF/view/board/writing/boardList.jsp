@@ -19,6 +19,15 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
    <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 </head>
+<script>
+	$(function() {
+		$(".art_title").hover(function() {
+			$(this).css("background-color", "#e5e5e5");
+		}, function() {
+			$(this).css("background-color", "");
+		});
+	});
+</script>
 <body>
 
 

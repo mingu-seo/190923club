@@ -44,12 +44,12 @@
             float:left;
             width:25%;
             text-align:center;
-            line-height: 20px; /*depth1의 높이와 비례 */
+            line-height: 20px; /*depth1�쓽 �넂�씠�� 鍮꾨� */
         }
         
       	.depth1{
         	background-color: initial;
-        	height:120px;
+        	height:130px;
         	 box-shadow:1px 0 10px #999; 
         }
 
@@ -63,7 +63,13 @@
         .depth1>li>a{
        		 display:block;
              box-sizing: border-box;
-             height:120px;
+             height:130px;
+        }
+        
+        .depth1>li>a>img {
+        	width:80px;
+        	height:80px;
+        	padding:25px;
         }
         
         
@@ -87,6 +93,7 @@
         overflow: hidden; 
         background: border-box;
         box-shadow:5px 10px 10px #999;
+        margin-top:40px; 
         }
         
         
@@ -141,7 +148,7 @@
 		margin:10px;
 		}
 		
-		/*무슨 css인지 모름*/
+		/*臾댁뒯 css�씤吏� 紐⑤쫫*/
 		/*#contents{
 		width:100%;
 		height:auto;

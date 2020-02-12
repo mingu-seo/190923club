@@ -4,7 +4,7 @@
 	.board_ctg_name {
 		text-align:left;
 		font-size:32px;
-		margin:30px 10px; /* .visualLeftInner의 padding:10px; .leftMenu의 margin-top:20px;*/
+		margin:70px 10px; /* .visualLeftInner의 padding:10px; .leftMenu의 margin-top:20px;*/
 		padding:20px 0 10px 0;
 		border-top:3px solid #065093;
 		border-bottom:1px solid #e1dcd9;
@@ -307,9 +307,15 @@
 		max-width:300px;
 	}
 	
+	/*리더 카테고리 추/삭 */
 	.cgAdd {
-		font-size:18px;
+		font-size:20px;
 		font-weight: bold;
 		
+	}
+	
+	.add {
+		width:25px;
+		height:25px;
 	}
 }

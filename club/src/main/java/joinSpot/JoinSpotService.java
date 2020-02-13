@@ -50,4 +50,16 @@ public class JoinSpotService {
 	public int spotMemberSleep(JoinSpotVO jv){
 		return joinSpotDAO.spotMemberSleep(jv);
 	}
+
+	
+	// spot 회원 활성화
+	public int spotMemberWake(JoinSpotVO jv){
+		return joinSpotDAO.spotMemberWake(jv);
+	}
+
+	
+	// spot 회원 강제탈퇴
+	public int spotMemberDelete(JoinSpotVO jv){
+		return joinSpotDAO.spotMemberDelete(jv);
+	}
 }

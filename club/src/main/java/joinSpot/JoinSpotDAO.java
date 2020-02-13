@@ -1,6 +1,7 @@
 package joinSpot;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,22 @@ public class JoinSpotDAO {
 	// spot 회원 휴면
 	public int spotMemberSleep(JoinSpotVO jv) {
 		return sqlSession.update("joinSpot.spotMemberSleep", jv);
+	}
+
+	
+	// spot 회원 활성화
+	public int spotMemberWake(JoinSpotVO jv) {
+		return sqlSession.update("joinSpot.spotMemberWake", jv);
+	}
+
+	
+	// spot 회원 강제탈퇴
+	public int spotMemberDelete(JoinSpotVO jv) {
+		return sqlSession.update("joinSpot.spotMemberDelete", jv);
+	}
+	
+	public int checkJoinSpot(Map map) {
+		return sqlSession.selectOne("joinSpot.checkJoinSpot", map);
 	}
 	
 }

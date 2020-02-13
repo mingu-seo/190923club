@@ -75,6 +75,14 @@
 		</mvc:interceptor>
 
 	</mvc:interceptors>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/member/memberList.do"/>
+			<bean class="interceptor.spotMemberInterceptor"/>
+		</mvc:interceptor>
+
+	</mvc:interceptors>
 
  	
  	<mvc:interceptors>

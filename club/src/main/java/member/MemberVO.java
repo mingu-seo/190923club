@@ -12,7 +12,6 @@ public class MemberVO {
 	private int gender;
 	private String tel;
 	private String profile;
-	private int state;
 	// spot 조인
 	private int spot_num;
 	private int member_num;
@@ -52,12 +51,6 @@ public class MemberVO {
 	}
 	public void setSpot_num(int spot_num) {
 		this.spot_num = spot_num;
-	}
-	public int getState() {
-		return state;
-	}	
-	public void setState(int state) {
-		this.state = state;
 	}
 
 	public MemberVO() {

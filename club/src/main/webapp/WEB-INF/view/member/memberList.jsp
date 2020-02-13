@@ -21,13 +21,19 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
 <script>
 function sleep() {
 	if (confirm("선택된 회원을 휴면처리하겠습니까?")) {
-		a=2;
+		$("#frm").attr("action", "spotMemberSleep.do");
 		$("#frm").submit();
 	}
 }
-function activate() {
+function wake() {
 	if (confirm("선택된 회원을 활성화하겠습니까?")) {
-		a=1;
+		$("#frm").attr("action", "spotMemberWake.do");
+		$("#frm").submit();
+	}
+}
+function drop() {
+	if (confirm("선택된 회원을 강제탈퇴하겠습니까?")) {
+		$("#frm").attr("action", "spotMemberDelete.do");
 		$("#frm").submit();
 	}
 }
@@ -104,9 +110,9 @@ function activate() {
 					<!--btn-->
 		            <div class="btn">
 						<div class="btnRight">
-							<a class="btns" href="#" onclick=""><strong>강제 탈퇴</strong> </a>
+							<a class="btns" href="javascript:;" onclick="drop();"><strong>강제 탈퇴</strong> </a>
 							<a class="btns" href="javascript:;" onclick="sleep();"><strong>휴면</strong> </a>
-							<a class="btns" href="javascript:;" onclick="activate();"><strong>활성화</strong> </a>
+							<a class="btns" href="javascript:;" onclick="wake();"><strong>활성화</strong> </a>
 						</div>
 						<!-- 페이징 처리 -->
 						<form name="searchForm" id="searchForm" action="memberList.do?spot_num=<%=spot_num %>" method="post">

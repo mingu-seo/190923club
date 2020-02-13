@@ -1,15 +1,15 @@
 package gallery;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import notice.NoticeVO;
 import util.FileUtil;
 
 @Service
@@ -65,6 +65,13 @@ public class GalleryService {
 		vo.setImage3(fu3.fileName);
 		
 		return galleryDao.galleryUpdate(vo, board_id);
+	}
+	public int galleryUpgrade(int post_id, String cname) {
+		Map map = new HashMap();
+		map.put("post_id", post_id);
+		map.put("cname", cname);
+		
+		return galleryDao.galleryUpgrade(map);
 	}
 
 	public List<GalleryVO> mainGalleryList(GalleryVO vo) {

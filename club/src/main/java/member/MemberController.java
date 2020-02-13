@@ -153,7 +153,6 @@ public class MemberController {
 	public String mypageView(HttpSession session, Model model) {
 		MemberVO vo = (MemberVO)session.getAttribute("sess");
 		MemberVO mv = memberService.mypageView(vo.getNum());
-		
 		model.addAttribute("vo", mv);
 		return "member/mypage";
 	}	
@@ -172,30 +171,20 @@ public class MemberController {
 	
 	
 	// 회원 리스트
-	@RequestMapping("/member/memberList.do")
-	public String memberList(MemberVO vo, Model model, @RequestParam("spot_num") String spot_num) {
-		int[] listcount = memberService.pageCount(vo);	// 전체 갯수
-		List<MemberVO> list = memberService.MemberList(vo);
-		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
-		model.addAttribute("spot_num", spot_num);
-		model.addAttribute("spot_vo", spotvo);
-		model.addAttribute("listcount", listcount[0]);
-		model.addAttribute("totalpage", listcount[1]);
-		model.addAttribute("memberList", list);
-		model.addAttribute("vo", vo);
-		return "member/memberList";
-	}
-	
-	
-	// 동아리 가입
-	@RequestMapping("/member/spotJoinForm.do")
-	public String spotJoinForm(Model model, @RequestParam("spot_num") String spot_num) {
-		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
-		model.addAttribute("spot_num", spot_num);
-		model.addAttribute("spot_vo", spotvo);
-		return "member/spotJoinForm";
-	}
-	
+//	@RequestMapping("/member/memberList.do")
+//	public String memberList(MemberVO vo, Model model, @RequestParam("spot_num") String spot_num) {
+//		int[] listcount = memberService.pageCount(vo);	// 전체 갯수
+//		List<MemberVO> list = memberService.MemberList(vo);
+//		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+//		model.addAttribute("spot_num", spot_num);
+//		model.addAttribute("spot_vo", spotvo);
+//		model.addAttribute("listcount", listcount[0]);
+//		model.addAttribute("totalpage", listcount[1]);
+//		model.addAttribute("memberList", list);
+//		model.addAttribute("vo", vo);
+//		return "member/memberList";
+//	}
+
 	
 	// 동아리 수정(관리자)
 	@RequestMapping("/member/clubSetting.do")

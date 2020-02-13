@@ -10,5 +10,6 @@
 "post_id" : "${vo.post_id}",
 "board_id" : "${vo.board_id}",
 "view" : "${vo.view}",
-"search_word" : "${vo.search_word}"
+"search_word" : "${vo.search_word}",
+"like_cnt" : "${vo.like_cnt}"
 }

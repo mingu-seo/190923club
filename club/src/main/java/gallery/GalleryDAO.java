@@ -1,12 +1,11 @@
 package gallery;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import notice.NoticeVO;
 
 
 
@@ -56,5 +55,10 @@ public class GalleryDAO {
 		//조회수
 		public void galleryViewUpdate(int post_id) {
 			sqlSession.update("board.updateRead", post_id);
+		}
+
+		public int galleryUpgrade(Map map) {
+			// TODO Auto-generated method stub
+			return sqlSession.delete("board.gallery_upgrade",map);
 		}
 }

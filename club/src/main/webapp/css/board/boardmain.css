@@ -87,6 +87,10 @@
 			padding: 0 5px;
 		}
 		
+		.view-more:hover {
+			box-shadow:1px 1px 10px 1px  #b1b1b1;
+		}
+		
 		.preboard-tt {
 			text-align:left;
 			width:100%;

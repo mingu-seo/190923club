@@ -12,8 +12,13 @@
 				</if>   
 				and spot_num = #{spot_num} and category_id = #{category_id}
 			</where>  
-			order by regdate desc
-		</select>  
+			order by regdate desc limit #{startIndex}, #{limit}
+		</select>
+		
+	<!-- 리스트 카운트(페이징) -->
+		<select id="pageCount_board" resultType="Integer">
+			select count(*) from project.writing 
+		</select>
 		
 	<!-- 자유게시판 조회수 -->
 		<update id="boardUpdateReadcount" parameterType="Integer">

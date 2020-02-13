@@ -15,7 +15,43 @@ public class BoardVO {
 	private int like_cnt;
 	private int spot_num;
 	private int category_id;
+	//페이지
+	private int page; //사용자가 요청한 페이지번호
+	private int limit; //페이지당 로우수
+	private int startIndex; //limit 시작 인덱스
+	private int maxPage; //총페이지수
 	
+	//초기화
+	public BoardVO() {
+		this.page = 1;
+		this.limit = 15;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getLimit() {
+		return limit;
+	}
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+	//시작인덱스값 mybatis에서 getter 메서드를 호출하기
+	public int getStartIndex() {
+		int i = (this.page-1) * this.limit;
+		return i;
+	}
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+	public int getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(int maxPage) {
+		this.maxPage = maxPage;
+	}
 	public int getCategory_id() {
 		return category_id;
 	}

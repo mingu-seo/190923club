@@ -124,7 +124,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 						<form id="like_form">
 							<input type="hidden" name="post_id" value="<%=vo.getPost_id()%>">
 							<input type="hidden" name="board_id" value="<%=vo.getBoard_id()%>">
-								<span class="view_like" onclick="likeAjax()">❤ </span> 
+								<span class="view_like" onclick="likeAjax();">❤ </span> 
 								<span class="like_cnt"><%=vo.getLike_cnt() %></span>
 						</form>
 						 

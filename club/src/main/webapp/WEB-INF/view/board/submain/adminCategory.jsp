@@ -58,6 +58,15 @@ $(function() {
 		
 	});
 });
+/* 
+function check() {
+	if($(".addBox").val().trim()=="") {
+		alert("카테고리명을 작성해주세요.")
+		$(".addBox").focus();
+		return false;
+	}
+	$(".category_form").submit();
+} */
 </script>
 <body>
 
@@ -98,15 +107,16 @@ $(function() {
 	        				<%
 	        				for(int i=0; i<categoryList[0].size(); i++) {
 	        				%>
-	        				<div class="boardAdd"> 
-		        				<input class="addBox" type="text" name="name" value="<%=categoryList[0].get(i).getName()%>"> 
+	        				<div class="boardAdd">  
+		        				<input class="addBox" type="text" name="name" value="<%=categoryList[0].get(i).getName()%>">
+		        				<input type="hidden" name="category_ids" value="<%=categoryList[0].get(i).getCategory_id()%>">  
 		        				<input class="categoryBtn deleteBtn" type="button" value="삭제">
 	        				</div>
 	        				<%
 	        				}
 	        				%>
 	        				
-	        			</div>
+	        			</div> 
 	        			
 	        			<div class=""><input class="btns" type="submit" value="저장"></div>
         			</form>
@@ -139,7 +149,7 @@ $(function() {
 	        				%>
 	        				 
 	        			</div>
-	        			<div class=""><input class="btns" type="submit" value="저장"></div>
+	        			<div class=""><input type="submit" class="btns" value="저장"></div>
         			</form>
         		<hr>
         		
@@ -154,14 +164,14 @@ $(function() {
 	        				<div>
 	        				<a href="javascript:;" onclick="addBox(2)"><img class="add" src="/img/board/plus1.png"></a>
 	        				<span class="cgAdd">카테고리 추가</span>  
-	        				</div>
+	        				</div> 
 	        				<%
 		        				for(int i=0; i<categoryList[2].size(); i++) {
 		        				%>
 		        				<div class="boardAdd"> 
 			        				<input class="addBox" type="text" name="name" value="<%=categoryList[2].get(i).getName()%>">
 			        				<input type="hidden" name="category_ids" value="<%=categoryList[2].get(i).getCategory_id()%>">
-			        				<input class="categoryBtn deleteBtn" type="button" value="삭제">
+			        				<input class="categoryBtn deleteBtn" type="submit" value="삭제"> 
 		        				</div>
 		        				<% 
 		        				}

@@ -7,6 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 GalleryVO vo = (GalleryVO)request.getAttribute("vo");
+SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 %>
 <!DOCTYPE html>
 <html>
@@ -26,6 +27,7 @@ function getThumbnailPrivew(html, $target) {
         reader.readAsDataURL(html.files[0]);
     }
 }
+
 </script>
 </head>
 <body>
@@ -61,19 +63,33 @@ function getThumbnailPrivew(html, $target) {
 					<tr>
 						<th>파일 선택</th>
 						<td colspan="2"><input type="file" id="image" name="image_tmp" onchange="getThumbnailPrivew(this,$('#thumb_img1'));"></td>
+						
 					</tr>
 					<tr>
 						<th>파일 선택</th>
-						<td colspan="2"><input type="file" id="image2" name="image_tmp2" onchange="getThumbnailPrivew(this,$('#thumb_img2'));" ></td>
+						<td colspan="2"><input type="file" id="image2" name="image_tmp2" onchange="getThumbnailPrivew(this,$('#thumb_img2'));" >
+						</td>
 					</tr>
 					<tr>
 						<th>파일 선택</th>
-						<td colspan="2"><input type="file" id="image3" name="image_tmp3" onchange="getThumbnailPrivew(this,$('#thumb_img3'));" ></td>
+						<td colspan="2"><input type="file" id="image3" name="image_tmp3" onchange="getThumbnailPrivew(this,$('#thumb_img3'));" >
+						</td>
 					</tr>
 					<tr>
-						<td><div id="thumb_img1" onfocus="this.value='';"><img style="max-width:150px;" src="/upload/<%=vo.getImage()%>"></div></td>
-						<td><div id="thumb_img2" onfocus="this.value='';"><img style="max-width:150px;" src="/upload/<%=vo.getImage2()%>"></div></td>
-						<td><div id="thumb_img3" onfocus="this.value='';"><img style="max-width:150px;" src="/upload/<%=vo.getImage3()%>"></div></td>
+						<td><div id="thumb_img1" onfocus="this.value='';"><img style="max-width:150px;" src="/upload/<%=vo.getImage()%>"></div>
+						<a href="/board/gallery/deleteImage.do?post_id=<%=vo.getPost_id()%>&cname=image&spot_num=<%=spot_num%>&board_id=<%=vo.getBoard_id()%>"><input type="button" value="삭제"></a></td>
+						<td><div id="thumb_img2" onfocus="this.value='';"><img style="max-width:150px;" 
+						
+						<%if(vo.getImage2()!=null ){%>
+						src="/upload/<%=vo.getImage2()%>"></div>
+						<a href="/board/gallery/deleteImage.do?post_id=<%=vo.getPost_id()%>&cname=image2&spot_num=<%=spot_num%>&board_id=<%=vo.getBoard_id()%>"><input type="button" value="삭제"></a></td>
+						<%}%>
+						
+						<td><div id="thumb_img3" onfocus="this.value='';"><img style="max-width:150px;" 
+						<%if(vo.getImage3()!=null ){%>
+						src="/upload/<%=vo.getImage3()%>"></div>
+						<a href="/board/gallery/deleteImage.do?post_id=<%=vo.getPost_id()%>&cname=image3&spot_num=<%=spot_num%>&board_id=<%=vo.getBoard_id()%>"><input type="button" value="삭제"></a></td>
+						<%}%>
 					</tr>
 					
 					

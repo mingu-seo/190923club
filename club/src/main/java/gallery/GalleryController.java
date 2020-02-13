@@ -32,6 +32,7 @@ public class GalleryController {
 		public String galleryList(Model model, GalleryVO vo, @RequestParam("board_id")int board_id, @RequestParam("spot_num") int num) {
 				List<GalleryVO> list = galleryDao.galleryList(vo, board_id);
 				model.addAttribute("list", list); 
+				model.addAttribute("vo", vo); 
 				//스팟번호
 				SpotVO spot_vo = spotService.spotView(num);
 				model.addAttribute("spot_vo", spot_vo);
@@ -81,25 +82,32 @@ public class GalleryController {
 		}
 		
 		//갤러리 업데이트
-				@RequestMapping("/board/gallery/galleryUpdate.do") 
-				public String galleryUpdate(Model model, GalleryVO vo, @RequestParam("image_tmp") MultipartFile file, @RequestParam("image_tmp2") MultipartFile file2, @RequestParam("image_tmp3") MultipartFile file3, HttpServletRequest request, @RequestParam("board_id")int board_id, @RequestParam("spot_num") int num) {
-				gService.galleryUpdate(vo, file, file2, file3, request, board_id);
-				model.addAttribute("spot_num", num+"");
-				return "redirect:/board/gallery/galleryList.do?spot_num="+num+"&board_id="+board_id;
-				}
+		@RequestMapping("/board/gallery/galleryUpdate.do") 
+		public String galleryUpdate(Model model, GalleryVO vo, @RequestParam("image_tmp") MultipartFile file, @RequestParam("image_tmp2") MultipartFile file2, @RequestParam("image_tmp3") MultipartFile file3, HttpServletRequest request, @RequestParam("board_id")int board_id, @RequestParam("spot_num") int num) {
+		gService.galleryUpdate(vo, file, file2, file3, request, board_id);
+		model.addAttribute("spot_num", num+"");
+		return "redirect:/board/gallery/galleryList.do?spot_num="+num+"&board_id="+board_id;
+		}
+				
+		//갤러리 수정페이지에서 이미지 삭제(업데이트)
+		@RequestMapping("/board/gallery/deleteImage.do") 
+		public String deleteImage(Model model, GalleryVO vo, @RequestParam("post_id") int post_id, @RequestParam("cname") String cname) {
+			gService.galleryUpgrade(post_id, cname);
+			return "redirect:/board/gallery/galleryEdit.do?spot_num="+vo.getSpot_num()+"&board_id="+vo.getBoard_id()+"&post_id="+post_id;
+		}
 		
 
-				@RequestMapping("/board/gallery/galleryPre.do")
-				public String galleryPre(Model model, @RequestParam("post_id") int id) {
-					GalleryVO vo = gService.galleryPre(id);
-					model.addAttribute("vo", vo);
-					return "board/gallery/galleryAjax";
-				}
-				@RequestMapping("/board/gallery/galleryNext.do")
-				public String galleryNext(Model model, @RequestParam("post_id") int id) {
-					GalleryVO vo = gService.galleryNext(id);
-					model.addAttribute("vo", vo);
-					return "board/gallery/galleryAjax";
-				}
+		@RequestMapping("/board/gallery/galleryPre.do")
+		public String galleryPre(Model model, @RequestParam("post_id") int id) {
+			GalleryVO vo = gService.galleryPre(id);
+			model.addAttribute("vo", vo);
+			return "board/gallery/galleryAjax";
+		}
+		@RequestMapping("/board/gallery/galleryNext.do")
+		public String galleryNext(Model model, @RequestParam("post_id") int id) {
+			GalleryVO vo = gService.galleryNext(id);
+			model.addAttribute("vo", vo);
+			return "board/gallery/galleryAjax";
+		}
 
 }

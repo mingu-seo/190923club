@@ -24,6 +24,33 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
         <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
         <script>
+      //좋아요 ajax
+    	function likeAjax() { 
+    	 	$.ajax({
+    	 		async : false,
+    	 		url : '/board/likeInsert.do', 
+    	 		data : {
+    	 			'post_id' : $(".post_id").val(), 
+    	 			'board_id' : $(".board_id").val(),
+    	 			'member_id' : 10,
+    	 			'tableName' : 'gallery'
+    	 		},
+    	 		dataType :'HTML',
+    	 		success : function(data) {
+    	 			if (data.trim() == "0") {
+    	 				$(".like_cnt").text(Number($(".like_cnt").text())+1);
+    	 			} else {
+    	 				$(".like_cnt").text(Number($(".like_cnt").text())-1);
+    	 			}
+    	 		},
+    	 		error:function(data) {
+    	 			alert("ajax실패")
+    	 		}
+    	 	});
+    	}
+        
+        </script>
+        <script>
         var images = []; // 이미지 담을 배열
         var imageIdx = 0; // 이미지 현재 인덱스
         //페이지
@@ -97,6 +124,7 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 	                		//images = [data.image, data.image2, data.image3];
 	                		$(".paper-text2").text(data.title);	
 	                		$(".paper-contents").text(data.contents);
+	                		$(".like_cnt").text(data.like_cnt);
 		                	$(".paper-each2").attr("src", "/upload/"+data.image);
 		                	$("#prePost").attr("onclick", "moveView("+data.post_id+", 'prev')");
 		                	$("#nextPost").attr("onclick", "moveView("+data.post_id+", 'next')");
@@ -159,6 +187,7 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
                 	$(".paper-each2").attr("src", "/upload/"+images[imageIdx]);
                 	
                 };
+               
                 function nextHref() {
                 	imageIdx++;
                 	if (imageIdx >= images.length) imageIdx = 0;
@@ -430,11 +459,12 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
                 <div class="paper-contents"></div>  
 	          	
 	          	<div class="view_repl_info">
-					<span class="view_like">♥</span>
-					<span>이 글을 N명이 좋아합니다.</span>
+					<span class="view_like" onclick="likeAjax()">❤ </span> 
+					<span class="like_cnt"></span><span>명이 이 글을 좋아합니다.</span>
+					
 				</div>
 				<div class="repl_box">	
-				<div id="replyBox">
+				<div id="replyBox">  
 					<div id="replyListArea">
 					
 					</div>

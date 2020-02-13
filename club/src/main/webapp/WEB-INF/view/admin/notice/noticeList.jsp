@@ -48,7 +48,7 @@ function deleteConfirm() {
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>총 <%=listcount%>개</strong>  |  <%=vo.getPage()%>/<%=totalpage%>페이지</span></p>
+							<p><span class="bblist"><strong>총 <%=listcount%>개</strong>  |  <%=vo.getPage()%>/<%=totalpage%>페이지</span></p>
 							<form name="frm" id="frm" action="noticeGroupDelete.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
@@ -82,7 +82,7 @@ function deleteConfirm() {
 										<td class="title"><a href="noticeDetail.do?num=<%=list.get(i).getNum()%>&page=<%=vo.getPage()%>">
 										<%=list.get(i).getSubject() %></a></td>							
 										<td><%=list.get(i).getDate() %></td>
-										<td><%=list.get(i).getName() %></td>
+										<td><%=list.get(i).getAdmin_name() %></td>
 										<td class="last"><%=list.get(i).getReadcount() %></td>
 									</tr>
 									<%

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="admin.AdminVO" %>  
+<%
+	AdminVO adminvo = (AdminVO)session.getAttribute("adminsess"); 
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,18 +28,7 @@
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>사용중인 정보</strong>  |  정보 추가</span></p>
-							<div class="btn">
-								<div class="btnLeft">
-									<a class="btns" href="#" onclick=""><strong>삭제</strong> </a>
-								</div>
-								<div class="btnRight">
-									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
-								</div>
-							</div>
-							<!--//btn-->
-
-
+							<h1> 환영 합니다!</h1>
 						</div>
 						<!-- //blist -->
 					</div>

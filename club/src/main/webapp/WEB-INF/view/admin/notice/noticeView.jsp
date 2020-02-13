@@ -61,6 +61,12 @@ function deleteConfirm() {
 										</td>
 									</tr>
 									<tr>
+										<th scope="row"><label for="subject">작성자</label></th>
+										<td colspan="10">
+											<%=list.getAdmin_name()%>
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="content">내용</label></th>
 										<td colspan="10">
 											<%=list.getContent() %>

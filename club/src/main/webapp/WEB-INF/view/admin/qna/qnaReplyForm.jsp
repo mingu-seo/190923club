@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="adminQna.AdminQnaVO" %>
+<%@ page import="admin.AdminVO" %>  
 <%
-AdminQnaVO article = (AdminQnaVO)request.getAttribute("data");
-AdminQnaVO vo = (AdminQnaVO)request.getAttribute("vo");
+	AdminVO adminvo = (AdminVO)session.getAttribute("adminsess"); 
+	AdminVO admin = (AdminVO)request.getAttribute("admin"); 
+	AdminQnaVO article = (AdminQnaVO)request.getAttribute("data");
+	AdminQnaVO vo = (AdminQnaVO)request.getAttribute("vo");
 %>
 <html>
 <head>
@@ -81,6 +84,12 @@ function save() {
 											<input type="text" id="title" name="subject" class="w100" title="제목을 입력해주세요" value="Re: <%=article.getSubject()%>"/>	
 										</td>
 									</tr>
+									<tr>
+										<th scope="row"><label for="admin_name">작성자</label></th>
+										<td colspan="10">
+											<input type="text" name="admin_name" class="w100" value="<%=adminvo.getName()%>"/>	
+										</td>
+									</tr>									
 									<tr>
 										<th scope="row"><label for="content">*내용</label></th>
 										<td colspan="10">

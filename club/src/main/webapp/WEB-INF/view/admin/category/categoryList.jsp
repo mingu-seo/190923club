@@ -118,6 +118,12 @@ function deleteConfirm(num) {
 <!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 <!-- E N D :: headerArea-->
+  	<div class="info_title">
+  		<h2>HOT SPOT 카테고리</h2>
+  	</div>
+  	<div class="info_content">
+  		<h2>HOT SPOT의 카테고리를 설정해보세요!</h2>
+  	</div>
 <div class="wrap">
   	<form  action="process.do" method="post">
     <div class="categorycontainer">

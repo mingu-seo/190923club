@@ -39,16 +39,16 @@
 		SELECT count(*) FROM project.adminnotice
 		<where>
 			<if test="keyword != null and keyword != ''">
-				name like '%${keyword}%' OR num like '%${keyword}%' OR subject like '%${keyword}%'
+				admin_name like '%${keyword}%' OR num like '%${keyword}%' OR subject like '%${keyword}%'
 			</if>
 		</where>
 	</select>
 	
 	<insert id="adminNoticeInsert" parameterType="adminNotice.AdminNoticeVO">
 		INSERT INTO project.adminnotice
-		(name, subject, content, file, re_ref, re_lev, re_seq, readcount, date)
+		(subject, content,admin_name, file, re_ref, re_lev, re_seq, readcount, date)
 		VALUES
-		( #{name},  #{subject}, #{content}, #{file}, #{re_ref}, 0, 0, 0, now())
+		(#{subject}, #{content},#{admin_name}, #{file}, #{re_ref}, 0, 0, 0, now())
 	</insert>	
 	
 	<select id="maxNoticeNum" resultType="integer">

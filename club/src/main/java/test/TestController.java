@@ -1,12 +1,11 @@
 package test;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,130 +14,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 @Controller
 public class TestController {
+	private static final String UPLOAD_PATH = "/upload/test/";
 	@Autowired
 	private TestDAO testDao;
-	
-	@Autowired
-	private TestService tService;
-	
-	@RequestMapping("/memberList.do")
-	public String memberList(Model model, 
-			HttpServletRequest req, 
-			@RequestParam(value="email", required = false) String email, 
-			TestVO vo) {
-		/*
-		 * 리퀘스트 값 받는 방법
-		 * - HttpServletRequest
-		 * - @RequestParam
-		 * - Command 객체로
-		 */
-		System.out.println("requst:"+req.getParameter("email"));
-		System.out.println("RequestParam:"+email);
-		System.out.println("Command:"+vo.getEmail());
-		
-		List<TestVO> list = testDao.memberList(vo);
-		model.addAttribute("list", list); 
-		return "memberList";
-	}
-	
-	// jstl 안쓰고, 일자 검색기능 추가
-	@RequestMapping("/memberList2.do")
-	public String memberList2(Model model, 
-			HttpServletRequest req, 
-			@RequestParam(value="email", required = false) String email, 
-			TestVO vo) {
-		
-		List<TestVO> list = testDao.memberList(vo);
+
+	@RequestMapping({"/test.do", "/test2.do"})
+	public String test(Model model, TestVO vo) {
+		List<TestVO> list = testDao.select(vo);
 		model.addAttribute("list", list);
-		model.addAttribute("vo", vo);
-		return "memberList2";
-	}
-	
-
-	@RequestMapping("/test.do")
-	public String test(Model model) {
-		
-		model.addAttribute("name", "홍길동");
 		return "test";
 	}
 	
-	@RequestMapping("/member.do")
-	public String member(Model model) {
+	@RequestMapping("/testForm.do")
+	public String testForm(Model model, TestVO vo) {
+		return "testForm";
+	}
+	
+	@RequestMapping("/testInsert.do")
+	public String testInsert(Model model, TestVO vo, @RequestParam("file") MultipartFile file, HttpServletRequest req) {
+				
+		// 파일업로드
+		//System.out.println(req.getRealPath(UPLOAD_PATH));
+		String fileExt = "";
+		int i = -1;
+		if ((i = file.getOriginalFilename().lastIndexOf(".")) != -1) {
+			fileExt = file.getOriginalFilename().substring(i);
+		}
+		// 파일명 랜덤 생성
+		String fileName = new Date().getTime() + fileExt;
+		try {
+			if (!file.getOriginalFilename().isEmpty()) {
+				file.transferTo(new File(req.getRealPath(UPLOAD_PATH), fileName)); // 파일저장
+				vo.setFilename(fileName); // 파일명 vo에 set
+			}
+		} catch (IOException e) {
+			System.out.println(e.toString());
+		}
 		
-		model.addAttribute("name", "김길동");
-		return "test";
+		testDao.insert(vo);
+		return "redirect:/test.do";
 	}
 	
-	@RequestMapping("/memberForm.do")
-	public String memberForm() {
-		return "memberForm";
+	// 달력화면
+	@RequestMapping("/admin/calendar/index.do")
+	public String index(Model model, @RequestParam("yearmonth") String yearmonth) {
+		List<TestVO> list = testDao.selectCalendar(yearmonth);
+		model.addAttribute("list", list);
+		return "admin/calendar/index";
 	}
-	
-	@RequestMapping("memberInsert.do")
-	public String memberInsert(TestVO vo, @RequestParam("image") MultipartFile file, HttpServletRequest request) {
-		tService.memberInsert(vo, file, request);
-		return "redirect:/memberList2.do";
-	}
-	
-	@RequestMapping("memberDetail.do")
-	public String memberDetail(Model model, @RequestParam("id") int id) {
-		TestVO vo = tService.memberDetail(id);
-		model.addAttribute("vo", vo);
-		return "memberDetail";
-	}
-	
-	@RequestMapping("memberUpdateForm.do")
-	public String memberUpdateForm(Model model, @RequestParam("id") int id) {
-		TestVO vo = tService.memberDetail(id);
-		model.addAttribute("vo", vo);
-		return "memberUpdateForm";
-	}
-	
-	@RequestMapping("memberUpdate.do")
-	public String memberUpdate(TestVO vo, @RequestParam("image") MultipartFile file, HttpServletRequest request) {
-		tService.memberUpdate(vo, file, request);
-		return "redirect:memberList2.do";
-	}
-	
-	@RequestMapping("memberDelete.do")
-	public String memberDelete(@RequestParam("id") int id) {
-		tService.memberDelete(id);
-		return "redirect:memberList2.do";
-	}
-	
-	// 관리자 인터셉터처리
-	
-
-	@RequestMapping("/admin/loginProcess.do")
-	public String loginProcess(HttpSession session, HttpServletResponse response,
-			@RequestParam("mail") String mail, 
-			@RequestParam("pwd") String pwd) throws IOException {
-		// DB 확인
-		TestVO vo = tService.loginCheck(mail, pwd);
-		if (vo == null) {
-			// 로그인실패
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('아이디/비밀번호가 올바르지 않습니다.');");
-			out.print("location.href='/sample/admin/login.do';");
-			out.print("</script>");
-			return null;
-		} else {
-			// 로그인성공
-			session.setAttribute("adminSession", vo);
-			return "redirect:/admin/index.do";
-		}	
-	}
-	
-	
-	
-	// user category list 
-
-	
 }
-
-

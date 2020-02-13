@@ -92,7 +92,7 @@ $(function() {
         				
 	        			<div class="boardBox"> 
 	        				<div> 
-	        				<a href="javascript:;" onclick="addBox(0)"><img class="add" src="/img/board/plus.png"></a>
+	        				<a href="javascript:;" onclick="addBox(0)"><img class="add" src="/img/board/plus1.png"></a>
 	        				<span class="cgAdd">카테고리 추가</span> 
 	        				</div> 
 	        				<%
@@ -122,7 +122,7 @@ $(function() {
         			
 	        			<div class="boardBox">
 	        				<div>
-	        				<a href="javascript:;" onclick="addBox(1)"><img class="add" src="/img/board/plus.png"></a> 
+	        				<a href="javascript:;" onclick="addBox(1)"><img class="add" src="/img/board/plus1.png"></a> 
 	        				<span class="cgAdd">카테고리 추가</span> 
 	        				</div>
 	        				
@@ -152,8 +152,8 @@ $(function() {
         			<input type="hidden" name="spot_num" value="<%=spot_num%>">
 	        			<div class="boardBox">
 	        				<div>
-	        				<a href="javascript:;" onclick="addBox(2)"><img class="add" src="/img/board/plus.png"></a>
-	        				<span class="cgAdd">카테고리 추가</span> 
+	        				<a href="javascript:;" onclick="addBox(2)"><img class="add" src="/img/board/plus1.png"></a>
+	        				<span class="cgAdd">카테고리 추가</span>  
 	        				</div>
 	        				<%
 		        				for(int i=0; i<categoryList[2].size(); i++) {

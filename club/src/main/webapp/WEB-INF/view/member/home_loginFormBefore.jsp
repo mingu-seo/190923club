@@ -96,7 +96,7 @@
         </div>
         <div class="container"> 
        		<h1 class="hotspot_info">당신에게 맞는 HOT SPOT을 찾아보세요!</h1>
-       		<a href="spot/spotList.do" class="hotspot_more">더 보기</a>
+       		<a href="/spot/spotList.do" class="hotspot_more">더 보기</a>
         </div>
         <form  action="spotView.do" method="post">
 	    <div class="container">

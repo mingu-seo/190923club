@@ -2,6 +2,7 @@ package joinSpot;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,13 +93,15 @@ public class JoinSpotController {
 			JoinSpotVO jv,
 			Model model,
 			@RequestParam("spot_num") String spot_num, 
-			@RequestParam("num") String num) {
+			HttpServletRequest req) {
+		String[] joinspot_nums = req.getParameterValues("joinspot_num");
 		
-		jv.setSpot_num(Integer.parseInt(spot_num));
-		jv.setNum(Integer.parseInt(num));
-		int r = joinSpotService.spotMemberSleep(jv);
+		for (int i=0; i<joinspot_nums.length; i++) {
+			jv.setNum(Integer.parseInt(joinspot_nums[i]));
+			joinSpotService.spotMemberSleep(jv);
+		}
 		model.addAttribute("jv", jv);
-		return "redirect:/spotJoin/spotJoinEnd.do?spot_num="+spot_num;
+		return "redirect:/member/memberList.do?spot_num="+spot_num;
 	}
 	
 }

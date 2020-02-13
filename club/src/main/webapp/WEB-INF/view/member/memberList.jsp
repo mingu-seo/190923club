@@ -17,7 +17,21 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
 <title></title>
 <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 <link rel="stylesheet" href="/css/test/board.css"> 
-<link rel="stylesheet" href="/css/test/memberList.css"> 
+<link rel="stylesheet" href="/css/test/memberList.css">
+<script>
+function sleep() {
+	if (confirm("선택된 회원을 휴면처리하겠습니까?")) {
+		a=2;
+		$("#frm").submit();
+	}
+}
+function activate() {
+	if (confirm("선택된 회원을 활성화하겠습니까?")) {
+		a=1;
+		$("#frm").submit();
+	}
+}
+</script>
 </head>
 <body>
     <div class="wrap">
@@ -32,6 +46,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
         	<div class="visualRight">
         		<div class="content">
             		<form name="frm" id="frm" action="spotMemberSleep.do" method="post">
+            			<input type="hidden" name="spot_num" value="<%=spot_num%>">
 			            <table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 			                <colgroup>
 			                    <col class="w5" />
@@ -42,6 +57,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
 			                    <col class="w10"/>
 			                    <col class="w5" />
 			                    <col class="w6" />
+			                    <col class="w4" />
 			                </colgroup>
 			                <thead>
 			                    <tr class="tableTitle">
@@ -52,7 +68,8 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
 			                        <th scope="col">이름</th> 
 			                        <th scope="col">생년월일</th> 
 			                        <th scope="col">성별</th> 
-			                        <th scope="col" class="last">휴대전화</th>
+			                        <th scope="col">휴대전화</th>
+			                        <th scope="col" class="last">상태</th>
 			                    </tr>
 			                </thead>
 			                <tbody>
@@ -60,8 +77,8 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
 			                for (int i=0; i<memberList.size(); i++) {
 			                %>
 			                    <tr>
-			                        <td class="first"><input type="checkbox" name="num" id="no" value=""/></td>
-			                        <td><%=memberList.get(i).getNum()%></td>
+			                        <td class="first"><input type="checkbox" name="joinspot_num" id="no" value="<%=memberList.get(i).getJoinspot_num()%>"/></td>
+			                        <td><%=memberList.get(i).getJoinspot_num()%></td>
 			                        <td class="profileImg"><img src="/profileImg/<%=memberList.get(i).getProfile()%>"></td>
 			                        <td><%=memberList.get(i).getId() %></td>
 			                        <td><%=memberList.get(i).getName() %></td>
@@ -70,6 +87,9 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
 			                        	<%} else if(memberList.get(i).getGender()==2) { %>여자<%} %>
 			                        </td>
 			                        <td class="last"><%=memberList.get(i).getTel() %></td>
+			                        <td><% if(memberList.get(i).getJoinspot_grade()==2){ %>활동중
+			                        	<%} else if(memberList.get(i).getJoinspot_grade()==3) { %>휴면<%} %>
+			                        </td>
 			                    </tr>
 			                <%
 			                }
@@ -85,7 +105,8 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
 		            <div class="btn">
 						<div class="btnRight">
 							<a class="btns" href="#" onclick=""><strong>강제 탈퇴</strong> </a>
-							<a class="btns" href="/member/spotMemberSleep.do?spot_num=<%=spot_num %><%-- &?num=<%=jv.getNum() %> --%>"><strong>휴면</strong> </a>
+							<a class="btns" href="javascript:;" onclick="sleep();"><strong>휴면</strong> </a>
+							<a class="btns" href="javascript:;" onclick="activate();"><strong>활성화</strong> </a>
 						</div>
 						<!-- 페이징 처리 -->
 						<form name="searchForm" id="searchForm" action="memberList.do?spot_num=<%=spot_num %>" method="post">

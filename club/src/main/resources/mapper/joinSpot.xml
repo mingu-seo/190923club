@@ -12,7 +12,12 @@
 	
 	<!-- 스팟 회원 리스트 --> 
 	<select id="spotMemberList" parameterType="member.MemberVO" resultType="member.MemberVO">
-		SELECT * FROM project.member JOIN project.joinSpot 
+		SELECT 
+			project.member.num as member_num,
+			project.joinspot.num as joinspot_num,
+			project.joinspot.grade as joinspot_grade,
+			id, profile, project.member.name, birth, gender, tel 
+		FROM project.member JOIN project.joinSpot 
 		ON project.member.num = project.joinSpot.member_num AND joinspot.spot_num=#{spot_num}
 		<include refid="searchword"/>
 		limit #{startIndex}, #{limit}
@@ -43,7 +48,7 @@
    
    <!-- 회원 상태 휴면 -->
    <update id="spotMemberSleep" parameterType="joinSpot.JoinSpotVO">
-   		UPDATE project.joinSpot SET grade=3 WHERE num=#{num} AND spot_num=#{spot_num}
+   		UPDATE project.joinSpot SET grade=3 WHERE num=#{num}
    </update>
 
 </mapper>

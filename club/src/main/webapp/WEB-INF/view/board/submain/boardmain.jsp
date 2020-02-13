@@ -425,7 +425,7 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
         						<%=bList.get(i).getTitle() %>
         					</a>
         				</td> 
-        				<td>홍길동</td>
+        				<td><%=bList.get(i).getWriter() %></td>
         				<td><%=bList.get(i).getView() %></td>
         			</tr>
         			
@@ -463,8 +463,8 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
         				<td class="preboard-tt">
         					<a href="/board/notice/noticeWriteView.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=nList.get(i).getCategory_id() %>&post_id=<%=nList.get(i).getPost_id()%>">
         						<%=nList.get(i).getTitle() %>  
-        					</a></td>  
-        				<td>홍길동</td>
+        					</a></td>
+        				<td><%=nList.get(i).getWriter() %></td> 
         				<td><%=nList.get(i).getView() %></td>
         			</tr>
         			

@@ -26,15 +26,15 @@
 			<ul>
 				<li class="slide-menu"><a href="#">MyPage</a>
 					 <ul class="inner-menu">
-	                     <li class="inner-menu-item"><a href="#">내 정보</a></li>
+	                     <li class="inner-menu-item"><a href="/member/mypageView.do">내 정보</a></li>
 	                     <li class="inner-menu-item"><a href="#">내가 쓴 글</a></li>
 	                     <li class="inner-menu-item"><a href="#">공지사항</a></li>
 	                 </ul> 
                  </li>
 			</ul>
 			<ul>
-				<li class="frist"><a href="/member/loginFormAfter_user.do" onclick="">Home</a></li>
-				<li><a href="#">LogOut</a></li>
+				<li class="frist"><a href="/member/loginFormAfter_user.do">Home</a></li>
+				<li><a href="/member/userLogout.do">LogOut</a></li>
 			</ul>
 		</div>
 	</div>

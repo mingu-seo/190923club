@@ -15,7 +15,7 @@ public class GalleryVO {
 	private String search_word;
 	private int like_cnt;
 	private String spot_num;	 
-
+	private int member_id;
 	
 			
 	public String getSpot_num() {

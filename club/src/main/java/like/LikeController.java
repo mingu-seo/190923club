@@ -19,12 +19,12 @@ public class LikeController {
 		if (lService.like_select(vo) != null) {
 			// 있어서 삭제, 카운트-1
 			lService.likeDelete(vo);
-			lService.like_up(false, vo.getTableName(), vo.getBoard_id(), vo.getPost_id());
+			lService.like_up(false, vo.getTableName(), vo.getBoard_id(), vo.getPost_id(), vo.getMember_id());
 			value = 1;
 		} else {
 			// 없어서 등록, 카운트+1
 			lService.likeInsert(vo);
-			lService.like_up(true, vo.getTableName(), vo.getBoard_id(), vo.getPost_id());
+			lService.like_up(true, vo.getTableName(), vo.getBoard_id(), vo.getPost_id(), vo.getMember_id());
 			value = 0;
 		}
 		

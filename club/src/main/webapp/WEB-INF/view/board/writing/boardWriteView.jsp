@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import ="java.util.HashMap" %>
 <%@ page import ="board.BoardVO" %>
+<%@ page import ="member.MemberVO" %>
 <%@ page import ="reply.ReplyVO" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
@@ -12,7 +13,9 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 
 //댓글 리스트가져오는거
 List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
+MemberVO memVO = (MemberVO)request.getAttribute("memVO");
 ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
+MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 
 %>				
 
@@ -200,10 +203,21 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 				
 				  
 			</div>
-			<input type="button" value="삭제" class="btns" onclick="javascript:writingDel('<%=vo.getPost_id()%>','<%=spot_num%>','<%=vo.getCategory_id()%>');">
-			<input type="button" value="수정" class="btns" onclick="location.href='/board/writing/boardUpdateForm.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id() %>&post_id=<%=vo.getPost_id()%>'"> 
-			<input type="button" value="목록" class="btns" onclick="location.href='boardList.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>'">  
-        </div>
+			<%
+				if(sessVO.getNum()==vo.getMember_id()) {
+			%>
+				<input type="button" value="삭제" class="btns" onclick="javascript:writingDel('<%=vo.getPost_id()%>','<%=spot_num%>','<%=vo.getCategory_id()%>');">
+				<input type="button" value="수정" class="btns" onclick="location.href='/board/writing/boardUpdateForm.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id() %>&post_id=<%=vo.getPost_id()%>'">
+				<input type="button" value="목록" class="btns" onclick="location.href='boardList.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>'">  
+			<%
+			} else {
+			%>
+				 <input type="button" value="목록" class="btns" onclick="location.href='boardList.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>'">
+			<%
+			} 
+			%>
+			
+        </div> 
          
         
     </div>

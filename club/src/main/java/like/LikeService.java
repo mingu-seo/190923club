@@ -23,11 +23,12 @@ public class LikeService {
 		return likeDao.likeDelete(vo);
 	}
 	
-	public void like_up(boolean upDown, String tableName, int board_id, int post_id) {
+	public void like_up(boolean upDown, String tableName, int board_id, int post_id, int member_id) {
 		Map map = new HashMap();
 		map.put("tableName", tableName);
 		map.put("board_id", board_id);
 		map.put("post_id", post_id);
+		map.put("member_id", member_id);
 		
 		if (upDown) {
 			likeDao.like_up(map);

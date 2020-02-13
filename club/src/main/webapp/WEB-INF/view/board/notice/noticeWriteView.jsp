@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import ="notice.NoticeVO" %>
 <%@ page import ="reply.ReplyVO" %>
+<%@ page import ="member.MemberVO" %>
 <%@ page import="file.FileVO" %>
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
@@ -20,6 +21,7 @@ FileVO fv = (FileVO)request.getAttribute("fv");
 List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
 CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
+MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 %>
 
 <!-- 삭제 스크립트 -->
@@ -75,7 +77,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 	 		data : {
 	 			'post_id' : $(".post_id").val(), 
 	 			'board_id' : $(".board_id").val(),
-	 			'member_id' : 10,
+	 			'member_id' : $(".member_id"),val(),
 	 			'tableName' : 'notice'
 	 		},
 	 		dataType :'HTML',
@@ -134,9 +136,10 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 						<form id="like_form">
 							<input type="hidden" name="post_id" value="<%=nvo.getPost_id()%>">
 							<input type="hidden" name="board_id" value="<%=nvo.getBoard_id()%>">
+							<input type="hidden" name="board_id" value="<%=nvo.getMember_id()%>">
 								<span class="view_like" onclick="likeAjax()">❤ </span> 
 								<span class="like_cnt"><%=nvo.getLike_cnt() %></span>
-						</form>
+						</form> 
 						 
 						<span>조회</span>
 						<span><%=nvo.getView() %></span>  
@@ -209,11 +212,19 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 					</div> 
 				</div>
 			</div>
-			  
-			<input type="button" value="삭제" class="btns" onclick="javascript:noticeDel('<%=nvo.getPost_id()%>','<%=spot_num%>','<%=nvo.getCategory_id()%>');">
-			<input type="button" value="수정" class="btns" onclick="location.href='noticeUpdateForm.do?spot_num=<%=spot_num%>&category_id=<%=nvo.getCategory_id()%>&post_id=<%=nvo.getPost_id() %>'">
-			<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?spot_num=<%=spot_num%>&category_id=<%=nvo.getCategory_id() %>'"> 
-        
+			<%
+				if(sessVO.getNum()==nvo.getMember_id()) {
+			%>
+				<input type="button" value="삭제" class="btns" onclick="javascript:noticeDel('<%=nvo.getPost_id()%>','<%=spot_num%>','<%=nvo.getCategory_id()%>');">
+				<input type="button" value="수정" class="btns" onclick="location.href='noticeUpdateForm.do?spot_num=<%=spot_num%>&category_id=<%=nvo.getCategory_id()%>&post_id=<%=nvo.getPost_id() %>'">
+				<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?spot_num=<%=spot_num%>&category_id=<%=nvo.getCategory_id() %>'"> 
+        	<%
+				} else {
+        	%>
+        		<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?spot_num=<%=spot_num%>&category_id=<%=nvo.getCategory_id() %>'">
+        	<%
+				} 
+        	%>
         </div>
         
     </div>

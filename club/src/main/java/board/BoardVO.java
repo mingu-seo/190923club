@@ -15,6 +15,7 @@ public class BoardVO {
 	private int like_cnt;
 	private int spot_num;
 	private int category_id;
+	private int member_id;
 	//페이지
 	private int page; //사용자가 요청한 페이지번호
 	private int limit; //페이지당 로우수
@@ -26,6 +27,15 @@ public class BoardVO {
 		this.page = 1;
 		this.limit = 15;
 	}
+	
+	public int getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(int member_id) {
+		this.member_id = member_id;
+	}
+
 	public int getPage() {
 		return page;
 	}

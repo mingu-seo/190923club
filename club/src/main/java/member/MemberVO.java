@@ -13,7 +13,31 @@ public class MemberVO {
 	private String tel;
 	private String profile;
 	private int state;
+	// spot 조인
+	private int spot_num;
+	private int member_num;
+	private int joinspot_num;
+	private int joinspot_grade;
 	
+	
+	public int getJoinspot_grade() {
+		return joinspot_grade;
+	}
+	public void setJoinspot_grade(int joinspot_grade) {
+		this.joinspot_grade = joinspot_grade;
+	}
+	public int getJoinspot_num() {
+		return joinspot_num;
+	}
+	public void setJoinspot_num(int joinspot_num) {
+		this.joinspot_num = joinspot_num;
+	}
+	public int getMember_num() {
+		return member_num;
+	}
+	public void setMember_num(int member_num) {
+		this.member_num = member_num;
+	}
 	private int page;	// 사용자가 요청한 페이지번호
 	private int limit;	// 페이지당 로우 수
 	private int startIndex;	// limit 시작 인덱스
@@ -23,6 +47,12 @@ public class MemberVO {
 	private String stype;
 
 	
+	public int getSpot_num() {
+		return spot_num;
+	}
+	public void setSpot_num(int spot_num) {
+		this.spot_num = spot_num;
+	}
 	public int getState() {
 		return state;
 	}	

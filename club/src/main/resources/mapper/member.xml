@@ -13,12 +13,6 @@
 		VALUES(
 		#{id}, md5(#{password}), #{name}, #{email}, #{birth}, #{gender}, #{tel}, #{profile});
 	</insert>
-	
-	<!-- spot 회원가입 -->
-	<insert id="insertSpot" parameterType="member.MemberVO">
-		INSERT INTO project.joinspot(member_num, spot_num, grade, date) 
-		VALUES(#{member_num}, #{spot_num}, #{grade}, now());
-	</insert>
 
 	
 	<!-- 유저 로그인 -->

@@ -12,7 +12,7 @@
     <div class="wrap">
        
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
 	<!-- E N D :: headerArea-->
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
 
@@ -28,10 +28,10 @@
 				        <div class="joinTitle">
 				            <div class="titleText">
 				                <h2><%=list.getName() %></h2>
-				                <p><%=list.getName() %>에 가입하시겠습니까?</p>
+				                <p><%=list.getName() %>에 가입되었습니다.</p>
 				            </div>
 					        <div class="joinBtn">
-					            <a href="/spotJoin/joinSpot.do?spot_num=<%=spot_num%>"><input type="button" value="가입신청"></a>
+					            <a href="/board/submain/submain.do?spot_num=<%=list.getNum()%>"><input type="button" value="확인"></a>
 					        </div>
 				        </div>
 		    		</div>

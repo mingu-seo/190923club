@@ -139,7 +139,7 @@ function ajaxView(num){
 	               		for(int i=0; i<list.size()-1; i++){ 
 	               	%>
 	                  <div class="swiper-slide">
-                  		  <a href="javascript:ajaxView('<%=spot.get(i).getCategory_num() %>');"  data-num="<%=spot.get(i).getNum() %>">
+                  		  <a href="javascript:ajaxView('<%=list.get(i).getNum() %>');"  data-num="<%=list.get(i).getNum() %>">
 	                      <img src="/upload/images/<%=list.get(i).getFile() %>" class="circle"><div class="cate_name"><%=list.get(i).getName()%></div>
 	                      </a> 
 	                  </div> 

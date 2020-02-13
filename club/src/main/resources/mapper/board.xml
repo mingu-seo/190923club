@@ -90,7 +90,11 @@
 		<select id="gallery_delete" parameterType="gallery.GalleryVO">
 			delete from project.gallery where post_id=#{post_id}
 		</select>
-	
+	<!-- 갤러리 업데이트에서 삭제 -->
+		<update id="gallery_upgrade" parameterType="java.util.Map">   
+			update project.gallery set ${cname}='' where post_id=#{post_id}
+		</update>
+	  
 	<!-- 갤러리 업데이트 -->
 		<update id="gallery_update" parameterType="gallery.GalleryVO">
 			update project.gallery set 

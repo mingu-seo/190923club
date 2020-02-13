@@ -103,5 +103,39 @@ public class JoinSpotController {
 		model.addAttribute("jv", jv);
 		return "redirect:/member/memberList.do?spot_num="+spot_num;
 	}
+
+	// spot 회원 활성화
+	@RequestMapping("/member/spotMemberWake.do")
+	public String spotMemberWake(
+			JoinSpotVO jv,
+			Model model,
+			@RequestParam("spot_num") String spot_num, 
+			HttpServletRequest req) {
+		String[] joinspot_nums = req.getParameterValues("joinspot_num");
+		
+		for (int i=0; i<joinspot_nums.length; i++) {
+			jv.setNum(Integer.parseInt(joinspot_nums[i]));
+			joinSpotService.spotMemberWake(jv);
+		}
+		model.addAttribute("jv", jv);
+		return "redirect:/member/memberList.do?spot_num="+spot_num;
+	}
+
+	// spot 회원 강제탈퇴
+	@RequestMapping("/member/spotMemberDelete.do")
+	public String spotMemberDelete(
+			JoinSpotVO jv,
+			Model model,
+			@RequestParam("spot_num") String spot_num, 
+			HttpServletRequest req) {
+		String[] joinspot_nums = req.getParameterValues("joinspot_num");
+		
+		for (int i=0; i<joinspot_nums.length; i++) {
+			jv.setNum(Integer.parseInt(joinspot_nums[i]));
+			joinSpotService.spotMemberDelete(jv);
+		}
+		model.addAttribute("jv", jv);
+		return "redirect:/member/memberList.do?spot_num="+spot_num;
+	}
 	
 }

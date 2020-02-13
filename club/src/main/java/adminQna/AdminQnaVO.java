@@ -3,7 +3,7 @@ package adminQna;
 public class AdminQnaVO {
 	
 	private int num;
-	private String name;
+	private String admin_name;
 	private String pass;
 	private String subject;
 	private String content;
@@ -68,11 +68,11 @@ public class AdminQnaVO {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getName() {
-		return name;
+	public String getAdmin_name() {
+		return admin_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setAdmin_name(String admin_name) {
+		this.admin_name = admin_name;
 	}
 	public String getPass() {
 		return pass;

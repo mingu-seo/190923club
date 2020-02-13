@@ -26,7 +26,37 @@ body{
    text-align: center;
    
 }
+.info_title{
+	width: 100%;
+    height: 56px;
+    padding: 8px 0 0 1%;
+    background: url(/img/admin/con_tit_bg.gif) repeat-x left top;
+}
+.info_title h2{
+    height: 44px;
+    padding: 0px 0 0 23px;
+    background: url(/img/admin/con_tit_bullet.gif) no-repeat left center;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 20px;
+    color: #307dd4;
+}
 
+.info_content{
+	width: 100%;
+	padding:20px;
+	background-color: mintcream;
+}
+
+.info_content h2{
+	width: 100%;
+	padding:20px;
+	font-size: 25px;
+    font-weight: bold;
+}
+.bblist{
+	float: left;
+}
 .container{
     width: 100%;
     overflow: hidden;
@@ -94,6 +124,12 @@ div.circlecontainer{
     width: 510px;
     margin: 0 auto;
 }
+.categorycontainer > div.center_title{
+    width: 100%;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
 /* make spot */
 .box1{
     width:200px;
@@ -116,6 +152,15 @@ div.circlecontainer{
     width:130px;
     height: 130px;
     background-color: slategrey;
+    color:black;
+    margin: 20px;
+    float : left;
+    line-height: 130px;
+}
+.info_box{
+    width:130px;
+    height: 130px;
+    background-color: lightsteelblue;
     color:black;
     margin: 20px;
     float : left;

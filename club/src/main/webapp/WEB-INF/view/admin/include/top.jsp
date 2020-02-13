@@ -92,7 +92,9 @@ $(function() {
 				<li><span>관리자관리</span>
 					<div class="standard_right">
 					<ul>
-						<li><a href="/admin/board/post.do"><span>게시글</span></a></li>
+						<li><a href="/admin/board/boardList.do"><span>SPOT게시판</span></a></li>
+						<li><a href="/admin/board/post.do"><span>SPOT갤러리</span></a></li>
+						<li><a href="/admin/board/post.do"><span>SPOT공지사항</span></a></li>
 						<li><a href="/admin/spot/spotList.do"><span>동아리</span></a></li>
 						<li><a href="/admin/category/categoryList.do"><span>카테고리</span></a></li>
 					</ul>

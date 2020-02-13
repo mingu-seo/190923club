@@ -78,6 +78,7 @@ public class AdminController {
 		} else {
 			session.setAttribute("adminsess", admin);
 			model.addAttribute("msg", msg);
+			model.addAttribute("admin",adminvo);
 			model.addAttribute("url", url);
 			return "redirect:/admin/board/hotspotInfo.do";
 		}		

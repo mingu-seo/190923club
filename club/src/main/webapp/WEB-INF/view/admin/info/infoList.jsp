@@ -123,18 +123,24 @@ function deleteConfirm(num) {
 <!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 <!-- E N D :: headerArea-->
+  	<div class="info_title">
+  		<h2>HOT SPOT 정보</h2>
+  	</div>
+  	<div class="info_content">
+  		<h2>메인 페이지에 HOT SPOT의 기능과 이미지를 등록해보세요!</h2>
+  	</div>
 <div class="wrap">
   	<form  action="infoView.do" method="post">
     <div class="categorycontainer">
-		<div class="center" >
-			<h3><a class="wbtn" href="infoRegistForm.do">정보 등록</a></h3>
+		<div class="center_title" >
+			<a href="infoRegistForm.do" class="wbtn">정보 등록</a>
 		</div>
         <div class="center">
         	<%
 			for (int i=0; i<infolist.size(); i++){
 			%>
             <div class="button">
-                <a href="javascript:ajaxView('<%=infolist.get(i).getNum() %>');"  data-num="<%=infolist.get(i).getNum() %>" class="categorybox"><%=infolist.get(i).getName()%></a> 
+                <a href="javascript:ajaxView('<%=infolist.get(i).getNum() %>');"  data-num="<%=infolist.get(i).getNum() %>" class="info_box"><%=infolist.get(i).getName()%></a> 
             </div>    
            	<%
 			}

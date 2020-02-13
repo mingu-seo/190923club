@@ -33,8 +33,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin/joinProcess.do")
-	public String insert(Model model, AdminVO vo) {
-		int r = adminService.insert(vo);
+	public String insert(Model model, AdminVO adminvo) {
+		int r = adminService.insert(adminvo);
 		String msg = "";
 		String url = "";
 		if (r > 0) {
@@ -58,20 +58,29 @@ public class AdminController {
 	
 	@RequestMapping("/admin/logout.do")
 	public String logout(HttpSession session) {
-		//session.invalidate();
-		session.setAttribute("adminSession", null);
-		return "redirect:club/admin/index.do";
+		session.invalidate();
+		return "redirect:/admin/index.do";
 	}
 	
 	
-	@RequestMapping("/admin/login.do")
-	public String adminProcess(Model model) {
-		//어떠어떠한 처리
-		model.addAttribute("msg","정상적으로 회원가입 되었습니다.");
+	@RequestMapping("/admin/adminLogin.do")
+	public String adminLogin(Model model ,AdminVO adminvo, HttpSession session) {
+		AdminVO admin = adminService.adminLogin(adminvo);
+		String msg = "";
+		String url = "";
 		
-		//로그인되면
-		model.addAttribute("url","/admin/board/index.do");
-		return "admin/include/alert";
+		if (admin == null) {
+			msg = "아이디와 비밀번호를 확인해주세요.";
+			url = "/admin/index.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "admin/include/alert";
+		} else {
+			session.setAttribute("adminsess", admin);
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "redirect:/admin/board/hotspotInfo.do";
+		}		
 	}
 	
 	//메서드명은 겹치지만 않으면 상관없음

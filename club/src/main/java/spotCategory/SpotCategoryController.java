@@ -102,5 +102,12 @@ public class SpotCategoryController {
 		model.addAttribute("vo",vo);
 		return "/spot/spotList";
 	}
+	
+	@RequestMapping("/spot/spotAjax.do")
+	public String spotAjax(Model model, @RequestParam("category_num") int category_num) {
+		List<SpotVO> spotArticle = spotCategoryService.spotAjax(category_num);
+		model.addAttribute("spot",spotArticle);
+		return "/spot/spotAjax";
+	}
 
 }

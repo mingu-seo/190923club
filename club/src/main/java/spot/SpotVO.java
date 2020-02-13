@@ -15,6 +15,21 @@ public class SpotVO {
 	private Timestamp modifydate;	// 수정일
 	private String question;
 	
+	
+	
+	private String keyword;
+	private String searchOption;
+	
+	//추가생성 필드
+	private int page;
+	private int limit;
+	private int startIndex;
+	
+	public SpotVO() {
+		this.page = 1;
+		this.limit = 10;
+	}
+	
 	public int getNum() {
 		return num;
 	}
@@ -75,8 +90,38 @@ public class SpotVO {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-	
-	
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getSearchOption() {
+		return searchOption;
+	}
+	public void setSearchOption(String searchOption) {
+		this.searchOption = searchOption;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getLimit() {
+		return limit;
+	}
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+	public int getStartIndex() {
+		int p = (this.page-1)*this.limit;
+		return p;
+	}
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+
 
 	
 }

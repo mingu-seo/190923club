@@ -14,7 +14,14 @@ public class NoticeVO {
 	private String search_word;
 	private int like_cnt;
 	private int spot_num;
+	private int category_id;
 	
+	public int getCategory_id() {
+		return category_id;
+	}
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
+	}
 	//페이지
 	private int page; //사용자가 요청한 페이지번호
 	private int limit; //페이지당 로우수

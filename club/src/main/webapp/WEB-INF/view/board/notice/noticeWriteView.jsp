@@ -18,14 +18,15 @@ NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 NoticeVO nvo = (NoticeVO)request.getAttribute("nvo");
 FileVO fv = (FileVO)request.getAttribute("fv");
 List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
+CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 %>
 
 <!-- 삭제 스크립트 -->
 <script type="text/javascript">
-   function noticeDel(post_id,spot_num) {
+   function noticeDel(post_id,spot_num, category_id) {
 	   if(confirm("삭제하시겠습니까?")) { 
-		   location.href="/board/notice/noticeDelete.do?spot_num="+spot_num+"&post_id="+post_id;
+		   location.href="/board/notice/noticeDelete.do?spot_num="+spot_num+"&category_id="+category_id+"&post_id="+post_id;
 	   } else
 		   return false;
 		   
@@ -97,7 +98,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 
 
     <div class="wrap">
-    	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+    	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
        
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
@@ -111,7 +112,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 
         	</div>
         	<div class="visualRight">
-        		<div class="board_ctg_name">게시판 목록</div>
+        		<div class="board_ctg_name"><%=cate_name.getName() %></div>
         	<div class="view_wrap">
 					<div class="view_tt"><%=nvo.getTitle() %>
 						<div class="view_info">
@@ -209,9 +210,9 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
 				</div>
 			</div>
 			  
-			<input type="button" value="삭제" class="btns" onclick="javascript:noticeDel('<%=nvo.getPost_id()%>','<%=spot_num%>');">
-			<input type="button" value="수정" class="btns" onclick="location.href='noticeUpdateForm.do?spot_num=<%=spot_num%>&board_id=3&post_id=<%=nvo.getPost_id() %>'">
-			<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?spot_num=<%=spot_num%>&board_id=3'"> 
+			<input type="button" value="삭제" class="btns" onclick="javascript:noticeDel('<%=nvo.getPost_id()%>','<%=spot_num%>','<%=nvo.getCategory_id()%>');">
+			<input type="button" value="수정" class="btns" onclick="location.href='noticeUpdateForm.do?spot_num=<%=spot_num%>&category_id=<%=nvo.getCategory_id()%>&post_id=<%=nvo.getPost_id() %>'">
+			<input type="button" value="목록" class="btns" onclick="location.href='noticeList.do?spot_num=<%=spot_num%>&category_id=<%=nvo.getCategory_id() %>'"> 
         
         </div>
         

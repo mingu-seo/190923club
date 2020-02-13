@@ -54,78 +54,63 @@ $(function(){
         });
     });
 });
-
 function showLightBox(){
     //라이트박스를 보이게 합니다.
     $('#darken-background').show();
     $('#darken-background').css('top',$(window).scrollTop());
     //스크롤을 못하게 합니다.
     $('body').css('overflow','hidden');
-	}
-	function ajax(x){
-		link = x.url;
-		//성공했다면
-		x.success();
-	}
-	function hideLightBox(){
-	    //라이트 박스를 보이지 않게 합니다.
-	    $('#darken-background').hide();
-	    
-	    //스크롤을 하게 합니다.
-	    $('body').css('overflow','');
+}
+function ajax(x){
+	link = x.url;
+	//성공했다면
+	x.success();
+}
+function hideLightBox(){
+    //라이트 박스를 보이지 않게 합니다.
+    $('#darken-background').hide();
+    
+    //스크롤을 하게 합니다.
+    $('body').css('overflow','');
 }
 
 //라이트박스
 $(function(){
     //라이트 박스 제거 이벤트
-	    $('#darken-background').click(function(){
-	    	console.log(1);
-	        hideLightBox();
-	    });
+    $('#darken-background').click(function(){
+    	console.log(1);
+        hideLightBox();
+    });
     
-		$('#lightbox').click(function(event){
-		    event.stopPropagation()
-		});
-	}); 
-	function showLightBox(){
-	//라이트박스를 보이게 합니다.
-	$('#darken-background').show();
-	$('#darken-background').css('top',$(window).scrollTop());
-	//스크롤을 못하게 합니다.
-	$('body').css('overflow','hidden');
+$('#lightbox').click(function(event){
+    event.stopPropagation()
+});
+}); 
+function showLightBox(){
+//라이트박스를 보이게 합니다.
+$('#darken-background').show();
+$('#darken-background').css('top',$(window).scrollTop());
+//스크롤을 못하게 합니다.
+$('body').css('overflow','hidden');
+}
+function ajaxView(num){
+    $.ajax({
+		url : 'spotAjax.do',
+		async: false, //싱크를 맞춰줌
+		data : {
+		'category_num' : num
+	},
+	dataType : 'HTML',
+	success : function(data){
+		$("#categoryListArea").html(data);
+	},
+	error : function(data){
+		console.log(data)
 	}
-	function ajaxView(num){
-	    $.ajax({
-			url : 'categoryAjax.do',
-			async: false, //싱크를 맞춰줌
-			data : {
-			'num' : num
-		},
-		dataType : 'JSON',
-		success : function(data){
-			$("#name").text(data.name);
-			$("#file").attr("src","/upload/images/"+data.file);
-			$("#num").val(num);
-			$("#editBtn").attr("onclick","updateConfirm("+num+");");
-			$("#delBtn").attr("onclick","deleteConfirm("+num+");");
-		},
-		error : function(data){
-			console.log(data)
-		}
-	});
+});
      	showLightBox();
      }
      
-function updateConfirm(num) {
-	if (confirm("수정하시겠습니까?")) {
-		location.href="categoryUpdateForm.do?num="+num;
-	}
-}
-function deleteConfirm(num) {
-	if (confirm("삭제하시겠습니까?")) {
-		location.href="categoryDelete.do?num="+num;
-	}
-}     
 </script>     
 </head>
 <body>
@@ -154,8 +139,10 @@ function deleteConfirm(num) {
 	               		for(int i=0; i<list.size()-1; i++){ 
 	               	%>
 	                  <div class="swiper-slide">
-	                      <div class="circle"><img src="/upload/images/<%=list.get(i).getFile() %>"></br></br><%=list.get(i).getName()%></div>
-	                  </div>    
+                  		  <a href="javascript:ajaxView('<%=spot.get(i).getCategory_num() %>');"  data-num="<%=spot.get(i).getNum() %>">
+	                      <img src="/upload/images/<%=list.get(i).getFile() %>" class="circle"><div class="cate_name"><%=list.get(i).getName()%></div>
+	                      </a> 
+	                  </div> 
 	                 <%
 	                      }
 	                 %>
@@ -166,8 +153,7 @@ function deleteConfirm(num) {
          </div>
      </div>
      </form>
-     <form  action="spotView.do" method="post">
-    <div class="container">
+     <div class="container" id="categoryListArea">
         <div class="lcontents1">
         	<%
 			for (int j=0; j<spot.size(); j++){
@@ -221,7 +207,6 @@ function deleteConfirm(num) {
 			%>
         </div>
     </div>
-    </form>
     <div class="container">
 		<!-- S T A R T :: footerArea-->
 		<%@ include file="/WEB-INF/view/user/include/bottom.jsp" %>

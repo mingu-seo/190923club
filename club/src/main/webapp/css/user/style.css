@@ -63,6 +63,7 @@ div.lcontents1 > div.button{
 	margin-bottom: 20px;
 }
 .spotname{
+	height: 20px;
 	padding : 2px;
 	font-weight: bold;
 	
@@ -127,6 +128,12 @@ div.circlecontainer{
     background-color: #f4f4f4;
     margin : 30px;
     border-radius: 50%;
+    padding-bottom: 50px;
+}
+.cate_name{
+	position: absolute;
+    bottom: 50px;
+    width: 100%;
 }
 .circle_title {
 	height:50px;
@@ -323,4 +330,80 @@ label{
     right: 5%;
     margin-top: -35px;
     background: url(/img/visual_prev.png) no-repeat center center !important ;
+}
+#darken-background{
+    position: absolute;
+    top:0; left: 0; right: 0;
+    height: 100%;
+
+    display: none;
+    background: rgb(0,0,0,0.9);
+    z-index: 10000;
+    overflow-y:scroll;
+}
+
+#lightbox{
+    width:600px;
+    margin: 20px auto; padding: 15px;
+
+    border: 1px solid #333333;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 5px 5px rgba(34,25,25,0,4);
+    text-align: center;
+}
+
+.user-information{overflow:hidden; text-align: center;}
+.user-information-image{float: left; width: 70px;}
+.user-information-text{font-size: xx-large;}
+.user-infomation-img{ height: 150px; padding: 20px;}
+.lightbox-splitter{margin:10px 0;}
+
+
+.spot-information-text{font-size: X-large; font-weight: bold;}
+.spot-information{overflow:hidden; margin: 30px auto; width: 400px;}
+.spot-infomation-img{padding-top: 20px; padding-bottom: 20px;}
+#spot_file{ width:100%; }
+.spot_content{font-size: 15px; text-align: left;}
+
+.search {
+    position: relative;
+    width: 100%;
+    margin: 0px;
+    padding: 13px 0;
+    text-align: center;
+    vertical-align: middle;}
+
+.search select {
+    width: 115px;
+    height: 25px;
+    border: 1px solid #cccccc;
+    font-size: 12px;
+    vertical-align: middle;
+    color: #706a5f;
+    margin: 0 5px 0 0;
+    display: inline;
+}
+
+.search input[type='text'] {
+    width: 300px;
+    height: 25px;
+    border: 1px solid #cccccc;
+    vertical-align: middle;
+    display: inline;
+}
+
+.search input[type='image'] {
+    height: 25px;
+    border: 1px solid #cccccc;
+    vertical-align: middle;
+    display: inline;
+}
+.spot_title{
+	font-size: 20px;
+    padding: 20px;
+    font-weight: bold;
+}
+#info_file {
+	    width: 100%;
 }

@@ -4,9 +4,7 @@
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%
-List<CategoryVO> gcList = (List<CategoryVO>)request.getAttribute("gcList"); 
-List<CategoryVO> wcList = (List<CategoryVO>)request.getAttribute("wcList"); 
-List<CategoryVO> ncList = (List<CategoryVO>)request.getAttribute("ncList"); 
+List<CategoryVO>[] categoryList = (List<CategoryVO>[])request.getAttribute("categoryList"); 
 %>
 <!DOCTYPE html>
 <html> 
@@ -27,27 +25,28 @@ function addBox(idx) {
 	//이벤트 중첩 방지 
 	$(".deleteBtn").off("click");
 	
+	//DB에 저장되지 않은 카테고리 삭제하는 기능
 	$(".deleteBtn").click(function() {
 		console.log("click");
 		var idx = $(this).index(".deleteBtn");
 		$(".boardAdd").eq(idx).remove();
 	});
 }
-
+//DB에 저장되어있는 카테고리와 정보들을 삭제하는 기능
 $(function() {
 	$(".deleteBtn").click(function() {
-		if(confirm("삭제하시면 해당 카테고리 안의 내용이 모두 삭제됩니다. 그래도 삭제하시겠습니까?")) {
+		var idx = $(this).index(".deleteBtn"); 
+		if(confirm("카테고리를 삭제하시면 해당 카테고리 안의 내용을 모두 잃게됩니다.\n그래도 삭제하시겠습니까?")) {
 			$.ajax({
 				async : false,
-				url : '삭제url',
-				data : {
-					'spot_num': spot_num,
-					'board_id': 3
+				url : '/board/categoryDelete.do',
+				data : { //input태그이면서 name이 category_ids인 인덱스 몇번째의 데이터를 가져오는것
+					'category_id': $("input[name='category_ids']").eq(idx).val(), 
 				},
 				dataType:'HTML',
 				success: function(data) {
-					var idx = $(this).index(".deleteBtn");
 					$(".boardAdd").eq(idx).remove();
+					alert("삭제되었습니다.");
 				},
 				error:function(data) {
 					console.log(data);
@@ -65,7 +64,7 @@ $(function() {
 
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->  
         <%@ include file="menu.jsp" %>
        
@@ -93,14 +92,14 @@ $(function() {
         				
 	        			<div class="boardBox"> 
 	        				<div> 
-	        				<a href="javascript:;" onclick="addBox(0)"><img class="add" src="/img/board/plus.png"></a>
+	        				<a href="javascript:;" onclick="addBox(0)"><img class="add" src="/img/board/plus1.png"></a>
 	        				<span class="cgAdd">카테고리 추가</span> 
 	        				</div> 
 	        				<%
-	        				for(int i=0; i<gcList.size(); i++) {
+	        				for(int i=0; i<categoryList[0].size(); i++) {
 	        				%>
 	        				<div class="boardAdd"> 
-		        				<input class="addBox" type="text" name="name" value="<%=gcList.get(i).getName()%>"> 
+		        				<input class="addBox" type="text" name="name" value="<%=categoryList[0].get(i).getName()%>"> 
 		        				<input class="categoryBtn deleteBtn" type="button" value="삭제">
 	        				</div>
 	        				<%
@@ -118,20 +117,21 @@ $(function() {
         				<h1>▼ 자유게시판</h1>
         			</div>
         			<form action="/board/categoryInsert.do" method="post">
-        			<input type="hidden" name="board_id" value="2"> 
+        			<input type="hidden" name="board_id" value="2">
         			<input type="hidden" name="spot_num" value="<%=spot_num%>">
         			
 	        			<div class="boardBox">
 	        				<div>
-	        				<a href="javascript:;" onclick="addBox(1)"><img class="add" src="/img/board/plus.png"></a> 
+	        				<a href="javascript:;" onclick="addBox(1)"><img class="add" src="/img/board/plus1.png"></a> 
 	        				<span class="cgAdd">카테고리 추가</span> 
 	        				</div>
 	        				
 	        				<%
-	        				for(int i=0; i<wcList.size(); i++) {
+	        				for(int i=0; i<categoryList[1].size(); i++) {
 	        				%>
 	        				<div class="boardAdd"> 
-		        				<input class="addBox" type="text" name="name" value="<%=wcList.get(i).getName()%>"> 
+		        				<input class="addBox" type="text" name="name" value="<%=categoryList[1].get(i).getName()%>">
+		        				<input type="hidden" name="category_ids" value="<%=categoryList[1].get(i).getCategory_id()%>">  
 		        				<input class="categoryBtn deleteBtn" type="button" value="삭제">
 	        				</div>
 	        				<%
@@ -152,18 +152,18 @@ $(function() {
         			<input type="hidden" name="spot_num" value="<%=spot_num%>">
 	        			<div class="boardBox">
 	        				<div>
-	        				<a href="javascript:;" onclick="addBox(2)"><img class="add" src="/img/board/plus.png"></a>
-	        				<span class="cgAdd">카테고리 추가</span> 
+	        				<a href="javascript:;" onclick="addBox(2)"><img class="add" src="/img/board/plus1.png"></a>
+	        				<span class="cgAdd">카테고리 추가</span>  
 	        				</div>
 	        				<%
-		        				for(int i=0; i<ncList.size(); i++) {
+		        				for(int i=0; i<categoryList[2].size(); i++) {
 		        				%>
 		        				<div class="boardAdd"> 
-			        				<input class="addBox" type="text" name="name" value="<%=ncList.get(i).getName()%>">
-			        				<input type="hidden" name="category_ids" value="<%=ncList.get(i).getCategory_id()%>">
+			        				<input class="addBox" type="text" name="name" value="<%=categoryList[2].get(i).getName()%>">
+			        				<input type="hidden" name="category_ids" value="<%=categoryList[2].get(i).getCategory_id()%>">
 			        				<input class="categoryBtn deleteBtn" type="button" value="삭제">
 		        				</div>
-		        				<%
+		        				<% 
 		        				}
 		        				%>
 	        			</div>

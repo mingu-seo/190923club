@@ -6,51 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
-function loginCheck(){
-	if ( $("#id").val().length < 1 ) {
-		alert("아이디를 입력해주세요.");
-		$("#id").val().focus();
+function loginCheck() {	// 로그인 버튼
+	if ($("#id").val().trim() == "") {
+		alert("아이디를 입력해 주세요");
+		$("#id").focus();
+		return false;
+	} else if ($("#password").val() == "") {
+		alert("비밀번호를 입력해 주세요");
+		$("#password").focus();
 		return false;
 	}
-	if ( $("#password").val().length < 1 ) {
-		alert("비밀번호를 입력해주세요.");
-		$("#password").val().focus();
-		return false;
-	}
-	var f = document.board;
-	if (f.reg.checked) {
-	   document.cookie = "cookie_userid=" + f.id.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
-	} else {
-	   var now = new Date();	
-	   document.cookie = "cookie_userid=null;path=/;expires="+now;
-	}
-	return true;
+	$("#adminLogin").submit();
 }
-
-function userid_chk() {
-	var f=document.board;
-	var useridname = CookieVal("cookie_userid");
-	
-	if (useridname=="null"){	
-		f.id.focus();
-		f.id.value="";
-	} else {
-		f.password.focus();
-		f.id.value=useridname;
-		f.reg.checked=true;
-	}
-}
-
-function CookieVal(cookieName) {
-	thisCookie = document.cookie.split("; ");
-	for (var i = 0; i < thisCookie.length;i++) {
-		if (cookieName == thisCookie[i].split("=")[0]) {
-			return thisCookie[i].split("=")[1];
-		}
-	}
-	return "null" ;
-}
-//-->
 
 </script>
 </head>
@@ -61,7 +28,7 @@ function CookieVal(cookieName) {
 		<p>관리자 로그인 후 이용가능합니다.</p>
 	</div>
 	<div class="login"> 
-	<form name="board" id="board" method="post" action="" onsubmit="return loginCheck();">
+	<form name="board" id="adminLogin" method="post" action="adminLogin.do" onsubmit="return loginCheck();">
 		<fieldset>
 			<legend>관리자모드 로그인</legend>
 			<div class="bgBox">
@@ -96,7 +63,6 @@ function CookieVal(cookieName) {
 			<!-- //joinList -->
 			<input type="hidden" name="url" id="url" value="<%//=url%>"/>
 			<input type="hidden" name="param" id="param" value="<%//=param%>"/>
-			<input type="hidden" name="ip" id="ip" value="<%=request.getRemoteAddr()%>"/>
 		</fieldset>
 	</form>
 	</div>

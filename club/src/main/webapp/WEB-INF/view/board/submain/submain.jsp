@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
     <title></title>
@@ -14,7 +13,7 @@
     <div class="wrap">
        
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->
         <%@ include file="menu.jsp" %>
 
@@ -25,9 +24,6 @@
         	<!-- /왼쪽메뉴 -->
         	
         	<div class="visualRight">
-        		<h1><a href="/board/writing/boardWrite.do">게시판 글쓰기</a></h1>
-        		<h1><a href="/board/gallary/gallaryWrite.do">갤러리 글쓰기</a></h1>
-        	
         		
         		<div class="main_post_div">
         			<div class="main_post_writer">

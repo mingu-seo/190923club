@@ -14,12 +14,14 @@ public class GalleryVO {
 	private String image3;
 	private String search_word;
 	private int like_cnt;
-	private int spot_num;	
+	private String spot_num;	 
 
-	public int getSpot_num() {
+	
+			
+	public String getSpot_num() {
 		return spot_num;
 	}
-	public void setSpot_num(int spot_num) {
+	public void setSpot_num(String spot_num) {
 		this.spot_num = spot_num;
 	}
 	public int getLike_cnt() {
@@ -27,6 +29,7 @@ public class GalleryVO {
 	}
 	public void setLike_cnt(int like_cnt) {
 		this.like_cnt = like_cnt;
+
 	}
 	public String getImage2() {
 		return image2;

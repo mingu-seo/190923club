@@ -15,8 +15,8 @@ public class NoticeService {
 	NoticeDAO noticeDAO;
 	
 	//목록
-	public List<NoticeVO> noticeList(NoticeVO vo, int board_id) {
-		List<NoticeVO> list = noticeDAO.noticeList(vo, board_id);
+	public List<NoticeVO> noticeList(NoticeVO vo) {
+		List<NoticeVO> list = noticeDAO.noticeList(vo);
 		return list;
 	}
 	

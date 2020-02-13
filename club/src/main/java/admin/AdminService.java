@@ -13,7 +13,12 @@ public class AdminService {
 		return adminDao.idCheck(id);
 	}
 	
-	public int insert(AdminVO vo) {
-		return adminDao.insert(vo);
+	public int insert(AdminVO adminvo) {
+		return adminDao.insert(adminvo);
+	}
+
+	public AdminVO adminLogin(AdminVO adminvo) {
+		// TODO Auto-generated method stub
+		return adminDao.adminLogin(adminvo);
 	}	
 }

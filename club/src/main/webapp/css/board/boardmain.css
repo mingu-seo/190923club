@@ -18,6 +18,7 @@
 			font-weight:bold;
 			margin:10px;
 			padding:0 5px;
+			background-color: #eeeeee;
 		}
 		
 		#mm {
@@ -73,6 +74,9 @@
 			font-size:14px;
 		}
 		
+		.view-more:hover {
+			box-shadow: 0 0 10px gray;   
+		} 
 		.view-more {
 			background-color:#9cb3c5;
 			color:white;
@@ -108,7 +112,7 @@
 		/*submain css*/
 		
 		.main_post_div {
-			border:1px solid pink;
+			border:1px solid black;
 			margin:40px; 
 			padding:30px;
 		}
@@ -136,6 +140,20 @@
 			float:right;
 		}
 		
-		.main_post_click {
+		.main_post_click { 
 			background:pink;
+		} 
+		.contents_empty {
+			font-size: 25px;
+		}
+		.contents_empty_img { 
+			width:40px;
+			height:40px; 
+			margin:10px;
+		}
+		.footer_menu span {
+			font-size:18px;  
+		} 
+		#spot_name {
+			color:#c71585;
 		}

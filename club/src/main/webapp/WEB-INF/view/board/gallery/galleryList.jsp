@@ -357,7 +357,7 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 
 
     <div class="wrap">
-    	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+    	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
         <div class="visual">
         	<div class="visualLeft">

@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <title>SAMPLE</title>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-<link href="/css/admin/basic.css" rel="stylesheet" type="text/css" />
 <link href="/css/admin/layout.css" rel="stylesheet" type="text/css" />
+<link href="/css/admin/basic.css" rel="stylesheet" type="text/css" />
 <link href="/css/admin/board.css" rel="stylesheet" type="text/css" />
 <link href="/css/admin/manage.css" rel="stylesheet" type="text/css" />
 

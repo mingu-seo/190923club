@@ -33,7 +33,7 @@ public class SpotController {
 		int r = spotService.spotInsert(spotvo, file,request);
 		model.addAttribute("list", spotvo);
 		//if(r < 0)
-		return "board/submain/submain";
+		return "redirect:/board/submain/submain.do?spot_num="+r;
 	}	
 	
 
@@ -61,7 +61,7 @@ public class SpotController {
 	}
 	
 	//HOT SPOT 삭제하기
-	@RequestMapping("/spot/Delete.do")
+	@RequestMapping("/spot/spotDelete.do")
 	public String spotDelete(HttpServletRequest request) {
 		int num = Integer.parseInt(request.getParameter("num"));
 		spotService.spotDelete(num);

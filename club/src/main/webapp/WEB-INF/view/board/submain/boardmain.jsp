@@ -7,19 +7,22 @@
 <%@ page import="notice.*" %>
 <%@ page import="gallery.*" %>
 <%@ page import="board.*" %>
+<%@ page import="category.*" %>
 <%
 
 //공지사항 리스트
 List<NoticeVO> nList = (List<NoticeVO>)request.getAttribute("nlist");
-//공지사항 속성
-NoticeVO vo = (NoticeVO)request.getAttribute("vo");
+
 //갤러리 리스트
 List<GalleryVO> gList=(List<GalleryVO>)request.getAttribute("glist");
-GalleryVO gvo = (GalleryVO)request.getAttribute("gvo");
 
 //자유게시판 리스트
 List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
-SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
+SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo"); 
+
+//min
+CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
+
 %>
 
 <!DOCTYPE html>
@@ -339,7 +342,7 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->  
         <%@ include file="menu.jsp" %>
        
@@ -352,7 +355,7 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
         	
         	<div class="visualRight"> 
         		<div id="preview">
-        		미리보기<a href="admincategory.do?spot_num=<%=spot_num%>"><img src="/img/board/set.png"></a>
+        		미리보기<a href="admincategory.do?spot_num=<%=spot_vo.getNum()%>"><img src="/img/board/set.png"></a>
         		</div>
 	        	
         		<div><!-- 갤러리, 게시판, 공지 div를 감싸고 있음 -->
@@ -361,22 +364,33 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
         		<div class=rightBoard>
         		
         			<div class="galarybox">
-        				<div id="mm"><a href="/board/gallery/galleryList.do?spot_num=<%=spot_num %>&board_id=1"><button class="view-more">더보기</button></a></div>
+        				<div id="mm"><a href="/board/gallery/galleryList.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=cate_minNum.getCategory_id1()%>&board_id=1"><button class="view-more">더보기</button></a></div>
         			
         			<%
+					if(gList.isEmpty()) { 
+					%>
+						<div class="contents_empty">
+							
+							<img class="contents_empty_img" src="/img/board/color.png"><br>
+							등록된 내용이 없습니다.
+						</div>
+        			
+        			<%}
+					else {
         			for (int i=0; i<gList.size(); i++) { 
-        			%>
+        				%> 
         			<div class="pregalary-info">
 					<img class="pregalary-img" src="/upload/<%=gList.get(i).getImage()%>" onclick="ajaxView('<%=gList.get(i).getPost_id()%>');"><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
 					<div class="pregalary-title"><%=gList.get(i).getTitle() %></div>
 					<div class="pregalary-writer">작성자 <%=gList.get(i).getWriter()%> </div>
 					<div class="pregalary-dn">
 					<span class="pregalary-day"><%=util.Function.getYmd(gList.get(i).getRegdate())%></span>&nbsp;&nbsp;<span class="pregalary-num">조회수 <%=gList.get(i).getView()%></span>
-					</div>
+					</div> 
 					</div>
         			
         			<%
-        			}
+        				}
+					}
         			%>
 					
 					
@@ -386,56 +400,77 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
         		</div>
         		
         		<div class="pre-board">
-        		<div class="preBoard-name">게시판</div>
+        		<div class="preBoard-name">게시판</div>  
         		<div class=rightBoard>
-        		<div id="mm"><a href="/board/writing/boardList.do?spot_num=<%=spot_num %>&board_id=2"><button class="view-more">더보기</button></a></div> 
+        		<div id="mm"><a href="/board/writing/boardList.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=cate_minNum.getCategory_id2()%>"><button class="view-more">더보기</button></a></div> 
         		<table class="preboard">
-					
+
 					<%
-					for (int i=0; i<bList.size(); i++) {
+					if(bList.isEmpty()) { 
+					%>
+						<div class="contents_empty">
+							
+								<img class="contents_empty_img" src="/img/board/pen.png"><br>
+							등록된 내용이 없습니다.
+						</div>
+					<%
+					} else {
+						for (int i=0; i<bList.size(); i++) {
 					%>
 					
         			<tr> <!-- 최대 갯수 지정 -->
         				<td>★</td>
-        				<td class="preboard-tt">
-        					<a href="/board/writing/boardWriteView.do?spot_num=<%=spot_num %>&board_id=2&post_id=<%=bList.get(i).getPost_id() %>">
+        				<td class="preboard-tt"> 
+        					<a href="/board/writing/boardWriteView.do?spot_num=<%=spot_vo.getNum() %>&post_id=<%=bList.get(i).getPost_id() %>&category_id=<%=bList.get(i).getCategory_id()%>">
         						<%=bList.get(i).getTitle() %>
         					</a>
-        				</td>
+        				</td> 
         				<td>홍길동</td>
         				<td><%=bList.get(i).getView() %></td>
         			</tr>
+        			
 					
 					<%
+						} //else닫기
 					}
 					%>        			
         			
         		</table>
         		</div>
-        		</div>
+        		</div> 
 
         		<div class="pre-board">
         		<div class="preBoard-name">공지</div>
         		<div class=rightBoard>
-        		<div id="mm"><a href="/board/notice/noticeList.do?spot_num=<%=spot_num %>&board_id=3"><button class="view-more">더보기</button></a></div>
+        		<div id="mm"><a href="/board/notice/noticeList.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=cate_minNum.getCategory_id3()%>"><button class="view-more">더보기</button></a></div>
         		<table class="preboard">
         		
         			<%
-        			for (int i=0; i<nList.size(); i++) {
+        			if(nList.isEmpty()) { 
         			%>
+        				<div class="contents_empty">
+							 
+								<img class="contents_empty_img" src="/img/board/pen.png"><br>
+							등록된 내용이 없습니다.
+						</div>
+        			<%}
+        			else {
+        			for (int i=0; i<nList.size(); i++) {
+        			%> 
         			
         			<tr> <!-- 최대 갯수 지정(7개정도) -->
         				<td>★</td>
         				<td class="preboard-tt">
-        					<a href="/board/notice/noticeWriteView.do?spot_num=<%=spot_num %>&board_id=3&post_id=<%=nList.get(i).getPost_id()%>">
+        					<a href="/board/notice/noticeWriteView.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=nList.get(i).getCategory_id() %>&post_id=<%=nList.get(i).getPost_id()%>">
         						<%=nList.get(i).getTitle() %>  
-        					</a></td> 
+        					</a></td>  
         				<td>홍길동</td>
         				<td><%=nList.get(i).getView() %></td>
         			</tr>
         			
-        			<%  
-        			}
+        			<%   
+        				} //for 닫기
+        			} //else 닫기
         			%>
         		</table>
         		</div>

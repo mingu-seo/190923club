@@ -4,11 +4,13 @@
 <%@ page import ="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="notice.*" %>
+<%@ page import="category.*" %> 
 <%@ page import="file.*" %>
 <%
 NoticeVO nvo = (NoticeVO)request.getAttribute("nvo");
-NoticeVO vo = (NoticeVO)request.getAttribute("vo");
+NoticeVO vo = (NoticeVO)request.getAttribute("vo"); 
 FileVO fv = (FileVO)request.getAttribute("");
+CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 %>
 
 <!DOCTYPE html>
@@ -54,7 +56,7 @@ FileVO fv = (FileVO)request.getAttribute("");
 
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
@@ -68,12 +70,12 @@ FileVO fv = (FileVO)request.getAttribute("");
         	
         	<!-- 오른쪽 contents -->
         	<div class="visualRight">
-        		<div class="board_ctg_name">공지사항 목록</div>
+        		<div class="board_ctg_name"><%=cate_name.getName() %></div>
         		
         		<div>
 				<form action="noticeUpdate.do" method="post" name="writeForm" enctype="multipart/form-data" onsubmit="save();">
 				<input type="hidden" name="post_id" value="<%=nvo.getPost_id() %>">
-				<input type="hidden" name="board_id" value="<%=nvo.getBoard_id() %>"> 
+				<input type="hidden" name="category_id" value="<%=nvo.getCategory_id() %>"> 
 				<input type="hidden" name="spot_num" value="<%=spot_num %>"> 
 				
 					<table id="boardTable">
@@ -101,7 +103,7 @@ FileVO fv = (FileVO)request.getAttribute("");
 						<div class="writing_btns">
 							<input type="submit" value="작성완료" class="btns">
 							<input type="reset" value="다시 작성" class="btns"/>
-							<input type="button" value="목록" class="btns" onclick="location.href='/board/notice/noticeList.do?spot_num=<%=spot_num%>&board_id=3'">
+							<input type="button" value="목록" class="btns" onclick="location.href='/board/notice/noticeList.do?spot_num=<%=spot_num%>'">
 						</div>
 				</form>
 			</div>

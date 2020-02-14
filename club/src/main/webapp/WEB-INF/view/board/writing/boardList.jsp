@@ -28,11 +28,11 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
-	<!-- E N D :: headerArea-->  
-        <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
-       
-      
-        <div class="visual">
+	<!-- E N D :: headerArea-->
+	
+	<div class="main">
+     <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
+     	<div class="visual">
 		
         	<div class="visualLeft">
         		<%@ include file="/WEB-INF/view/board/submain/boardLeft.jsp" %> 
@@ -105,9 +105,9 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 				
 	        </div>
    		</div>
-        
+    </div>    
        
-        
+    
     </div>
      <%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
 </div>

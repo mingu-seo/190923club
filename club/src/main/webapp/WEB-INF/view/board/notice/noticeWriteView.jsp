@@ -70,14 +70,14 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 	}
 	
 	//좋아요 ajax
-	function likeAjax() { 
+	function likeAjax(post_id, member_id) { 
 	 	$.ajax({
 	 		async : false,
 	 		url : '/board/likeInsert.do', 
 	 		data : {
-	 			'post_id' : $(".post_id").val(), 
-	 			'board_id' : $(".board_id").val(),
-	 			'member_id' : $(".member_id"),val(),
+	 			'post_id' : post_id,
+	 			'member_id' : member_id,
+	 			'board_id' : 3,
 	 			'tableName' : 'notice'
 	 		},
 	 		dataType :'HTML',
@@ -101,7 +101,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 
     <div class="wrap">
     	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
-       
+       <div class="main">
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
       
@@ -132,12 +132,9 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 						<%=nvo.getContents()%> 
 					</div>
 					
-					<div class="view_repl_info">
+					<div class="view_repl_info"> 
 						<form id="like_form">
-							<input type="hidden" name="post_id" value="<%=nvo.getPost_id()%>">
-							<input type="hidden" name="board_id" value="<%=nvo.getBoard_id()%>">
-							<input type="hidden" name="board_id" value="<%=nvo.getMember_id()%>">
-								<span class="view_like" onclick="likeAjax()">❤ </span> 
+								<span class="view_like" onclick="likeAjax('<%=vo.getPost_id()%>','<%=sessVO.getNum()%>')">❤ </span> 
 								<span class="like_cnt"><%=nvo.getLike_cnt() %></span>
 						</form> 
 						 
@@ -227,6 +224,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
         	%>
         </div>
         
+    </div>
     </div>
 		<!-- S T A R T :: footerArea-->
 		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>

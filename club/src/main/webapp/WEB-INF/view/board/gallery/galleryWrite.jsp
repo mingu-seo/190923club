@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="java.util.HashMap" %>
-<%@ page import ="board.BoardVO" %>
+<%@ page import ="gallery.GalleryVO" %>
+<%@ page import ="category.CategoryVO" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
+GalleryVO vo = (GalleryVO)request.getAttribute("vo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +35,7 @@ function getThumbnailPrivew(html, $target) {
     <div class="wrap">
     	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
        
+       <div class="main">
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
       
@@ -41,11 +47,12 @@ function getThumbnailPrivew(html, $target) {
         	
         	</div>
         	<div class="visualRight">
-        		<div class="board_ctg_name">갤러리 목록</div><!-- 카테고리 이름 -->
+        		<div class="board_ctg_name"><%=cate_name.getName() %></div>
 				<form action="galleryInsert.do" method="post" enctype="multipart/form-data" onsubmit="save();">
 				<input type="hidden" name="board_id" value="1">
+				<input type="hidden" name="category_id" value="<%=vo.getCategory_id()%>">
 				<input type="hidden" name="spot_num" value="<%=spot_num%>">
-				
+				 
 					<table id="boardTable" border="1">
 					<tr>		
 						<th>제목</th>
@@ -85,12 +92,13 @@ function getThumbnailPrivew(html, $target) {
 					<div class="writing_btns">
 						<span><input type="submit" value="작성완료" class="btns"></span>
 						<span><input type="reset" value="다시 작성" class="btns"/></span>
-						<span><input type="button" value="목록" class="btns"></span>
+						<span><input type="button" value="목록" class="btns" onclick="location.href='galleryList.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>'"></span>
 					</div>
 				</form>
         </div>
         
         
+    </div>
     </div>
 		<!-- S T A R T :: footerArea-->
 		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>

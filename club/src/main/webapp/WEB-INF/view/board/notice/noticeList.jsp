@@ -28,7 +28,8 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 
     <div class="wrap">
     	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
-       
+    	
+	<div class="main">       
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
       
@@ -113,6 +114,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
         
        
         
+    </div>
     </div>
 		<!-- S T A R T :: footerArea-->
 		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>

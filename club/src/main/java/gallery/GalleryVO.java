@@ -4,20 +4,34 @@ import java.sql.Timestamp;
 
 public class GalleryVO {
 
-	private int board_id;
-	private int post_id;
-	private Timestamp regdate;
-	private String writer;
-	private String title;
-	private String image;
-	private String image2;
-	private String image3;
-	private String search_word;
-	private int like_cnt;
-	private String spot_num;	 
-	private int member_id;
+	private int board_id; //게시판 번호
+	private int post_id; //게시글 번호
+	private Timestamp regdate; //날짜
+	private String writer; //작성자
+	private String title; //제목
+	private String image; //사진1
+	private String image2; //사진2
+	private String image3; //사진3
+	private String search_word; //검색기능
+	private int like_cnt; //좋아요갯수
+	private String spot_num; //스팟번호
+	private int category_id; //카테고리 번호
+	private int member_id; //회원 번호
+	
 	
 			
+	public int getCategory_id() {
+		return category_id;
+	}
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
+	}
+	public int getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(int member_id) {
+		this.member_id = member_id;
+	}
 	public String getSpot_num() {
 		return spot_num;
 	}

@@ -16,7 +16,7 @@ public class GalleryDAO {
 	private SqlSessionTemplate sqlSession;
 	
 		//갤러리 리스트
-		public List<GalleryVO> galleryList(GalleryVO vo, int board_id) {
+		public List<GalleryVO> galleryList(GalleryVO vo) {
 			return sqlSession.selectList("board.gallery_list", vo);
 		}
 		

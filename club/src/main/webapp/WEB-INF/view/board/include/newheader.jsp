@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
 <script>
     $(document).ready(function(){
         $('.slide-menu').hover(function(){
@@ -12,11 +9,7 @@
         });
     });
 </script> 
-<meta charset="UTF-8"> 
-<title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/css/admin/layout.css">
-</head>
-<body>
 <div id="header">
 	<div class="header_inner">
 		<h1>HOT SPOT</h1>
@@ -39,5 +32,3 @@
 		</div>
 	</div>
 </div>
-</body>
-</html>

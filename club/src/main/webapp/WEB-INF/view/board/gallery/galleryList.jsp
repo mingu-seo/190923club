@@ -4,6 +4,7 @@
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import ="gallery.GalleryVO" %>
+<%@ page import ="category.CategoryVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import ="reply.ReplyVO" %>
 <%@ page import="spot.*"%>
@@ -11,7 +12,9 @@
 <%
 List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
 GalleryVO vo = (GalleryVO)request.getAttribute("vo");
+GalleryVO gVO = (GalleryVO)request.getAttribute("gVO");
 SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
+CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 %>
 <!DOCTYPE html>
 <html>
@@ -23,7 +26,8 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
         <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
         <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
-        <script>
+<script>
+        
       //좋아요 ajax
     	function likeAjax() { 
     	 	$.ajax({
@@ -32,7 +36,6 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
     	 		data : {
     	 			'post_id' : $(".post_id").val(), 
     	 			'board_id' : $(".board_id").val(),
-    	 			'member_id' : 10,
     	 			'tableName' : 'gallery'
     	 		},
     	 		dataType :'HTML',
@@ -50,6 +53,7 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
     	}
         
         </script>
+        
         <script>
         var images = []; // 이미지 담을 배열
         var imageIdx = 0; // 이미지 현재 인덱스
@@ -128,10 +132,11 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 		                	$(".paper-each2").attr("src", "/upload/"+data.image);
 		                	$("#prePost").attr("onclick", "moveView("+data.post_id+", 'prev')");
 		                	$("#nextPost").attr("onclick", "moveView("+data.post_id+", 'next')");
-		                	$("#deleteHref").attr("href", "/board/gallery/galleryDelete.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&post_id="+id);
-		                	$("#detailHref").attr("href", "/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&post_id="+id);
+		                	$("#deleteHref").attr("href", "/board/gallery/galleryDelete.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&category_id=<%=vo.getCategory_id()%>&post_id="+id);
+		                	$("#detailHref").attr("href", "/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&category_id=<%=vo.getCategory_id()%>&post_id="+id);
 		               		$("#readCount").text(data.readcount);
-		               		$("#reply_post_id").val(id);
+		               		$("#viewCnt").text(data.view);
+		               		$("#reply_post_id").val(id); 
 		               		showLightBox();
 		               		getReplyList(id);
 	                	},
@@ -242,141 +247,27 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
                 
                 
         </script>
-     <!--종이스타일-->
-        <style>
-
-            .paper{
-                width:190px;
-                margin-top:10px;
-                padding:15px 15px 0;
-                font-size:11px;
-                background:#ffffff;
-                box-shadow: 0 1px 3px rgba(34,25,25,0.4);
-                cursor:pointer;
-            }
-			
-			
-			
-            .paper-content{
-                margin:0 -15px;
-                padding:10px 15px;
-                background:#f2f0f0;
-                overflow:hidden;
-                width:100%;
-                text-align: center;
-            }
-            
-           .paper-each{
-            	width:100%;
-            	text-align:center;
-            }
-            
-           .paper-each2{
-            	width:auto;
-            	max-width:90%;
-            	text-align:center;
-            	box-sizing: border-box;
-            	
-            }
-            
-            
-            .paper-holder  p{
-            	float:left;
-            	margin : 5px;
-                font-size:15px;
-                font-weight:bold;
-            }
-            
-
-            .paper-link{
-                display:block;
-            }
-            
-            .paper-text{
-                float:left;
-                width:150px;
-                margin-left:10px;
-                font-size:15px;
-                font-weight:bold;
-				overflow:hidden;
-				text-overflow:ellipsis;
-				white-space: nowrap;
-				display:inline-block;
-            }
-            
-         </style>
-            
-        <!--섹션-->
-        <style>
-            #main-section{
-                width:100%;
-                margin:0 auto;
-            }
-            
-        </style>
-        
-          
-        
-        <!--라이트박스-->
-        <style>
-
-            #darken-background{
-                position:absolute;
-                top:0; left:0; right:0;
-                height:100%;
-                display:none;
-                background:rgba(0,0,0,0.9);
-                z-index:10000;
-                overflow-y:scroll;
-                width:100%;
-                text-align:center;
-            }
-			
-			#lb_wrap {
-				width:850px;
-            	margin:0 auto;
-            	background: #f2f4ef;
-				
-			}
-        	#lightbox{
-                max-width:800px;
-                margin:5px auto; padding:10px;
-                border:1px solid #333333;
-                border-radius:5px;
-                background: white;
-                box-shadow: 0 5px 5px rgba(34,25,25,0.4);
-                }
-            .user-information{overflow:hidden; text-align: left;}
-            .user-information-image{float:left; width:70px;}
-            .user-information-text{float:right; width:620px;}
-            .lightbox-splitter{margin:10px 0;}
-            
-        </style>
+      
 </head>
 <body>
 
 
     <div class="wrap">
     	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
-        <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
-        <div class="visual">
-        	<div class="visualLeft">
-        <%@ include file="/WEB-INF/view/board/submain/boardLeft.jsp" %>
+    	<div class="main">
+	        <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
+	        <div class="visual">
+	        	<div class="visualLeft">
+	        <%@ include file="/WEB-INF/view/board/submain/boardLeft.jsp" %>
  
         </div>
         	
         	
         <div class="visualRight">
-       		<div class="board_ctg_name">갤러리 목록</div><!-- 카테고리 이름 -->
-			<div class="board_writing"><a href="galleryWrite.do?spot_num=<%=spot_vo.getNum() %>&board_id=1">글작성</a></div>
+       		<div class="board_ctg_name"><%=cate_name.getName() %></div>
+			<div class="board_writing"><a href="galleryWrite.do?spot_num=<%=spot_vo.getNum() %>&board_id=1&category_id=<%=vo.getCategory_id()%>">글작성</a></div>
 	
 			
-		 	 <div class="boardSearch2">
-			 	<form action="/board/gallery/galleryList.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
-				<input type="search" name="search_word" id="boardSearch" value="${gallery.serch_word }"> 
-				<input id="board_search_btn" type="submit" value="검색">
-				</form>
-			</div>
 				 
 				 
 			<div id="horizen"></div>
@@ -389,7 +280,8 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
      	<div class="paper" onclick="ajaxView('<%=list.get(i).getPost_id()%>');">
 	          <div class="paper-holder">
 	             <p><%=list.get(i).getWriter()%></p>
-				 <p class="paper-description"><%=util.Function.getYmd(list.get(i).getRegdate()) %></p><!-- 날짜 불러오기 -->
+				 <p class="paper-description"><%=util.Function.getYmd(list.get(i).getRegdate()) %></p>
+				 <p class="paper-description"><%=list.get(i).getView() %></p>
 		     </div>
 	         <div class="paper-content">
 	            <a class="paper-link">
@@ -402,21 +294,22 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 		<%
 		}
 		%>
-         
-          
-        
-      <!--라이트박스-->
 	</section>
 	</div>
-		 
-
-
-        	
-        </div>
-   </div>
+		 	 <div class="boardSearch2">
+			 	<form action="/board/gallery/galleryList.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
+				<input type="search" name="search_word" id="boardSearch" value="${gallery.serch_word }">
+				<input id="board_search_btn" type="submit" value="검색">
+				</form>
+			</div>
+	 
+	
+</div>
+</div>
         
        
         
+    </div>
     </div>
 		<!-- S T A R T :: footerArea-->
 		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
@@ -458,12 +351,18 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
                 
                 <div class="paper-contents"></div>  
 	          	
+	          	
 	          	<div class="view_repl_info">
-					<span class="view_like" onclick="likeAjax()">❤ </span> 
-					<span class="like_cnt"></span><span>명이 이 글을 좋아합니다.</span>
+					<form id="like_form">
+						<span class="view_like" onclick="likeAjax();">❤ </span> 
+						<span class="like_cnt">${gallery.like_cnt }</span> 
+					</form> 
 					
-				</div>
-				<div class="repl_box">	
+					<span>조회</span> 
+					<span id="viewCnt">${gallery.view }</span>  
+					
+				</div> 
+				<div class="repl_box">	 
 				<div id="replyBox">  
 					<div id="replyListArea">
 					
@@ -548,8 +447,12 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 				</script>		  
 					</div> 
 				</div>
+				
+				
 				<a id="deleteHref"><input type="button" value="삭제" class="btns" ></a>
 				<a id="detailHref"><input type="button" value="수정" class="btns" ></a>
+				
+				
       	  </div>
          
         </div>

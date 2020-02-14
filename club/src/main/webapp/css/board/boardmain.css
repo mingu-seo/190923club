@@ -159,3 +159,13 @@
 		#spot_name {
 			color:#c71585;
 		}
+		.noMemberView {
+			font-size: 28px; 
+		    height: 500px;
+		    background-color: whitesmoke;
+		    width: 700px;
+		    margin: 40px auto;
+		}
+		.txt {
+			padding:210px 0;
+		}

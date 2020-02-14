@@ -18,8 +18,8 @@ public class GalleryService {
 	@Autowired
 	GalleryDAO galleryDao;
 	
-	public List<GalleryVO> galleryList(GalleryVO vo, int board_id) {
-		List<GalleryVO> list = galleryDao.galleryList(vo, board_id);
+	public List<GalleryVO> galleryList(GalleryVO vo) {
+		List<GalleryVO> list = galleryDao.galleryList(vo);
 		return list;
 	}
 	

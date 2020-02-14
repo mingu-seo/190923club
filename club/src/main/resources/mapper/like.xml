@@ -18,7 +18,7 @@
 		(#{post_id}, #{board_id}, #{member_id})
 	</insert>
 	
-	<!-- 3. 해당멤버가 좋아요 클릭한 적 있으면 좋아요 취소 -->
+	<!-- 3. 해당멤버가 좋아요 클릭한 적 있으면 좋아요 취소 --> 
 	<delete id="like_delete" parameterType="like.LikeVO">
 		delete from project.like 
 		where post_id=#{post_id} and board_id=#{board_id} and member_id=#{member_id}

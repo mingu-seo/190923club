@@ -3,15 +3,17 @@
 
 <mapper namespace="member">
 	
-	<!-- 회원가입 -->
+	<!-- 회원가입 아이디 중복체크 -->
 	<select id="idCheck" parameterType="String" resultType="Integer">
 		SELECT COUNT(*) FROM project.member WHERE id=#{id}
 	</select>
 	
+	
+	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="member.MemberVO">
-		INSERT INTO project.member(id, password, name, email, birth, gender, tel, profile) 
+		INSERT INTO project.member(id, password, name, email, birth, gender, tel, profile, state) 
 		VALUES(
-		#{id}, md5(#{password}), #{name}, #{email}, #{birth}, #{gender}, #{tel}, #{profile});
+		#{id}, md5(#{password}), #{name}, #{email}, #{birth}, #{gender}, #{tel}, #{profile}, 2);
 	</insert>
 
 	
@@ -35,34 +37,49 @@
 		WHERE num=#{num} 
 	</update>
 	
-	
- 	<!-- 전체 회원 리스트 -->    
-	<select id="memberList" parameterType="member.MemberVO" resultType="member.MemberVO">
-		SELECT * FROM project.member 
-		<include refid="searchword"/>
-		limit #{startIndex}, #{limit}
-	</select> 
-	
-	
-	<!-- 스팟 회원 리스트 --> 
-	
-
 	<!-- 페이징 처리 -->
 	<select id="count" resultType="Integer" parameterType="member.MemberVO">
 		SELECT count(*) FROM project.member
 		<include refid="searchword"/>
 	</select>
 	
-	<!-- 회원 검색 -->
+
+ 	<!-- admin 페이지 회원 리스트 -->    
+	<select id="memberList" parameterType="member.MemberVO" resultType="member.MemberVO">
+		SELECT * FROM project.member 
+		<include refid="searchword"/>
+		limit #{startIndex}, #{limit}
+	</select> 
+
+	
+	<!-- admin 페이지 회원 검색 -->
 	<sql id="searchword"> 
 		<choose>
 			<when test="searchword != null and searchword != '' and stype == 'all'">			
 				WHERE name like '%${searchword}%'
 				OR id like '%${searchword}%'
 			</when>
-			<when test="searchword != null and searchword != ''">
+			<when test="searchword != null and searchword != '' and stype != null and stype != ''">
 				WHERE ${stype} LIKE '%${searchword}%'
 			</when>
 		</choose>
 	</sql>
+	
+	
+	<!-- admin 페이지 회원 상태 휴면 -->
+	<update id="memberSleep" parameterType="member.MemberVO">
+   		UPDATE project.member SET state=3 WHERE num=#{num}
+    </update>
+
+
+   <!-- admin 페이지 회원 상태 활성화 -->
+	<update id="memberWake" parameterType="member.MemberVO">
+		UPDATE project.member SET state=2 WHERE num=#{num}
+	</update>
+
+
+   <!-- admin 페이지 회원 상태 삭제 -->
+	<delete id="memberDelete" parameterType="member.MemberVO">
+		DELETE FROM project.member WHERE num=#{num}   
+	</delete>
 </mapper>

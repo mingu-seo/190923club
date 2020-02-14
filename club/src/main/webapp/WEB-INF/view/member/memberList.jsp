@@ -47,7 +47,7 @@ function drop() {
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
         <div class="visual">
         	<!-- 왼쪽메뉴 -->
-        	<%@ include file="/WEB-INF/view/board/submain/submainLeft.jsp" %>
+        	<%@ include file="/WEB-INF/view/board/submain/submainLeft.jsp" %>  
         	<!-- 왼쪽메뉴 -->
         	<div class="visualRight">
         		<div class="content">
@@ -78,7 +78,7 @@ function drop() {
 			                        <th scope="col" class="last">상태</th>
 			                    </tr>
 			                </thead>
-			                <tbody>
+			                <tbody>  
 			                <%
 			                for (int i=0; i<memberList.size(); i++) {
 			                %>
@@ -105,7 +105,7 @@ function drop() {
 		            </form>
 					<!-- 페이징 처리 -->
 						<div class='page'>
-							<%=Page.getMemberPageList(vo.getPage(), totalpage, "memberList.do?spot_num="+request.getAttribute("spot_num")+"&searchword="+vo.getSearchword()+"&stype="+vo.getStype()) %>
+							<%=Page.getMemberPageList(vo.getPage(), totalpage, "memberList.do?spot_num="+request.getAttribute("spot_num")+"&searchword="+vo.getSearchword()+"&stype="+(vo.getStype()==null?"":vo.getStype())) %>
 						</div> 
 					<!--btn-->
 		            <div class="btn">
@@ -125,7 +125,7 @@ function drop() {
 								<input type="text" name="searchword" value="<%=vo.getSearchword()==null ? "" : vo.getSearchword() %>" title="검색할 내용을 입력해주세요" />
 								<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
 							</div>
-						</form>  
+						</form>     
 					</div>
     			</div>
         	</div>        	

@@ -1,6 +1,8 @@
 package joinSpot;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,5 +63,12 @@ public class JoinSpotService {
 	// spot 회원 강제탈퇴
 	public int spotMemberDelete(JoinSpotVO jv){
 		return joinSpotDAO.spotMemberDelete(jv);
+	}
+	
+	public int checkJoinSpot(int member_num, int spot_num) {
+		Map map = new HashMap();
+		map.put("member_num", member_num);
+		map.put("spot_num", spot_num);
+		return joinSpotDAO.checkJoinSpot(map);
 	}
 }

@@ -80,7 +80,7 @@ $(function() {
 					</ul>
 					</div>
 				</li>
-				<li><a href="/admin/product/index.do" class="parent"><span>회원관리</span></a></li>
+				<li><a href="/admin/member/adminMemberList.do" class="parent"><span>회원관리</span></a></li>
 				<li><span>게시판</span>
 					<div class="standard_left">
 					<ul>

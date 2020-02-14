@@ -39,7 +39,7 @@
 				AND (project.member.name like '%${searchword}%'
 				OR project.member.id like '%${searchword}%')
 			</when>
-			<when test="searchword != null and searchword != ''">
+			<when test="searchword != null and searchword != '' and stype != null and stype != ''">
 				AND project.member.${stype} LIKE '%${searchword}%'
 			</when>
 		</choose>
@@ -63,6 +63,8 @@
    		DELETE FROM project.joinSpot WHERE num=#{num}
    </delete>   
    
+   
+   <!-- spot 가입 확인 -->
    <select id="checkJoinSpot" parameterType="java.util.Map" resultType="Integer">
    		SELECT COUNT(*) FROM project.joinSpot WHERE member_num=#{member_num} AND spot_num=#{spot_num}
    </select>

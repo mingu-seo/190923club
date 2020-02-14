@@ -9,7 +9,7 @@ public class JoinSpotVO {
 	private int spot_num;
 	private int grade;
 	private Timestamp date;
-	
+
 	
 	public int getNum() {
 		return num;

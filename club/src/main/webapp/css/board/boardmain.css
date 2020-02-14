@@ -74,11 +74,11 @@
 			font-size:14px;
 		}
 		
-		.view-more:hover {
+		.view-more:hover { 
 			box-shadow: 0 0 10px gray;   
 		} 
 		.view-more {
-			background-color:#9cb3c5;
+			background-color:rgb(106,107,112);
 			color:white;
 			text-align:center;
 			font-size:20px;
@@ -104,13 +104,15 @@
 			font-size:22px;
 			padding:5px;
 		}
-		  
-		.preboard tr {
+		.preboard_tr:hover {
+			background-color: #F0F8FF;  
+		}  
+		.preboard_tr {
 			border-bottom: 1px solid gray;
 		}
-		
+		 
 		/*submain css*/
-		
+		 
 		.main_post_div {
 			border:1px solid black;
 			margin:40px; 

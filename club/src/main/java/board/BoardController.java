@@ -22,8 +22,6 @@ import spot.SpotVO;
 
 @Controller
 public class BoardController {
-	@Autowired
-	private BoardDAO boardDao;
 	
 	@Autowired
 	private BoardService bService;
@@ -96,16 +94,19 @@ public class BoardController {
 			HttpServletRequest req, 
 			BoardVO vo, CategoryVO cVO, @RequestParam("spot_num") String spot_num) {
 			
-			List<BoardVO> list = boardDao.boardList(vo);
+			List<BoardVO> list = bService.boardList(vo);
 			List<CategoryVO>[] categoryList = cService.categoryList(cVO);
+			int[] listcount = bService.boardCount(vo); //전체 갯수와 총페이지수
 			CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
 			SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 			
-			model.addAttribute("spot_num", spot_num);
-			model.addAttribute("spot_vo", spotvo);
-			model.addAttribute("categoryList", categoryList);
-			model.addAttribute("cate_name", cate_name);
 			model.addAttribute("list", list);
+			model.addAttribute("categoryList", categoryList);
+			model.addAttribute("listcount", listcount[0]);
+			model.addAttribute("totalpage", listcount[1]);
+			model.addAttribute("cate_name", cate_name);
+			model.addAttribute("spot_vo", spotvo);
+			model.addAttribute("spot_num", spot_num);
 			model.addAttribute("vo",vo);
 			
 			String msg = "";

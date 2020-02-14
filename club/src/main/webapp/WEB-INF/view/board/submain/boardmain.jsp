@@ -418,14 +418,14 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
 						for (int i=0; i<bList.size(); i++) {
 					%>
 					
-        			<tr> <!-- 최대 갯수 지정 -->
+        			<tr class="preboard_tr"> <!-- 최대 갯수 지정 -->
         				<td>★</td>
         				<td class="preboard-tt"> 
         					<a href="/board/writing/boardWriteView.do?spot_num=<%=spot_vo.getNum() %>&post_id=<%=bList.get(i).getPost_id() %>&category_id=<%=bList.get(i).getCategory_id()%>">
         						<%=bList.get(i).getTitle() %>
         					</a>
         				</td> 
-        				<td>홍길동</td>
+        				<td><%=bList.get(i).getWriter() %></td>
         				<td><%=bList.get(i).getView() %></td>
         			</tr>
         			
@@ -458,13 +458,13 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
         			for (int i=0; i<nList.size(); i++) {
         			%> 
         			
-        			<tr> <!-- 최대 갯수 지정(7개정도) -->
+        			<tr class="preboard_tr"> <!-- 최대 갯수 지정(7개정도) -->
         				<td>★</td>
         				<td class="preboard-tt">
         					<a href="/board/notice/noticeWriteView.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=nList.get(i).getCategory_id() %>&post_id=<%=nList.get(i).getPost_id()%>">
         						<%=nList.get(i).getTitle() %>  
-        					</a></td>  
-        				<td>홍길동</td>
+        					</a></td>
+        				<td><%=nList.get(i).getWriter() %></td> 
         				<td><%=nList.get(i).getView() %></td>
         			</tr>
         			
@@ -477,7 +477,7 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
         	</div>
         	</div>
         
-       
+        
         
     </div>
    </div>

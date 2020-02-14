@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="category.CategoryVO" %>
+<%@ page import ="member.MemberVO" %>
 <%@ page import ="board.BoardVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 BoardVO vo = (BoardVO)request.getAttribute("vo");
 CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
+MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 %>
 <!DOCTYPE html>
 <html>
@@ -83,6 +85,8 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
         		
         		<div>
 				<form action="boardInsert.do" method="post" name="writeForm" id="writeForm" enctype="multipart/form-data" onsubmit="save();">
+					<input type="hidden" name="member_id" value="<%=sessVO.getNum()%>">
+					<input type="hidden" name="writer" value="<%=sessVO.getName()%>">
 					<input type="hidden" name="spot_num" value="<%=spot_num%>">
 					<input type="hidden" name="category_id" value="<%=vo.getCategory_id()%>">
 					<table id="boardTable">

@@ -12,9 +12,21 @@
 	
 	.board_writing {
 		text-align:right;
-		font-size:18px;
+		/* font-size:18px;
 		color:#5580a0;
-		padding:10px 0;
+		padding:10px 0; */
+	}
+	.goWriting:hover {
+		box-shadow: 0 0 10px gray;   
+	}
+	.goWriting {
+		background-color:rgb(106,107,112);
+		color:white;
+		text-align:center;
+		font-size:20px;
+		border-radius: 12px;
+		margin:10px;
+		padding: 0 5px;
 	}
 	
 	.board_writing>a:hover {
@@ -45,8 +57,10 @@
 		padding:5px 0;
 		border-bottom: 1px solid #e5e5e5;
 	}
-	
-	.board_art {
+	.board_art:hover {
+		background-color : #e5e5e5;
+	}
+	.board_art { 
 		border-bottom: 1px solid #e5e5e5;
 	}
 	

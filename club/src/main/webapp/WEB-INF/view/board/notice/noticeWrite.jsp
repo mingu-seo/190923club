@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="notice.NoticeVO" %>
+<%@ page import ="member.MemberVO" %>
 <%@ page import ="file.FileVO" %>
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
@@ -9,6 +10,7 @@
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 FileVO fv = (FileVO)request.getAttribute("fv");
 CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
+MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 %>
 
 <!DOCTYPE html>
@@ -92,6 +94,8 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
         		
         		<div>
 				<form action="noticeInsert.do" method="post" name="writeForm" id="writeForm" enctype="multipart/form-data" onsubmit="save();">
+					<input type="hidden" name="member_id" value="<%=sessVO.getNum()%>">  
+					<input type="hidden" name="writer" value="<%=sessVO.getName()%>"> 
 					<input type="hidden" name="category_id" value="<%=vo.getCategory_id()%>">
 					<input type="hidden" name="spot_num" value="<%=spot_num %>">
 					<table id="boardTable">

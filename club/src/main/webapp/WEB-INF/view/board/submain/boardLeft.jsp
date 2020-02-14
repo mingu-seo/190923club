@@ -17,8 +17,8 @@ List<CategoryVO>[] categoryList = (List<CategoryVO>[])request.getAttribute("cate
 </style>
   <div class="visualLeftInner">
 	        		<div class="leftMenu">
-		        		<div class="board-title">갤러리</div> <!-- 위치수정가능하게 -->
-			        	<div> 
+		        		<div class="board-title">갤러리</div>
+		        		<div> 
 			        		<ul>
 			        			<%
 		        					//카테고리 리스트 

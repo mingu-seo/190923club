@@ -42,7 +42,7 @@ public class JoinSpotController {
 	@Autowired
 	private JoinSpotService joinSpotService;
 
-	// spot 가입
+	// spot 가입폼
 	@RequestMapping("/spotJoin/spotJoinForm.do")
 	public String spotJoinForm(Model model, @RequestParam("spot_num") String spot_num) {
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
@@ -50,7 +50,7 @@ public class JoinSpotController {
 		model.addAttribute("spot_vo", spotvo);
 		return "member/spotJoinForm";
 	}
-	
+	// spot 가입동작
 	@RequestMapping("/spotJoin/joinSpot.do")
 	public String spotJoin(Model model, HttpSession session, @RequestParam("spot_num") String spot_num) {
 		MemberVO vo = (MemberVO)session.getAttribute("sess");
@@ -61,7 +61,7 @@ public class JoinSpotController {
 		int r = joinSpotService.joinSpot(jv);
 		return "redirect:/spotJoin/spotJoinEnd.do?spot_num="+spot_num;
 	}
-
+	// spot 가입후 페이지
 	@RequestMapping("/spotJoin/spotJoinEnd.do")
 	public String spotJoinEnd(Model model, @RequestParam("spot_num") String spot_num) {
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));

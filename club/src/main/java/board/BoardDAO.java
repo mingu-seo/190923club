@@ -12,17 +12,20 @@ public class BoardDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	//자유게시판 리스트
+	//목록
 	public List<BoardVO> boardList(BoardVO vo) {
 		return sqlSession.selectList("board.list", vo);
 	}
-	
-	//자유게시판 글 작성
+	//목록 카운트
+	public int boardCount(BoardVO vo) {
+		return sqlSession.selectOne("board.pageCount_board", vo);
+	}
+	//작성
 	public int boardInsert(BoardVO vo) {
 		return sqlSession.insert("board.board_insert", vo);
 	}
 	
-	//자유게시판 글 상세
+	//상세
 	public BoardVO boardView(int post_id) {
 		return sqlSession.selectOne("board.board_view", post_id);
 	}
@@ -32,12 +35,12 @@ public class BoardDAO {
 		sqlSession.update("board.boardUpdateReadcount", post_id);
 	}
 	
-	//자유게시판 글수정
+	//수정
 	public int boardUpdate(BoardVO vo) {
 		return sqlSession.update("board.board_update", vo);
 	}
 	
-	//자유게시판 글삭제
+	//삭제
 	public int boardDelete(int post_id) {
 		return sqlSession.delete("board.board_delete", post_id);
 	}
@@ -47,7 +50,7 @@ public class BoardDAO {
 		return sqlSession.delete("board.allBoard_delete", category_id);
 	}
 	
-	//보드메인 자유게시판
+	//보드메인 리스트
 	public List<BoardVO> mainBoardList(BoardVO vo) {
 		return sqlSession.selectList("board.main_board", vo);
 	}

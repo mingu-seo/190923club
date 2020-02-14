@@ -19,8 +19,6 @@ import reply.ReplyVO;
 @Controller
 public class NoticeController {
 
-	@Autowired
-	NoticeDAO noticeDao;
 	
 	@Autowired
 	NoticeService nService;

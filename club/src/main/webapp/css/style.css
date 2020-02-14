@@ -123,6 +123,9 @@
 		text-align:left;
 		}
 		
+		.board-title-down {
+		float:right;
+		}
 		.leftMenu  {
 		margin-top:20px;
 		}
@@ -206,15 +209,15 @@
 		}
 		
 		.clubInfo {
-		font-size:14px;
+		font-size:22px;
 		margin:10px;
 		text-align:left;
 		}
 		
 		.clubIntro {
-		font-size:12px;
+		font-size:17px;
 		margin:10px;
-		text-align: left;
+		text-align: left; 
 		}
 		
 		#clubImage {

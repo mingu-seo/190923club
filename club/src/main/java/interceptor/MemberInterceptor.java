@@ -20,7 +20,7 @@ public class MemberInterceptor implements HandlerInterceptor {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print("<script>");
-			out.print("alert('회원만 접속가능합니다.');");
+			out.print("alert('회원만 접속가능합니다.');"); 
 			out.print("location.href='/member/loginFormBefore.do';");
 			out.print("</script>");
 			out.flush();

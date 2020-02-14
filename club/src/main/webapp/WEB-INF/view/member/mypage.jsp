@@ -34,15 +34,10 @@ function update() {		// 수정 버튼
     <div class="wrap">
        
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
-	<!-- E N D :: headerArea-->
-        <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
+	<!-- E N D :: headerArea-->  
 
         <div class="visual">
-        	
-        	<!-- 왼쪽메뉴 -->
-        	<%@ include file="/WEB-INF/view/member/mypageLeft.jsp" %>
-        	<!-- /왼쪽메뉴 -->
         	
         	<div class="visualRight">
         		<div class="content">

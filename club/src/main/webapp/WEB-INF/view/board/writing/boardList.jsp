@@ -10,6 +10,8 @@
 BoardVO vo = (BoardVO)request.getAttribute("vo");
 List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
+int listcount = (Integer)request.getAttribute("listcount"); //전체갯수
+int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지수
 %>
 <!DOCTYPE html>
 <html>
@@ -19,17 +21,9 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
    <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 </head>
-<script>//수정
-	$(function() {
-		$(".art_title").hover(function() {
-			$(this).css("background-color", "#e5e5e5");
-		}, function() {
-			$(this).css("background-color", "");
-		});
-	});
-</script>
-<body>
 
+<body>
+ 
 
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
@@ -50,21 +44,11 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 		        		<%=cate_name.getName()%>
  		        	
 		        	</div><!-- 카테고리 이름 --> 
-					<div class="board_writing"><a href="boardWrite.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>">글작성</a></div>
-			
-					<div class="board_seq">
-					<select>
-						 	<option value="최신순">최신순</option>
-						 	<option value="좋아요순">좋아요순</option>
-						 	<option value="조회수순">조회수순</option>
-					</select>
-					
-					<select>
-						 	<option value="오름차순">오름차순</option>
-						 	<option value="내림차순">내림차순</option>
-					</select>
+					<div class="board_writing">
+						<a href="boardWrite.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>">
+						<button class="goWriting">글작성</button></a>
 					</div>
-		
+			
 		
 					<div class="board_list_box">
 			  				
@@ -116,12 +100,7 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 				</div>	
 				
 				<div id="pageList">
-					<span>[이전]</span>
-					<span><a href="">1</a></span>
-					<span><a href="">2</a></span>
-					<span><a href="">3</a></span>
-					<span><a href="">4</a></span>
-					<span>[다음]</span>
+					<%=util.BoardPage.getPageList(vo.getPage(), totalpage, "/board/writing/boardList.do?spot_num="+ spot_num + "&category_id=" + vo.getCategory_id()) %>
 				</div>
 				
 	        </div>

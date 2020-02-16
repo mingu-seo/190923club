@@ -12,11 +12,11 @@
 	</select>
 	
 	<!-- 댓글 sql -->   
-	<insert id="re_insert" parameterType="reply.ReplyVO">
-		insert into project.reply (contents, regdate, post_id, board_id, g_id, g_lev, g_seq) 
-		values(#{contents}, now(), #{post_id}, #{board_id}, #{g_id}, 0, 0)
+	<insert id="re_insert" parameterType="reply.ReplyVO"> 
+		insert into project.reply (contents, regdate, post_id, board_id, g_id, g_lev, g_seq, member_id, writer) 
+		values(#{contents}, now(), #{post_id}, #{board_id}, #{g_id}, 0, 0, #{member_id}, #{writer}) 
 	</insert>
-	
+	 
 	<!-- 댓글의 답변 sql -->
 	<insert id="reRe_insert" parameterType="reply.ReplyVO">  
 		insert into project.reply (contents, regdate, post_id, board_id, g_id, g_lev, g_seq) 

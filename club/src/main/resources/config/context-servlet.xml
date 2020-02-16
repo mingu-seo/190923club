@@ -100,12 +100,6 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/board/**"/>
-			<bean class="interceptor.AutoLoginInterceptor"/>
-		</mvc:interceptor>
-	</mvc:interceptors>
 	
 	
 	
@@ -113,9 +107,7 @@
 	
 	
 	
-	
-	
-	
+	  
 	
 	
 	

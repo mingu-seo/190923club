@@ -1,3 +1,4 @@
+<%@page import="util.Function"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="java.util.HashMap" %>
@@ -5,6 +6,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import ="gallery.GalleryVO" %>
 <%@ page import ="category.CategoryVO" %>
+<%@ page import ="member.MemberVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import ="reply.ReplyVO" %>
 <%@ page import="spot.*"%>
@@ -12,9 +14,10 @@
 <%
 List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
 GalleryVO vo = (GalleryVO)request.getAttribute("vo");
-GalleryVO gVO = (GalleryVO)request.getAttribute("gVO");
+//GalleryVO gVO = (GalleryVO)request.getAttribute("gVO");
 SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
+MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 %>
 <!DOCTYPE html>
 <html>
@@ -35,8 +38,9 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
     	 		url : '/board/likeInsert.do', 
     	 		data : {
     	 			'post_id' : $(".post_id").val(), 
-    	 			'board_id' : $(".board_id").val(),
-    	 			'tableName' : 'gallery'
+    	 			'board_id' : 1,
+    	 			'member_id' : $(".member_id").val(),
+    	 			'tableName' : 'gallery' 
     	 		},
     	 		dataType :'HTML',
     	 		success : function(data) {
@@ -95,10 +99,6 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
         }
                 //라이트박스
                 $(document).ready(function(){
-                    
-        			
-                    
-        
                     $('.galleryClose').click(function(){hideLightBox();});
                     $('.paper').click(function(){showLightBox();});
                     $('#lightbox').click(function(event){event.stopPropagation();
@@ -135,8 +135,11 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 		                	$("#deleteHref").attr("href", "/board/gallery/galleryDelete.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&category_id=<%=vo.getCategory_id()%>&post_id="+id);
 		                	$("#detailHref").attr("href", "/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&category_id=<%=vo.getCategory_id()%>&post_id="+id);
 		               		$("#readCount").text(data.readcount);
-		               		$("#viewCnt").text(data.view);
-		               		$("#reply_post_id").val(id); 
+		               		$("#viewCnt").text(data.view); //조회수
+		               		$("#reply_post_id").val(id);
+		               		$("#date_info").text(data.regdate); // 날짜 넘겨주기
+		               		$("#writer_info").text(data.writer); // 작성자 넘겨주기  
+		               		$(".post_id").val(id); // post_id넘겨주기
 		               		showLightBox();
 		               		getReplyList(id);
 	                	},
@@ -230,6 +233,10 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 			                	$("#detailHref").attr("href", "galleryEdit.do?post_id="+data.post_id);
 			               		$("#readCount").text(data.readcount);
 			               		$("#reply_post_id").val(data.post_id);
+			               		$("#date_info").text(data.regdate); // 날짜 넘겨주기
+			               		$("#writer_info").text(data.writer); // 작성자 넘겨주기  
+			               		$("#viewCnt").text(data.view); //조회수
+			               		$(".like_cnt").text(data.like_cnt); // 좋아요
 			               		showLightBox();
 			               		getReplyList(id);
 	                		} else {
@@ -265,7 +272,10 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
         	
         <div class="visualRight">
        		<div class="board_ctg_name"><%=cate_name.getName() %></div>
-			<div class="board_writing"><a href="galleryWrite.do?spot_num=<%=spot_vo.getNum() %>&board_id=1&category_id=<%=vo.getCategory_id()%>">글작성</a></div>
+			<div class="board_writing">
+				<a href="galleryWrite.do?spot_num=<%=spot_vo.getNum() %>&board_id=1&category_id=<%=vo.getCategory_id()%>">
+				<button class="goWriting">글작성</button></a>  
+			</div>
 	
 			
 				 
@@ -280,15 +290,14 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
      	<div class="paper" onclick="ajaxView('<%=list.get(i).getPost_id()%>');">
 	          <div class="paper-holder">
 	             <p><%=list.get(i).getWriter()%></p>
-				 <p class="paper-description"><%=util.Function.getYmd(list.get(i).getRegdate()) %></p>
-				 <p class="paper-description"><%=list.get(i).getView() %></p>
+				 <p class="paper-description"><%=util.Function.getYmd(list.get(i).getRegdate()) %></p> 
 		     </div>
 	         <div class="paper-content">
 	            <a class="paper-link">
 	            <img class = "paper-each" src="/upload/<%=list.get(i).getImage()%>">
 	            </a>
 	           	  <p class="paper-text"><%=list.get(i).getTitle()%></p>
-	          </div>
+	          </div> 
          </div>
 	
 		<%
@@ -322,44 +331,40 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
             	<div>
 					<span class="galleryClose">X</span>     
 				</div>
-               <form action="/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
-               <input type="hidden" id="post_id" name="post_id">
-                 <input type="hidden" id="board_id" name="board_id">
-                 <input type="hidden" id="spot_num" name="<%=spot_vo.getNum() %>" >
-               
                 <div class="user-information">
                     <a class="user-information-image" href="#">
                         <img src="http://placekitten.com/70/70">
                     </a>
                     <div class="user-information-text">
-                        <h3>작성자</h3>
-                        <div class="paper-text2">${gallery.title }</div>
-                    </div>
+                        <div id="writer_info" style="font-weight: bold; font-size:20px;"></div>
+                        <div id="date_info" style="font-size:15px;"></div> 
+                    </div> 
                 </div>
                    
                 <hr class="lightbox-splitter">
                 
                 <div class="galleryImage"> 
-	                <a id="prePost" href="#;">◁</a>
-	                <a id="preHref" href="#;" onclick="preHref();">◀</a>
-	                <img class="paper-each2" src="/upload/${gallery.image }">
-	                <a id="nextHref" href="#;" onclick="nextHref();">▶</a>
-	                <a  id="nextPost"  href="#;">▷</a>
+	                <a id="prePost" href="#;"><img src="/img/board/leftDoubleArrow.png" style="max-height: 30px; max-width: 30px;"></a> 
+	                <a id="preHref" href="#;" onclick="preHref();"><img src="/img/board/leftArrow.png" style="max-height: 30px; max-width: 30px;"></a>
+	                <img class="paper-each2" src="/upload/${gallery.image }" style="max-height: 700px;"> 
+	                <a id="nextHref" href="#;" onclick="nextHref();"><img src="/img/board/rightArrow.png" style="max-height: 30px; max-width: 30px;"></a>
+	                <a  id="nextPost"  href="#;"><img src="/img/board/rightDoubleArrow.png" style="max-height: 30px; max-width: 30px;"></a> 
                 </div>  
+                 
                 
-                </form>
-                
-                <div class="paper-contents"></div>  
+                <div class="paper-contents" style="font-size:20px; padding:10px 40px;"></div>  
 	          	
 	          	
-	          	<div class="view_repl_info">
+	          	<div class="view_repl_info"> 
 					<form id="like_form">
+						<input type="hidden" name="post_id" class="post_id" value="<%=vo.getPost_id()%>">
+						<input type="hidden" name="member_id" class="member_id" value="<%=sessVO.getNum()%>">
 						<span class="view_like" onclick="likeAjax();">❤ </span> 
-						<span class="like_cnt">${gallery.like_cnt }</span> 
+						<span class="like_cnt"></span> 
 					</form> 
 					
 					<span>조회</span> 
-					<span id="viewCnt">${gallery.view }</span>  
+					<span id="viewCnt"></span>  
 					
 				</div> 
 				<div class="repl_box">	 

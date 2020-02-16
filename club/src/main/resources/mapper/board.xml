@@ -64,13 +64,13 @@
 		  
 	
 	<!--갤러리 글작성 -->
-
+ 
 	<insert id="gallery_insert" parameterType="gallery.GalleryVO">
 		insert into project.gallery 
-		(title, contents, image, image2, image3, regdate, board_id, category_id, spot_num) 
-		values 
-		(#{title}, #{contents}, #{image}, #{image2}, #{image3}, now(), #{board_id}, #{category_id}, #{spot_num}) 
-	</insert>
+		(title, contents, image, image2, image3, regdate, board_id, category_id, spot_num, member_id, writer) 
+		values
+		(#{title}, #{contents}, #{image}, #{image2}, #{image3}, now(), #{board_id}, #{category_id}, #{spot_num}, #{member_id}, #{writer}) 
+	</insert>  
 
 	
 	

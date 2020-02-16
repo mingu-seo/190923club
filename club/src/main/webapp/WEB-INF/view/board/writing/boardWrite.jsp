@@ -106,9 +106,9 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 					</table>
 						  
 						<div class="writing_btns">
-							<span><input type="button" value="작성완료" class="btns" onclick="check();"></span>
+							<span><input type="button" value="작성완료" class="btns" onclick="check();"></span> 
 							<span><input type="reset" value="다시 작성" class="btns"/></span>
-							<span><input type="button" value="목록" class="btns"></span>
+							<span><input type="button" value="목록" class="btns" onclick="location.href='boardList.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>'"></span>
 						</div>
 				</form>
 			</div>

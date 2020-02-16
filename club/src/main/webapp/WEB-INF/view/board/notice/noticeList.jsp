@@ -42,7 +42,10 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
         	
 	        <div class="visualRight">
 		        	<div class="board_ctg_name"><%=cate_name.getName() %></div><!-- 카테고리 이름 -->
-					<div class="board_writing"><a href="noticeWrite.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>">글작성</a></div>
+					<div class="board_writing">
+						<a href="noticeWrite.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>">
+						<button class="goWriting">글작성</button></a> 
+					</div>
 			
 					<div class="board_seq">
 					<select>

@@ -118,7 +118,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
         	<div class="view_wrap">
 					<div class="view_tt"><%=nvo.getTitle() %>
 						<div class="view_info">
-							<span>김세영</span>
+							<span><%=nvo.getWriter() %></span>
 							<span>|</span> 
 							<span><%=nvo.getRegdate() %></span>  
 						</div>

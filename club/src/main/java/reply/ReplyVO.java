@@ -15,9 +15,16 @@ public class ReplyVO {
 	private int board_id;
 	private String url;
 	private int spot_num;
+	private int member_id;
 	
 	
 	
+	public int getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(int member_id) {
+		this.member_id = member_id;
+	}
 	public int getSpot_num() {
 		return spot_num;
 	}

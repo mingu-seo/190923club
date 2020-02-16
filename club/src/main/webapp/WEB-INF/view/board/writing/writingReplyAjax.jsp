@@ -15,7 +15,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("vo");
 	$(function() {
 		$(".re_btn").click(function() {
 			var idx = $(this).index(".re_btn");
-			$(".re_tr").eq(idx).toggle();
+			$(".re_tr").eq(idx).toggle(); 
 		});
 	});
 </script>
@@ -26,7 +26,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("vo");
 			%>
 			
 				<tr id="re_info"> 
-					<th class="repl_date">홍길동</th>
+					<th class="repl_date"><%=list.get(i).getWriter() %></th>
 					<td>
 					<% if (list.get(i).getG_lev() > 0) { %>
 					<% for (int j=0; j<list.get(i).getG_lev(); j++) { %>

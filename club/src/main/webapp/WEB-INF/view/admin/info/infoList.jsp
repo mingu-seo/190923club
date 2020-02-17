@@ -135,7 +135,7 @@ function deleteConfirm(num) {
 		<div class="center_title" >
 			<a href="infoRegistForm.do" class="wbtn">정보 등록</a>
 		</div>
-        <div class="center">
+        <div class="center_info">
         	<%
 			for (int i=0; i<infolist.size(); i++){
 			%>

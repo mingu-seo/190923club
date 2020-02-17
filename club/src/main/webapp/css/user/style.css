@@ -27,6 +27,8 @@ body{
    
 }
 .info_title{
+	position: absolute;
+    top: 108px;
 	width: 100%;
     height: 56px;
     padding: 8px 0 0 1%;
@@ -120,6 +122,12 @@ div.circlecontainer{
     background-color: rgba(106, 94, 112, 0.74);
     height: 200px;            
 }
+.categorycontainer > div.center_info{
+    width: 510px;
+    margin: 0 auto;
+    top: 60px;
+    position: relative;
+}
 .categorycontainer > div.center{
     width: 510px;
     margin: 0 auto;
@@ -129,6 +137,8 @@ div.circlecontainer{
     padding: 20px;
     font-size: 20px;
     font-weight: bold;
+	position: relative;
+    top: 54px;
 }
 /* make spot */
 .box1{

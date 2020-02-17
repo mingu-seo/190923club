@@ -5,13 +5,6 @@
 <%
 SpotVO list = (SpotVO)request.getAttribute("spot_vo");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 <div class="visualLeft">
         	<input type="hidden" name="num" value="<%=list.getNum()%>">
         	<div class="visualLeftInner">
@@ -39,5 +32,3 @@ SpotVO list = (SpotVO)request.getAttribute("spot_vo");
         		</div>
         	</div>
         	</div>
-</body>
-</html>

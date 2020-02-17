@@ -18,13 +18,13 @@ String spot_num = (String)request.getAttribute("spot_num");
 	
 
 </script> 
- <div class="menu"> 
+ <div class="menu">  
      <ul class="depth1">
      
         <li> <a href="/board/submain/submain.do?spot_num=<%=spot_num%>"><img src="/img/board/house.png"></a></li>
         <li><a href="/board/submain/boardmain.do?spot_num=<%=spot_num%>"><img src="/img/board/files-and-folders.png"></a></li>
-        <li> <a href=""><img src="/img/board/events.png"></a>  
-       	<li> <a href="/member/memberList.do?spot_num=<%=spot_num%>"><img src="/img/board/notebook.png"></a>
+        <li> <a href="/calendar/calendarmain.do?spot_num=<%=spot_num%>&yearmonth=2020-02"><img src="/img/board/events.png"></a> </li>
+       	<li> <a href="/member/memberList.do?spot_num=<%=spot_num%>"><img src="/img/board/notebook.png"></a> </li>
    	 	  
    	 </ul>
 </div>  

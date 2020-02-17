@@ -49,7 +49,7 @@ public class BoardController {
 		MemberVO mv = (MemberVO)session.getAttribute("sess");
 		
 		int joinSpotCnt = bService.checkJoinSpot(mv.getNum(), Integer.parseInt(spot_num));
-		model.addAttribute("joinSpotCnt", joinSpotCnt);
+		model.addAttribute("joinSpotCnt", joinSpotCnt); 
 		
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);

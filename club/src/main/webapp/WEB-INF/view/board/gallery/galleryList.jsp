@@ -134,12 +134,12 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 		                	$("#nextPost").attr("onclick", "moveView("+data.post_id+", 'next')");
 		                	$("#deleteHref").attr("href", "/board/gallery/galleryDelete.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&category_id=<%=vo.getCategory_id()%>&post_id="+id);
 		                	$("#detailHref").attr("href", "/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&category_id=<%=vo.getCategory_id()%>&post_id="+id);
-		               		$("#readCount").text(data.readcount);
+		               		//$("#readCount").text(data.readcount);
 		               		$("#viewCnt").text(data.view); //조회수
 		               		$("#reply_post_id").val(id);
 		               		$("#date_info").text(data.regdate); // 날짜 넘겨주기
 		               		$("#writer_info").text(data.writer); // 작성자 넘겨주기  
-		               		$(".post_id").val(id); // post_id넘겨주기
+		               		$(".post_id").val(id); // post_id넘겨주기 
 		               		showLightBox();
 		               		getReplyList(id);
 	                	},
@@ -231,7 +231,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 			                	$("#nextPost").attr("onclick", "moveView("+data.post_id+", 'next')");
 			                	$("#deleteHref").attr("href", "galleryDelete.do?post_id="+data.post_id);
 			                	$("#detailHref").attr("href", "galleryEdit.do?post_id="+data.post_id);
-			               		$("#readCount").text(data.readcount);
+			               		//$("#readCount").text(data.readcount);
 			               		$("#reply_post_id").val(data.post_id);
 			               		$("#date_info").text(data.regdate); // 날짜 넘겨주기
 			               		$("#writer_info").text(data.writer); // 작성자 넘겨주기  
@@ -336,7 +336,8 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
                         <img src="http://placekitten.com/70/70">
                     </a>
                     <div class="user-information-text">
-                        <div id="writer_info" style="font-weight: bold; font-size:20px;"></div>
+                    	<div class=paper-text2 style="font-weight: bold; font-size:20px;"></div> 
+                        <div id="writer_info" style="font-weight: bold; font-size:18px;"></div>
                         <div id="date_info" style="font-size:15px;"></div> 
                     </div> 
                 </div>

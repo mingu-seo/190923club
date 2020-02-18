@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import category.CategoryVO;
 import gallery.GalleryVO;
+import joinSpot.JoinSpotService;
 import member.MemberVO;
 import notice.NoticeVO;
 import reply.ReplyVO;
@@ -42,18 +43,18 @@ public class BoardController {
 	private category.CategoryService cService;
 	
 	@Autowired
-	private joinSpot.JoinSpotService jService;
+	private JoinSpotService joinSpotService;												// 회원 체크(추가된부분)
 	
 	//서브메인 페이지
 	@RequestMapping("/board/submain/submain.do")
 	public String subMain(Model model, @RequestParam("spot_num") String spot_num, HttpServletRequest request) {
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
-		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");
-		int member_num = uv.getNum();
-		int cnt = jService.checkJoinSpot(member_num, Integer.parseInt(spot_num));
+		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+		int member_num = uv.getNum();														// 회원 체크(추가된부분)
+		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);
-		model.addAttribute("cnt", cnt);
+		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
 		return "board/submain/submain";
 	}
 	//게시판 관리 페이지

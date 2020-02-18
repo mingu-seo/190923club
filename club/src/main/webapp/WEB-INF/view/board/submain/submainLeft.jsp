@@ -8,7 +8,7 @@
 SpotVO list = (SpotVO)request.getAttribute("spot_vo");
 MemberVO sess = (MemberVO)session.getAttribute("sess"); 
 JoinSpotVO jsvo = (JoinSpotVO)request.getAttribute("js");
-int cnt = (Integer)request.getAttribute("cnt");
+int cnt = request.getAttribute("cnt") == null ? 0 : (Integer)request.getAttribute("cnt");
 %>
 <!DOCTYPE html>
 <html>

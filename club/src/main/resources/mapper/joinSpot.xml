@@ -46,27 +46,35 @@
 	</sql>
    
    
-   <!-- 회원 상태 휴면 -->
-   <update id="spotMemberSleep" parameterType="joinSpot.JoinSpotVO">
-   		UPDATE project.joinSpot SET grade=3 WHERE num=#{num}
-   </update>
-
-
-   <!-- 회원 상태 활성화 -->
-   <update id="spotMemberWake" parameterType="joinSpot.JoinSpotVO">
-   		UPDATE project.joinSpot SET grade=2 WHERE num=#{num}
-   </update>
-
-
-   <!-- 회원 상태 강제탈퇴 -->
-   <delete id="spotMemberDelete" parameterType="joinSpot.JoinSpotVO">
-   		DELETE FROM project.joinSpot WHERE num=#{num}
-   </delete>   
-   
-   
-   <!-- spot 가입 확인 -->
-   <select id="checkJoinSpot" parameterType="java.util.Map" resultType="Integer">
-   		SELECT COUNT(*) FROM project.joinSpot WHERE member_num=#{member_num} AND spot_num=#{spot_num}
-   </select>
-
+	<!-- 회원 상태 휴면 -->
+	<update id="spotMemberSleep" parameterType="joinSpot.JoinSpotVO">
+		UPDATE project.joinSpot SET grade=3 WHERE num=#{num}
+	</update>
+	
+	
+	<!-- 회원 상태 활성화 -->
+	<update id="spotMemberWake" parameterType="joinSpot.JoinSpotVO">
+		UPDATE project.joinSpot SET grade=2 WHERE num=#{num}
+	</update>
+	
+	
+	<!-- 회원 상태 강제탈퇴 -->
+	<delete id="spotMemberDelete" parameterType="joinSpot.JoinSpotVO">
+		DELETE FROM project.joinSpot WHERE num=#{num}
+	</delete>   
+	
+	
+	<!-- spot 가입 확인 -->
+	<select id="checkJoinSpot" parameterType="java.util.Map" resultType="Integer">
+		SELECT COUNT(*) FROM project.joinSpot WHERE member_num=#{member_num} AND spot_num=#{spot_num}
+	</select>
+	
+	
+	<!-- 회원이 가입한 스팟 -->
+	<select id="mySpotList" parameterType="member.MemberVO" resultType="member.MemberVO">
+		SELECT project.spot.num AS spot_num, project.spot.name AS spot_name, project.spot.file 
+		FROM project.spot 
+		WHERE num IN
+			(SELECT spot_num FROM project.joinspot WHERE member_num=#{num});
+	</select>
 </mapper>

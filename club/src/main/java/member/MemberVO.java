@@ -29,8 +29,24 @@ public class MemberVO {
 	private int limit;	// 페이지당 로우 수
 	private int startIndex;	// limit 시작 인덱스
 	private int maxPage;	// 총 페이지 수
-
 	
+	// 회원이 가입한 spot
+	private String file;
+	private String spot_name;
+	
+	
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
+	public String getSpot_name() {
+		return spot_name;
+	}
+	public void setSpot_name(String spot_name) {
+		this.spot_name = spot_name;
+	}
 	public int getState() {
 		return state;
 	}   

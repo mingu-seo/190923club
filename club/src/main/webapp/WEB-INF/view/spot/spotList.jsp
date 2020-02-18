@@ -1,3 +1,4 @@
+<%@page import="member.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="spotCategory.SpotCategoryVO" %>
@@ -9,6 +10,7 @@
 	SpotCategoryVO vo = (SpotCategoryVO)request.getAttribute("vo");
 	List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
 	SpotVO spotvo = (SpotVO)request.getAttribute("spotvo");
+	List<MemberVO> jslist = (List<MemberVO>)request.getAttribute("jslist");
 %>
 <!DOCTYPE html>
 <html>
@@ -123,12 +125,20 @@ function ajaxView(num){
         <div class="center">
             <div class="button">
                 <a href="/spot/categoryCheck.do" class="box1" img="#">SPOT 만들기</a> 
-            </div>    
-            <div class="box2">가입한 SPOT</div>
-            <div class="box2">가입한 SPOT</div>
-            <div class="box2">가입한 SPOT</div>
-            <div class="box2">가입한 SPOT</div>
-            <div class="box2">가입한 SPOT</div>
+            </div>
+            <%
+           		for(int i=0; i<jslist.size(); i++){
+           	%>
+           	<div class="box2">           	
+	           	<a href="/board/submain/submain.do?spot_num=<%=jslist.get(i).getSpot_num() %>">
+	           		<img style="width:200px; height:200px;" src="/upload/images/<%=jslist.get(i).getFile() %>">
+	           	</a>
+	           	<%=jslist.get(i).getSpot_num() %>
+	           	<%=jslist.get(i).getSpot_name() %>
+           	</div>
+           	<%
+           		};
+  	       	%>
         </div>
     </div>   
     <div class="container">

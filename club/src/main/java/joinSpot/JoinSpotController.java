@@ -41,6 +41,8 @@ public class JoinSpotController {
 	
 	@Autowired
 	private JoinSpotService joinSpotService;
+	
+	
 
 	// spot 가입폼
 	@RequestMapping("/spotJoin/spotJoinForm.do")
@@ -61,6 +63,8 @@ public class JoinSpotController {
 		int r = joinSpotService.joinSpot(jv);
 		return "redirect:/spotJoin/spotJoinEnd.do?spot_num="+spot_num;
 	}
+	
+	
 	// spot 가입후 페이지
 	@RequestMapping("/spotJoin/spotJoinEnd.do")
 	public String spotJoinEnd(Model model, @RequestParam("spot_num") String spot_num) {
@@ -73,16 +77,20 @@ public class JoinSpotController {
 	
 	// spot 회원 리스트
 	@RequestMapping("/member/memberList.do")
-	public String memberList(MemberVO vo, Model model, @RequestParam("spot_num") String spot_num) {
+	public String memberList(MemberVO vo, Model model, @RequestParam("spot_num") String spot_num, HttpServletRequest request) {
 		int[] listcount = joinSpotService.pageCount(vo);	// 전체 갯수
 		List<MemberVO> list = joinSpotService.spotMemberList(vo);
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+		int member_num = uv.getNum();														// 회원 체크(추가된부분)
+		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);
 		model.addAttribute("listcount", listcount[0]);
 		model.addAttribute("totalpage", listcount[1]);
 		model.addAttribute("memberList", list);
 		model.addAttribute("vo", vo);
+		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
 		return "member/memberList";
 	}
 	
@@ -107,7 +115,7 @@ public class JoinSpotController {
 	// spot 회원 활성화
 	@RequestMapping("/member/spotMemberWake.do")
 	public String spotMemberWake(
-			JoinSpotVO jv,
+			JoinSpotVO jv,  
 			Model model,
 			@RequestParam("spot_num") String spot_num, 
 			HttpServletRequest req) {
@@ -137,5 +145,6 @@ public class JoinSpotController {
 		model.addAttribute("jv", jv);
 		return "redirect:/member/memberList.do?spot_num="+spot_num;
 	}
+	
 	
 }

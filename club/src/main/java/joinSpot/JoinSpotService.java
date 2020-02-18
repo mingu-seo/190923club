@@ -29,7 +29,6 @@ public class JoinSpotService {
 	public List<MemberVO> spotMemberList(MemberVO vo){
 		return joinSpotDAO.spotMemberList(vo);
 	}
-	
 	public int count(MemberVO vo){
 		return joinSpotDAO.spotMemberCount(vo);
 	}
@@ -65,10 +64,18 @@ public class JoinSpotService {
 		return joinSpotDAO.spotMemberDelete(jv);
 	}
 	
+	
+	// spot 회원 체크
 	public int checkJoinSpot(int member_num, int spot_num) {
 		Map map = new HashMap();
 		map.put("member_num", member_num);
 		map.put("spot_num", spot_num);
 		return joinSpotDAO.checkJoinSpot(map);
+	}
+
+
+	// 내가 가입한 spot 리스트   
+	public List<MemberVO> mySpotList(MemberVO vo){
+		return joinSpotDAO.mySpotList(vo);  
 	}
 }

@@ -3,6 +3,7 @@ package board;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,6 +53,8 @@ public class BoardController {
 		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
 		int member_num = uv.getNum();														// 회원 체크(추가된부분)
 		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
+		model.addAttribute("joinSpotCnt", cnt); 
+		
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);
 		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
@@ -96,16 +99,16 @@ public class BoardController {
 			BoardVO vo, CategoryVO cVO, @RequestParam("spot_num") String spot_num) {
 			
 			List<BoardVO> list = bService.boardList(vo);
-			List<CategoryVO>[] categoryList = cService.categoryList(cVO);
-			int[] listcount = bService.boardCount(vo); //전체 갯수와 총페이지수
+			List<CategoryVO>[] categoryList = cService.categoryList(cVO); //Left메뉴에서 쓸 기능
 			CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
+			int[] listcount = bService.boardCount(vo); //전체 갯수와 총페이지수
 			SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 			
 			model.addAttribute("list", list);
 			model.addAttribute("categoryList", categoryList);
+			model.addAttribute("cate_name", cate_name);
 			model.addAttribute("listcount", listcount[0]);
 			model.addAttribute("totalpage", listcount[1]);
-			model.addAttribute("cate_name", cate_name);
 			model.addAttribute("spot_vo", spotvo);
 			model.addAttribute("spot_num", spot_num);
 			model.addAttribute("vo",vo);

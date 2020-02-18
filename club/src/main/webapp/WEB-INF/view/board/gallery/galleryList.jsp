@@ -14,7 +14,6 @@
 <%
 List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
 GalleryVO vo = (GalleryVO)request.getAttribute("vo");
-//GalleryVO gVO = (GalleryVO)request.getAttribute("gVO");
 SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 MemberVO sessVO = (MemberVO)session.getAttribute("sess");
@@ -375,10 +374,12 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 					</div>
 					
 					<!-- 댓글 폼 -->
-						<form action="/board/galleryReply.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
-								<input type="hidden" name="post_id" id="reply_post_id" value="">
-								<input type="hidden" name="board_id" id="reply_board_id" value="1">
-								<input type="hidden" name="reply_num" id="reply_num" value="">
+						<form action="/board/reply.do" method="post">
+								<input type="hidden" name="post_id" id="reply_post_id" value="<%=vo.getPost_id()%>">
+								<input type="hidden" name="board_id" id="board_id" value="1">
+								<input type="hidden" name="member_id" id="member_id" value="<%=sessVO.getNum()%>">
+								<input type="hidden" name="writer" id="writer" value="<%=sessVO.getName()%>">
+								<input type="hidden" name="url" value="board/gallery/replyAjax.do">
 							<table>
 								<tr>
 									<td class="repForm" colspan="2">   
@@ -388,19 +389,21 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 									<td class="repForm_sub"> 
 										<input type="button" class="repl_btn" value="등록" onclick="replyAjax();"> 
 									</td>
-									
 								</tr>
 							</table>
 						</form> 
 				<script>
 				function replyAjax() {
 					$.ajax({
-                		async :false,
+                		async :false, 
                 		url:'/board/galleryReply.do',
                 		data :{
                 			'post_id':$("#reply_post_id").val(),
-                			'board_id':$("#reply_board_id").val(),
+                			'board_id':$("#board_id").val(),
+                			'writer':$("#writer").val(),
+                			'member_id':$("#member_id").val(),
                 			'contents':$(".replyText").val(),
+                			'g_id':$("#g_id").val(), 
 	                	},
 	                	dataType:'HTML',
 	                	success : function(data){

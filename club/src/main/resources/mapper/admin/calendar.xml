@@ -7,5 +7,12 @@
     	order by today asc
 	</select>
 	
+	<insert id="insert" parameterType="calendar.CalendarVO">
+		insert into project.schedule
+		(spot_num, date, title, contents, writer, member_id, regdate)
+		values  
+		(#{spot_num},#{date},#{title},#{contents},#{writer},#{member_id}, now()) 
+	</insert> 
+	 
 </mapper>
 

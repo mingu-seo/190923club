@@ -17,4 +17,9 @@ public class CalendarDAO {
 	public List<TestVO> selectCalendar(String yearmonth) {
 		return sqlSession.selectList("calendar.select", yearmonth);
 	}
+	
+	public int insert(CalendarVO vo) {
+		return sqlSession.insert("calendar.insert", vo);
+	}
+	
 }

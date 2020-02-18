@@ -36,7 +36,9 @@ $(function() {
 	<input type="hidden" name="g_lev" value="${re.g_lev }">
 	<input type="hidden" name="g_seq" value="${re.g_seq }">
 	<input type="hidden" name="post_id" value="${re.post_id }">
-	<input type="hidden" name="board_id" value="${re.board_id }">
+	<input type="hidden" name="board_id" value="${re.board_id }"> 
+	<input type="hidden" name="member_id" class="member_id" value="${sessionScope.num}">
+	<input type="hidden" name="writer" class="writer" value="${sessionScope.name}">  
 	
 		<textarea class="re_reply" name="contents"></textarea>
 	</form> 

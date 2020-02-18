@@ -3,12 +3,14 @@
 <%@ page import ="notice.NoticeVO" %>
 <%@ page import ="reply.ReplyVO" %>
 <%@ page import="file.FileVO" %>
+<%@ page import ="member.MemberVO" %>
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%
 List<ReplyVO> list = (List<ReplyVO>)request.getAttribute("list");
-ReplyVO rVO = (ReplyVO)request.getAttribute("vo");
+ReplyVO rVO = (ReplyVO)request.getAttribute("vo"); 
+MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 %>
 
 <script>
@@ -19,7 +21,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("vo");
 		});
 	});
 	
-	function replDel(id, reply_num) {
+	function replDel(id, reply_num) { 
 		if(confirm("삭제하시겠습니까?")) {
 			$.ajax({
 				async : false,
@@ -43,8 +45,8 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("vo");
 			for(int i=0; i<list.size(); i++) {  
 			%>
 			
-				<tr id="re_info"> 
-					<th class="repl_date">홍길동</th>
+				<tr id="re_info">  
+					<th class="repl_date"><%=list.get(i).getWriter() %></th>
 					<td>
 					<% if (list.get(i).getG_lev() > 0) { %>
 					<% for (int j=0; j<list.get(i).getG_lev(); j++) { %>
@@ -66,6 +68,8 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("vo");
 					<form id="replyForm<%=i%>" >
 					<input type="hidden" name="board_id" value="<%=rVO.getBoard_id()%>">
 					<input type="hidden" name="post_id" value="<%=rVO.getPost_id()%>">
+					<input type="hidden" name="member_id" class="member_id" value="<%=sessVO.getNum()%>">
+					<input type="hidden" name="writer" class="writer" value="<%=sessVO.getName()%>"> 
 					<input type="hidden" name="reply_num" value="<%=list.get(i).getReply_num()%>">
 					<input type="hidden" name="g_id" id="g_id" value="<%=list.get(i).getG_id()%>">
 					<input type="hidden" name="g_lev" id="g_lev" value="<%=list.get(i).getG_lev()%>">

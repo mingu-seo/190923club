@@ -21,7 +21,7 @@ public class AdminInterceptor implements HandlerInterceptor {
 			PrintWriter out = response.getWriter();
 			out.print("<script>");
 			out.print("alert('관리자만 접속가능합니다.');");
-			out.print("location.href='/admin/index.do';");
+			out.print("location.href='/admin/index.do';"); 
 			out.print("</script>");
 			out.flush();
 			return false; // 요청매핑처리 중단

@@ -2,23 +2,15 @@
 <%@ page import ="calendar.*" %>
 <%@ page import ="java.util.*" %>
 <%
-List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calendar_list"); 
+List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calendar_list");
+CalendarVO calVO = (CalendarVO)request.getAttribute("calVO");
 %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
-<%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
-<script>
-	window.onload = function() {	
-		$(".calPop").click(function() { 
-			console.log("click");
-			window.open('/calendar/popup.do', 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no'); 
-			//popupOpen();  
-		});  
-}
-</script>
+<%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %> 
 </head>
 <body> 
 <div class="wrap">
@@ -86,10 +78,10 @@ List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calenda
 											}
 								%>
 										<td>
-											<div class="calBtn">
-												<input type="button" class="calPop" value="일정 등록">
-											</div>
 											<%=date%>
+											<div class="calBtn" style="padding:5px 0;">
+												<input type="button" class="calPop" value="일정 등록" onclick="popup('<%=today%>');">
+											</div>
 										</td>
 								<%
 											if (i == calendar_list.size()-1) {
@@ -109,11 +101,16 @@ List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calenda
 										}
 									}
 								%>
-								</tbody>
+								</tbody> 
 							</table>
+<script>
+	function popup(today) {
+		window.open('/calendar/popup.do?spot_num=<%=spot_num%>&date='+today, 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no');
+	}
+</script>
 						</div>
 					</div><!-- visualRight -->
-				</div><!-- visual -->
+				</div><!-- visual --> 
 			</div><!-- main -->
 </div><!--//wrap -->
 

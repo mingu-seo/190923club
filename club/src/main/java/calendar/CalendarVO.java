@@ -7,13 +7,20 @@ public class CalendarVO {
 	private String name;//요일
 	private String today;//날짜
 	private int num;
-	private String date;
+	private String date; 
+	private String writer;
 	private String title;
 	private String contents;
 	private Timestamp regdate;
 	private int spot_num;
 	private int member_id;
 	
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
 	public String getName() {
 		return name;
 	}

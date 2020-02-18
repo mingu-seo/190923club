@@ -14,7 +14,7 @@
     <title></title>
    <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
    <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
-<%
+<% 
 NoticeVO vo = (NoticeVO)request.getAttribute("vo");
 NoticeVO nvo = (NoticeVO)request.getAttribute("nvo");
 FileVO fv = (FileVO)request.getAttribute("fv");
@@ -146,12 +146,14 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 					<div id="replyBox">
 						<div id="replyListArea">
 						
-						</div>
+						</div> 
 						
 						<!-- 댓글 폼 -->
-						<form action="/board/reply.do?board_id=3" method="post">
+						<form action="/board/reply.do" method="post">
 								<input type="hidden" name="post_id" class="post_id" value="<%=nvo.getPost_id() %>">
 								<input type="hidden" name="board_id" class="board_id" value="<%=nvo.getBoard_id()%>">
+								<input type="hidden" name="member_id" class="member_id" value="<%=sessVO.getNum()%>">
+								<input type="hidden" name="writer" class="writer" value="<%=sessVO.getName()%>">
 								<input type="hidden" name="url" value="board/notice/noticeReplyAjax.do">
 							<table>
 								<tr>
@@ -173,8 +175,10 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 									data: {
 										'post_id':$(".post_id").val(),
 										'board_id':$(".board_id").val(),
+										'member_id':$(".member_id").val(),
+										'writer':$(".writer").val(),
 										'contents':$(".replyText").val(),
-										'g_id':$("#g_id").val(),
+										'g_id':$("#g_id").val(),//그룹 아이디
 									},
 									dataType:'HTML',
 									success:function(data) {

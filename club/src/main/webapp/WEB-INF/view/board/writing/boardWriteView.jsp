@@ -179,7 +179,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 										$(".replyText").val("");
 										getReplyList($(".post_id").val());
 									}, 
-									error:function(data) {
+									error:function(data) { 
 										console.log(data);
 									}
 								});

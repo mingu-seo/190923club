@@ -69,7 +69,7 @@ function join() {
 <input type="hidden" name="category_num" value="<%=request.getParameter("num")%>">
 <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->
     <div class="container">
         <h2 style="padding : 10 0px;">HOT SPOT 수정페이지</h2>

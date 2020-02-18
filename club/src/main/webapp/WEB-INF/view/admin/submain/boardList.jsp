@@ -19,7 +19,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
-   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
+  <%@ include file="/WEB-INF/view/admin/include/adminspotheadHtml.jsp" %>
 </head>
 
 <body>
@@ -27,31 +27,23 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
+		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 	<!-- E N D :: headerArea-->
 	
 	<div class="main">
-     <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
+     <%@ include file="menu.jsp" %>
      	<div class="visual">
 		
         	<div class="visualLeft">
-        		<%@ include file="/WEB-INF/view/board/submain/boardLeft.jsp" %> 
+        		<%@ include file="boardLeft.jsp" %> 
         	</div>
         	
         	 
 	        <div class="visualRight">
 		        	<div class="board_ctg_name">
 		        		<%=cate_name.getName()%>
- 		        	
-		        	</div><!-- 카테고리 이름 --> 
-					<div class="board_writing">
-						<a href="boardWrite.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>">
-						<button class="goWriting">글작성</button></a>
-					</div>
-			
-		
-					<div class="board_list_box">
-			  				
+		        	</div>
+				<div class="board_list_box">
 					<div>
 						<table id="boardList">
 							<tr class="board_top">
@@ -68,7 +60,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 							<tr class="board_art">
 								<td><a><%=list.get(i).getPost_id()%></a></td>
 								<td class="art_title"> 
-									<a href="/board/writing/boardWriteView.do?spot_num=<%=spot_num %>&category_id=<%=list.get(i).getCategory_id() %>&post_id=<%=list.get(i).getPost_id()%>">
+									<a href="/admin/submain/boardWriteView.do?spot_num=<%=spot_num %>&category_id=<%=list.get(i).getCategory_id() %>&post_id=<%=list.get(i).getPost_id()%>">
 									<%=list.get(i).getTitle() %></a>
 								</td>
 								<td>김세영</td>
@@ -82,16 +74,6 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 							%>
 					</table>
 					</div>
-	
-				<div class="boardSearch">
-					<form action="/board/writing/boardList.do" method="post">
-						<input type="hidden" name="spot_num" value="<%=spot_num %>">
-						<input type="hidden" name="category_id" value="<%=vo.getCategory_id() %>"> 
-						<input type="text" name="search_word" id="boardSearch" value="<%=vo.getSearch_word() %>">
-						<input id="board_search_btn" type="submit" value="검색">
-					</form>
-				</div>	
-				
 				<div id="pageList">
 					<%=util.BoardPage.getPageList(vo.getPage(), totalpage, "/board/writing/boardList.do?spot_num="+ spot_num + "&category_id=" + vo.getCategory_id()) %>
 				</div>

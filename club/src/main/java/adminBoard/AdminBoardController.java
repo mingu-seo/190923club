@@ -11,7 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import board.BoardVO;
 import category.CategoryVO;
+import file.FileVO;
+import gallery.GalleryDAO;
 import gallery.GalleryVO;
 import joinSpot.JoinSpotService;
 import member.MemberVO;
@@ -24,9 +27,12 @@ import spot.SpotVO;
 
 @Controller
 public class AdminBoardController {
+
+	@Autowired
+	GalleryDAO galleryDao;
 	
 	@Autowired
-	private AdminBoardService bService;
+	private board.BoardService bService;
 	
 	@Autowired
 	private notice.NoticeService nService;
@@ -45,7 +51,9 @@ public class AdminBoardController {
 	
 	@Autowired
 	private JoinSpotService joinSpotService;
-
+	
+	@Autowired
+	private file.FileService fService;
 	
 	//서브메인 페이지
 	@RequestMapping("/admin/submain/submain.do")
@@ -71,9 +79,9 @@ public class AdminBoardController {
 	}
 	//게시판 메인 페이지
 	@RequestMapping("/admin/submain/boardmain.do") 
-	public String adminBoardMain(NoticeVO vo, Model model, AdminBoardVO bVO, GalleryVO gvo, @RequestParam("spot_num") String spot_num) {
+	public String adminBoardMain(NoticeVO vo, Model model, BoardVO bVO, GalleryVO gvo, @RequestParam("spot_num") String spot_num) {
 		List<NoticeVO> nlist = nService.mainNoticeList(vo);
-		List<AdminBoardVO> bList = bService.mainBoardList(bVO);
+		List<BoardVO> bList = bService.mainBoardList(bVO);
 		List<GalleryVO> glist = gService.mainGalleryList(gvo);
 		CategoryVO cate_minNum = cService.cateMin_num(Integer.parseInt(spot_num));
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
@@ -92,9 +100,9 @@ public class AdminBoardController {
 	@RequestMapping("/admin/submain/boardList.do") 
 	public String adminBoardList(Model model, 
 			HttpServletRequest req, 
-			AdminBoardVO vo, CategoryVO cVO, @RequestParam("spot_num") String spot_num) {
+			BoardVO vo, CategoryVO cVO, @RequestParam("spot_num") String spot_num) {
 			
-			List<AdminBoardVO> list = bService.boardList(vo);
+			List<BoardVO> list = bService.boardList(vo);
 			List<CategoryVO>[] categoryList = cService.categoryList(cVO); //Left메뉴에서 쓸 기능
 			CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
 			int[] listcount = bService.boardCount(vo); //전체 갯수와 총페이지수
@@ -129,7 +137,7 @@ public class AdminBoardController {
 	//자유게시판 상세보기
 	@RequestMapping("/admin/submain/boardWriteView.do") 
 	public String adminBoardWriteView(@RequestParam("post_id")int post_id, CategoryVO cVO, Model model, @RequestParam("spot_num") String spot_num) {
-		AdminBoardVO vo = bService.boardView(post_id);
+		BoardVO vo = bService.boardView(post_id);
 		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
 		CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
 		
@@ -164,5 +172,142 @@ public class AdminBoardController {
 		return "admin/submain/memberList";
 	}
 	
+	//갤러리 목록 페이지
+	@RequestMapping("/admin/submain/galleryList.do") 
+	public String adminGalleryList(Model model, GalleryVO vo, @RequestParam("spot_num") int num, CategoryVO cVO) {
+			List<GalleryVO> list = galleryDao.galleryList(vo);
+			List<CategoryVO>[] categoryList = cService.categoryList(cVO); //Left메뉴에서 쓸 기능
+			CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
+			
+			model.addAttribute("categoryList", categoryList);
+			model.addAttribute("cate_name", cate_name);
+			model.addAttribute("list", list); 
+			model.addAttribute("vo", vo); 
+			//스팟번호
+			SpotVO spot_vo = spotService.spotView(num);
+			model.addAttribute("spot_vo", spot_vo);
+			model.addAttribute("spot_num", num+"");
+			
+			//더보기 클릭했을 때 카테고리가 없으면 alert창 띄우고 리턴
+			String msg = "";
+			String url = "";
+			if(vo.getCategory_id()== 0) {
+				msg = "아직 카테고리가 생성되지 않았습니다.\\n 관리자에게 문의하세요.";
+				url = "/admin/submain/boardmain.do?spot_num="+num;
+				model.addAttribute("msg", msg);
+				model.addAttribute("url", url);
+				return "include/alert";
+			} else {
+				return "/admin/submain/galleryList";
+			}
+			
+	}	
 	
+	//갤러리 수정페이지에서 이미지 삭제(업데이트)
+	@RequestMapping("/admin/submain/deleteImage.do") 
+	public String admindeleteImage(Model model, GalleryVO vo, @RequestParam("post_id") int post_id, @RequestParam("cname") String cname) {
+		gService.galleryUpgrade(post_id, cname);
+		return "redirect:/admin/submain/galleryEdit.do?spot_num="+vo.getSpot_num()+"&board_id="+vo.getBoard_id()+"&post_id="+post_id+"&category_id="+vo.getCategory_id();
+	}
+	
+	//갤러리 이전포토
+	@RequestMapping("/admin/submain/galleryPre.do")
+	public String adminGalleryPre(Model model, @RequestParam("post_id") int id) {
+		GalleryVO vo = gService.galleryPre(id); 
+		model.addAttribute("vo", vo);
+		return "/admin/submain/galleryAjax";
+	}
+		
+	//갤러리 다음포토
+	@RequestMapping("/admin/submain/galleryNext.do")
+	public String adminGalleryNext(Model model, @RequestParam("post_id") int id) {
+		GalleryVO vo = gService.galleryNext(id);
+		model.addAttribute("vo", vo);
+		return "/admin/submain/galleryAjax";
+	}
+	//갤러리 ajax
+	@RequestMapping("/admin/submain/galleryAjax.do")
+	public String adminGalleryAjax(Model model, @RequestParam("id") int id) {
+		GalleryVO vo = gService.galleryView(id);
+		model.addAttribute("vo", vo);
+		return "/admin/submain/galleryAjax"; 
+	}
+	
+	//갤러리삭제
+	@RequestMapping("/admin/submain/galleryDelete.do")
+	public String adminGalleryDelete(GalleryVO vo, @RequestParam("board_id")int board_id, @RequestParam("spot_num") int num) {
+		gService.galleryDelete(vo, board_id);
+		return "redirect:/admin/submain/galleryList.do?spot_num="+num+"&board_id="+board_id+"&category_id="+vo.getCategory_id();
+	}
+		
+	
+	//공지사항 목록 페이지
+	@RequestMapping("/admin/submain/noticeList.do") 
+	public String adminNoticeList(NoticeVO vo, Model model, CategoryVO cVO, @RequestParam("spot_num") String spot_num) {
+		
+		List<NoticeVO> list = nService.noticeList(vo);
+		CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
+		int[] listcount = nService.noticeCount(vo); //전체 갯수와 총페이지수
+		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
+		model.addAttribute("categoryList", categoryList);
+		
+		model.addAttribute("spot_num", spot_num);
+		model.addAttribute("listcount", listcount[0]);
+		model.addAttribute("totalpage", listcount[1]);
+		model.addAttribute("list", list);
+		model.addAttribute("cate_name", cate_name);
+		model.addAttribute("vo",vo);
+		
+		//더보기 클릭했을 때 카테고리가 없으면 alert창 띄우고 리턴
+		String msg = "";
+		String url = "";
+		if(cVO.getCategory_id() == 0) {
+			msg = "아직 카테고리가 생성되지 않았습니다.\\n 관리자에게 문의하세요.";
+			url = "/admin/submain/boardmain.do?spot_num="+spot_num;
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "include/alert";
+		} else {
+			return "/admin/submain/noticeList";
+		}
+	}
+	//공지사항 상세보기 페이지
+	@RequestMapping("/admin/submain/noticeWriteView.do") 
+	public String adminNoticeWriteView(Model model, NoticeVO vo, CategoryVO cVO, @RequestParam("spot_num")String spot_num) {
+		NoticeVO nvo = nService.noticeView(vo);
+		CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
+		
+		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
+		model.addAttribute("categoryList", categoryList);
+		
+		//댓글
+		ReplyVO rv = new ReplyVO();
+		rv.setBoard_id(vo.getBoard_id());
+		rv.setPost_id(vo.getPost_id());
+		
+		List<ReplyVO> rList = rService.replyList(rv);
+		
+		//파일 선택
+		FileVO param_fvo = new FileVO();
+		param_fvo.setPost_id(vo.getPost_id());
+		param_fvo.setBoard_id(vo.getBoard_id());
+		System.out.println(param_fvo);
+		FileVO fv = fService.fileSelect(param_fvo);
+		
+		model.addAttribute("vo",vo);
+		model.addAttribute("nvo",nvo);
+		model.addAttribute("fv",fv);
+		model.addAttribute("rList", rList);
+		model.addAttribute("cate_name", cate_name);
+		model.addAttribute("spot_num", spot_num);
+		
+		return "admin/submain/noticeWriteView";
+	}	
+	
+	//공지사항 삭제하기
+	@RequestMapping("/admin/submain/noticeDelete.do")
+	public String adminNoticeDelete(@RequestParam("post_id")int post_id, NoticeVO vo, @RequestParam("spot_num")String spot_num) {
+		nService.noticeDelete(post_id);
+		return "redirect:/admin/submain/noticeList.do?spot_num="+spot_num+"&category_id="+vo.getCategory_id();
+	}
 }

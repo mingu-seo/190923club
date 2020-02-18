@@ -15,7 +15,7 @@
 </head>
 <body>
 <!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
      <h3>카테고리 선택 후, 나만의 SPOT을 만들어보세요!</h3>
 <!-- E N D :: headerArea-->
 <div class="wrap">

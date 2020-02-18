@@ -12,7 +12,6 @@
 	List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
 	SpotVO spotvo = (SpotVO)request.getAttribute("spotvo");
 	int totalpage = (Integer)request.getAttribute("totalpage");
-	SpotVO spot_num = (SpotVO)request.getAttribute("spot_num");
 %>
 <html>
 <head>
@@ -79,6 +78,7 @@ function ajaxView(num){
 		$("#num").val(num);
 		$("#editBtn").attr("onclick","updateConfirm("+num+");");
 		$("#delBtn").attr("onclick","deleteConfirm("+num+");");
+		$("#detailLink").attr("onclick", "location.href='/admin/submain/submain.do?spot_num="+num+"';");
 	},
 	error : function(data){
 		console.log(data)
@@ -217,7 +217,7 @@ function deleteConfirm(num) {
 		                </div>
 				</div>
 	  		</form>
-	  		<a href="/admin/submain/submain.do?spot_num=<%=spot_num%>">SPOT 상세보기</a>
+			<input type="button" id="detailLink" value="SPOT 상세보기" onclick="" >	  
 			<input type="button" id="delBtn" value="삭제" onclick="deleteConfirm(num);">
 		</div>  
    	</div>

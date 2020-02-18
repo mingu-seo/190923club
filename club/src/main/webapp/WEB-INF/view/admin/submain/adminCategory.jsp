@@ -11,7 +11,7 @@ List<CategoryVO>[] categoryList = (List<CategoryVO>[])request.getAttribute("cate
 <head>
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
-   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
+   <%@ include file="/WEB-INF/view/admin/include/adminspotheadHtml.jsp" %>
 </head>  
 <script>
 function addBox(idx) {
@@ -73,7 +73,7 @@ function check() {
 
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
+		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 	<!-- E N D :: headerArea-->
 	
 	<div class="main">

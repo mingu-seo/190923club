@@ -11,6 +11,8 @@
 .wrap{
     width: 1200px;
     margin: 0 auto;
+    position: relative;
+    top: 108px;
 }
 
 /* header */

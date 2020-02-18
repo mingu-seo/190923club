@@ -1,41 +1,62 @@
-<%@page import="gallery.GalleryVO"%>
+<%@page import="util.Function"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<%@ page import="notice.*" %>
-<%@ page import="gallery.*" %>
-<%@ page import="board.*" %>
-<%@ page import="category.*" %>
+<%@ page import ="gallery.GalleryVO" %>
+<%@ page import ="category.CategoryVO" %>
+<%@ page import ="member.MemberVO" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import ="reply.ReplyVO" %>
+<%@ page import="spot.*"%>
+
 <%
-
-//공지사항 리스트
-List<NoticeVO> nList = (List<NoticeVO>)request.getAttribute("nlist");
-
-//갤러리 리스트
-List<GalleryVO> gList=(List<GalleryVO>)request.getAttribute("glist");
-
-//자유게시판 리스트 
-List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
-SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo"); 
-
-//min
-CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
-
+List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
+GalleryVO vo = (GalleryVO)request.getAttribute("vo");
+//GalleryVO gVO = (GalleryVO)request.getAttribute("gVO");
+SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
+CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
     <title></title>
   <%@ include file="/WEB-INF/view/admin/include/adminspotheadHtml.jsp" %>
-   <link rel="stylesheet" type="text/css" href="/css/board/boardmain.css">
    <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
-   <%@ include file="/WEB-INF/view/admin/include/adminspotheadHtml.jsp" %>
-  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+   
+        <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
         <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
+<script>
+        
+      //좋아요 ajax
+    	function likeAjax() { 
+    	 	$.ajax({
+    	 		async : false,
+    	 		url : '/board/likeInsert.do', 
+    	 		data : {
+    	 			'post_id' : $(".post_id").val(), 
+    	 			'board_id' : 1,
+    	 			'member_id' : $(".member_id").val(),
+    	 			'tableName' : 'gallery' 
+    	 		},
+    	 		dataType :'HTML',
+    	 		success : function(data) {
+    	 			if (data.trim() == "0") {
+    	 				$(".like_cnt").text(Number($(".like_cnt").text())+1);
+    	 			} else {
+    	 				$(".like_cnt").text(Number($(".like_cnt").text())-1);
+    	 			}
+    	 		},
+    	 		error:function(data) {
+    	 			alert("ajax실패")
+    	 		}
+    	 	});
+    	}
+        
+        </script>
+        
         <script>
         var images = []; // 이미지 담을 배열
         var imageIdx = 0; // 이미지 현재 인덱스
@@ -50,7 +71,7 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
             });
         });
         </script>
-
+        
        <!-- 삭제확인 --> 
        <script>
        $(function() {
@@ -77,10 +98,6 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
         }
                 //라이트박스
                 $(document).ready(function(){
-                    
-        			
-                    
-        
                     $('.galleryClose').click(function(){hideLightBox();});
                     $('.paper').click(function(){showLightBox();});
                     $('#lightbox').click(function(event){event.stopPropagation();
@@ -96,7 +113,7 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
                 function ajaxView(id){
                 	$.ajax({
                 		async :false,
-                		url:'/board/gallery/galleryAjax.do',
+                		url:'galleryAjax.do',
                 		data :{
                 			'id':id
 	                	},
@@ -110,13 +127,18 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
 	                		//images = [data.image, data.image2, data.image3];
 	                		$(".paper-text2").text(data.title);	
 	                		$(".paper-contents").text(data.contents);
+	                		$(".like_cnt").text(data.like_cnt);
 		                	$(".paper-each2").attr("src", "/upload/"+data.image);
 		                	$("#prePost").attr("onclick", "moveView("+data.post_id+", 'prev')");
 		                	$("#nextPost").attr("onclick", "moveView("+data.post_id+", 'next')");
-		                	$("#deleteHref").attr("href", "/board/gallery/galleryDelete.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&post_id="+id);
-		                	$("#detailHref").attr("href", "/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&post_id="+id);
-		               		$("#readCount").text(data.readcount);
+		                	$("#deleteHref").attr("href", "/board/gallery/galleryDelete.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&category_id=<%=vo.getCategory_id()%>&post_id="+id);
+		                	$("#detailHref").attr("href", "/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&category_id=<%=vo.getCategory_id()%>&post_id="+id);
+		               		//$("#readCount").text(data.readcount);
+		               		$("#viewCnt").text(data.view); //조회수
 		               		$("#reply_post_id").val(id);
+		               		$("#date_info").text(data.regdate); // 날짜 넘겨주기
+		               		$("#writer_info").text(data.writer); // 작성자 넘겨주기  
+		               		$(".post_id").val(id); // post_id넘겨주기 
 		               		showLightBox();
 		               		getReplyList(id);
 	                	},
@@ -126,11 +148,11 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
                 	});
 	                	
                 }
-                
+                   
                 function replyView(id){
                 	$.ajax({
                 		async :false,
-                		url:'/board/gallery/replyAjax.do',
+                		url:'replyAjax.do',
                 		data :{
                 			'id':id
 	                	},
@@ -172,6 +194,7 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
                 	$(".paper-each2").attr("src", "/upload/"+images[imageIdx]);
                 	
                 };
+               
                 function nextHref() {
                 	imageIdx++;
                 	if (imageIdx >= images.length) imageIdx = 0;
@@ -207,8 +230,12 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
 			                	$("#nextPost").attr("onclick", "moveView("+data.post_id+", 'next')");
 			                	$("#deleteHref").attr("href", "galleryDelete.do?post_id="+data.post_id);
 			                	$("#detailHref").attr("href", "galleryEdit.do?post_id="+data.post_id);
-			               		$("#readCount").text(data.readcount);
+			               		//$("#readCount").text(data.readcount);
 			               		$("#reply_post_id").val(data.post_id);
+			               		$("#date_info").text(data.regdate); // 날짜 넘겨주기
+			               		$("#writer_info").text(data.writer); // 작성자 넘겨주기  
+			               		$("#viewCnt").text(data.view); //조회수
+			               		$(".like_cnt").text(data.like_cnt); // 좋아요
 			               		showLightBox();
 			               		getReplyList(id);
 	                		} else {
@@ -226,314 +253,112 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
                 
                 
         </script>
-     <!--종이스타일-->
-        <style>
-
-            .paper{
-                width:190px;
-                margin-top:10px;
-                padding:15px 15px 0;
-                font-size:11px;
-                background:#ffffff;
-                box-shadow: 0 1px 3px rgba(34,25,25,0.4);
-                cursor:pointer;
-            }
-			
-			
-			
-            .paper-content{
-                margin:0 -15px;
-                padding:10px 15px;
-                background:#f2f0f0;
-                overflow:hidden;
-                width:100%;
-                text-align: center;
-            }
-            
-           .paper-each{
-            	width:100%;
-            	text-align:center;
-            }
-            
-           .paper-each2{
-            	width:auto;
-            	max-width:90%;
-            	text-align:center;
-            	box-sizing: border-box;
-            	
-            }
-            
-            
-            .paper-holder  p{
-            	float:left;
-            	margin : 5px;
-                font-size:15px;
-                font-weight:bold;
-            }
-            
-
-            .paper-link{
-                display:block;
-            }
-            
-            .paper-text{
-                float:left;
-                width:150px;
-                margin-left:10px;
-                font-size:15px;
-                font-weight:bold;
-				overflow:hidden;
-				text-overflow:ellipsis;
-				white-space: nowrap;
-				display:inline-block;
-            }
-            
-         </style>
-            
-        <!--섹션-->
-        <style>
-            #main-section{
-                width:100%;
-                margin:0 auto;
-            }
-            
-        </style>
-        
-          
-        
-        <!--라이트박스-->
-        <style>
-
-            #darken-background{
-                position:absolute;
-                top:0; left:0; right:0;
-                height:100%;
-                display:none;
-                background:rgba(0,0,0,0.9);
-                z-index:10000;
-                overflow-y:scroll;
-                width:100%;
-                text-align:center;
-            }
-			
-			#lb_wrap {
-				width:850px;
-            	margin:0 auto;
-            	background: #f2f4ef;
-				
-			}
-        	#lightbox{
-                max-width:800px;
-                margin:5px auto; padding:10px;
-                border:1px solid #333333;
-                border-radius:5px;
-                background: white;
-                box-shadow: 0 5px 5px rgba(34,25,25,0.4);
-                }
-            .user-information{overflow:hidden; text-align: left;}
-            .user-information-image{float:left; width:70px;}
-            .user-information-text{float:right; width:620px;}
-            .lightbox-splitter{margin:10px 0;}
-            
-        </style>
+      
 </head>
 <body>
 
 
     <div class="wrap">
-	<!-- S T A R T :: headerArea-->
 		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
-	<!-- E N D :: headerArea-->
-	<div class="main">
-        <%@ include file="menu.jsp" %>
-       
-      
-        <div class="visual">
-	
-        	<!-- 왼쪽메뉴 -->
-        	<%@ include file="submainLeft.jsp" %>
-        	<!-- /왼쪽메뉴 -->
+    	<div class="main">
+	        <%@ include file="menu.jsp" %>
+	        <div class="visual">
+	        	<div class="visualLeft">
+	        <%@ include file="boardLeft.jsp" %>
+ 
+        </div>
         	
-        	<div class="visualRight"> 
-        		<div id="preview">
-        		미리보기<a href="admincategory.do?spot_num=<%=spot_vo.getNum()%>"><img src="/img/board/set.png"></a>
-        		</div>
-	        	
-        		<div><!-- 갤러리, 게시판, 공지 div를 감싸고 있음 -->
-        		<div class="pre-board">
-        		<div class="preBoard-name">갤러리</div>
-        		<div class=rightBoard>
-        		
-        			<div class="galarybox">
-        				<div id="mm"><a href="/admin/submain/galleryList.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=cate_minNum.getCategory_id1()%>&board_id=1"><button class="view-more">더보기</button></a></div>
-        			
-        			<%
-					if(gList.isEmpty()) { 
-					%>
-						<div class="contents_empty">
-							
-							<img class="contents_empty_img" src="/img/board/color.png"><br>
-							등록된 내용이 없습니다.
-						</div>
-        			
-        			<%}
-					else {
-        			for (int i=0; i<gList.size(); i++) { 
-        				%> 
-        			<div class="pregalary-info">
-					<img class="pregalary-img" src="/upload/<%=gList.get(i).getImage()%>" onclick="ajaxView('<%=gList.get(i).getPost_id()%>');"><!-- 갤러리 클릭했을 때 해당 이미지 ajax -->
-					<div class="pregalary-title"><%=gList.get(i).getTitle() %></div>
-					<div class="pregalary-writer">작성자 <%=gList.get(i).getWriter()%> </div>
-					<div class="pregalary-dn">
-					<span class="pregalary-day"><%=util.Function.getYmd(gList.get(i).getRegdate())%></span>&nbsp;&nbsp;<span class="pregalary-num">조회수 <%=gList.get(i).getView()%></span>
-					</div> 
-					</div>
-        			
-        			<%
-        				}
-					}
-        			%>
-					
-					
-					
-        			</div>
-        		</div>
-        		</div>
-        		
-        		<div class="pre-board">
-        		<div class="preBoard-name">게시판</div>  
-        		<div class=rightBoard>
-        		<div id="mm"><a href="/admin/submain/boardList.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=cate_minNum.getCategory_id2()%>"><button class="view-more">더보기</button></a></div> 
-        		<table class="preboard">
-
-					<%
-					if(bList.isEmpty()) { 
-					%>
-						<div class="contents_empty">
-							
-								<img class="contents_empty_img" src="/img/board/pen.png"><br>
-							등록된 내용이 없습니다.
-						</div>
-					<%
-					} else {
-						for (int i=0; i<bList.size(); i++) {
-					%>
-					
-        			<tr class="preboard_tr"> <!-- 최대 갯수 지정 -->
-        				<td>★</td>
-        				<td class="preboard-tt"> 
-        					<a href="/admin/submain/boardWriteView.do?spot_num=<%=spot_vo.getNum() %>&post_id=<%=bList.get(i).getPost_id() %>&category_id=<%=bList.get(i).getCategory_id()%>">
-        						<%=bList.get(i).getTitle() %>
-        					</a>
-        				</td> 
-        				<td><%=bList.get(i).getWriter() %></td>
-        				<td><%=bList.get(i).getView() %></td>
-        			</tr>
-        			
-					
-					<%
-						} //else닫기
-					}
-					%>        			
-        			
-        		</table>
-        		</div>
-        		</div> 
-
-        		<div class="pre-board">
-        		<div class="preBoard-name">공지</div>
-        		<div class=rightBoard>
-        		<div id="mm"><a href="/admin/submain/noticeList.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=cate_minNum.getCategory_id3()%>"><button class="view-more">더보기</button></a></div>
-        		<table class="preboard">
-        		
-        			<%
-        			if(nList.isEmpty()) { 
-        			%>
-        				<div class="contents_empty">
-							 
-								<img class="contents_empty_img" src="/img/board/pen.png"><br>
-							등록된 내용이 없습니다.
-						</div>
-        			<%}
-        			else {
-        			for (int i=0; i<nList.size(); i++) {
-        			%> 
-        			
-        			<tr class="preboard_tr"> <!-- 최대 갯수 지정(7개정도) -->
-        				<td>★</td>
-        				<td class="preboard-tt">
-        					<a href="/admin/submain/noticeWriteView.do?spot_num=<%=spot_vo.getNum() %>&category_id=<%=nList.get(i).getCategory_id() %>&post_id=<%=nList.get(i).getPost_id()%>">
-        						<%=nList.get(i).getTitle() %>  
-        					</a></td>
-        				<td><%=nList.get(i).getWriter() %></td> 
-        				<td><%=nList.get(i).getView() %></td>
-        			</tr>
-        			
-        			<%   
-        				} //for 닫기
-        			} //else 닫기
-        			%>
-        		</table>
-        		</div>
-        	</div>
-        	</div>
+        	
+        <div class="visualRight">
+       		<div class="board_ctg_name"><%=cate_name.getName() %></div>
+				 
+			<div id="horizen"></div>
+	<div id=section>
+	 <section id="main-section">
+     	
+     	<%
+		for (int i=0; i<list.size(); i++) {
+		%>
+     	<div class="paper" onclick="ajaxView('<%=list.get(i).getPost_id()%>');">
+	          <div class="paper-holder">
+	             <p><%=list.get(i).getWriter()%></p>
+				 <p class="paper-description"><%=util.Function.getYmd(list.get(i).getRegdate()) %></p> 
+		     </div>
+	         <div class="paper-content">
+	            <a class="paper-link">
+	            <img class = "paper-each" src="/upload/<%=list.get(i).getImage()%>">
+	            </a>
+	           	  <p class="paper-text"><%=list.get(i).getTitle()%></p>
+	          </div> 
+         </div>
+	
+		<%
+		}
+		%>
+	</section>
+	</div>
+</div>
+</div>
         
-        
+       
         
     </div>
-   </div>
-   </div>
+    </div>
 		<!-- S T A R T :: footerArea-->
 		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
 		<!-- E N D :: footerArea-->
-		
-		<div id="lb_wrap">
+</body>
+      <div id="lb_wrap">
        <div id="darken-background">
        <p class="galleryClose"></p>
             <div id="lightbox">
             	<div>
 					<span class="galleryClose">X</span>     
 				</div>
-               <form action="/admin/submain/galleryEdit.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
-               <input type="hidden" id="post_id" name="post_id">
-                 <input type="hidden" id="board_id" name="board_id">
-               
                 <div class="user-information">
                     <a class="user-information-image" href="#">
                         <img src="http://placekitten.com/70/70">
-                    </a>    
+                    </a>
                     <div class="user-information-text">
-                        <h3>작성자</h3>
-                        <div class="paper-text2">${gallery.title }</div>
-                    </div>
+                    	<div class=paper-text2 style="font-weight: bold; font-size:20px;"></div> 
+                        <div id="writer_info" style="font-weight: bold; font-size:18px;"></div>
+                        <div id="date_info" style="font-size:15px;"></div> 
+                    </div> 
                 </div>
                    
                 <hr class="lightbox-splitter">
                 
                 <div class="galleryImage"> 
-	                <a id="prePost" href="#;">◁</a>
-	                <a id="preHref" href="#;" onclick="preHref();">◀</a>
-	                <img class="paper-each2" src="/upload/${gallery.image }">
-	                <a id="nextHref" href="#;" onclick="nextHref();">▶</a>
-	                <a  id="nextPost"  href="#;">▷</a>
+	                <a id="prePost" href="#;"><img src="/img/board/leftDoubleArrow.png" style="max-height: 30px; max-width: 30px;"></a> 
+	                <a id="preHref" href="#;" onclick="preHref();"><img src="/img/board/leftArrow.png" style="max-height: 30px; max-width: 30px;"></a>
+	                <img class="paper-each2" src="/upload/${gallery.image }" style="max-height: 700px;"> 
+	                <a id="nextHref" href="#;" onclick="nextHref();"><img src="/img/board/rightArrow.png" style="max-height: 30px; max-width: 30px;"></a>
+	                <a  id="nextPost"  href="#;"><img src="/img/board/rightDoubleArrow.png" style="max-height: 30px; max-width: 30px;"></a> 
                 </div>  
+                 
                 
-                </form>
-                
-                <div class="paper-contents"></div>  
+                <div class="paper-contents" style="font-size:20px; padding:10px 40px;"></div>  
 	          	
-	          	<div class="view_repl_info">
-					<span class="view_like">♥</span>
-					<span>이 글을 N명이 좋아합니다.</span>
-				</div>
-				<div class="repl_box">	
-				<div id="replyBox">
+	          	
+	          	<div class="view_repl_info"> 
+					<form id="like_form">
+						<input type="hidden" name="post_id" class="post_id" value="<%=vo.getPost_id()%>">
+						<span class="view_like" onclick="likeAjax();">❤ </span> 
+						<span class="like_cnt"></span> 
+					</form> 
+					
+					<span>조회</span> 
+					<span id="viewCnt"></span>  
+					
+				</div> 
+				<div class="repl_box">	 
+				<div id="replyBox">  
 					<div id="replyListArea">
 					
 					</div>
 					
 					<!-- 댓글 폼 -->
-						<form action="/board/galleryReply.do" method="post">
+						<form action="/board/galleryReply.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
 								<input type="hidden" name="post_id" id="reply_post_id" value="">
 								<input type="hidden" name="board_id" id="reply_board_id" value="1">
 								<input type="hidden" name="reply_num" id="reply_num" value="">
@@ -553,7 +378,7 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
 				<script>
 				function replyAjax() {
 					$.ajax({
-                		async :false,    
+                		async :false,
                 		url:'/board/galleryReply.do',
                 		data :{
                 			'post_id':$("#reply_post_id").val(),
@@ -611,12 +436,14 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
 				</script>		  
 					</div> 
 				</div>
+				
+				
 				<a id="deleteHref"><input type="button" value="삭제" class="btns" ></a>
 				<a id="detailHref"><input type="button" value="수정" class="btns" ></a>
+				
+				
       	  </div>
          
         </div>
        </div>
- </div>
-</body>
 </html>

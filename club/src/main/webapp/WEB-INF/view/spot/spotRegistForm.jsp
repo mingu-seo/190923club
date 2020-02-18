@@ -65,11 +65,11 @@ function join() {
 </script>
 </head>
 <body>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 <form method="post" name="joinform" id=joinform action="spotInsert.do" enctype="multipart/form-data">
 <input type="hidden" name="category_num" value="<%=request.getParameter("num")%>">
 <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
 	<!-- E N D :: headerArea-->
     <div class="container">
         <h2 style="padding : 10 0px;">HOT SPOT 생성페이지</h2>

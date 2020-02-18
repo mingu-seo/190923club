@@ -13,9 +13,7 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 
 //댓글 리스트가져오는거
 List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
-MemberVO memVO = (MemberVO)request.getAttribute("memVO");
 ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
-MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 
 %>				
 
@@ -27,7 +25,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/board/writing.css"> 
 
-   <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
+   <%@ include file="/WEB-INF/view/admin/include/adminspotheadHtml.jsp" %>
   
 	<!-- 삭제 스크립트 -->
 <script type="text/javascript">
@@ -99,15 +97,15 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
+		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 	<!-- E N D :: headerArea-->
 	
 	<div class="main">
-    <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
+    <%@ include file="menu.jsp" %>
         <div class="visual">
 	
         	<div class="visualLeft">
-        	<%@ include file="/WEB-INF/view/board/submain/boardLeft.jsp" %>
+        	<%@ include file="boardLeft.jsp" %>
         	</div>
         	
         	<div class="visualRight">
@@ -127,7 +125,6 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 					
 					<div class="view_repl_info">
 						<form id="like_form">
-								<span class="view_like" onclick="likeAjax('<%=vo.getPost_id()%>','<%=sessVO.getNum()%>');">❤ </span> 
 								<span class="like_cnt"><%=vo.getLike_cnt() %></span> 
 						</form> 
 						 
@@ -145,9 +142,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 							<form action="/board/reply.do" method="post">
 									<input type="hidden" name="post_id" class="post_id" value="<%=vo.getPost_id()%>">
 									<input type="hidden" name="board_id" class="board_id" value="<%=vo.getBoard_id()%>">
-									<input type="hidden" name="member_id" class="member_id" value="<%=sessVO.getNum()%>">
-									<input type="hidden" name="writer" class="writer" value="<%=sessVO.getName()%>">
-									<input type="hidden" name="url" value="board/writing/writingReplyAjax.do">
+									<input type="hidden" name="url" value="/admin/submain/writingReplyAjax.do">
 								<table>
 									<tr>
 										<td class="repForm">   
@@ -207,20 +202,9 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 				
 				  
 			</div>
-			<%
-				if(sessVO.getNum()==vo.getMember_id()) {
-			%>
 				<input type="button" value="삭제" class="btns" onclick="javascript:writingDel('<%=vo.getPost_id()%>','<%=spot_num%>','<%=vo.getCategory_id()%>');">
-				<input type="button" value="수정" class="btns" onclick="location.href='/board/writing/boardUpdateForm.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id() %>&post_id=<%=vo.getPost_id()%>'">
+				<input type="button" value="수정" class="btns" onclick="location.href='/admin/submain/boardUpdateForm.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id() %>&post_id=<%=vo.getPost_id()%>'">
 				<input type="button" value="목록" class="btns" onclick="location.href='boardList.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>'">  
-			<%
-			} else {
-			%>
-				 <input type="button" value="목록" class="btns" onclick="location.href='boardList.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>'">
-			<%
-			} 
-			%>
-			
         </div> 
          
         

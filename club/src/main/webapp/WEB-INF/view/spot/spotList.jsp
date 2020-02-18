@@ -115,7 +115,7 @@ function ajaxView(num){
 </head>
 <body>
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/user/include/top.jsp" %>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>>
 	<!-- E N D :: headerArea-->
 <div class="wrap">
   	<form  action="process.do" method="post">
@@ -154,7 +154,7 @@ function ajaxView(num){
      </div>
      </form>
      <div class="container" id="categoryListArea">
-        <div class="lcontents1">
+        <div class="lcontents1">	
         	<%
 			for (int j=0; j<spot.size(); j++){
 				if(j %2 == 0){

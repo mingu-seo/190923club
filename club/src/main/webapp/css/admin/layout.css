@@ -22,7 +22,7 @@ body{position:relative; height:100%;}
 
 #header .header_inner .util{position:absolute; right:10px; top:43px; height:28px;}
 #header .header_inner .util ul{overflow:hidden; float:right; margin:4px 0 0 0;}
-#header .header_inner .util ul li{float:left; margin:0 0px 0 0px; padding:0 11px 0 11px; background:url(/img/admin/util_bar.gif) no-repeat left center;}
+#header .header_inner .util ul li{float:left; margin:0 0px 0 0px; padding:0 11px 0 11px; background:url(/img/admin/util_bar.gif) no-repeat left center; height: 20px;}
 #header .header_inner .util ul li.frist{background:none; padding-left:0;}
 #header .header_inner .util ul li a{color:#fff; font-size:18px;} 
 
@@ -30,7 +30,7 @@ body{position:relative; height:100%;}
 /* menu::base========================================== */
 div#menu {position:relative; top:73px; width:100%; min-width:1000px; height:36px; background:url(/img/admin/gnb_bottom_line.gif) repeat-x left bottom;  }
 div#menu ul {float:left; width:100%; min-width:1000px; margin:0; padding:0; /* border-bottom:3px solid #307dd4; */ }
-div#menu ul.menu {
+div#menu ul.menu {height: 36px;
     /*padding-left:10px;*/
 }
 div#menu li { 

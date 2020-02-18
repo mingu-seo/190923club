@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import joinSpot.JoinSpotVO;
 import util.FileUtil;
 
 @Service
@@ -46,12 +47,6 @@ public class MemberService {
 	}
 	
 	
-	// 회원 리스트
-	public List<MemberVO> MemberList(MemberVO vo){
-		return memberDAO.MemberList(vo);
-	}
-	
-	
 	// 페이징 처리
 	public int[] pageCount(MemberVO vo) {
 		int listcount = memberDAO.count(vo);	// 전체 갯수
@@ -64,5 +59,28 @@ public class MemberService {
 		
 		return pagecount;
 	}
+
 	
+	// admin 페이지 회원 리스트
+	public List<MemberVO> MemberList(MemberVO vo){
+		return memberDAO.MemberList(vo);
+	}
+	
+	
+	// admin 페이지 회원 휴면
+	public int memberSleep(MemberVO vo){
+		return memberDAO.memberSleep(vo);
+	}
+
+	
+	// admin 페이지 회원 활성화
+	public int memberWake(MemberVO vo){
+		return memberDAO.memberWake(vo);
+	}
+
+	
+	// admin 페이지 회원 삭제
+	public int memberDelete(MemberVO vo){
+		return memberDAO.memberDelete(vo);
+	}
 }

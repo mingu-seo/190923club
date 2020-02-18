@@ -1,8 +1,6 @@
 package board;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,11 +9,7 @@ import org.springframework.stereotype.Service;
 public class BoardService {
 
 	@Autowired 
-	private BoardDAO boardDAO;
-	
-	@Autowired
-	private joinSpot.JoinSpotDAO jsDAO;
-	
+	BoardDAO boardDAO;
 	//목록
 	public List<BoardVO> boardList(BoardVO vo) {
 		List<BoardVO> list = boardDAO.boardList(vo);
@@ -58,13 +52,5 @@ public class BoardService {
 	public List<BoardVO> mainBoardList(BoardVO vo) {
 		return boardDAO.mainBoardList(vo);
 	}
-	//스팟에 가입한 사람인지 확인 여부
-	public int checkJoinSpot(int member_num, int spot_num) {
-		
-		Map map = new HashMap();
-		map.put("member_num", member_num);
-		map.put("spot_num", spot_num);
-		
-		return jsDAO.checkJoinSpot(map);
-	}
+	
 }

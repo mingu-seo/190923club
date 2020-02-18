@@ -62,9 +62,9 @@
 		                      	<div class="member_info">
 		                      		<a href="/member/mypageView.do">내정보보기</a>
 		                      	</div>
-			                      	<div class="member_joinspot">
-			                            <a href="/spot/spotList.do">My HOT SPOT</a>
-			                      	</div>
+		                      	<div class="member_joinspot">
+		                            <a href="/spot/spotList.do">My HOT SPOT</a>
+		                      	</div>
 	                      	</div>
                      </div>
                  </div>      

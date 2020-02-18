@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import category.CategoryVO;
 import spot.SpotService;
 import spot.SpotVO;
 
@@ -28,18 +27,10 @@ public class GalleryController {
 		@Autowired
 		private SpotService spotService;
 		
-		@Autowired
-		private category.CategoryService cService;
-		
 		//갤러리 목록 페이지
 		@RequestMapping("/board/gallery/galleryList.do") 
-		public String galleryList(Model model, GalleryVO vo, @RequestParam("spot_num") int num, CategoryVO cVO) {
-				List<GalleryVO> list = galleryDao.galleryList(vo);
-				List<CategoryVO>[] categoryList = cService.categoryList(cVO); //Left메뉴에서 쓸 기능
-				CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
-				
-				model.addAttribute("categoryList", categoryList);
-				model.addAttribute("cate_name", cate_name);
+		public String galleryList(Model model, GalleryVO vo, @RequestParam("board_id")int board_id, @RequestParam("spot_num") int num) {
+				List<GalleryVO> list = galleryDao.galleryList(vo, board_id);
 				model.addAttribute("list", list); 
 				model.addAttribute("vo", vo); 
 				//스팟번호
@@ -47,31 +38,13 @@ public class GalleryController {
 				model.addAttribute("spot_vo", spot_vo);
 				model.addAttribute("spot_num", num+"");
 				
-				//더보기 클릭했을 때 카테고리가 없으면 alert창 띄우고 리턴
-				String msg = "";
-				String url = "";
-				if(vo.getCategory_id()== 0) {
-					msg = "아직 카테고리가 생성되지 않았습니다.\\n 관리자에게 문의하세요.";
-					url = "/board/submain/boardmain.do?spot_num="+num;
-					model.addAttribute("msg", msg);
-					model.addAttribute("url", url);
-					return "include/alert";
-				} else {
-					return "board/gallery/galleryList";
-				}
-				
+			return "board/gallery/galleryList";
 		}
 		
 		
 		//갤러리 작성페이지
 		@RequestMapping("/board/gallery/galleryWrite.do") 
-		public String galleryWrite(Model model,GalleryVO vo, @RequestParam("spot_num") int num, CategoryVO cVO) {
-			List<CategoryVO>[] categoryList = cService.categoryList(cVO); //Left메뉴에서 쓸 기능
-			CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
-			
-			model.addAttribute("categoryList", categoryList);
-			model.addAttribute("vo", vo);
-			model.addAttribute("cate_name", cate_name);
+		public String galleryWrite(Model model, @RequestParam("spot_num") int num) {
 			model.addAttribute("spot_num", num+"");
 			return "board/gallery/galleryWrite";
 		}
@@ -80,7 +53,7 @@ public class GalleryController {
 		@RequestMapping("/board/gallery/galleryInsert.do")
 		public String galleryInsert(GalleryVO vo, @RequestParam("image_tmp") MultipartFile file, @RequestParam("image_tmp2") MultipartFile file2, @RequestParam("image_tmp3") MultipartFile file3, HttpServletRequest request, @RequestParam("board_id") int board_id, @RequestParam("spot_num") int num) {
 			gService.galleryInsert(vo, file, file2, file3, request, board_id);
-			return "redirect:/board/gallery/galleryList.do?spot_num="+num+"&board_id="+board_id+"&category_id="+vo.getCategory_id();
+			return "redirect:/board/gallery/galleryList.do?spot_num="+num+"&board_id="+board_id;
 		}
 		
 		//갤러리 ajax
@@ -88,25 +61,20 @@ public class GalleryController {
 		public String galleryAjax(Model model, @RequestParam("id") int id) {
 			GalleryVO vo = gService.galleryView(id);
 			model.addAttribute("vo", vo);
-			return "board/gallery/galleryAjax"; 
+			return "board/gallery/galleryAjax";
 		}
 		
 		//갤러리삭제
 			@RequestMapping("/board/gallery/galleryDelete.do")
 			public String galleryDelete(GalleryVO vo, @RequestParam("board_id")int board_id, @RequestParam("spot_num") int num) {
 			gService.galleryDelete(vo, board_id);
-			return "redirect:/board/gallery/galleryList.do?spot_num="+num+"&board_id="+board_id+"&category_id="+vo.getCategory_id();
+			return "redirect:/board/gallery/galleryList.do?spot_num="+num+"&board_id="+board_id;
 			}
 			
 		//갤러리 수정
 		@RequestMapping("/board/gallery/galleryEdit.do") 
-		public String galleryEdit(Model model, @RequestParam("post_id") int id, @RequestParam("spot_num") int num, CategoryVO cVO) {
-			List<CategoryVO>[] categoryList = cService.categoryList(cVO); //Left메뉴에서 쓸 기능
-			CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
+		public String galleryEdit(Model model, @RequestParam("post_id") int id, @RequestParam("spot_num") int num) {
 			GalleryVO vo = gService.galleryView(id);
-			
-			model.addAttribute("categoryList", categoryList);
-			model.addAttribute("cate_name", cate_name);
 			model.addAttribute("vo", vo);
 			model.addAttribute("spot_num", num+"");
 
@@ -116,28 +84,25 @@ public class GalleryController {
 		//갤러리 업데이트
 		@RequestMapping("/board/gallery/galleryUpdate.do") 
 		public String galleryUpdate(Model model, GalleryVO vo, @RequestParam("image_tmp") MultipartFile file, @RequestParam("image_tmp2") MultipartFile file2, @RequestParam("image_tmp3") MultipartFile file3, HttpServletRequest request, @RequestParam("board_id")int board_id, @RequestParam("spot_num") int num) {
-			String url = "redirect:/board/gallery/galleryList.do?spot_num="+num+"&board_id="+board_id+"&category_id="+vo.getCategory_id();
 		gService.galleryUpdate(vo, file, file2, file3, request, board_id);
-		//model.addAttribute("spot_num", num+"");   
-		return url;
+		model.addAttribute("spot_num", num+"");
+		return "redirect:/board/gallery/galleryList.do?spot_num="+num+"&board_id="+board_id;
 		}
 				
 		//갤러리 수정페이지에서 이미지 삭제(업데이트)
 		@RequestMapping("/board/gallery/deleteImage.do") 
 		public String deleteImage(Model model, GalleryVO vo, @RequestParam("post_id") int post_id, @RequestParam("cname") String cname) {
 			gService.galleryUpgrade(post_id, cname);
-			return "redirect:/board/gallery/galleryEdit.do?spot_num="+vo.getSpot_num()+"&board_id="+vo.getBoard_id()+"&post_id="+post_id+"&category_id="+vo.getCategory_id();
+			return "redirect:/board/gallery/galleryEdit.do?spot_num="+vo.getSpot_num()+"&board_id="+vo.getBoard_id()+"&post_id="+post_id;
 		}
 		
-		//갤러리 이전포토
+
 		@RequestMapping("/board/gallery/galleryPre.do")
 		public String galleryPre(Model model, @RequestParam("post_id") int id) {
-			GalleryVO vo = gService.galleryPre(id); 
+			GalleryVO vo = gService.galleryPre(id);
 			model.addAttribute("vo", vo);
 			return "board/gallery/galleryAjax";
 		}
-				
-		//갤러리 다음포토
 		@RequestMapping("/board/gallery/galleryNext.do")
 		public String galleryNext(Model model, @RequestParam("post_id") int id) {
 			GalleryVO vo = gService.galleryNext(id);

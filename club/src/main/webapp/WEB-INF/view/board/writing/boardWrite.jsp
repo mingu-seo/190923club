@@ -69,10 +69,10 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 	<!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->
-	
-	<div class="main">
-    <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
-     	<div class="visual">
+        <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
+       
+      
+        <div class="visual">
 	
 			<!-- 왼쪽메뉴 -->
         	<div class="visualLeft">
@@ -106,16 +106,15 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 					</table>
 						  
 						<div class="writing_btns">
-							<span><input type="button" value="작성완료" class="btns" onclick="check();"></span> 
+							<span><input type="button" value="작성완료" class="btns" onclick="check();"></span>
 							<span><input type="reset" value="다시 작성" class="btns"/></span>
-							<span><input type="button" value="목록" class="btns" onclick="location.href='boardList.do?spot_num=<%=spot_num%>&category_id=<%=vo.getCategory_id()%>'"></span>
+							<span><input type="button" value="목록" class="btns"></span>
 						</div>
 				</form>
 			</div>
         </div>
         
         
-    </div>
     </div>
     <%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
   </div>

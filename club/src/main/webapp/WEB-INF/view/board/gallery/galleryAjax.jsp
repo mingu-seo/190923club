@@ -11,6 +11,5 @@
 "board_id" : "${vo.board_id}",
 "view" : "${vo.view}",
 "search_word" : "${vo.search_word}",
-"like_cnt" : "${vo.like_cnt}",
-"writer" : "${vo.writer}"
+"like_cnt" : "${vo.like_cnt}"
 }

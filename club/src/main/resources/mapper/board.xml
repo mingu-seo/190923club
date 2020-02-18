@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="board">  
+<mapper namespace="board">
 
 	<!-- 자유게시판 리스트 -->
 		<select id="list" parameterType="board.BoardVO" resultType="board.BoardVO">
@@ -48,7 +48,7 @@
 		</delete>
 	<!-- 카테고리 삭제로 인한 모든정보 삭제 -->
 		<delete id="allBoard_delete" parameterType="Integer">
-			delete from project.writing where category_id=#{category_id} 
+			delete from project.writing where category_id=#{category_id}
 		</delete>
 	
 	<!-- 갤러리 리스트 -->
@@ -56,21 +56,18 @@
 			select * from project.gallery 
 			<where>
 				<if test="search_word != null and search_word != ''">
-					(title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%')
-				</if> and spot_num=#{spot_num} and category_id=#{category_id}
-			</where>
+					title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%'
+				</if>
+			</where> 
 			order by regdate desc;
 		</select>
-		  
+		
 	
 	<!--갤러리 글작성 -->
- 
+
 	<insert id="gallery_insert" parameterType="gallery.GalleryVO">
-		insert into project.gallery 
-		(title, contents, image, image2, image3, regdate, board_id, category_id, spot_num, member_id, writer) 
-		values
-		(#{title}, #{contents}, #{image}, #{image2}, #{image3}, now(), #{board_id}, #{category_id}, #{spot_num}, #{member_id}, #{writer}) 
-	</insert>  
+		insert into project.gallery (title, contents, image, image2, image3, regdate, board_id) values(#{title}, #{contents}, #{image}, #{image2}, #{image3}, now(), #{board_id}) 
+	</insert>
 
 	
 	

@@ -16,6 +16,7 @@ import adminInfo.AdminInfoService;
 import adminInfo.AdminInfoVO;
 import board.BoardDAO;
 import board.BoardService;
+import joinSpot.JoinSpotVO;
 import spot.SpotService;
 import spot.SpotVO;
 import spotCategory.SpotCategoryService;
@@ -170,20 +171,68 @@ public class MemberController {
 	}
 	
 	
-	// 회원 리스트
-//	@RequestMapping("/member/memberList.do")
-//	public String memberList(MemberVO vo, Model model, @RequestParam("spot_num") String spot_num) {
-//		int[] listcount = memberService.pageCount(vo);	// 전체 갯수
-//		List<MemberVO> list = memberService.MemberList(vo);
-//		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
-//		model.addAttribute("spot_num", spot_num);
-//		model.addAttribute("spot_vo", spotvo);
-//		model.addAttribute("listcount", listcount[0]);
-//		model.addAttribute("totalpage", listcount[1]);
-//		model.addAttribute("memberList", list);
-//		model.addAttribute("vo", vo);
-//		return "member/memberList";
-//	}
+	// admin 페이지 회원 리스트
+	@RequestMapping("/admin/member/adminMemberList.do")
+	public String memberList(MemberVO vo, Model model) {
+		int[] listcount = memberService.pageCount(vo);	// 전체 갯수
+		List<MemberVO> list = memberService.MemberList(vo);
+		model.addAttribute("listcount", listcount[0]);
+		model.addAttribute("totalpage", listcount[1]);
+		model.addAttribute("memberList", list);
+		model.addAttribute("vo", vo);
+		return "member/adminMemberList";
+	}
+	
+	
+	// admin 페이지 회원 휴면
+		@RequestMapping("/admin/member/memberSleep.do")
+		public String memberSleep(
+				MemberVO vo,
+				Model model,
+				HttpServletRequest req) {
+			String[] member_nums = req.getParameterValues("num");
+			
+			for (int i=0; i<member_nums.length; i++) {
+				vo.setNum(Integer.parseInt(member_nums[i]));
+				memberService.memberSleep(vo);
+			}
+			model.addAttribute("vo", vo);
+			return "redirect:/admin/member/adminMemberList.do";  
+		}
+
+		
+	// admin 페이지 회원 활성화
+	@RequestMapping("/admin/member/memberWake.do")
+	public String memberWake(
+			MemberVO vo,
+			Model model,
+			HttpServletRequest req) {
+		String[] member_nums = req.getParameterValues("num");
+		
+		for (int i=0; i<member_nums.length; i++) {
+			vo.setNum(Integer.parseInt(member_nums[i]));
+			memberService.memberWake(vo);
+		}
+		model.addAttribute("vo", vo);
+		return "redirect:/admin/member/adminMemberList.do";  
+	}
+
+	
+	// admin 페이지 회원 삭제
+	@RequestMapping("/admin/member/memberDelete.do")
+	public String memberDelete(
+			MemberVO vo,
+			Model model,
+			HttpServletRequest req) {
+		String[] member_nums = req.getParameterValues("num");
+		
+		for (int i=0; i<member_nums.length; i++) {
+			vo.setNum(Integer.parseInt(member_nums[i]));
+			memberService.memberDelete(vo);
+		}
+		model.addAttribute("vo", vo); 
+		return "redirect:/admin/member/adminMemberList.do";  
+	}
 
 	
 	// 동아리 수정(관리자)

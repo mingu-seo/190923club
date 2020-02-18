@@ -16,7 +16,7 @@ List<NoticeVO> nList = (List<NoticeVO>)request.getAttribute("nlist");
 //갤러리 리스트
 List<GalleryVO> gList=(List<GalleryVO>)request.getAttribute("glist");
 
-//자유게시판 리스트 
+//자유게시판 리스트
 List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
 SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo"); 
 
@@ -343,8 +343,7 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
-	<!-- E N D :: headerArea-->
-	<div class="main">
+	<!-- E N D :: headerArea-->  
         <%@ include file="menu.jsp" %>
        
       
@@ -481,7 +480,6 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
         
         
     </div>
-   </div>
    </div>
 		<!-- S T A R T :: footerArea-->
 		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>

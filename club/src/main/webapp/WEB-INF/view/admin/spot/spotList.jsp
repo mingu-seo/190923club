@@ -12,7 +12,6 @@
 	List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
 	SpotVO spotvo = (SpotVO)request.getAttribute("spotvo");
 	int totalpage = (Integer)request.getAttribute("totalpage");
-	SpotVO spot_num = (SpotVO)request.getAttribute("spot_num");
 %>
 <html>
 <head>
@@ -217,7 +216,6 @@ function deleteConfirm(num) {
 		                </div>
 				</div>
 	  		</form>
-	  		<a href="/admin/submain/submain.do?spot_num=<%=spot_num%>">SPOT 상세보기</a>
 			<input type="button" id="delBtn" value="삭제" onclick="deleteConfirm(num);">
 		</div>  
    	</div>

@@ -78,7 +78,6 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 	<!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->
-	<div class="main">
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
       
@@ -133,7 +132,6 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
         </div>
         
         
-    </div>
     </div>
     <%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
   </div>

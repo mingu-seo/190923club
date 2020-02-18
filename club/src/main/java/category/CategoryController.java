@@ -16,7 +16,6 @@ public class CategoryController {
 	@Autowired
 	private board.BoardService bService;
 	
-	
 	@RequestMapping("/board/categoryInsert.do")
 	public String categoryInsert(CategoryVO vo, @RequestParam("spot_num")String spot_num, HttpServletRequest request) {
 		cService.categoryInsert(vo, request);

@@ -7,12 +7,12 @@ public class TestVO {
 
 	private int id;
 	private String name;
-	private String today;
 	private String password;
 	private String email;
 	private Timestamp regdate;
 	private String filename;
 	private String info;
+	private String today;
 	
 	
 	public String getToday() {

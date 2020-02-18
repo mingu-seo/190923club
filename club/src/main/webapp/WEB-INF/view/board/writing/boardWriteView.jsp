@@ -19,7 +19,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 
 %>				
 
- 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,14 +67,14 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 	}
  	
  	//좋아요 ajax 
-	function likeAjax(id, member_id) {
+	function likeAjax(id) {
 		$.ajax({
 			async : false,
 			url : '/board/likeInsert.do',
 			data : {
 				'post_id': id,
 				'board_id': 2,
-				'member_id':member_id,
+				'member_id':9,
 				'tableName':'writing'
 			},
 			dataType:'HTML',
@@ -101,8 +101,6 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 	<!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->
-	
-	<div class="main">
     <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
         <div class="visual">
 	
@@ -115,7 +113,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
         	<div class="view_wrap">
 					<div class="view_tt"><%=vo.getTitle() %>
 						<div class="view_info">
-							<span><%=vo.getWriter() %></span>
+							<span>김세영</span>
 							<span>|</span> 
 							<span><%=vo.getRegdate() %></span>
 						</div>
@@ -127,11 +125,13 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 					
 					<div class="view_repl_info">
 						<form id="like_form">
-								<span class="view_like" onclick="likeAjax('<%=vo.getPost_id()%>','<%=sessVO.getNum()%>');">❤ </span> 
-								<span class="like_cnt"><%=vo.getLike_cnt() %></span> 
-						</form> 
+							<input type="hidden" name="post_id" value="<%=vo.getPost_id()%>">
+							<input type="hidden" name="board_id" value="<%=vo.getBoard_id()%>">
+								<span class="view_like" onclick="likeAjax();">❤ </span> 
+								<span class="like_cnt"><%=vo.getLike_cnt() %></span>
+						</form>
 						 
-						<span>조회</span> 
+						<span>조회</span>
 						<span><%=vo.getView() %></span>  
 					</div>		
 				
@@ -142,11 +142,9 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 						</div>
 							
 							<!-- 댓글 폼 -->
-							<form action="/board/reply.do" method="post">
+							<form action="/board/reply.do?board_id=2" method="post">
 									<input type="hidden" name="post_id" class="post_id" value="<%=vo.getPost_id()%>">
 									<input type="hidden" name="board_id" class="board_id" value="<%=vo.getBoard_id()%>">
-									<input type="hidden" name="member_id" class="member_id" value="<%=sessVO.getNum()%>">
-									<input type="hidden" name="writer" class="writer" value="<%=sessVO.getName()%>">
 									<input type="hidden" name="url" value="board/writing/writingReplyAjax.do">
 								<table>
 									<tr>
@@ -168,9 +166,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 									data: {
 										'post_id':$(".post_id").val(),
 										'board_id':$(".board_id").val(),
-										'member_id':$(".member_id").val(),
 										'contents':$(".replyText").val(),
-										'writer':$(".writer").val(), 
 										'g_id':$("#g_id").val(),
 									},
 									dataType:'HTML',
@@ -178,8 +174,13 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 										//댓글이 정상적으로 저장되었을때
 										$(".replyText").val("");
 										getReplyList($(".post_id").val());
+<<<<<<< HEAD
 									}, 
 									error:function(data) { 
+=======
+									},
+									error:function(data) {
+>>>>>>> branch 'master' of https://github.com/mingu-seo/190923club.git
 										console.log(data);
 									}
 								});
@@ -224,8 +225,6 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
         </div> 
          
         
-    </div>
-    
     </div>
     <%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
 </div>

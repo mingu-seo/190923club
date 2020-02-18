@@ -23,10 +23,9 @@
 	<context:component-scan base-package="reply"/>
 	<context:component-scan base-package="file"/>
 	<context:component-scan base-package="like"/>
-	<context:component-scan base-package="member"/> 
+	<context:component-scan base-package="member"/>
 	<context:component-scan base-package="joinSpot"/>
 	<context:component-scan base-package="category"/>
-	<context:component-scan base-package="calendar"/>
 	
 	
 	<!-- annotation 활성화 -->
@@ -108,7 +107,8 @@
 	
 	
 	
-	  
+	
+	
 	
 	
 	

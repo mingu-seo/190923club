@@ -32,18 +32,16 @@ public class AdminSpotController {
 	
 	// spot 관리
 	@RequestMapping("/admin/spot/spotList.do")
-	public String adminSpotList(Model model ,@RequestParam("spot_num") String spot_num,SpotCategoryVO vo,SpotVO spotvo) {
+	public String adminSpotList(Model model ,SpotCategoryVO vo,SpotVO spotvo) {
 		int[] listCount = spotService.count(spotvo);
 		List<SpotCategoryVO> list = spotCategoryService.spotCategoryList(vo);
 		List<SpotVO> spotArticle = spotService.spotList(spotvo);
-		SpotVO spot_vo = spotService.spotView(Integer.parseInt(spot_num));
 		model.addAttribute("listCount", listCount[0]);
 		model.addAttribute("totalpage", listCount[1]);
 		
 		model.addAttribute("spot",spotArticle);
 		model.addAttribute("spotvo",spotvo);
-		model.addAttribute("spot_num", spot_num);
-		model.addAttribute("spot_vo", spot_vo);
+		
 		model.addAttribute("list", list);
 		model.addAttribute("vo", vo);		
 		return "admin/spot/spotList";

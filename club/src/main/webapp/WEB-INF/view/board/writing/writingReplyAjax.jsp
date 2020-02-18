@@ -17,7 +17,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 	$(function() {
 		$(".re_btn").click(function() {
 			var idx = $(this).index(".re_btn");
-			$(".re_tr").eq(idx).toggle(); 
+			$(".re_tr").eq(idx).toggle();
 		});
 	});
 </script>
@@ -28,7 +28,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 			%>
 			
 				<tr id="re_info"> 
-					<th class="repl_date"><%=list.get(i).getWriter() %></th>
+					<th class="repl_date">홍길동</th>
 					<td>
 					<% if (list.get(i).getG_lev() > 0) { %>
 					<% for (int j=0; j<list.get(i).getG_lev(); j++) { %>

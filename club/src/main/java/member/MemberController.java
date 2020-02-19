@@ -185,10 +185,4 @@ public class MemberController {
 //		return "member/memberList";
 //	}
 
-	
-	// 동아리 수정(관리자)
-	@RequestMapping("/member/clubSetting.do")
-	public String clubSetting() {
-		return "member/clubSetting";
-	}
 }

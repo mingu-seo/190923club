@@ -9,17 +9,18 @@
     <link rel="stylesheet" href="/css/test/clubSetting.css">
 </head>
 <body>
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
     <div class="wrap">
        
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/top.jsp" %>
 	<!-- E N D :: headerArea-->
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
 
         <div class="visual">
         	
         	<!-- 왼쪽메뉴 -->
-<%--         	<%@ include file="/WEB-INF/view/board/submain/submainLeft.jsp" %> --%>
+        	<%@ include file="/WEB-INF/view/board/submain/submainLeft.jsp" %> 
+
         	<!-- /왼쪽메뉴 -->
         	
         	<div class="visualRight">

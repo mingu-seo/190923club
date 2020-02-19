@@ -9,8 +9,10 @@
         
         
         .wrap { 
-            width:100%;
-            margin:0 auto;
+		    width: 100%;
+		    position: relative;
+		    margin: 0 auto;
+		    top: 108px;
         }
         .header {
           	background-color:#ffffff;

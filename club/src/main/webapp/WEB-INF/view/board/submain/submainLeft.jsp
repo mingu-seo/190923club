@@ -28,7 +28,7 @@ SpotVO list = (SpotVO)request.getAttribute("spot_vo");
         		</div>
         		<div class="clubInfo">
         			동아리 설정
-        		<a href="/spot/UpdateForm.do?spot_num=<%=list.getNum()%>"><img src="/img/board/set.png"></a>
+        		<a href="/spot/spotSetting.do?spot_num=<%=list.getNum()%>"><img src="/img/board/set.png"></a>
         		</div>
         	</div>
         	</div>

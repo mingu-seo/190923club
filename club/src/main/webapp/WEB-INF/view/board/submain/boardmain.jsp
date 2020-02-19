@@ -338,11 +338,9 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
         </style>
 </head>
 <body>
-
-
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
     <div class="wrap">
 	<!-- S T A R T :: headerArea-->
-	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->
 	<div class="main">
         <%@ include file="menu.jsp" %>

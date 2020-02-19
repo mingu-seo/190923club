@@ -45,6 +45,15 @@ public class SpotController {
 		//return "board/submain/submain";
 	//}
 	
+	//HOT SPOT 세팅폼
+	@RequestMapping("/spot/spotSetting.do")
+	public String clubSetting(Model model, @RequestParam("spot_num") String spot_num) {
+		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		model.addAttribute("spot_num", spot_num);
+		model.addAttribute("spot_vo", spotvo);
+		return "spot/spotSetting";
+	}
+
 	//HOT SPOT 수정 폼
 	@RequestMapping("/spot/UpdateForm.do")
 	

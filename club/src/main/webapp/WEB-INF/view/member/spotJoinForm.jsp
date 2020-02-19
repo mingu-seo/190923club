@@ -9,10 +9,9 @@
 	<link rel="stylesheet" href="/css/test/spotJoinForm.css">
 </head>
 <body>
-    <div class="wrap">
-       
 	<!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
+    <div class="wrap">
 	<!-- E N D :: headerArea-->
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
 

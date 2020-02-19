@@ -13,9 +13,9 @@
 	<!-- 스팟 회원 리스트 --> 
 	<select id="spotMemberList" parameterType="member.MemberVO" resultType="member.MemberVO">
 		SELECT 
-			project.member.num as member_num,
-			project.joinspot.num as joinspot_num,
-			project.joinspot.grade as joinspot_grade,
+			project.member.num AS member_num,
+			project.joinspot.num AS joinspot_num,
+			project.joinspot.grade AS joinspot_grade,
 			id, profile, project.member.name, birth, gender, tel 
 		FROM project.member JOIN project.joinSpot 
 		ON project.member.num = project.joinSpot.member_num AND joinspot.spot_num=#{spot_num}
@@ -64,19 +64,20 @@
    </delete>   
    
    <!-- spot 가입 확인 -->
-	<select parameterType="java.util.Map" id="checkJoinSpot" resultType="Integer">
+	<select id="checkJoinSpot" parameterType="java.util.Map" resultType="Integer">
 		SELECT COUNT(*) FROM project.joinSpot WHERE member_num=#{member_num} AND spot_num=#{spot_num} 
 	</select>
 
 	<!-- 회원이 가입한 스팟 -->
-	<select parameterType="member.MemberVO" id="mySpotList" resultType="member.MemberVO">
+	<select id="mySpotList" parameterType="member.MemberVO" resultType="member.MemberVO">
 		SELECT project.spot.num AS spot_num, 
 			   project.spot.name AS spot_name, 
-			   project.spot.fileFROM project.spot
+			   project.spot.file
+		FROM project.spot
 		WHERE num IN(
 					SELECT spot_num 
 					FROM project.joinspot 
-					WHERE member_num=#{num}
+					WHERE member_num=#{num}  
 					) 
 	</select>
 

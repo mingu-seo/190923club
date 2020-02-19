@@ -48,8 +48,8 @@ public class MemberService {
 	
 	
 	// 페이징 처리
-	public int[] pageCount(MemberVO vo) {
-		int listcount = memberDAO.count(vo);	// 전체 갯수
+	public int[] pageCount() {
+		int listcount = memberDAO.count();	// 전체 갯수
 		int totalpage = listcount / 10;		// 총 페이지 수 
 		if(listcount % 10 > 0) totalpage++;
 		

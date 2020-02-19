@@ -48,8 +48,14 @@ public class JoinSpotDAO {
 		return sqlSession.update("joinSpot.spotMemberDelete", jv);
 	}
 	
+	// spot 회원 체크
 	public int checkJoinSpot(Map map) {
 		return sqlSession.selectOne("joinSpot.checkJoinSpot", map);
-	}
+	}   
 	
+
+	// 내가 가입한 spot 리스트
+	public List<MemberVO> mySpotList(MemberVO vo){  
+		return sqlSession.selectList("joinSpot.mySpotList", vo);  
+	}
 }

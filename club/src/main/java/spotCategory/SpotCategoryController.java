@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import joinSpot.JoinSpotService;
+import member.MemberVO;
 import spot.SpotService;
 import spot.SpotVO;
 
@@ -26,6 +28,11 @@ public class SpotCategoryController {
 	
 	@Autowired
 	private SpotService spotService;
+	
+	@Autowired
+	private JoinSpotService joinSpotService;
+	
+	
 	
 	//카테고리 등록 폼
 	@RequestMapping("/admin/category/categoryRegistForm.do")
@@ -93,13 +100,16 @@ public class SpotCategoryController {
 	}
 	//유저가 보는 spotCategory 선택 뷰
 	@RequestMapping("/spot/spotList.do")
-	public String userSpotList(Model model, SpotCategoryVO vo,SpotVO spotvo) {
+	public String userSpotList(Model model, SpotCategoryVO vo,SpotVO spotvo, HttpServletRequest request) {
 		List<SpotCategoryVO> list = spotCategoryService.spotCategoryList(vo);
 		List<SpotVO> spotArticle = spotService.spotList(spotvo);
+		MemberVO jsvo = (MemberVO)request.getSession().getAttribute("sess");
+		List<MemberVO> jslist = joinSpotService.mySpotList(jsvo); 
 		model.addAttribute("spot",spotArticle);
 		model.addAttribute("spotvo",spotvo);
 		model.addAttribute("list",list);
 		model.addAttribute("vo",vo);
+		model.addAttribute("jslist",jslist);   
 		return "/spot/spotList";
 	}
 	

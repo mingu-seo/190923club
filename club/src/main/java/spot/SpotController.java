@@ -2,6 +2,7 @@ package spot;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import board.BoardService;
+import member.MemberVO;
+
 
 
 
@@ -17,7 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 public class SpotController {
 	@Autowired
 	private SpotDAO spotDao;
-		
+	
+	@Autowired
+	private BoardService bService;
+			
 	@Autowired
 	private SpotService spotService;
 
@@ -47,27 +54,32 @@ public class SpotController {
 	
 	//HOT SPOT 세팅폼
 	@RequestMapping("/spot/spotSetting.do")
-	public String clubSetting(Model model, @RequestParam("num") int num) {
-		SpotVO spotvo = spotService.spotView(num);	
+	public String clubSetting(Model model,  @RequestParam("spot_num") String spot_num , HttpSession session) {
+		MemberVO mv = (MemberVO)session.getAttribute("sess");
+		int joinSpotCnt = bService.checkJoinSpot(mv.getNum(), Integer.parseInt(spot_num));
+		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);
 		return "spot/spotSetting";
 	}
-	
 	//HOT SPOT 수정 폼
-	@RequestMapping("/spot/UpdateForm.do")
-	
-	public String spotUpdateForm(Model model, @RequestParam("num") int num) {
+	@RequestMapping("/spot/spotUpdateForm.do")
+	public String spotUpdateForm(Model model, @RequestParam("num") int num , HttpSession session) {
+		MemberVO mv = (MemberVO)session.getAttribute("sess");
+		int joinSpotCnt = bService.checkJoinSpot(mv.getNum(),num);
 		SpotVO spotvo = spotService.spotView(num);
 		model.addAttribute("vo",spotvo);
 		return "spot/spotUpdateForm";
 	}
 	//HOT SPOT 수정하기
-	@RequestMapping("/spot/Update.do")
-	public String spotUpdate(SpotVO spotvo, @RequestParam("filename_tmp") MultipartFile file, HttpServletRequest request) {
+	@RequestMapping("/spot/spotUpdate.do")
+	public String spotUpdate(SpotVO spotvo, @RequestParam("filename_tmp") MultipartFile file, HttpServletRequest request, @RequestParam("num") int num, HttpSession session) {
+		MemberVO mv = (MemberVO)session.getAttribute("sess");
+		int joinSpotCnt = bService.checkJoinSpot(mv.getNum(), num);
 		spotService.spotUpdate(spotvo, file, request);
-		return "redirect:/spot/spotList.do";
+		
+		return "redirect:/board/submain/submain.do?spot_num="+ num;
 	}
-	
 	//HOT SPOT 삭제하기
 	@RequestMapping("/spot/spotDelete.do")
 	public String spotDelete(HttpServletRequest request) {

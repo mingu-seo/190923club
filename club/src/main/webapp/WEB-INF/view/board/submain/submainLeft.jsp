@@ -34,7 +34,7 @@ int cnt = request.getAttribute("cnt") == null ? 0 : (Integer)request.getAttribut
         			<%} %>
         		</div>
         		<div class="clubInfo">
-        			동아리 설정
+        			HOT SPOT설정
         		<a href="/spot/spotSetting.do?spot_num=<%=list.getNum()%>"><img src="/img/board/set.png"></a>
         		</div>
         	</div>

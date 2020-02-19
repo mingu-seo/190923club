@@ -67,10 +67,11 @@ function join() {
 <body>
 <form method="post" name="joinform" id=joinform action="spotUpdate.do" enctype="multipart/form-data">
 <input type="hidden" name="category_num" value="<%=request.getParameter("num")%>">
-<div class="wrap">
+<input type="hidden" name="num" value="${vo.num}">
 	<!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->
+<div class="wrap">
     <div class="container">
         <h2 style="padding : 10 0px;">HOT SPOT 수정페이지</h2>
     </div>

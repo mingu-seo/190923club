@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="file">
+
+	<!-- 파일선택 -->
+	<select id="file_select" parameterType="file.FileVO" resultType="file.FileVO">
+		select front_name, server_name from project.file 
+		where post_id=#{post_id} and board_id=#{board_id}
+	</select>
+	
+	<!-- 파일 저장 -->
+	<insert id="file_insert" parameterType="file.FileVO">
+		insert into project.file (file_num, post_id, board_id, front_name, server_name, regdate) 
+		values(#{file_num}, #{post_id}, #{board_id}, #{front_name}, #{server_name}, now())
+	</insert>
+	
+	<!-- 파일수정 -->
+	<update id="file_update" parameterType="file.FileVO">
+		update project.file set front_name=#{front_name}, server_name=#{server_name} 
+		where post_id = #{post_id} and board_id=#{board_id}
+	</update>
+	  
+</mapper>

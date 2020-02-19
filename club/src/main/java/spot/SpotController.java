@@ -1,6 +1,8 @@
 package spot;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import adminNotice.AdminNoticeService;
+import adminNotice.AdminNoticeVO;
+import adminQna.AdminQnaService;
+import adminQna.AdminQnaVO;
 import board.BoardService;
 import member.MemberVO;
 
@@ -23,11 +29,17 @@ public class SpotController {
 	private SpotDAO spotDao;
 	
 	@Autowired
+	private AdminQnaService adminQnaService;
+	
+	@Autowired
 	private BoardService bService;
 			
 	@Autowired
 	private SpotService spotService;
 
+	@Autowired
+	private AdminNoticeService adminNoticeService;
+	
 	//HOT SPOT 등록 폼
 	@RequestMapping("/spot/spotRegist.do")
 	public String spotWrite() {
@@ -112,8 +124,46 @@ public class SpotController {
 		return "include/alert";
 	}
 	
-	
-	
+	@RequestMapping("/spot/spotNotice.do")
+	public String spotNotice(Model model,AdminNoticeVO vo) {
+		List<AdminNoticeVO> list = adminNoticeService.adminNoticeList(vo);
+		model.addAttribute("list", list);
+		model.addAttribute("vo", vo);		
+		return "spot/spotNotice";		
+	}
 
+	@RequestMapping("/spot/spotNoticeDetail.do")
+	public String spotNoticeDetail(Model model, int num) {
+		AdminNoticeVO vo = adminNoticeService.adminNoticeView(num);
+		model.addAttribute("notice", vo);
+		return "spot/spotNoticeDetail";		
+	}
 
+	@RequestMapping("/spot/spotQna.do")
+	public String spotQna(Model model,AdminQnaVO vo) {
+		List<AdminQnaVO> list = adminQnaService.adminQnaList(vo);
+		model.addAttribute("list", list);
+		model.addAttribute("vo", vo);		
+		return "spot/spotQna";
+	}
+	
+	@RequestMapping("/spot/spotQnaDetail.do")
+	public String adminQnaView(Model model, int num) {
+		AdminQnaVO vo = adminQnaService.adminQnaView(num);
+		model.addAttribute("Qna", vo);
+		return "spot/spotQnaDetail";
+		
+	}
+		
+	@RequestMapping("/spot/spotMemberInfo.do")
+	public String spotMemberInfo() {
+		
+		return "spot/spotMemberInfo";
+	}
+	@RequestMapping("/spot/spotUselaw.do")
+	public String spotUselaw() {
+		
+		return "spot/spotUselaw";
+	}
+	
 }

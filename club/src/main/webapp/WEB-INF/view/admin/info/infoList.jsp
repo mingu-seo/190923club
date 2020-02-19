@@ -129,7 +129,7 @@ function deleteConfirm(num) {
   	<div class="info_content">
   		<h2>메인 페이지에 HOT SPOT의 기능과 이미지를 등록해보세요!</h2>
   	</div>
-<div class="wrap">
+<div class="wrap1">
   	<form  action="infoView.do" method="post">
     <div class="categorycontainer">
 		<div class="center_title" >

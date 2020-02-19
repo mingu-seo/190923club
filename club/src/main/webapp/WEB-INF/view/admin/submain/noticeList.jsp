@@ -24,10 +24,8 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
   <%@ include file="/WEB-INF/view/admin/include/adminspotheadHtml.jsp" %>
 </head>
 <body>
-
-
-    <div class="wrap">
 		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>    	
+    <div class="wrap">
 	<div class="main">       
         <%@ include file="menu.jsp" %>
        

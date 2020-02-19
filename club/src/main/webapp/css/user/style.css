@@ -14,6 +14,11 @@
     position: relative;
     top: 108px;
 }
+.wrap1{
+    width: 1200px;
+    margin: 0 auto;
+    position: initial;
+}
 
 /* header */
 div.header{
@@ -50,8 +55,13 @@ body{
 	width: 100%;
 	padding:20px;
 	background-color: mintcream;
+	    top: 164px;
+	    position: relative;
 }
-
+.categorycontainer{
+	position: relative;
+    top: 108px;
+}
 .info_content h2{
 	width: 100%;
 	padding:20px;

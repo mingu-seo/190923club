@@ -105,7 +105,7 @@ function getThumbnailPrivew(html, $target) {
 									<tr>
 										<th scope="row"><label for="content">*내용</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="content" title="내용을 입력해주세요" style="width:100%;" >"${vo.content}"</textarea>	
+											<textarea id="contents" name="content" title="내용을 입력해주세요" style="width:100%;" >${vo.content}</textarea>	
 										</td>
 									</tr>
 									<tr>

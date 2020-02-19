@@ -1,15 +1,11 @@
-.mypageLeft{
-    height: 400px;
-    width: 210px;
-    margin-top: 40px;
-}
 .leftContent{
-    padding-top: 100px;
 }
 .titleText1{
     margin: 0 auto;
-    height: 100px;
-    width: 150px;
+    text-align: left;
+    height: 70px;
+    width: 200px;
+    line-height: 70px;
 }
 .titleText1 > .btn1 > a > input{
     font-size: 30px;
@@ -33,5 +29,7 @@
     width: 140px;
     height: 60px;
     margin: 0 auto;
+    font-size: 21px;
+    font-weight: bold;
 }
 

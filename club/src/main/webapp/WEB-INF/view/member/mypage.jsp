@@ -31,14 +31,11 @@ function update() {		// 수정 버튼
 </script>
 </head>
 <body>
-    <div class="wrap">
-       
 	<!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->  
-
+    <div class="wrap">
         <div class="visual">
-        	
         	<div class="visualRight">
         		<div class="content">
             <div class="mypage">

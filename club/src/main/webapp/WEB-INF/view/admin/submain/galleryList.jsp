@@ -256,19 +256,14 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
       
 </head>
 <body>
-
-
-    <div class="wrap">
 		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
+    <div class="wrap">
     	<div class="main">
 	        <%@ include file="menu.jsp" %>
 	        <div class="visual">
 	        	<div class="visualLeft">
 	        <%@ include file="boardLeft.jsp" %>
- 
         </div>
-        	
-        	
         <div class="visualRight">
        		<div class="board_ctg_name"><%=cate_name.getName() %></div>
 				 

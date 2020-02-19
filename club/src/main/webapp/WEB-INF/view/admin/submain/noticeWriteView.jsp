@@ -96,10 +96,8 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("rVO");
    </script>
 </head>
 <body>
-
-
+	<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
     <div class="wrap">
-		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
        <div class="main">
         <%@ include file="menu.jsp" %>
         <div class="visual">

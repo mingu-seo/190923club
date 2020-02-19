@@ -7,21 +7,13 @@
     <title></title>
    <%@ include file="/WEB-INF/view/admin/include/adminspotheadHtml.jsp" %>
    <link rel="stylesheet" type="text/css" href="/css/board/boardmain.css">
-   <style>
-	.main {
-		padding-top : 108px; 
-	}
-   </style>
-   
 </head>
 <body>
 
-
-    <div class="wrap">
-       
 	<!-- S T A R T :: headerArea-->
 		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 	<!-- E N D :: headerArea-->
+    <div class="wrap">
 	<div class="main">
         <%@ include file="menu.jsp" %>
 

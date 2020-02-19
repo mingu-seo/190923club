@@ -11,13 +11,9 @@ List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calenda
 <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
 <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 <script>
-	window.onload = function() {	
-		$(".calPop").click(function() { 
-			console.log("click");
-			window.open('/calendar/popup.do', 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no'); 
-			//popupOpen();  
-		});  
-}
+	function popup(date) {
+			window.open('/calendar/popup.do?date='+date, 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no'); 
+	};
 </script>
 </head>
 <body> 
@@ -79,15 +75,15 @@ List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calenda
 											}
 											if (i == 0) {
 												for (int j=0; j<name-1; j++) {
-								%>
+								%> 
 										<td></td>
 								<%
 												}
 											}
 								%>
 										<td>
-											<div class="calBtn">
-												<input type="button" class="calPop" value="일정 등록">
+											<div class="calBtn"> 
+												<input type="button" class="calPop" value="일정 등록" onclick="">
 											</div>
 											<%=date%>
 										</td>

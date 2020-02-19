@@ -6,6 +6,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="notice.*" %>
 <%@ page import="gallery.*" %>
+<%@ page import="member.*" %>
 <%@ page import="board.*" %>
 <%@ page import="category.*" %>
 <%
@@ -22,7 +23,7 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 
 //min
 CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
-
+MemberVO sessVO = (MemberVO)request.getAttribute("sess");
 %>
 
 <!DOCTYPE html>
@@ -492,37 +493,40 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
             	<div>
 					<span class="galleryClose">X</span>     
 				</div>
-               <form action="/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
-               <input type="hidden" id="post_id" name="post_id">
-                 <input type="hidden" id="board_id" name="board_id">
                
                 <div class="user-information">
                     <a class="user-information-image" href="#">
                         <img src="http://placekitten.com/70/70">
                     </a>    
                     <div class="user-information-text">
-                        <h3>작성자</h3>
-                        <div class="paper-text2">${gallery.title }</div>
-                    </div>
+                    	<div class=paper-text2 style="font-weight: bold; font-size:20px;"></div> 
+                        <div id="writer_info" style="font-weight: bold; font-size:18px;"></div>
+                        <div id="date_info" style="font-size:15px;"></div> 
+                    </div> 
                 </div>
                    
                 <hr class="lightbox-splitter">
                 
                 <div class="galleryImage"> 
-	                <a id="prePost" href="#;">◁</a>
-	                <a id="preHref" href="#;" onclick="preHref();">◀</a>
-	                <img class="paper-each2" src="/upload/${gallery.image }">
-	                <a id="nextHref" href="#;" onclick="nextHref();">▶</a>
-	                <a  id="nextPost"  href="#;">▷</a>
-                </div>  
+	                <a id="preHref" href="#;" onclick="preHref();"><img src="/img/board/leftArrow.png" style="max-height: 30px; max-width: 30px;"></a>
+	                <img class="paper-each2" src="/upload/${gallery.image }" style="max-height: 700px;"> 
+	                <a id="nextHref" href="#;" onclick="nextHref();"><img src="/img/board/rightArrow.png" style="max-height: 30px; max-width: 30px;"></a>
+                </div> 
                 
-                </form>
                 
                 <div class="paper-contents"></div>  
 	          	
-	          	<div class="view_repl_info">
-					<span class="view_like">♥</span>
-					<span>이 글을 N명이 좋아합니다.</span>
+	          	<div class="view_repl_info"> 
+					<form id="like_form"> 
+						<input type="hidden" name="post_id" class="post_id" value="">
+						<input type="hidden" name="member_id" class="member_id" value=""> 
+						<span class="view_like" onclick="likeAjax();">❤ </span> 
+						<span class="like_cnt"></span> 
+					</form> 
+					
+					<span>조회</span> 
+					<span id="viewCnt"></span>  
+					
 				</div>
 				<div class="repl_box">	
 				<div id="replyBox">
@@ -531,7 +535,7 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
 					</div>
 					
 					<!-- 댓글 폼 -->
-						<form action="/board/galleryReply.do" method="post">
+						<form action="/board/galleryReply.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
 								<input type="hidden" name="post_id" id="reply_post_id" value="">
 								<input type="hidden" name="board_id" id="reply_board_id" value="1">
 								<input type="hidden" name="reply_num" id="reply_num" value="">
@@ -551,7 +555,7 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
 				<script>
 				function replyAjax() {
 					$.ajax({
-                		async :false,    
+                		async :false,
                 		url:'/board/galleryReply.do',
                 		data :{
                 			'post_id':$("#reply_post_id").val(),

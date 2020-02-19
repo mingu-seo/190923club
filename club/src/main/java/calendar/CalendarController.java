@@ -28,13 +28,13 @@ public class CalendarController {
 		List<TestVO> list = calendarDAO.selectCalendar(yearmonth);
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 		Calendar cal = Calendar.getInstance();
-		int y = cal.YEAR;
-		int m = cal.MONTH+1;
+		int y = cal.get(Calendar.YEAR);
+		int m = cal.get(Calendar.MONTH+1);
 		if(yearmonth==null || "".equals(yearmonth)) {
 			yearmonth = y + "-" + ((m<10) ? "0"+m : m); 
 		}
 		
-		
+		model.addAttribute("yearmonth", yearmonth); 
 		model.addAttribute("spot_vo", spotvo);
 		model.addAttribute("calendar_list", list);
 		model.addAttribute("spot_num", spot_num);

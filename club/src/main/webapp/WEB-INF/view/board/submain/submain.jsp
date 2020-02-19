@@ -72,6 +72,5 @@
 		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
 		<!-- E N D :: footerArea-->
 	</div>
-    </div>
 </body>
 </html>

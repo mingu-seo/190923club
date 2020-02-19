@@ -26,8 +26,8 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 <body>
 
 
+    <%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
     <div class="wrap">
-    	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
     	
 	<div class="main">       
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>

@@ -259,8 +259,8 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 <body>
 
 
-    <div class="wrap">
     	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
+    <div class="wrap">
     	<div class="main">
 	        <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
 	        <div class="visual">
@@ -375,10 +375,11 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 					</div>
 					
 					<!-- 댓글 폼 -->
-						<form action="/board/galleryReply.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
-								<input type="hidden" name="post_id" id="reply_post_id" value="">
+						<form action="/board/galleryReply.do" method="post"> 
+								<input type="hidden" name="post_id" id="reply_post_id" value="<%=vo.getPost_id()%>">
 								<input type="hidden" name="board_id" id="reply_board_id" value="1">
-								<input type="hidden" name="reply_num" id="reply_num" value="">
+								<input type="hidden" name="member_id" id="member_id" value="<%=sessVO.getNum()%>">
+								<input type="hidden" name="writer" id="writer" value="<%=sessVO.getName()%>"> 
 							<table>
 								<tr>
 									<td class="repForm" colspan="2">   
@@ -396,10 +397,12 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 				function replyAjax() {
 					$.ajax({
                 		async :false,
-                		url:'/board/galleryReply.do',
+                		url:'/board/galleryReply.do', 
                 		data :{
                 			'post_id':$("#reply_post_id").val(),
                 			'board_id':$("#reply_board_id").val(),
+                			'member_id':$("#member_id").val(),
+                			'writer':$("#writer").val(), 
                 			'contents':$(".replyText").val(),
 	                	},
 	                	dataType:'HTML',
@@ -415,7 +418,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 				}
 				
 				
-				function replyAjax2(formId) {
+				function replyAjax2(form_Id) {
 					var data = $("#"+formId).serialize();
 					$.ajax({
 						async :false,

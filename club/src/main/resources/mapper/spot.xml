@@ -23,7 +23,7 @@
 	
 	<update id="spotUpdate" parameterType="spot.SpotVO">
 		UPDATE project.spot SET
-		name=#{name}
+		name=#{name} ,content=#{content} ,tel=#{tel} ,email=#{email} ,modifydate= now(),question= #{question}
 		<if test="file != null">
 			, file=#{file}
 		</if>

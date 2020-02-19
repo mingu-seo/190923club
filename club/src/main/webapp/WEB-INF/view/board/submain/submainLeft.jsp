@@ -27,7 +27,7 @@ SpotVO list = (SpotVO)request.getAttribute("spot_vo");
         			<a href="/spotJoin/spotJoinForm.do?spot_num=<%=list.getNum()%>">가입신청</a>
         		</div>
         		<div class="clubInfo">
-        			동아리 설정
+        			HOT SPOT설정
         		<a href="/spot/spotSetting.do?spot_num=<%=list.getNum()%>"><img src="/img/board/set.png"></a>
         		</div>
         	</div>

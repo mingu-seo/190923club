@@ -2,8 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="spot.SpotVO"%>
+<%@ page import="member.MemberVO"%>
+<%@ page import="joinSpot.JoinSpotVO"%>
 <%
 SpotVO list = (SpotVO)request.getAttribute("spot_vo");
+MemberVO sess = (MemberVO)session.getAttribute("sess"); 
+JoinSpotVO jsvo = (JoinSpotVO)request.getAttribute("js");
+int cnt = request.getAttribute("cnt") == null ? 0 : (Integer)request.getAttribute("cnt");
 %>
 <div class="visualLeft">
         	<input type="hidden" name="num" value="<%=list.getNum()%>">
@@ -24,7 +29,9 @@ SpotVO list = (SpotVO)request.getAttribute("spot_vo");
         		</div> 
         		
         		<div class="clubInfo">
-        			<a href="/spotJoin/spotJoinForm.do?spot_num=<%=list.getNum()%>">가입신청</a>
+        			<%if(cnt == 0) {%>
+        				<a href="/spotJoin/spotJoinForm.do?spot_num=<%=list.getNum()%>">가입신청</a>
+        			<%} %>
         		</div>
         		<div class="clubInfo">
         			HOT SPOT설정

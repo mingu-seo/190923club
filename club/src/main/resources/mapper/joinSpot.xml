@@ -63,8 +63,21 @@
    		DELETE FROM project.joinSpot WHERE num=#{num}
    </delete>   
    
-   <select id="checkJoinSpot" parameterType="java.util.Map" resultType="Integer">
-   		SELECT COUNT(*) FROM project.joinSpot WHERE member_num=#{member_num} AND spot_num=#{spot_num}
-   </select>
+   <!-- spot 가입 확인 -->
+	<select parameterType="java.util.Map" id="checkJoinSpot" resultType="Integer">
+		SELECT COUNT(*) FROM project.joinSpot WHERE member_num=#{member_num} AND spot_num=#{spot_num} 
+	</select>
+
+	<!-- 회원이 가입한 스팟 -->
+	<select parameterType="member.MemberVO" id="mySpotList" resultType="member.MemberVO">
+		SELECT project.spot.num AS spot_num, 
+			   project.spot.name AS spot_name, 
+			   project.spot.fileFROM project.spot
+		WHERE num IN(
+					SELECT spot_num 
+					FROM project.joinspot 
+					WHERE member_num=#{num}
+					) 
+	</select>
 
 </mapper>

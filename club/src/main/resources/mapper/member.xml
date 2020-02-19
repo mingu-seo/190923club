@@ -3,66 +3,78 @@
 
 <mapper namespace="member">
 	
-	<!-- 회원가입 -->
-	<select id="idCheck" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) FROM project.member WHERE id=#{id}
+	<!-- 회원가입 아이디 중복체크 -->
+	<select resultType="Integer" parameterType="String" id="idCheck">
+		SELECT COUNT(*) FROM project.member WHERE id=#{id} 
 	</select>
-	
-	<insert id="insertMember" parameterType="member.MemberVO">
-		INSERT INTO project.member(id, password, name, email, birth, gender, tel, profile) 
-		VALUES(
-		#{id}, md5(#{password}), #{name}, #{email}, #{birth}, #{gender}, #{tel}, #{profile});
+
+
+	<!-- 회원가입 -->
+	<insert parameterType="member.MemberVO" id="insertMember">
+		INSERT INTO project.member(id, password, name, email, birth, gender, tel, profile, state)VALUES(#{id}, md5(#{password}), #{name}, #{email}, #{birth}, #{gender}, #{tel}, #{profile}, 2); 
 	</insert>
 
-	
+
 	<!-- 유저 로그인 -->
-	<select id="userLogin" parameterType="member.MemberVO" resultType="member.MemberVO">
-		SELECT * FROM project.member WHERE id=#{id} AND password=md5(#{password})
-	</select>
-
-
-	<!-- 마이페이지 -->
-	<select id="mypageView" parameterType="Integer" resultType="member.MemberVO">
-		SELECT * FROM project.member WHERE num=#{num}
+	<select resultType="member.MemberVO" parameterType="member.MemberVO" id="userLogin">
+		SELECT * FROM project.member WHERE id=#{id} AND password=md5(#{password}) 
 	</select>
 	
-	<update id="mypageUpdate" parameterType="member.MemberVO">
-		UPDATE project.member 
-		SET name=#{name}, birth=#{birth}, gender=${gender}, email=#{email}, tel=#{tel}
-		<if test="profile != null and profile != ''">
-		, profile=#{profile}
-		</if>
+	
+	<!-- 마이페이지 -->
+	<select resultType="member.MemberVO" parameterType="Integer" id="mypageView">
+		SELECT * FROM project.member WHERE num=#{num} 
+	</select>
+	
+	
+	<!-- 마이페이지 수정 -->
+	<update parameterType="member.MemberVO" id="mypageUpdate">
+		UPDATE project.memberSET name=#{name}, birth=#{birth}, gender=${gender}, email=#{email}, tel=#{tel} 
+	<if test="profile != null and profile != ''">, profile=#{profile} </if>
 		WHERE num=#{num} 
 	</update>
 	
 	
- 	<!-- 전체 회원 리스트 -->    
-	<select id="memberList" parameterType="member.MemberVO" resultType="member.MemberVO">
-		SELECT * FROM project.member 
-		<include refid="searchword"/>
-		limit #{startIndex}, #{limit}
-	</select> 
-	
-	
-	<!-- 스팟 회원 리스트 --> 
-	
-
 	<!-- 페이징 처리 -->
-	<select id="count" resultType="Integer" parameterType="member.MemberVO">
-		SELECT count(*) FROM project.member
-		<include refid="searchword"/>
+	<select resultType="Integer" parameterType="member.MemberVO" id="count">
+		
 	</select>
 	
-	<!-- 회원 검색 -->
-	<sql id="searchword"> 
+	
+	<!-- admin 페이지 회원 리스트 -->
+	<select resultType="member.MemberVO" parameterType="member.MemberVO" id="memberList">
+		SELECT * FROM project.member 
+		<include refid="searchword"/>
+		limit #{startIndex}, #{limit} 
+	</select>
+	
+	<!-- admin 페이지 회원 검색 -->
+	<sql id="searchword">
 		<choose>
-			<when test="searchword != null and searchword != '' and stype == 'all'">			
-				WHERE name like '%${searchword}%'
-				OR id like '%${searchword}%'
+			<when test="searchword != null and searchword != '' and stype == 'all'">	
+				WHERE name like '%${searchword}%'OR id like '%${searchword}%' 
 			</when>
-			<when test="searchword != null and searchword != ''">
-				WHERE ${stype} LIKE '%${searchword}%'
+			<when test="searchword != null and searchword != '' and stype != null and stype != ''">
+				WHERE ${stype} LIKE '%${searchword}%' 
 			</when>
 		</choose>
 	</sql>
+	
+	
+	<!-- admin 페이지 회원 상태 휴면 -->
+	<update parameterType="member.MemberVO" id="memberSleep">
+		UPDATE project.member SET state=3 WHERE num=#{num} 
+	</update>
+	
+	
+	<!-- admin 페이지 회원 상태 활성화 -->
+	<update parameterType="member.MemberVO" id="memberWake">
+		UPDATE project.member SET state=2 WHERE num=#{num} 
+	</update>
+	
+	
+	<!-- admin 페이지 회원 상태 삭제 -->
+	<delete parameterType="member.MemberVO" id="memberDelete">
+		DELETE FROM project.member WHERE num=#{num} 
+	</delete>
 </mapper>

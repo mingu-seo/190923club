@@ -9,16 +9,50 @@ public class MemberVO {
 	private String name;
 	private String email;
 	private String birth;
-	private int gender; 
+	private int gender;
 	private String tel;
 	private String profile;
+	private int state;
+	
 	// spot 조인
 	private int spot_num;
 	private int member_num;
 	private int joinspot_num;
 	private int joinspot_grade;
 	
+	// 검색
+	private String searchword;
+	private String stype;
 	
+	// 페이지
+	private int page;	// 사용자가 요청한 페이지번호
+	private int limit;	// 페이지당 로우 수
+	private int startIndex;	// limit 시작 인덱스
+	private int maxPage;	// 총 페이지 수
+	
+	// 회원이 가입한 spot
+	private String file;
+	private String spot_name;
+	
+	
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
+	public String getSpot_name() {
+		return spot_name;
+	}
+	public void setSpot_name(String spot_name) {
+		this.spot_name = spot_name;
+	}
+	public int getState() {
+		return state;
+	}   
+	public void setState(int state) {
+		this.state = state;
+	}
 	public int getJoinspot_grade() {
 		return joinspot_grade;
 	}
@@ -37,15 +71,7 @@ public class MemberVO {
 	public void setMember_num(int member_num) {
 		this.member_num = member_num;
 	}
-	private int page;	// 사용자가 요청한 페이지번호
-	private int limit;	// 페이지당 로우 수
-	private int startIndex;	// limit 시작 인덱스
-	private int maxPage;	// 총 페이지 수
-	
-	private String searchword;  
-	private String stype;
 
-	
 	public int getSpot_num() {
 		return spot_num;
 	}
@@ -59,9 +85,8 @@ public class MemberVO {
 	}
 	
 	public String getSearchword() {
-		return searchword;
+		return searchword==null ? "" : searchword;
 	}
-
 	public void setSearchword(String searchword) {
 		this.searchword = searchword;
 	}
@@ -69,7 +94,6 @@ public class MemberVO {
 	public String getStype() {
 		return stype;
 	}
-
 	public void setStype(String stype) {
 		this.stype = stype;
 	}

@@ -14,6 +14,7 @@ public class CalendarVO {
 	private int spot_num;
 	private int member_id;
 	
+	
 	public String getName() {
 		return name;
 	}

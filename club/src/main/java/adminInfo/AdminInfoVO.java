@@ -22,7 +22,7 @@ public class AdminInfoVO {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
+	}  
 	public String getFile() {
 		return file;
 	}

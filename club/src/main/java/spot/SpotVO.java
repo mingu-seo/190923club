@@ -10,7 +10,7 @@ public class SpotVO {
 	private String file;		//SPOT 프로필
 	private String content;			//내용
 	private String tel;				//전화번호
-	private String email;			//이메일
+	private String email;			//이메일  
 	private Timestamp regdate;		// 등록일
 	private Timestamp modifydate;	// 수정일
 	private String question;

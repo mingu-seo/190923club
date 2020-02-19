@@ -11,7 +11,7 @@ public class GalleryVO {
 	private String title; //제목
 	private String image; //사진1
 	private String image2; //사진2
-	private String image3; //사진3
+	private String image3; //사진3  
 	private String search_word; //검색기능
 	private int like_cnt; //좋아요갯수
 	private String spot_num; //스팟번호

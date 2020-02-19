@@ -10,7 +10,7 @@ public class CalendarVO {
 	private String date;
 	private String title;
 	private String contents;
-	private Timestamp regdate;
+	private Timestamp regdate;  
 	private int spot_num;
 	private int member_id;
 	

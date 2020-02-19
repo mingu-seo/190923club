@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import spot.SpotVO;
-import spotCategory.SpotCategoryVO;
 import util.FileUtil;
 
 @Service

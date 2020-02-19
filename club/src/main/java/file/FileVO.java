@@ -16,7 +16,7 @@ public class FileVO {
 	}
 	public void setFile_num(int file_num) {
 		this.file_num = file_num;
-	}
+	}  
 	public int getPost_id() {
 		return post_id;
 	}

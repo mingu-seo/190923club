@@ -9,7 +9,7 @@ public class BoardVO {
 	private Timestamp regdate;
 	private String writer;
 	private String title;
-	private String contents;
+	private String contents;  
 	private int view;
 	private String search_word;
 	private int like_cnt;

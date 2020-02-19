@@ -7,7 +7,7 @@ public class NoticeVO {
 	private int board_id;
 	private int post_id;
 	private Timestamp regdate;
-	private String writer;
+	private String writer; 
 	private String title;
 	private String contents;
 	private int view;

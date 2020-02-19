@@ -13,7 +13,7 @@ public class CategoryVO {
 	
 	
 	public String getEmpty_name() {
-		return empty_name;
+		return empty_name;  
 	}
 	public void setEmpty_name(String empty_name) {
 		this.empty_name = empty_name;

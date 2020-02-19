@@ -15,7 +15,7 @@ public class LikeVO {
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
 	}
-	public int getLike_no() {
+	public int getLike_no() {  
 		return like_no;
 	}
 	public void setLike_no(int like_no) {

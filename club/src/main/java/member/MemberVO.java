@@ -9,7 +9,7 @@ public class MemberVO {
 	private String name;
 	private String email;
 	private String birth;
-	private int gender;
+	private int gender; 
 	private String tel;
 	private String profile;
 	// spot 조인

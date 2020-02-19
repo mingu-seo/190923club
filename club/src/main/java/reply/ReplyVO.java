@@ -9,7 +9,7 @@ public class ReplyVO {
 	private int g_id; 
 	private int g_lev; 
 	private int g_seq;
-	private String contents; //내용
+	private String contents; //내용  
 	private String writer; //작성자
 	private Timestamp regdate;
 	private int board_id;

@@ -10,7 +10,7 @@ public class SpotCategoryVO {
 	private String searchOption;
 	
 	public int getNum() {
-		return num;
+		return num;  
 	}
 	public void setNum(int num) {
 		this.num = num;

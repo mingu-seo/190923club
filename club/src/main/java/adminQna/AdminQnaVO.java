@@ -16,7 +16,7 @@ public class AdminQnaVO {
 	
 	private String keyword;
 	private String searchOption;
-	
+	  
 	//추가생성 필드
 	private int page;
 	private int limit;

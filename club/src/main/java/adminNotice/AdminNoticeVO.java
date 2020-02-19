@@ -30,7 +30,7 @@ public class AdminNoticeVO {
 	}
 	
 	public int getStartIndex() {
-		int p = (this.page-1)*this.limit;
+		int p = (this.page-1)*this.limit;  
 		return p;
 	}
 

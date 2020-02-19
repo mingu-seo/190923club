@@ -19,7 +19,7 @@ public class AdminInterceptor implements HandlerInterceptor {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.print("<script>");
+			out.print("<script>");  
 			out.print("alert('관리자만 접속가능합니다.');");
 			out.print("location.href='/admin/index.do';");
 			out.print("</script>");

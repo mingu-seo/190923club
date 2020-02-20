@@ -51,7 +51,7 @@
     <div class="wrap">
         <form id="userLogin" action="userLogin.do" post="post">
 	        <div class="header">
-	            <a href="/member/joinForm1.do" style="float: right; padding: 30px;"><input style="padding: 5px 10px;" type="button" value="회원가입"></a>
+	            <a href="/member/joinForm1.do" style="float: right; padding: 30px; font-size: 18px; font-weight: bold;" >회원가입</a>
 	            	<div class="login">
 		                    <div class="loginHeader">
 		                    	<div class="loginForm">
@@ -60,7 +60,7 @@
 			                        <div class="login_password"><input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요"></div>
 			                        <div class="loginBtnArea">
 			                                <a href="script:login()">
-			                                	<input type="submit" id="userLogin" value="로그인">
+			                                	<input type="submit" id="userLogin" value="로그인"> 
 			                                </a>
 			                                <input type="button" value="비밀번호 찾기">
 			                        </div>

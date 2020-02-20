@@ -40,8 +40,8 @@
 <body>
     <div class="wrap">
         <div class="header">
-            <a href="/member/userLogout.do" style="float: right; padding: 30px;">
-            	<input style="padding: 5px 10px;" type="button" value="로그아웃">
+            <a href="/member/userLogout.do" style="float: right; padding: 30px; font-size: 18px; font-weight: bold;">
+            	로그아웃
             </a>
             <div class="login">
                 <div class="loginHeader">

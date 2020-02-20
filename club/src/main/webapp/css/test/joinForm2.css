@@ -21,10 +21,10 @@
 .menu>ul>li {
 	list-style-type: none;
 	float: left;
-	width: 400px;
+	width: 400px; 
 	text-align: center;
 	line-height: 40px;
-	border: 1px solid #000000;
+	border: 1px solid #d1d1d1;
 	box-sizing: border-box;
 }
 
@@ -101,14 +101,16 @@
 }
 
 .content-form  input[type='text'], .content-form  input[type='password'] {
-	height: 24px;
+	height: 30px; 
 	width: 100%;
 }
 
 .content-form input[type='button'] {
-	height: 24px;
+	height: 30px; 
+	margin: 0 0 0 30px;
 }
 
 .cf_bottom {
-	text-align: left;
+	text-align: left; 
+	font-size: 18px;
 }

@@ -16,7 +16,7 @@
             <ul>
                 <li>약관동의</li>
                 <li>정보입력</li>
-                <li style="background-color: blanchedalmond;">가입완료</li>
+                <li style="background-color: aliceblue;">가입완료</li>
             </ul>
         </div>
         <div class="container">

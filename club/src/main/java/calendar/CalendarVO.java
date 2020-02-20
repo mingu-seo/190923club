@@ -1,26 +1,25 @@
 package calendar;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CalendarVO {
 	
 	private String name;//요일
 	private String today;//날짜
 	private int num;
-	private String date;
-	private String title;
-	private String contents;
-	private Timestamp regdate;  
-	private int spot_num;
-	private int member_id;
-	private String writer;
 	
+	private List<ScheduleVO> schedule;
 	
-	public String getWriter() {
-		return writer;
+	public CalendarVO() {
+		this.schedule = new ArrayList<ScheduleVO>();
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	
+	public List<ScheduleVO> getSchedule() {
+		return schedule;
+	}
+	public void setSchedule(List<ScheduleVO> schedule) {
+		this.schedule = schedule;
 	}
 	public String getName() {
 		return name;
@@ -40,41 +39,4 @@ public class CalendarVO {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getContents() {
-		return contents;
-	}
-	public void setContents(String contents) {
-		this.contents = contents;
-	}
-	public Timestamp getRegdate() {
-		return regdate;
-	}
-	public void setRegdate(Timestamp regdate) {
-		this.regdate = regdate;
-	}
-	public int getSpot_num() {
-		return spot_num;
-	}
-	public void setSpot_num(int spot_num) {
-		this.spot_num = spot_num;
-	}
-	public int getMember_id() {
-		return member_id;
-	}
-	public void setMember_id(int member_id) {
-		this.member_id = member_id;
-	}
-
 }

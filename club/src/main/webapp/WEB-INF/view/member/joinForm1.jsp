@@ -25,7 +25,7 @@ function contractCheck(){
         </div>    
         <div class="menu">
             <ul>
-                <li style="background-color: blanchedalmond;">약관동의</li>
+                <li style="background-color: aliceblue;">약관동의</li>
                 <li>정보입력</li>
                 <li>가입완료</li>
             </ul>
@@ -35,26 +35,14 @@ function contractCheck(){
                 <div class="head">
 					약관동의
                 </div>
-                <div class="content">
-                    <p>약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의</p>
-                    <p>약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의</p>
-                    <p>약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의</p>
-                    <p>약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의</p>
-                    <p>약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의</p>
-                    <p>약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의</p>
-                    <p>약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의</p>
-                    <p>약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의</p>
-                    <p>약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의</p>
-                    <p>약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의</p>
-                    <p>약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의</p>
-                    <p>약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의</p>
-                    <p>약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의-약관 동의</p>
-                </div>
+                <div class="content" style="font-size:30px;">
+                   	핫스팟 약관동의를 잘 읽어주세요. 
+                </div> 
                 <div class="bottom">
-                    <p><input id="contractCheck" type="checkbox">약관에 동의합니다.</p>
+                    <input id="contractCheck" type="checkbox" style="width: 15px; height: 15px;">&nbsp;<span style="font-size:14px;">약관에 동의합니다.</span>
                 </div>
                 <div class="btn">
-                    <input style="padding: 5px 20px;" type="button" value="다음" onclick="contractCheck()">
+                    <input style="padding: 5px 20px; background-color: black; color:white; cursor:pointer;" type="button" value="다음" onclick="contractCheck()">
                 </div>
             </div>
         </div>

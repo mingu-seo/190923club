@@ -3,9 +3,8 @@
 <%@ page import ="java.util.*" %>
 <%
 List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calendar_list");
-int m = (Integer)request.getAttribute("m");
 %>
-<html>
+<html> 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -16,6 +15,16 @@ int m = (Integer)request.getAttribute("m");
 		window.open('/calendar/popup.do?spot_num=<%=request.getParameter("spot_num")%>&date='+today, 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no'); 
 	};
 </script>
+<style>
+td {
+	position:relative;
+}
+.dateNumber {
+	position: absolute;
+    right: 5;
+    top: 5;
+}
+</style>
 </head>
 <body> 
 		<!-- S T A R T :: headerArea-->
@@ -33,9 +42,11 @@ int m = (Integer)request.getAttribute("m");
 						<div class="visualRight">
 						<div id="bwrite">
 							<div class="" style="font-size: 28px;  margin-bottom: 20px;">
-								<a href="/calendar/calendarmain.do?spot_num=<%=spot_num%>&monthyear=<%=m-1%>"><img src="/img/right-arrow.png" style="width:30px; height:30px;"></a>
+								<a href="/calendar/calendarmain.do?spot_num=<%=spot_num%>&yearmonth=${prevMonth}"><img src="/img/right-arrow.png" style="width:30px; height:30px;"></a>
 								달력
-								<a href="#;"><img src="/img/L-arrow.png" style="width:30px; height:30px;"></a>
+								<a href="/calendar/calendarmain.do?spot_num=<%=spot_num%>&yearmonth=${nextMonth}"><img src="/img/L-arrow.png" style="width:30px; height:30px;"></a>
+							</div>
+							<div style="text-align: right">
 							</div>
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" class="calendar_table">
 								<colgroup>
@@ -63,7 +74,7 @@ int m = (Integer)request.getAttribute("m");
 									if (calendar_list.size() == 0) {
 								%>
 									<tr>
-										<td>달력이 존재하지 않습니다.</td>
+										<td colspan="30" style="font-size: 30px;">달력이 존재하지 않습니다.</td>
 									</tr>
 								<%
 									} else {
@@ -71,7 +82,7 @@ int m = (Integer)request.getAttribute("m");
 											int name = Integer.parseInt(calendar_list.get(i).getName());	// 요일
 											String today = calendar_list.get(i).getToday();	// 날짜
 											
-											String date = "<span>"+today.substring(8)+"</span>";
+											String date = today.substring(8);
 											
 											if (i == 0 || 1 == name) { 
 								%>
@@ -87,10 +98,10 @@ int m = (Integer)request.getAttribute("m");
 											}
 								%>
 										<td>
-											<div class="calBtn"> 
-												<input type="button" class="calPop" style="background-color: white; cursor: pointer; color: #f8585b;"value="일정 등록" onclick="popup('<%=today%>');">
-											</div>
-											<%=date%>
+										<% for (int k=0; k<calendar_list.get(i).getSchedule().size(); k++) { %>
+											<div><%=calendar_list.get(i).getSchedule().get(k).getTitle() %></div>
+										<% } %>
+											<span class='dateNumber' style="cursor: pointer;" onclick="popup('<%=today%>');"><%=date%></span>
 										</td>
 								<%
 											if (i == calendar_list.size()-1) {

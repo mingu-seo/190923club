@@ -126,7 +126,7 @@ public class BoardController {
 				msg = "아직 카테고리가 생성되지 않았습니다.\\n 관리자에게 문의하세요.";
 				url = "/board/submain/boardmain.do?spot_num="+spot_num;
 				model.addAttribute("msg", msg);
-				model.addAttribute("url", url);
+				model.addAttribute("url", url); 
 				return "include/alert";
 			} else {
 				return "board/writing/boardList";

@@ -104,7 +104,7 @@
         <div class="menu">
             <ul>
                 <li>약관동의</li>
-                <li style="background-color: blanchedalmond;">정보입력</li>
+                <li style="background-color: aliceblue;">정보입력</li>
                 <li>가입완료</li>
             </ul>
         </div>
@@ -119,7 +119,7 @@
                         </div>
                         <div class="cf_bottom">
                             <div class="cf_bottom_left">
-                                <input type="text" name="id" id="id" placeholder="아이디를 입력해 주세요"/>
+                                <input type="text" name="id" id="id" placeholder="아이디를 입력해 주세요."/>
                             </div>
                             <div class="cf_bottom_right">
                                 <input type="button" id="duplicateCheck" value="중복체크">
@@ -133,7 +133,7 @@
                             </div>
                         </div>
                         <div class="cf_bottom">
-                            <input type="password" name="password" id="password" placeholder="비밀번호를 입력해 주세요"/>
+                            <input type="password" name="password" id="password" placeholder="비밀번호를 입력해 주세요."/>
                         </div>
                     </div>    
                     <div class="content-form">
@@ -143,17 +143,17 @@
                             </div>
                         </div>
                         <div class="cf_bottom">
-                            <input type="password" name="password_re" id="password_re" placeholder="비밀번호를 입력해 주세요"/>
+                            <input type="password" name="password_re" id="password_re" placeholder="비밀번호를 입력해 주세요."/>
                         </div>
                     </div>  
                     <div class="content-form">
                         <div class="cf_top">
                             <div class="cf_top_title">
-                                <lable for="name">이름</lable>
+                                <label for="name">이름</label>
                             </div>
                         </div>
                         <div class="cf_bottom">
-                            <input type="text" name="name" id="name" placeholder="이름을 입력해 주세요"/>
+                            <input type="text" name="name" id="name" placeholder="이름을 입력해 주세요."/>
                         </div>
                     </div>  
                     <div class="content-form">
@@ -163,7 +163,7 @@
                             </div>
                         </div>
                         <div class="cf_bottom">
-                            <input type="text" name="email" id="email" placeholder="메일 주소를 입력해 주세요"/>
+                            <input type="text" name="email" id="email" placeholder="메일 주소를 입력해 주세요."/>
                         </div>
                     </div>  
                     <div class="content-form">
@@ -245,12 +245,12 @@
                     <div class="content-form">
                         <div class="cf_top">
                             <div class="cf_top_title">
-                                <lable for="gender">성별</lable>
+                                <label for="gender">성별</label>
                             </div>
                         </div>
                         <div class="cf_bottom">
                             <input type="radio" name="gender" value="1" checked/>
-                            <label for="man">남자</label>
+                            <label for="man">남자</label>&nbsp;&nbsp;
                             <input type="radio" name="gender" value="2"/>
                             <label for="woman">여자</label>
                         </div>
@@ -258,11 +258,11 @@
                     <div class="content-form">
                         <div class="cf_top">
                             <div class="cf_top_title">
-                                <lable for="tel">휴대전화</lable>
+                                <label for="tel">휴대전화</label>
                             </div>
                         </div>
                         <div class="cf_bottom">
-                            <input type="text" name="tel" id="tel" placeholder="휴대전화를 입력해 주세요 (숫자만)"/>
+                            <input type="text" name="tel" id="tel" placeholder="휴대전화를 입력해 주세요. (숫자만)"/>
                         </div>
                     </div>  
                     <div class="content-form">

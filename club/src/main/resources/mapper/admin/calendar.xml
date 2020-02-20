@@ -14,10 +14,11 @@
 		(#{spot_num}, #{date}, #{title}, #{member_id}, #{contents}, now(), #{writer})		
 	</insert>
 	
-	<select id="scheduelList" parameterType="calendar.CalendarVO" resultType="calendar.CalendarVO">
+	<select id="scheduelList" parameterType="calendar.ScheduleVO" resultType="calendar.ScheduleVO">
 		select * from project.schedule
 		where 
 		spot_num = #{spot_num} and date = #{date}
+		ORDER BY date ASC
 	</select>
 </mapper>
 

@@ -22,7 +22,7 @@ MemberVO lvo = (MemberVO)request.getAttribute("lvo");
 			        		<%=list.getName()%>
 			        	</div>
 			        	<div class="clubInfo">
-			        		멤버 <%= %>명<br>
+			        		멤버 명<br> 
 			        		회장 <%=lvo.getId() %>
 			        	</div>
         		</div>

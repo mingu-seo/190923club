@@ -82,7 +82,7 @@ function drop() {
 			                <%
 			                for (int i=0; i<memberList.size(); i++) {
 			                %>
-			                    <tr>
+			                    <tr class="listCss">
 			                        <td class="first"><input type="checkbox" name="joinspot_num" id="no" value="<%=memberList.get(i).getJoinspot_num()%>"/></td>
 			                        <td><%=memberList.get(i).getJoinspot_num()%></td>
 			                        <td class="profileImg"><img src="/profileImg/<%=memberList.get(i).getProfile()%>"></td>

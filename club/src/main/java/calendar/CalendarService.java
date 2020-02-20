@@ -11,7 +11,7 @@ public class CalendarService {
 	@Autowired
 	private calendar.CalendarDAO calDAO;
 	
-	public int insert(CalendarVO vo) {
+	public int insert(ScheduleVO vo) {
 		return calDAO.insert(vo);
 	}
 	

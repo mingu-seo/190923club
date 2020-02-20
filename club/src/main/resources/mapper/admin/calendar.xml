@@ -7,7 +7,7 @@
     	order by today asc
 	</select>
 	
-	<insert id="insert" parameterType="calendar.CalendarVO">
+	<insert id="insert" parameterType="calendar.ScheduleVO"> 
 		insert into project.schedule
 		(spot_num, date, title, member_id, contents, regdate, writer)
 		values

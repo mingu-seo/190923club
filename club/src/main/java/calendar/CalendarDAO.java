@@ -16,7 +16,7 @@ public class CalendarDAO {
 		return sqlSession.selectList("calendar.select", yearmonth);
 	}
 	
-	public int insert(CalendarVO vo) { 
+	public int insert(ScheduleVO vo) { 
 		return sqlSession.insert("calendar.insert", vo);
 	}
 	

@@ -82,7 +82,9 @@ public class BoardController {
 	}
 	//게시판 메인 페이지
 	@RequestMapping("/board/submain/boardmain.do") 
-	public String boardMain(NoticeVO vo, Model model, BoardVO bVO, GalleryVO gvo, @RequestParam("spot_num") String spot_num) {
+	public String boardMain(NoticeVO vo, Model model, BoardVO bVO, GalleryVO gvo, 
+			@RequestParam("spot_num") String spot_num, 
+			HttpSession session, HttpServletRequest request) {
 		List<NoticeVO> nlist = nService.mainNoticeList(vo);
 		List<BoardVO> bList = bService.mainBoardList(bVO);
 		List<GalleryVO> glist = gService.mainGalleryList(gvo);
@@ -95,6 +97,18 @@ public class BoardController {
 		model.addAttribute("glist", glist); //갤러리 리스트
 		model.addAttribute("bList", bList); //게시판 리스트
 		model.addAttribute("nlist", nlist); //공지사항 리스트
+		
+		MemberVO mv = (MemberVO)session.getAttribute("sess");
+		// submainLeft 리더, 회원 값 넘겨주기
+		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+		int member_num = uv.getNum();														// 회원 체크(추가된부분)
+		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
+		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
+		MemberVO lvo = joinSpotService.spotLeader(uv);										// 리더 값뿌리기
+		model.addAttribute("lvo", lvo);
+		
+		int joinSpotCnt = bService.checkJoinSpot(mv.getNum(), Integer.parseInt(spot_num));
+		model.addAttribute("joinSpotCnt", joinSpotCnt); 
 		
 		return "board/submain/boardmain";
 	}

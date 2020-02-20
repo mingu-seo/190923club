@@ -3,12 +3,16 @@ package calendar;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import member.MemberVO;
 import spot.SpotService;
 import spot.SpotVO;
 
@@ -24,9 +28,31 @@ public class CalendarController {
 	@Autowired
 	private CalendarService calService;
 	
+	@Autowired
+	private board.BoardService bService;
+	
+	@Autowired
+	private joinSpot.JoinSpotService joinSpotService;
+	
 	// 달력화면 
 	@RequestMapping("/calendar/calendarmain.do")
-	public String index(Model model, @RequestParam(name="yearmonth", required=false) String yearmonth, @RequestParam("spot_num") String spot_num) {
+	public String index(Model model, 
+			@RequestParam(name="yearmonth", required=false) String yearmonth,
+			@RequestParam("spot_num") String spot_num,
+			HttpSession session, HttpServletRequest request) {
+
+		MemberVO mv = (MemberVO)session.getAttribute("sess");
+		// submainLeft 리더, 회원 값 넘겨주기
+		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+		int member_num = uv.getNum();														// 회원 체크(추가된부분)
+		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
+		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
+		MemberVO lvo = joinSpotService.spotLeader(uv);										// 리더 값뿌리기
+		model.addAttribute("lvo", lvo);
+		
+		int joinSpotCnt = bService.checkJoinSpot(mv.getNum(), Integer.parseInt(spot_num));
+		model.addAttribute("joinSpotCnt", joinSpotCnt); 
+		
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 		Calendar cal = Calendar.getInstance();
 		int y = cal.get(Calendar.YEAR);
@@ -66,6 +92,7 @@ public class CalendarController {
 		model.addAttribute("spot_vo", spotvo);
 		model.addAttribute("calendar_list", list);
 		model.addAttribute("spot_num", spot_num);
+		
 		return "calendar/calendarMain";
 	}
 	
@@ -75,7 +102,7 @@ public class CalendarController {
 	}
 	
 	@RequestMapping("/calendar/insert.do")
-	public String insert(Model model, CalendarVO vo) {
+	public String insert(Model model, ScheduleVO vo) {
 		int r = calendarDAO.insert(vo);
 		String msg="";
 		

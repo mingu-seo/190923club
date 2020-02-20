@@ -1,7 +1,16 @@
-/* 회원 리스트 */
+/* �쉶�썝 由ъ뒪�듃 */
 .tableTitle {
-	background-color: #dbeef4;
+	background-color: lightsteelblue;
 	margin: 10px 0;
+	height:30px;
+}
+
+.tableTitle th {
+	font-size: 16px;
+}
+
+.listCss td{
+	font-size: 15px;
 }
 
 .content {

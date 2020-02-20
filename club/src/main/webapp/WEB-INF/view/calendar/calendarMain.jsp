@@ -11,13 +11,13 @@ List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calenda
 <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
 <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 <script>
-	function popup(today) {
-		window.open('/calendar/popup.do?spot_num=<%=request.getParameter("spot_num")%>&date='+today, 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no'); 
+	function popup(today) { 
+		window.open('/calendar/popup.do?spot_num=<%=request.getParameter("spot_num")%>&date='+today, 'window팝업', 'width=400, height=400, left=600, top=400, menubar=no'); 
 	};
 </script>
 <style>
 td {
-	position:relative;
+	position:relative; 
 }
 .dateNumber {
 	position: absolute;
@@ -45,8 +45,9 @@ td {
 								<a href="/calendar/calendarmain.do?spot_num=<%=spot_num%>&yearmonth=${prevMonth}"><img src="/img/right-arrow.png" style="width:30px; height:30px;"></a>
 								달력
 								<a href="/calendar/calendarmain.do?spot_num=<%=spot_num%>&yearmonth=${nextMonth}"><img src="/img/L-arrow.png" style="width:30px; height:30px;"></a>
-							</div>
-							<div style="text-align: right">
+							</div> 
+							<div style="text-align: right; color:red; margin-bottom: 5px;">
+								※ 날짜를 선택하시면 일정을 등록할 수 있습니다.
 							</div>
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" class="calendar_table">
 								<colgroup>

@@ -351,6 +351,9 @@
        box-shadow: 0 1px 3px rgba(34,25,25,0.4);
        cursor:pointer;
    }
+   .paper:hover {
+   		box-shadow: 0 0 10px gray;   
+   }
 
 
 

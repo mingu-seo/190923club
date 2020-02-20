@@ -13,8 +13,15 @@ public class CalendarVO {
 	private Timestamp regdate;  
 	private int spot_num;
 	private int member_id;
+	private String writer;
 	
 	
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
 	public String getName() {
 		return name;
 	}

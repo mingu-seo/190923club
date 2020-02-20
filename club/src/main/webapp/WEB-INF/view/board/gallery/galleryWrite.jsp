@@ -34,8 +34,8 @@ function getThumbnailPrivew(html, $target) {
 </head>
 <body>
 
-    <div class="wrap">
     	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
+    <div class="wrap">
        
        <div class="main">
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>

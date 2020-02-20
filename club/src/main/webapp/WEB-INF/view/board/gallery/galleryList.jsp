@@ -112,6 +112,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
                 
                 
                 function ajaxView(id){
+                	console.log("ajaxView: id="+id);
                 	$.ajax({
                 		async :false,
                 		url:'galleryAjax.do',
@@ -127,7 +128,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 	                		if (data.image3 != '') images.push(data.image3);
 	                		//images = [data.image, data.image2, data.image3];
 	                		$(".paper-text2").text(data.title);	
-	                		$(".paper-contents").text(data.contents);
+	                		$(".paper-contents").html(data.contents.replace(/nl/gi,"<br>"));
 	                		$(".like_cnt").text(data.like_cnt);
 		                	$(".paper-each2").attr("src", "/upload/"+data.image);
 		                	$("#prePost").attr("onclick", "moveView("+data.post_id+", 'prev')");
@@ -143,8 +144,9 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 		               		showLightBox();
 		               		getReplyList(id);
 	                	},
-	                	error:function(data){
+	                	error:function(data,error){
 	                		console.log(data);
+	                		console.log(error);
                 		}
                 	});
 	                	
@@ -171,6 +173,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
                 }
                 
                 function getReplyList(id) {
+                	console.log("getReplyList id="+id);
                 	$.ajax({
                 		async :false,
                 		url:'/board/replyList.do',
@@ -238,7 +241,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 			               		$("#viewCnt").text(data.view); //조회수
 			               		$(".like_cnt").text(data.like_cnt); // 좋아요
 			               		showLightBox();
-			               		getReplyList(id);
+			               		getReplyList(data.post_id);
 	                		} else {
 	                			alert("마지막 글입니다.");
 	                		}
@@ -272,57 +275,53 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
         	
         <div class="visualRight">
        		<div class="board_ctg_name"><%=cate_name.getName() %></div>
-			<div class="board_writing">
-				<a href="galleryWrite.do?spot_num=<%=spot_vo.getNum() %>&board_id=1&category_id=<%=vo.getCategory_id()%>">
-				<button class="goWriting">글작성</button></a>  
-			</div>
+				<div class="board_writing">
+					<a href="galleryWrite.do?spot_num=<%=spot_vo.getNum() %>&board_id=1&category_id=<%=vo.getCategory_id()%>">
+					<button class="goWriting">글작성</button></a>  
+				</div>
 	
-			
-				 
-				 
-			<div id="horizen"></div>
-	<div id=section>
-	 <section id="main-section">
-     	
-     	<%
-		for (int i=0; i<list.size(); i++) {
-		%>
-     	<div class="paper" onclick="ajaxView('<%=list.get(i).getPost_id()%>');">
-	          <div class="paper-holder">
-	             <p><%=list.get(i).getWriter()%></p>
-				 <p class="paper-description"><%=util.Function.getYmd(list.get(i).getRegdate()) %></p> 
-		     </div>
-	         <div class="paper-content">
-	            <a class="paper-link">
-	            <img class = "paper-each" src="/upload/<%=list.get(i).getImage()%>">
-	            </a>
-	           	  <p class="paper-text"><%=list.get(i).getTitle()%></p>
-	          </div> 
-         </div>
-	
-		<%
-		}
-		%>
-	</section>
-	</div>
-		 	 <div class="boardSearch2">
-			 	<form action="/board/gallery/galleryList.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
-				<input type="search" name="search_word" id="boardSearch" value="${gallery.serch_word }">
-				<input id="board_search_btn" type="submit" value="검색">
-				</form>
-			</div>
+				<div id=section>
+				 <section id="main-section">
+			     	
+			     	<%
+					for (int i=0; i<list.size(); i++) {
+					%>
+			     	<div class="paper" onclick="ajaxView('<%=list.get(i).getPost_id()%>');">
+				          <div class="paper-holder">
+				             <p><%=list.get(i).getWriter()%></p>
+							 <p class="paper-description"><%=util.Function.getYmd(list.get(i).getRegdate()) %></p> 
+					     </div>
+				         <div class="paper-content">
+				            <a class="paper-link">
+				            <img class = "paper-each" src="/upload/<%=list.get(i).getImage()%>">
+				            </a>
+				           	  <p class="paper-text"><%=list.get(i).getTitle()%></p>
+				          </div> 
+			         </div>
+				
+					<%
+					}
+					%>
+				</section>
+				</div>
+			 	<div class="boardSearch2">
+				 	<form action="/board/gallery/galleryList.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
+					<input type="search" name="search_word" id="boardSearch" value="${gallery.serch_word }">
+					<input id="board_search_btn" type="submit" value="검색">
+					</form>
+				</div>
 	 
 	
-</div>
-</div>
+				<!-- S T A R T :: footerArea-->
+				<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
+				<!-- E N D :: footerArea-->
+			</div><!-- visualRight div -->
+		</div><!-- visual div -->
+    </div><!-- main div -->
+</div><!-- wrap div -->  
         
        
         
-    </div>
-    </div>
-		<!-- S T A R T :: footerArea-->
-		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
-		<!-- E N D :: footerArea-->
 </body>
       <div id="lb_wrap">
        <div id="darken-background">
@@ -344,7 +343,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
                    
                 <hr class="lightbox-splitter">
                 
-                <div class="galleryImage"> 
+                <div class="galleryImage">  
 	                <a id="prePost" href="#;"><img src="/img/board/leftDoubleArrow.png" style="max-height: 30px; max-width: 30px;"></a> 
 	                <a id="preHref" href="#;" onclick="preHref();"><img src="/img/board/leftArrow.png" style="max-height: 30px; max-width: 30px;"></a>
 	                <img class="paper-each2" src="/upload/${gallery.image }" style="max-height: 700px;"> 
@@ -352,7 +351,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 	                <a  id="nextPost"  href="#;"><img src="/img/board/rightDoubleArrow.png" style="max-height: 30px; max-width: 30px;"></a> 
                 </div>  
                  
-                
+                 
                 <div class="paper-contents" style="font-size:20px; padding:10px 40px;"></div>  
 	          	
 	          	
@@ -419,7 +418,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 				
 				
 				function replyAjax2(form_Id) {
-					var data = $("#"+formId).serialize();
+					var data = $("#"+form_Id).serialize();
 					$.ajax({
 						async :false,
 						url:'/board/reReply.do',

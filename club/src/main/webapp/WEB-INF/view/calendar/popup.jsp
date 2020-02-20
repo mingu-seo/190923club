@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="member.*" %>
+<%
+MemberVO sessVO = (MemberVO)session.getAttribute("sess");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,26 +17,33 @@
 	</div>
 	<hr>
 	<div class="formDIV"><!-- 폼 감싸는 div -->
-		<form action="스케줄 등록 주소" method="post">
-			<input type="hidden" name="spot_num" value=""> 
-			<input type="hidden" name="member_id" value="">
-			<div class="calDate" style="text-align: right">2020-02-17</div>
-			<table>
+		<form action="/calendar/insert.do" method="post">
+			<input type="hidden" name="spot_num" value="<%=request.getParameter("spot_num")%>"> 
+			<input type="hidden" name="member_id" value="<%=sessVO.getNum()%>"> 
+			<input type="hidden" name="date" value="<%=request.getParameter("date")%>">
+			<div class="calDate" style="text-align: right"><%=request.getParameter("date") %></div>
+			<table style="margin:0 auto;">
 				<tr>
 					<td>일정명</td>
-					<td><input type="text" value="구디아카데미 면접"></td>
+				</tr>
+				<tr>
+					<td><input type="text" name="title" placeholder="제목을 입력하세요"></td>
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td><input type="text" value="작성자명불러오기"></td>
 				</tr>
 				<tr>
+					<td><input type="text" name="writer" value="<%=sessVO.getName()%>"></td>
+				</tr>
+				<tr> 
 					<td>일정내용</td>
-					<td><textarea rows="10" cols="20"></textarea></td>
+				</tr>
+				<tr>
+					<td><textarea name="contents" rows="10" cols="20"></textarea></td>
 				</tr>
 			</table>
-			<div class="calBtn"> 
-				<input type="button" value="등록"> 
+			<div class="calBtn" style="text-align: center; margin:20px;"> 
+				<input type="submit" value="등록"> 
 				<input type="button" value="수정">
 			</div> 
 	 	</form>

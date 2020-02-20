@@ -2,7 +2,8 @@
 <%@ page import ="calendar.*" %>
 <%@ page import ="java.util.*" %>
 <%
-List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calendar_list"); 
+List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calendar_list");
+int m = (Integer)request.getAttribute("m");
 %>
 <html>
 <head>
@@ -11,8 +12,8 @@ List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calenda
 <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
 <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 <script>
-	function popup(date) {
-			window.open('/calendar/popup.do?date='+date, 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no'); 
+	function popup(today) {
+		window.open('/calendar/popup.do?spot_num=<%=request.getParameter("spot_num")%>&date='+today, 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no'); 
 	};
 </script>
 </head>
@@ -31,7 +32,11 @@ List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calenda
 					<!-- 내용 : s -->
 						<div class="visualRight">
 						<div id="bwrite">
-							<h3>달력</h3>
+							<div class="" style="font-size: 28px;  margin-bottom: 20px;">
+								<a href="/calendar/calendarmain.do?spot_num=<%=spot_num%>&monthyear=<%=m-1%>"><img src="/img/right-arrow.png" style="width:30px; height:30px;"></a>
+								달력
+								<a href="#;"><img src="/img/L-arrow.png" style="width:30px; height:30px;"></a>
+							</div>
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" class="calendar_table">
 								<colgroup>
 									<col width="16%" />
@@ -78,12 +83,12 @@ List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calenda
 								%> 
 										<td></td>
 								<%
-												}
+												} 
 											}
 								%>
 										<td>
 											<div class="calBtn"> 
-												<input type="button" class="calPop" value="일정 등록" onclick="">
+												<input type="button" class="calPop" style="background-color: white; cursor: pointer; color: #f8585b;"value="일정 등록" onclick="popup('<%=today%>');">
 											</div>
 											<%=date%>
 										</td>

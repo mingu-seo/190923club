@@ -97,10 +97,10 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
    </script>
 </head>
 <body>
+ 
 
-
+   	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
     <div class="wrap">
-    	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
        <div class="main">
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        

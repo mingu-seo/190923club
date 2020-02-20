@@ -40,10 +40,10 @@ function drop() {
 </script>
 </head>
 <body>
-    <div class="wrap">
 	<!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->
+    <div class="wrap">
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
         <div class="visual">
         	<!-- 왼쪽메뉴 -->

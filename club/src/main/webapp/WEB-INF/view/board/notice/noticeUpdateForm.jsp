@@ -8,7 +8,6 @@
 <%@ page import="file.*" %>
 <%
 NoticeVO nvo = (NoticeVO)request.getAttribute("nvo");
-NoticeVO vo = (NoticeVO)request.getAttribute("vo"); 
 FileVO fv = (FileVO)request.getAttribute("");
 CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 %>
@@ -54,10 +53,10 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 <body>
 
 
-    <div class="wrap">
 	<!-- S T A R T :: headerArea-->
 	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 	<!-- E N D :: headerArea-->
+    <div class="wrap">
 	<div class="main">
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
        
@@ -100,11 +99,11 @@ CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 							</td>
 						</tr>
 					</table> 
-						
+						 
 						<div class="writing_btns">
 							<input type="submit" value="작성완료" class="btns">
 							<input type="reset" value="다시 작성" class="btns"/>
-							<input type="button" value="목록" class="btns" onclick="location.href='/board/notice/noticeList.do?spot_num=<%=spot_num%>'">
+							<input type="button" value="목록" class="btns" onclick="location.href='/board/notice/noticeList.do?spot_num=<%=spot_num%>&category_id=<%=nvo.getCategory_id()%>'">
 						</div>
 				</form>
 			</div>

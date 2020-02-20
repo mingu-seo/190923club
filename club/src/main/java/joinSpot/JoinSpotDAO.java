@@ -61,7 +61,7 @@ public class JoinSpotDAO {
 	
 	
 	// spot 리더 가져오기
-	public int spotLeader(MemberVO vo) {
+	public MemberVO spotLeader(MemberVO vo) {
 		return sqlSession.selectOne("joinSpot.spotLeader", vo);
 	}
 }

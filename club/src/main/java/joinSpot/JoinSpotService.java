@@ -84,8 +84,8 @@ public class JoinSpotService {
 	}
 	
 	
-	// spot 회원 리스트
-		public int spotLeader(MemberVO vo){
-			return joinSpotDAO.spotLeader(vo);
-		}
+	// spot 리더 가져오기
+	public MemberVO spotLeader(MemberVO vo){
+		return joinSpotDAO.spotLeader(vo);
+	}
 }

@@ -9,6 +9,8 @@ SpotVO list = (SpotVO)request.getAttribute("spot_vo");
 MemberVO sess = (MemberVO)session.getAttribute("sess"); 
 JoinSpotVO jsvo = (JoinSpotVO)request.getAttribute("js");
 int cnt = request.getAttribute("cnt") == null ? 0 : (Integer)request.getAttribute("cnt");
+//int memberCount = (Integer)request.getAttribute("memberCount");
+MemberVO lvo = (MemberVO)request.getAttribute("lvo");
 %>
 <div class="visualLeft">
         	<input type="hidden" name="num" value="<%=list.getNum()%>">
@@ -20,8 +22,8 @@ int cnt = request.getAttribute("cnt") == null ? 0 : (Integer)request.getAttribut
 			        		<%=list.getName()%>
 			        	</div>
 			        	<div class="clubInfo">
-			        		멤버 00명<br>
-			        		회장 홍길동
+			        		멤버 <%= %>명<br>
+			        		회장 <%=lvo.getId() %>
 			        	</div>
         		</div>
         		<div class="clubIntro">
@@ -34,8 +36,10 @@ int cnt = request.getAttribute("cnt") == null ? 0 : (Integer)request.getAttribut
         			<%} %>
         		</div>
         		<div class="clubInfo">
-        			HOT SPOT설정
-        		<a href="/spot/spotSetting.do?spot_num=<%=list.getNum()%>"><img src="/img/board/set.png"></a>
+        			<%if(true) { %>
+	        			HOT SPOT설정
+	        			<a href="/spot/spotSetting.do?spot_num=<%=list.getNum()%>"><img src="/img/board/set.png"></a>
+	        		<%} %>
         		</div>
         	</div>
         	</div>

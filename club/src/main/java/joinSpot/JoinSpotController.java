@@ -86,6 +86,8 @@ public class JoinSpotController {
 		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
 		int member_num = uv.getNum();														// 회원 체크(추가된부분)
 		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
+		MemberVO lvo = joinSpotService.spotLeader(uv);										// 리더 값뿌리기
+//		int memberCount = joinSpotService.count(vo);											 스팟 회원수
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);
 		model.addAttribute("listcount", listcount[0]);
@@ -93,6 +95,8 @@ public class JoinSpotController {
 		model.addAttribute("memberList", list);
 		model.addAttribute("vo", vo);
 		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
+		model.addAttribute("lvo", lvo);														// 리더 값뿌리기
+//		model.addAttribute("memberCount", memberCount);										 스팟 회원수
 		return "member/memberList";
 	}
 	

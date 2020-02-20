@@ -52,17 +52,19 @@ public class BoardController {
 	public String subMain(Model model, @RequestParam("spot_num") String spot_num, HttpSession session, HttpServletRequest request) {
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 		MemberVO mv = (MemberVO)session.getAttribute("sess");
-		
+		// submainLeft 리더, 회원 값 넘겨주기
 		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
 		int member_num = uv.getNum();														// 회원 체크(추가된부분)
 		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
 		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
+		MemberVO lvo = joinSpotService.spotLeader(uv);										// 리더 값뿌리기
 		
 		int joinSpotCnt = bService.checkJoinSpot(mv.getNum(), Integer.parseInt(spot_num));
 		model.addAttribute("joinSpotCnt", joinSpotCnt); 
 		
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);
+		model.addAttribute("lvo", lvo);														// 리더 값뿌리기
 		return "board/submain/submain";
 	}
 	//게시판 관리 페이지

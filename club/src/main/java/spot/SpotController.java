@@ -18,6 +18,8 @@ import adminNotice.AdminNoticeVO;
 import adminQna.AdminQnaService;
 import adminQna.AdminQnaVO;
 import board.BoardService;
+import joinSpot.JoinSpotService;
+import joinSpot.JoinSpotVO;
 import member.MemberVO;
 
 
@@ -39,6 +41,9 @@ public class SpotController {
 
 	@Autowired
 	private AdminNoticeService adminNoticeService;
+
+	@Autowired
+	private JoinSpotService joinSpotService;
 	
 	//HOT SPOT 등록 폼
 	@RequestMapping("/spot/spotRegist.do")
@@ -51,6 +56,14 @@ public class SpotController {
 	public String spotInsert(Model model,SpotVO spotvo, @RequestParam("filename_tmp") MultipartFile file , HttpServletRequest request) {
 		int r = spotService.spotInsert(spotvo, file,request);
 		model.addAttribute("list", spotvo);
+
+		// 회원리스트에 리더로 추가되는 부분(주찬)
+		MemberVO vo = (MemberVO)request.getSession().getAttribute("sess");
+		JoinSpotVO jv = new JoinSpotVO();
+		jv.setMember_num(vo.getNum());
+		jv.setGrade(1); 
+		jv.setSpot_num(spotvo.getNum());
+		int r2 = joinSpotService.joinSpot(jv);
 		//if(r < 0)
 		return "redirect:/board/submain/submain.do?spot_num="+r;
 	}	

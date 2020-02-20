@@ -23,6 +23,13 @@
 		limit #{startIndex}, #{limit}
 	</select>    
 	
+
+	<!-- 스팟 리더 가져오기 --> 
+	<select id="spotLeader" parameterType="member.MemberVO" resultType="member.MemberVO">
+		SELECT id FROM project.member 
+		WHERE num IN(select member_num from project.joinspot where member_num=50 and grade=1);
+	</select>
+
 	
 	<!-- 페이징 처리 -->
 	<select id="spotMemberCount" resultType="Integer" parameterType="member.MemberVO">

@@ -19,8 +19,12 @@ public class JoinSpotService {
 	@Autowired
 	JoinSpotDAO joinSpotDAO;
 	
+	@Autowired
+	spot.SpotService spotDAO;
+	
 	// spot 가입
 	public int joinSpot(JoinSpotVO jv) {
+		
 		return joinSpotDAO.joinSpot(jv);
 	}
 	
@@ -78,4 +82,10 @@ public class JoinSpotService {
 	public List<MemberVO> mySpotList(MemberVO vo){
 		return joinSpotDAO.mySpotList(vo);  
 	}
+	
+	
+	// spot 회원 리스트
+		public int spotLeader(MemberVO vo){
+			return joinSpotDAO.spotLeader(vo);
+		}
 }

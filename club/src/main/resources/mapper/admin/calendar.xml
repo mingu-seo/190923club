@@ -7,5 +7,17 @@
     	order by today asc
 	</select>
 	
+	<insert id="insert" parameterType="calendar.CalendarVO">
+		insert into project.schedule
+		(spot_num, date, title, member_id, contents, regdate, writer)
+		values
+		(#{spot_num}, #{date}, #{title}, #{member_id}, #{contents}, now(), #{writer})		
+	</insert>
+	
+	<select id="scheduelList" parameterType="calendar.CalendarVO" resultType="calendar.CalendarVO">
+		select * from project.schedule
+		where 
+		spot_num = #{spot_num} and date = #{date}
+	</select>
 </mapper>
 

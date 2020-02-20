@@ -41,9 +41,11 @@ public class GalleryService {
 		return galleryDao.galleryView(id);
 	}
 	public GalleryVO galleryPre(int id) {
+		galleryDao.galleryViewUpdate(id);
 		return galleryDao.galleryPre(id);
 	}
 	public GalleryVO galleryNext(int id) {
+		galleryDao.galleryViewUpdate(id);
 		return galleryDao.galleryNext(id);
 	}
 	

@@ -28,8 +28,8 @@ $(function() {
 		<th class="repl_date">${re.regdate }</th>
 		<td><input type="button" class="repl_del" id="deleteReply" value="삭제" onclick="deleteReply(${re.reply_num});"></td>
 	</tr>
-	<tr class=re_tr>
-		<td id="dndn">└</td>
+	<tr class=re_tr> 
+		<td id="dndn">└</td> 
 		<td colspan="3">
 	<form id="form_${re.reply_num}">
 	<input type="hidden" name="g_id" value="${re.g_id }">
@@ -37,8 +37,8 @@ $(function() {
 	<input type="hidden" name="g_seq" value="${re.g_seq }">
 	<input type="hidden" name="post_id" value="${re.post_id }">
 	<input type="hidden" name="board_id" value="${re.board_id }"> 
-	<input type="hidden" name="member_id" value="${sessionScope.num }">
-	<input type="hidden" name="writer" value="${sessionScope.name}">  
+	<input type="hidden" name="member_id" value="${sessionScope.sess.num }">
+	<input type="hidden" name="writer" value="${sessionScope.sess.name}">  
 	 
 		<textarea class="re_reply" name="contents"></textarea>
 	</form> 

@@ -47,20 +47,6 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 						<button class="goWriting">글작성</button></a> 
 					</div>
 			
-					<div class="board_seq">
-					<select>
-						 	<option value="최신순">최신순</option>
-						 	<option value="좋아요순">좋아요순</option>
-						 	<option value="조회수순">조회수순</option>
-					</select>
-					
-					<select>
-						 	<option value="오름차순">오름차순</option>
-						 	<option value="내림차순">내림차순</option>
-					</select>
-					</div>
-		
-		
 					<div class="board_list_box">
 					<form>
 						<input type="hidden" name="board_id" value="3">

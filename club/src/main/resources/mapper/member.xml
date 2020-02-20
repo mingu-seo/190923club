@@ -38,6 +38,7 @@
 	<!-- 페이징 처리 -->
 	<select id="count" resultType="Integer" parameterType="member.MemberVO">
 		SELECT count(*) FROM project.member
+		<include refid="searchword"/>
 	</select>
 	
 	
@@ -47,6 +48,7 @@
 		<include refid="searchword"/>
 		limit #{startIndex}, #{limit} 
 	</select>
+	
 	
 	<!-- admin 페이지 회원 검색 -->
 	<sql id="searchword">

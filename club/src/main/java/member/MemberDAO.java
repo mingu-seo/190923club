@@ -44,8 +44,8 @@ public class MemberDAO {
 	
 	
 	// 페이징 처리
-	public int count() {
-		return sqlSession.selectOne("member.count", "");
+	public int count(MemberVO vo) {
+		return sqlSession.selectOne("member.count", vo);  
 	}
 
 	

@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>  
+<%@ page import="member.MemberVO" %>
+<%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>
+<%
+MemberVO sessVO = (MemberVO)session.getAttribute("sess");
+%>
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
@@ -68,6 +72,7 @@ function join() {
 	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
 <form method="post" name="joinform" id=joinform action="spotInsert.do" enctype="multipart/form-data">
 <input type="hidden" name="category_num" value="<%=request.getParameter("num")%>">
+<input type="hidden" name="leader" value="<%=sessVO.getNum() %>">
 <div class="wrap">
 	<!-- S T A R T :: headerArea-->
 	<!-- E N D :: headerArea-->

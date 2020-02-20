@@ -175,7 +175,7 @@ public class MemberController {
 	// admin 페이지 회원 리스트
 	@RequestMapping("/admin/member/adminMemberList.do")
 	public String memberList(MemberVO vo, Model model) {
-		int[] listcount = memberService.pageCount();	// 전체 갯수
+		int[] listcount = memberService.pageCount(vo);	// 전체 갯수
 		List<MemberVO> list = memberService.MemberList(vo);
 		model.addAttribute("listcount", listcount[0]);
 		model.addAttribute("totalpage", listcount[1]);

@@ -14,9 +14,16 @@ public class SpotVO {
 	private Timestamp regdate;		// 등록일
 	private Timestamp modifydate;	// 수정일
 	private String question;
+	private int leader;
 	
 	
-	
+	public int getLeader() {
+		return leader;
+	}
+
+	public void setLeader(int leader) {
+		this.leader = leader;
+	}
 	private String keyword;
 	private String searchOption;
 	

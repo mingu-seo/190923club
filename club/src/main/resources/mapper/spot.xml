@@ -8,9 +8,9 @@
 	</select>
 	
 	<insert id="spotInsert" parameterType="spot.SpotVO" useGeneratedKeys="true">
-		insert into project.spot (category_num, name, file, content, tel, email, regdate, modifydate ,question)
+		insert into project.spot (category_num, name, file, content, tel, email, regdate, modifydate ,question, leader)
 		values
-		(#{category_num},#{name}, #{file}, #{content}, #{tel}, #{email},now(), null, #{question})
+		(#{category_num},#{name}, #{file}, #{content}, #{tel}, #{email},now(), null, #{question}, #{leader})
 		
 		<selectKey keyProperty="num" resultType="Integer" order="AFTER">
 			SELECT last_insert_id()

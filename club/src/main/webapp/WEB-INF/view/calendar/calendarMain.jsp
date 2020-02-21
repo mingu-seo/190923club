@@ -9,11 +9,18 @@ List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calenda
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
-<%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %> 
 <script>
 	function popup(today) { 
-		window.open('/calendar/popup.do?spot_num=<%=request.getParameter("spot_num")%>&date='+today, 'window팝업', 'width=400, height=400, left=600, top=400, menubar=no'); 
+		window.open('/calendar/popup.do?spot_num=<%=request.getParameter("spot_num")%>&date='+today, 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no'); 
 	};
+	
+	$(function() {
+		$(".scheduleTitle").click(function() {
+			window.open('/calendar/popupContents.do?spot_num=', 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no');
+		});
+		
+	})
 </script>
 <style>
 td {
@@ -100,7 +107,9 @@ td {
 								%>
 										<td>
 										<% for (int k=0; k<calendar_list.get(i).getSchedule().size(); k++) { %>
-											<div><%=calendar_list.get(i).getSchedule().get(k).getTitle() %></div>
+											<div class="scheduleTitle" style="background-color: yellow; margin-bottom: 5px;">
+												<%=calendar_list.get(i).getSchedule().get(k).getTitle() %>
+											</div>
 										<% } %>
 											<span class='dateNumber' style="cursor: pointer;" onclick="popup('<%=today%>');"><%=date%></span>
 										</td>

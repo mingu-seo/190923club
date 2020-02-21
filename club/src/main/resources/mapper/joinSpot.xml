@@ -27,7 +27,7 @@
 	<!-- 스팟 리더 가져오기 --> 
 	<select id="spotLeader" parameterType="member.MemberVO" resultType="member.MemberVO">
 		SELECT id FROM project.member 
-		WHERE num IN(SELECT member_num FROM project.joinspot WHERE member_num=#{num} AND grade=1);
+		WHERE num IN(SELECT member_num FROM project.joinspot WHERE spot_num=#{spot_num} AND grade=1);
 	</select>
 
 	

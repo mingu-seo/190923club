@@ -57,6 +57,8 @@ public class BoardController {
 		int member_num = uv.getNum();														// 회원 체크(추가된부분)
 		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
 		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
+		
+		uv.setSpot_num(Integer.parseInt(spot_num));
 		MemberVO lvo = joinSpotService.spotLeader(uv);										// 리더 값뿌리기
 		
 		int joinSpotCnt = bService.checkJoinSpot(mv.getNum(), Integer.parseInt(spot_num));
@@ -69,9 +71,26 @@ public class BoardController {
 	}
 	//게시판 관리 페이지
 	@RequestMapping("/board/submain/admincategory.do")
-	public String adminCategory(Model model,@RequestParam("spot_num") String spot_num, CategoryVO cVO) {
+	public String adminCategory(Model model,
+			@RequestParam("spot_num") String spot_num, 
+			CategoryVO cVO, HttpSession session, 
+			HttpServletRequest request) {
+		
 		//카테고리 리스트 가져오기
 		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
+		
+		MemberVO mv = (MemberVO)session.getAttribute("sess");
+		// submainLeft 리더, 회원 값 넘겨주기
+		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+		int member_num = uv.getNum();														// 회원 체크(추가된부분)
+		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
+		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
+		uv.setSpot_num(Integer.parseInt(spot_num));
+		MemberVO lvo = joinSpotService.spotLeader(uv);										// 리더 값뿌리기
+		model.addAttribute("lvo", lvo);
+		
+		int joinSpotCnt = bService.checkJoinSpot(mv.getNum(), Integer.parseInt(spot_num));
+		model.addAttribute("joinSpotCnt", joinSpotCnt); 
 		
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 		model.addAttribute("categoryList", categoryList);
@@ -80,6 +99,7 @@ public class BoardController {
 		model.addAttribute("spot_num", spot_num);
 		return "board/submain/adminCategory";
 	}
+	
 	//게시판 메인 페이지
 	@RequestMapping("/board/submain/boardmain.do") 
 	public String boardMain(NoticeVO vo, Model model, BoardVO bVO, GalleryVO gvo, 

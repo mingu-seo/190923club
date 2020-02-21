@@ -47,6 +47,7 @@ public class CalendarController {
 		int member_num = uv.getNum();														// 회원 체크(추가된부분)
 		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
 		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
+		uv.setSpot_num(Integer.parseInt(spot_num));
 		MemberVO lvo = joinSpotService.spotLeader(uv);										// 리더 값뿌리기
 		model.addAttribute("lvo", lvo);
 		
@@ -69,7 +70,7 @@ public class CalendarController {
 		
 		for (int i=0; i<list.size(); i++) {
 			svo.setDate(list.get(i).getToday());
-			list.get(i).setSchedule(calService.scheduelList(svo));
+			list.get(i).setSchedule(calService.scheduleList(svo));
 		}
 		
 		// 다음달
@@ -105,6 +106,7 @@ public class CalendarController {
 	public String insert(Model model, ScheduleVO vo) {
 		int r = calendarDAO.insert(vo);
 		String msg="";
+		String url="";
 		
 		if(r>0) {
 			msg = "일정이 등록되었습니다.";
@@ -112,5 +114,12 @@ public class CalendarController {
 			model.addAttribute("cmd", "popclose");
 		}
 		return "include/alert";
+	}
+	
+	@RequestMapping("/calendar/popupContents.do")
+	public String popupContents(Model model, ScheduleVO vo, @RequestParam("spot_num") String spot_num) {
+		ScheduleVO popCon = calendarDAO.popContents(vo);
+		model.addAttribute("popCon", popCon);
+		return "calendar/popupContents";
 	}
 }

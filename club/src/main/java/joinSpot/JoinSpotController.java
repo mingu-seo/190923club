@@ -88,7 +88,9 @@ public class JoinSpotController {
 		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
 		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
 		uv.setSpot_num(Integer.parseInt(spot_num));
-		MemberVO lvo = joinSpotService.spotLeader(uv);										// 리더 값뿌리기
+		MemberVO lvo = joinSpotService.spotLeader(uv);	
+		int joinSpotCnt = bService.checkJoinSpot(mv.getNum(), Integer.parseInt(spot_num));
+		model.addAttribute("joinSpotCnt", joinSpotCnt);
 		model.addAttribute("lvo", lvo);
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);

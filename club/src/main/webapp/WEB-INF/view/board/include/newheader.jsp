@@ -3,7 +3,6 @@
 <%@page import="member.MemberVO"%>   
 <% 
 	MemberVO headsess = (MemberVO)session.getAttribute("sess"); 
-
 %>
 <script>
     $(document).ready(function(){

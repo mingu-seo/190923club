@@ -14,5 +14,6 @@
 "view" : "${vo.view}",
 "search_word" : "${vo.search_word}",
 "like_cnt" : "${vo.like_cnt}",
-"writer" : "${vo.writer}"
+"writer" : "${vo.writer}",
+"member_id" : "${vo.member_id}"
 }

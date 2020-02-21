@@ -354,7 +354,7 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
         	
         	<div class="visualRight"> 
         		<div id="preview">
-        		미리보기<a href="admincategory.do?spot_num=<%=spot_vo.getNum()%>"><img src="/img/board/set.png"></a>
+        		미리보기
         		</div>
 	        	
         		<div><!-- 갤러리, 게시판, 공지 div를 감싸고 있음 -->

@@ -23,7 +23,7 @@ String spot_num = (String)request.getAttribute("spot_num");
      
         <li> <a href="/admin/submain/submain.do?spot_num=<%=spot_num%>"><img src="/img/board/house.png"></a></li>
         <li><a href="/admin/submain/boardmain.do?spot_num=<%=spot_num%>"><img src="/img/board/files-and-folders.png"></a></li>
-        <li> <a href=""><img src="/img/board/events.png"></a>  
+        <li> <a href="/admin/submain/calendarmain.do?spot_num=<%=spot_num%>"><img src="/img/board/events.png"></a>  
        	<li> <a href="/admin/submain/memberList.do?spot_num=<%=spot_num%>"><img src="/img/board/notebook.png"></a>
    	 	  
    	 </ul>

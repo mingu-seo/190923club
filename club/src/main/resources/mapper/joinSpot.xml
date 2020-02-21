@@ -81,7 +81,8 @@
 	<select id="mySpotList" parameterType="member.MemberVO" resultType="member.MemberVO">
 		SELECT project.spot.num AS spot_num, 
 			   project.spot.name AS spot_name, 
-			   project.spot.file
+			   project.spot.file,
+			   (select name from project.member where num = (select member_num from joinspot where grade=1 and spot_num=spot.num)) as leader_name
 		FROM project.spot
 		WHERE num IN(
 					SELECT spot_num 

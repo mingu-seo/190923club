@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="/css/admin/layout.css">
 <div id="header">
 	<div class="header_inner">
-		<h1>HOT SPOT</h1>
+		<h1><a href="/spot/spotList.do" style="color : white";>HOT SPOT</a></h1>
 		<p class="login_name"></p>
 		<!-- util : s -->
 		<div class="util"> 

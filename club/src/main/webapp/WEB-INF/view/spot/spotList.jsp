@@ -12,7 +12,7 @@
 	List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
 	SpotVO spotvo = (SpotVO)request.getAttribute("spotvo");
 	List<MemberVO> jslist = (List<MemberVO>)request.getAttribute("jslist");
-	MemberVO spotsess = (MemberVO)session.getAttribute("sess"); 
+	MemberVO spotsess = (MemberVO)session.getAttribute("sess");
 %>
 <!DOCTYPE html>
 <html>
@@ -184,7 +184,7 @@ function ajaxView(num){
 	                	<span class="spotuser">
 	                		회원수 : 00명
 	                	</span>
-	                	<span class="spotleader">리더 : 홍길동</span>
+	                	<span class="spotleader">리더 : <%=spot.get(j).getLeader_name() %></span>
 	                </a> 
 	                
 	            </div>    
@@ -210,7 +210,7 @@ function ajaxView(num){
 	                	<span class="spotuser">
 	                		회원수 : 00명
 	                	</span>
-	                	<span class="spotleader">리더 : 홍길동</span>
+	                	<span class="spotleader">리더 :<%=spot.get(j).getLeader_name() %></span>
 	                </a> 
 	                
 	            </div>    

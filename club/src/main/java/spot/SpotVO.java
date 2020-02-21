@@ -15,8 +15,18 @@ public class SpotVO {
 	private Timestamp modifydate;	// 수정일
 	private String question;
 	private int leader;
+	private String leader_name;
 	
 	
+	
+	public String getLeader_name() {
+		return leader_name;
+	}
+
+	public void setLeader_name(String leader_name) {
+		this.leader_name = leader_name;
+	}
+
 	public int getLeader() {
 		return leader;
 	}

@@ -12,6 +12,7 @@
 	List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
 	SpotVO spotvo = (SpotVO)request.getAttribute("spotvo");
 	List<MemberVO> jslist = (List<MemberVO>)request.getAttribute("jslist");
+	MemberVO spotsess = (MemberVO)session.getAttribute("sess"); 
 %>
 <!DOCTYPE html>
 <html>
@@ -124,10 +125,11 @@ function ajaxView(num){
   	<form  action="process.do" method="post">
     <div class="boxcontainer">
         <div class="center">
+         	<%if(spotsess != null) {%>
             <div class="button">
                 <a href="/spot/categoryCheck.do" class="box1" img="#">SPOT 만들기</a> 
-            </div>    
-            <%
+            </div>  
+            <%}
            		for(int i=0; i<jslist.size(); i++){
            	%>
            	<div class="box2">           	

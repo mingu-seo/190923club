@@ -8,7 +8,7 @@
 SpotVO list = (SpotVO)request.getAttribute("spot_vo");
 MemberVO sess = (MemberVO)session.getAttribute("sess"); 
 JoinSpotVO jsvo = (JoinSpotVO)request.getAttribute("js");
-//int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
+//int joinSpotCnt2 = (Integer)request.getAttribute("joinSpotCnt");
 //int memberCount = (Integer)request.getAttribute("memberCount");
 MemberVO lvo = (MemberVO)request.getAttribute("lvo");
 %>
@@ -36,7 +36,7 @@ MemberVO lvo = (MemberVO)request.getAttribute("lvo");
         			<%} %>
         		</div>
         		<div class="clubInfo">
-        			<%if(sess != null && (sess.getNum() == lvo.getMember_num())) { %>
+        			<%if(sess != null && (sess.getNum() == lvo.getNum())) { %>
 	        			HOT SPOT설정
 	        			<a href="/spot/spotSetting.do?spot_num=<%=list.getNum()%>"><img src="/img/board/set.png"></a>
 	        		<%} %>

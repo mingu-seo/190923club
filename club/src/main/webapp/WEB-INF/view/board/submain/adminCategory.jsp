@@ -5,6 +5,7 @@
 <%@ page import="java.util.List" %>
 <%
 List<CategoryVO>[] categoryList = (List<CategoryVO>[])request.getAttribute("categoryList"); 
+int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
 %>
 <!DOCTYPE html>
 <html> 

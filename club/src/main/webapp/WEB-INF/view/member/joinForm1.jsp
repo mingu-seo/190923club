@@ -226,11 +226,6 @@ function contractCheck(){
                 </div>
             </div>
         </div>
-	    <div class="container">
-			<!-- S T A R T :: footerArea-->
-			<%@ include file="/WEB-INF/view/user/include/bottom.jsp" %>
-			<!-- E N D :: footerArea-->
-	    </div>
     </div>
 </body>
 </html>

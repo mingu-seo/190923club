@@ -31,7 +31,7 @@ MemberVO lvo = (MemberVO)request.getAttribute("lvo");
         		</div> 
         		
         		<div class="clubInfo">
-        			<%if(joinSpotCnt == 0) {%>
+        			<%if(joinSpotCnt == 0) {%>  
         				<a href="/spotJoin/spotJoinForm.do?spot_num=<%=list.getNum()%>">가입신청</a>
         			<%} %>
         		</div>

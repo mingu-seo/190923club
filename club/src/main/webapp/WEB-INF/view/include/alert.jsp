@@ -2,12 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
-<c:if test="${cmd} == 'popclose'">
+<c:if test="${cmd == 'popclose'}">
 alert('${msg}');
-popup.close();
-</c:if>
+self.close();
+</c:if> 
 
-<c:if test="${cmd} != 'popclose'">
+<c:if test="${cmd != 'popclose'}">
 alert('${msg}');
 location.href='${url}';
 </c:if>

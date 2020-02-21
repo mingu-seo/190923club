@@ -16,7 +16,7 @@ public class CalendarService {
 	}
 	
 
-	public List<calendar.ScheduleVO> scheduelList(calendar.ScheduleVO vo) {
-		return calDAO.scheduelList(vo);
+	public List<calendar.ScheduleVO> scheduleList(calendar.ScheduleVO vo) {
+		return calDAO.scheduleList(vo);
 	}
 }

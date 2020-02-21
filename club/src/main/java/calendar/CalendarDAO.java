@@ -20,7 +20,11 @@ public class CalendarDAO {
 		return sqlSession.insert("calendar.insert", vo);
 	}
 	
-	public List<calendar.ScheduleVO> scheduelList(calendar.ScheduleVO vo) {
-		return sqlSession.selectList("calendar.scheduelList", vo);
+	public List<calendar.ScheduleVO> scheduleList(calendar.ScheduleVO vo) {
+		return sqlSession.selectList("calendar.scheduleList", vo);
+	}
+	
+	public ScheduleVO popContents(ScheduleVO vo) {
+		return sqlSession.selectOne("calendar.popContents", vo);
 	}
 }

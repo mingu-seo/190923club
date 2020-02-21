@@ -14,7 +14,6 @@
 <%
 List<GalleryVO> list = (List<GalleryVO>)request.getAttribute("list");
 GalleryVO vo = (GalleryVO)request.getAttribute("vo");
-//GalleryVO gVO = (GalleryVO)request.getAttribute("gVO");
 SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 CategoryVO cate_name = (CategoryVO)request.getAttribute("cate_name");
 MemberVO sessVO = (MemberVO)session.getAttribute("sess");
@@ -141,6 +140,13 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 		               		$("#date_info").text(data.regdate); // 날짜 넘겨주기
 		               		$("#writer_info").text(data.writer); // 작성자 넘겨주기  
 		               		$(".post_id").val(id); // post_id넘겨주기 
+		               		if (data.member_id == <%=sessVO.getNum()%>) {
+		               			$("#deleteHref").show();
+		               			$("#detailHref").show();
+		               		} else {
+		               			$("#deleteHref").hide();
+		               			$("#detailHref").hide();
+		               		}
 		               		showLightBox();
 		               		getReplyList(id);
 	                	},
@@ -458,10 +464,8 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 					</div> 
 				</div>
 				
-				
 				<a id="deleteHref"><input type="button" value="삭제" class="btns" ></a>
 				<a id="detailHref"><input type="button" value="수정" class="btns" ></a>
-				
 				
       	  </div>
          

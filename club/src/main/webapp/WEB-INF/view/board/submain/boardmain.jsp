@@ -397,7 +397,9 @@ int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
 		<%@ include file="/WEB-INF/view/board/include/bottom.jsp" %>
 		<!-- E N D :: footerArea-->
 		
-		<div id="lb_wrap">
+		
+ </div>
+ <div id="lb_wrap">
        <div id="darken-background">
        <p class="galleryClose"></p>
             <div id="lightbox">
@@ -530,6 +532,5 @@ int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
          
         </div>
        </div>
- </div>
 </body>
 </html>

@@ -10,6 +10,7 @@ MemberVO vo = (MemberVO)request.getAttribute("vo");
 JoinSpotVO jv = (JoinSpotVO)request.getAttribute("js");
 int listcount = (Integer)request.getAttribute("listcount"); // 전체 갯수 (model에 저장한 "listcount")
 int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지수 (model에 저장한 "totalpage")
+int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
 %>
 <!DOCTYPE html>
 <html>

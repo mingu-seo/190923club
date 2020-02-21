@@ -246,7 +246,17 @@ int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
         	<%@ include file="submainLeft.jsp" %>
         	<!-- /왼쪽메뉴 -->
         	
-        	<div class="visualRight">  
+        	<div class="visualRight">
+        	<%
+       			if(joinSpotCnt==0) {
+        	%>
+       			<div class="noMemberView"> 
+       				<div class="txt">멤버만 게시글을 볼 수 있습니다.<br> SPOT에 가입해 보세요 !</div> 
+       			</div>
+       		<%
+       			} else if(joinSpotCnt ==1){  
+   			%>
+        	  
         	<% 
         		if(sessVO != null && (sessVO.getNum()==lvo.getNum())) {
         	%> 
@@ -377,7 +387,9 @@ int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
         	</div>
         
         
-        
+        <%
+        	}
+        %>
     </div>
    </div>
    </div>

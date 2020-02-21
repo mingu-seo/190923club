@@ -93,6 +93,8 @@ public class BoardController {
 		model.addAttribute("spot_vo", spotvo);
 		model.addAttribute("cVO", cVO);
 		model.addAttribute("spot_num", spot_num);
+		
+		
 		return "board/submain/adminCategory";
 	}
 	

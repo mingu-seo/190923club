@@ -10,6 +10,7 @@ int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/board/boardmain.css">
 <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
 <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %> 
 <script>
@@ -46,6 +47,17 @@ td {
         		
 					<!-- 내용 : s -->
 						<div class="visualRight">
+						
+						<%
+		        			if(joinSpotCnt==0) {
+		        		%>
+		        			<div class="noMemberView"> 
+		        				<div class="txt">멤버만 게시글을 볼 수 있습니다.<br> SPOT에 가입해 보세요 !</div> 
+		        			</div>
+		       			<%
+		        			} else if(joinSpotCnt ==1){  
+		       			%>
+		       			
 						<div id="bwrite">
 							<div class="" style="font-size: 28px;  margin-bottom: 20px;">
 								<a href="/calendar/calendarmain.do?spot_num=<%=spot_num%>&yearmonth=${prevMonth}"><img src="/img/right-arrow.png" style="width:30px; height:30px;"></a>
@@ -133,6 +145,10 @@ td {
 								</tbody>
 							</table>
 						</div>
+						
+						<%
+		        			}
+						%>
 					</div><!-- visualRight -->
 				</div><!-- visual -->
 			</div><!-- main -->

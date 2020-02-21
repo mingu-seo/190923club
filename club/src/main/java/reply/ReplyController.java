@@ -2,8 +2,6 @@ package reply;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +33,7 @@ public class ReplyController {
 		return "board/notice/noticeReplyAjax";
 	}
 	//세영
-	@RequestMapping("/board/replyReply.do")
+	@RequestMapping("/board/replyReply.do") 
 	public String replyReply( Model model, ReplyVO rVO) {
 		rService.replyReplyInsert(rVO);
 		return "spot/include/return";
@@ -66,11 +64,5 @@ public class ReplyController {
 		rService.replyInsert(rVO);
 		return "include/return";
 	}
-	//슬기
-	@RequestMapping("/board/replyList.do") 
-	public String replyList(Model model, HttpServletRequest req, ReplyVO vo) {
-		List<ReplyVO> list = rDao.replyList(vo);
-		model.addAttribute("list", list); 
-		return "board/gallery/replyAjax";
-	}
+
 }

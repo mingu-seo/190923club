@@ -89,6 +89,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 				 <div class="boardSearch">
 					 	<form action="/board/notice/noticeList.do" method="post">
 					 		<input type="hidden" name="spot_num" value="<%=spot_num%>">
+					 		<input type="hidden" name="category_id" value="<%=vo.getCategory_id() %>">
 							<input type="search" name="search_word" id="boardSearch" value="<%=vo.getSearch_word() %>"> 
 							<input id="board_search_btn" type="submit" value="검색">
 						</form>

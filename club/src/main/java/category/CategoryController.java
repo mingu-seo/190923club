@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,9 +19,19 @@ public class CategoryController {
 	
 	
 	@RequestMapping("/board/categoryInsert.do")
-	public String categoryInsert(CategoryVO vo, @RequestParam("spot_num")String spot_num, HttpServletRequest request) {
-		cService.categoryInsert(vo, request);
-		return "redirect:/board/submain/admincategory.do?spot_num="+spot_num;
+	public String categoryInsert(Model model, CategoryVO vo, @RequestParam("spot_num")String spot_num, HttpServletRequest request) {
+		int r = cService.categoryInsert(vo, request);
+		
+		String msg = "";
+		String url = "";
+		
+		if(r>0) {
+			msg = "카테고리가 추가되었습니다.";
+			url = "/board/submain/admincategory.do?spot_num="+spot_num;
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+		}
+		return "include/alert";
 	}
 	
 	@RequestMapping("/board/categoryDelete.do")

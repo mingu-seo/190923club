@@ -117,9 +117,24 @@ public class CalendarController {
 	}
 	
 	@RequestMapping("/calendar/popupContents.do")
-	public String popupContents(Model model, ScheduleVO vo, @RequestParam("spot_num") String spot_num) {
+	public String popupContents(Model model, ScheduleVO vo) {
 		ScheduleVO popCon = calendarDAO.popContents(vo);
 		model.addAttribute("popCon", popCon);
 		return "calendar/popupContents";
 	}
+	
+	@RequestMapping("/calendar/delete.do")
+	public String delete(Model model, ScheduleVO vo) {
+		int r = calendarDAO.delete(vo);
+		String msg="";
+		
+		if(r>0) {
+			msg = "일정이 삭제되었습니다.";
+			model.addAttribute("msg", msg);
+			model.addAttribute("cmd", "deleteclose");
+		}
+		
+		return "include/alert";
+	}
+	
 }

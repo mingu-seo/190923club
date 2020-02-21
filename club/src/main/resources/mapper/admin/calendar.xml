@@ -21,10 +21,15 @@
 		ORDER BY date ASC
 	</select>
 	
-	<!-- 제목클릭했을 때 내용보여주기 -->
 	<select id="popContents" parameterType="calendar.ScheduleVO" resultType="calendar.ScheduleVO">
 		select * from project.schedule
-		where date = #{date}
+		where num = #{num} 
 	</select>
+	
+	<delete id="delete" parameterType="calendar.ScheduleVO">
+		delete from project.schedule
+		where num = #{num}
+	</delete>
+	
 </mapper>
 

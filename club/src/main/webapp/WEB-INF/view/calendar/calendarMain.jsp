@@ -3,6 +3,7 @@
 <%@ page import ="java.util.*" %>
 <%
 List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calendar_list");
+String yearmonth = (String)request.getAttribute("yearmonth");
 %>
 <html> 
 <head>
@@ -15,12 +16,9 @@ List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calenda
 		window.open('/calendar/popup.do?spot_num=<%=request.getParameter("spot_num")%>&date='+today, 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no'); 
 	};
 	
-	$(function() {
-		$(".scheduleTitle").click(function() {
-			window.open('/calendar/popupContents.do?spot_num=', 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no');
-		});
-		
-	})
+	function detailPopup(num) { 
+		window.open('/calendar/popupContents.do?num='+num, 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no');
+	}
 </script>
 <style>
 td {
@@ -50,7 +48,7 @@ td {
 						<div id="bwrite">
 							<div class="" style="font-size: 28px;  margin-bottom: 20px;">
 								<a href="/calendar/calendarmain.do?spot_num=<%=spot_num%>&yearmonth=${prevMonth}"><img src="/img/right-arrow.png" style="width:30px; height:30px;"></a>
-								달력
+								<%=yearmonth %>
 								<a href="/calendar/calendarmain.do?spot_num=<%=spot_num%>&yearmonth=${nextMonth}"><img src="/img/L-arrow.png" style="width:30px; height:30px;"></a>
 							</div> 
 							<div style="text-align: right; color:red; margin-bottom: 5px;">
@@ -107,7 +105,7 @@ td {
 								%>
 										<td>
 										<% for (int k=0; k<calendar_list.get(i).getSchedule().size(); k++) { %>
-											<div class="scheduleTitle" style="background-color: yellow; margin-bottom: 5px;">
+											<div class="scheduleTitle" style="background-color: yellow; margin-bottom: 5px; cursor:pointer;" onclick="detailPopup(<%=calendar_list.get(i).getSchedule().get(k).getNum() %>);">
 												<%=calendar_list.get(i).getSchedule().get(k).getTitle() %>
 											</div>
 										<% } %>

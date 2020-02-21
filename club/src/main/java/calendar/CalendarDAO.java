@@ -27,4 +27,8 @@ public class CalendarDAO {
 	public ScheduleVO popContents(ScheduleVO vo) {
 		return sqlSession.selectOne("calendar.popContents", vo);
 	}
+	
+	public int delete(ScheduleVO vo) {
+		return sqlSession.delete("calendar.delete", vo);
+	}
 }

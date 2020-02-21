@@ -21,9 +21,9 @@ List<GalleryVO> gList=(List<GalleryVO>)request.getAttribute("glist");
 List<BoardVO> bList = (List<BoardVO>)request.getAttribute("bList");
 SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo"); 
 
-//min
+//min 
 CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
-MemberVO sessVO = (MemberVO)request.getAttribute("sess");
+MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 %>
 
 <!DOCTYPE html>
@@ -244,10 +244,16 @@ MemberVO sessVO = (MemberVO)request.getAttribute("sess");
         	<%@ include file="submainLeft.jsp" %>
         	<!-- /왼쪽메뉴 -->
         	
-        	<div class="visualRight"> 
+        	<div class="visualRight">  
+        	<% 
+        		if(sessVO != null && (sessVO.getNum()==lvo.getNum())) {
+        	%> 
         		<div id="preview">
         		미리보기<a href="admincategory.do?spot_num=<%=spot_vo.getNum()%>"><img src="/img/board/set.png"></a>
         		</div>
+        	<%
+        		}
+        	%>
 	        	
         		<div><!-- 갤러리, 게시판, 공지 div를 감싸고 있음 -->
         		<div class="pre-board">

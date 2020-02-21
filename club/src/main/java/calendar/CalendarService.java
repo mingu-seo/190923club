@@ -15,8 +15,11 @@ public class CalendarService {
 		return calDAO.insert(vo);
 	}
 	
-
 	public List<calendar.ScheduleVO> scheduleList(calendar.ScheduleVO vo) {
 		return calDAO.scheduleList(vo);
+	}
+	
+	public int delete(ScheduleVO vo) {
+		return calDAO.delete(vo);
 	}
 }

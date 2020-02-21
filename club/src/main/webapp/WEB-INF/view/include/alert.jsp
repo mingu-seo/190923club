@@ -7,6 +7,11 @@ alert('${msg}');
 self.close();
 </c:if> 
 
+<c:if test="${cmd == 'deleteclose'}">
+alert('${msg}');
+self.close();
+</c:if> 
+
 <c:if test="${cmd != 'popclose'}">
 alert('${msg}');
 location.href='${url}';

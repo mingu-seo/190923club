@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class ScheduleVO {
 
+	private int num;
 	private String date;
 	private String title;
 	private String contents;
@@ -12,6 +13,13 @@ public class ScheduleVO {
 	private int member_id;
 	private String writer;
 	
+	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public String getDate() {
 		return date;
 	}

@@ -1,14 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import ="member.*" %>
+<%@ page import ="calendar.*" %>
 <%
-MemberVO sessVO = (MemberVO)session.getAttribute("sess");
+ScheduleVO popCon = (ScheduleVO)request.getAttribute("popCon");
 %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+	function deleteSchedule(num) {
+		if(confirm("일정을 삭제하시겠습니까?")) {
+			location.href="/calendar/delete.do?num="+num;
+		}else false;
+		 
+	}
+</script>
 </head>
 <style>
 	table tr th{
@@ -24,28 +32,25 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 <body>
 <div class="wrap"> 
 	<div class="popTitle" style="font-size:30px; text-align:center;">
-		일정 등록
+		
 	</div>
-	<hr>
 	<div class="formDIV"><!-- 폼 감싸는 div -->
-			<hr>
 			<table style="margin:0 auto;">
 				<tr>
 					<th>일정명</th>
-					<td><input type="text" name="title" placeholder="제목을 입력하세요"></td>
+					<td><%=popCon.getTitle() %></td>
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td><input type="text" name="writer" value="<%=sessVO.getName()%>"></td>
+					<td><%=popCon.getWriter() %>
 				</tr>
 				<tr> 
 					<th>일정내용</th>
-					<td><textarea name="contents" rows="10" cols="40"></textarea></td>
+					<td><%=popCon.getContents() %></td>
 				</tr>
 			</table>
 			<div class="calBtn" style="text-align: center; margin:20px;"> 
-				<input type="submit" value="등록" style="background-color:white; width:100px; height:30px;"> 
-				<input type="button" value="수정" style="background-color:white; width:100px; height:30px;">
+				<input type="button" value="삭제" onclick="deleteSchedule(<%=popCon.getNum() %>);" style="background-color:white; width:100px; height:30px;">
 			</div> 
  	</div>
 </div>

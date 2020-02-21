@@ -13,7 +13,7 @@ public class CategoryService {
 	@Autowired
 	private CategoryDAO categoryDao;
 	
-	public void categoryInsert(CategoryVO vo, HttpServletRequest request) {
+	public int categoryInsert(CategoryVO vo, HttpServletRequest request) {
 		String[] names = request.getParameterValues("name");
 		String[] category_ids = request.getParameterValues("category_ids");
 		System.out.println(names.length);
@@ -21,9 +21,9 @@ public class CategoryService {
 		for (int i=0; i<names.length; i++) {
 			if ("".equals(category_ids[i])) {
 				vo.setName(names[i]);
-				categoryDao.categoryInsert(vo);
 			}
 		}
+		return categoryDao.categoryInsert(vo);
 	}
 	
 	public void categoryDelete(CategoryVO vo) {

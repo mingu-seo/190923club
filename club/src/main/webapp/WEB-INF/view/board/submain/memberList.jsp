@@ -46,7 +46,7 @@ function drop() {
 	<!-- E N D :: headerArea-->
         <%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
         <div class="visual">
-        	<!-- 왼쪽메뉴 -->
+        	<!-- 왼쪽메뉴 --> 
         	<%@ include file="/WEB-INF/view/board/submain/submainLeft.jsp" %>
         	<!-- 왼쪽메뉴 -->
         	<div class="visualRight">

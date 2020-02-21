@@ -7,8 +7,16 @@
     <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/test/joinForm2.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	function join() {	// 다음 버튼
+		if ($("#id").val().trim() == "") {
+			alert("아이디를 입력해 주세요");
+			$("#id").focus();
+			return false;
+		}
 		if ($("#id").val().trim() == "") {
 			alert("아이디를 입력해 주세요");
 			$("#id").focus();
@@ -58,8 +66,13 @@
 			return false;
 		}
 		if ($("#email").val().trim() == "") {
-			alert("메일 주소 입력해 주세요");
+			alert("메일 주소를 입력해 주세요");
 			$("#email").focus();
+			return false;
+		}
+		if ($("#birth").val().trim() == "") {
+			alert("생일을 입력해 주세요");
+			$("#birth").focus();
 			return false;
 		}
 		if ($("#tel").val().trim() == "") {
@@ -92,7 +105,24 @@
 				});
 			}
 		});
+	
+		 $( "#birth" ).datepicker({
+	    		dateFormat: 'yy-mm-dd' //Input Display Format 변경
+	            ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+	            ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
+	            ,changeYear: true //콤보박스에서 년 선택 가능
+	            ,changeMonth: true //콤보박스에서 월 선택 가능                
+	            ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
+	            ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
+	            ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
+	            ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
+	            ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
+	            
+		 		,yearRange:"c-80:c-10"
+	    });
 	});
+	
+	
 	
 </script>
 </head>
@@ -173,73 +203,7 @@
                             </div>
                         </div>
                         <div class="cf_bottom">
-                            <select name="birth">
-                                <option value="2000" selected>1990</option>
-                                <option value="2000" selected>1991</option>
-                                <option value="2000" selected>1992</option>
-                                <option value="2000" selected>1993</option>
-                                <option value="2000" selected>1994</option>
-                                <option value="2000" selected>1995</option>
-                                <option value="2001" selected>1996</option>
-                                <option value="2002" selected>1997</option>
-                                <option value="2003" selected>1998</option>
-                                <option value="2004" selected>1999</option>
-                                <option value="2000" selected>2000</option>
-                                <option value="2001" selected>2001</option>
-                                <option value="2002" selected>2002</option>
-                                <option value="2003" selected>2003</option>
-                                <option value="2004" selected>2004</option>
-                            </select>
-                            	년
-                            <select name="birth">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                            </select>
-                            	월
-                            <select name="birth">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                                <option value="13">13</option>
-                                <option value="14">14</option>
-                                <option value="15">15</option>
-                                <option value="16">16</option>
-                                <option value="17">17</option>
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                                <option value="20">20</option>
-                                <option value="21">21</option>
-                                <option value="22">22</option>
-                                <option value="23">23</option>
-                                <option value="24">24</option>
-                                <option value="25">25</option>
-                                <option value="26">26</option>
-                                <option value="27">27</option>
-                                <option value="28">28</option>
-                                <option value="29">29</option>
-                                <option value="30">30</option>
-                                <option value="31">31</option>
-                            </select>
-                            	일	
+                            <input type="text" name="birth" id="birth" value="" readonly>
                         </div>
                     </div>  
                     <div class="content-form">
@@ -271,22 +235,11 @@
                 </div>
             </form>
         </div>
-        <div class="footer">
-            <div class="size">
-               <div class="info">
-                   <p>구디아카데미</p>
-                   <p>서울시 서울구 서울로 서울동 서울호</p>
-                   <p>02-2000-2000 | 010-2222-2222</p>
-                   <p>대표자 김철수 | 책임자 김수철</p>
-                   <p>사업자등록번호 111-11-22222</p>
-               </div>
-               <div class="sns_area">
-                   <a href=""><img src="/css/test/img/facebook.png"></a>
-                   <a href=""><img src="/css/test/img/instar.png"></a>
-                   <a href=""><img src="/css/test/img/blog.png"></a>
-               </div>
-            </div>
-       </div>
+	    <div class="container">
+			<!-- S T A R T :: footerArea-->
+			<%@ include file="/WEB-INF/view/user/include/bottom.jsp" %>
+			<!-- E N D :: footerArea-->
+	    </div>
     </div>
 </body>
 </html>

@@ -18,10 +18,10 @@
                     <a href="spotQna.do" class=btn2>HOT SPOT QnA</a>
                 </div>
                 <div class="titleText1">
-	                <a href="" class=btn2>이용약관</a>
+	                <a href="spotUselaw.do" class=btn2>이용약관</a>
                 </div>
                 <div class="titleText1">
-			    	<a href="" class=btn2>개인정보 처리방침</a>
+			    	<a href="spotMemberInfo.do" class=btn2>개인정보 처리방침</a>
                 </div>
             </div>
        	</div>

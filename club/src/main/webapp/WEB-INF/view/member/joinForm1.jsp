@@ -19,6 +19,9 @@ function contractCheck(){
 </script>
 </head>
 <body>
+	<!-- S T A R T :: headerArea-->
+	<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %>
+	<!-- E N D :: headerArea-->
     <div class="wrap">
         <div class="header">
             회원가입
@@ -223,22 +226,11 @@ function contractCheck(){
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <div class="size">
-               <div class="info">
-                   <p>구디아카데미</p>
-                   <p>서울시 서울구 서울로 서울동 서울호</p>
-                   <p>02-2000-2000 | 010-2222-2222</p>
-                   <p>대표자 김철수 | 책임자 김수철</p>
-                   <p>사업자등록번호 111-11-22222</p>
-               </div>
-               <div class="sns_area">
-                   <a href=""><img src="/css/test/img/facebook.png"></a>
-                   <a href=""><img src="/css/test/img/instar.png"></a>
-                   <a href=""><img src="/css/test/img/blog.png"></a>
-               </div>
-            </div>
-       </div>
+	    <div class="container">
+			<!-- S T A R T :: footerArea-->
+			<%@ include file="/WEB-INF/view/user/include/bottom.jsp" %>
+			<!-- E N D :: footerArea-->
+	    </div>
     </div>
 </body>
 </html>

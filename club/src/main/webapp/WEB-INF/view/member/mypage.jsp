@@ -8,11 +8,19 @@
 <title></title>
 <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
 <link rel="stylesheet" href="/css/test/mypage.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 function update() {		// 수정 버튼
 	if ($("#name").val().trim() == "") {
 		alert("이름을 입력해 주세요");
 		$("#name").focus();
+		return false;
+	}
+	if ($("#birth").val().trim() == "") {
+		alert("생일을 입력해 주세요");
+		$("#birth").focus();
 		return false;
 	}
 	if ($("#email").val().trim() == "") {
@@ -28,6 +36,21 @@ function update() {		// 수정 버튼
 
 	$("#mypageForm").submit();
 }
+$( function() {
+    $( "#birth" ).datepicker({
+    		dateFormat: 'yy-mm-dd' //Input Display Format 변경
+            ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+            ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
+            ,changeYear: true //콤보박스에서 년 선택 가능
+            ,changeMonth: true //콤보박스에서 월 선택 가능                
+            ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
+            ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
+            ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
+            ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
+            ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
+    		,yearRange:"c-80:c-10"
+    });
+  } );
 </script>
 </head>
 <body>
@@ -69,61 +92,7 @@ function update() {		// 수정 버튼
 	                                <label for="birth">생년월일</label>
 	                            </div>
 	                            <div class="profileBoxContent">
-	                                <select name="birth">
-	                                    <option value="2002" <%=vo.getBirth().split(",")[0].equals("2002") ? "selected" : "" %>>2002</option>
-	                                    <option value="2003" <%=vo.getBirth().split(",")[0].equals("2003") ? "selected" : "" %>>2003</option>
-	                                    <option value="2004" <%=vo.getBirth().split(",")[0].equals("2004") ? "selected" : "" %>>2004</option>
-	                                </select>
-	 								년
-	                                <select name="birth">
-	                                    <option value="1" <%=vo.getBirth().split(",")[1].equals("1") ? "selected" : "" %>>1</option>
-	                                    <option value="2" <%=vo.getBirth().split(",")[1].equals("2") ? "selected" : "" %>>2</option>
-	                                    <option value="3" <%=vo.getBirth().split(",")[1].equals("3") ? "selected" : "" %>>3</option>
-	                                    <option value="4" <%=vo.getBirth().split(",")[1].equals("4") ? "selected" : "" %>>4</option>
-	                                    <option value="5" <%=vo.getBirth().split(",")[1].equals("5") ? "selected" : "" %>>5</option>
-	                                    <option value="6" <%=vo.getBirth().split(",")[1].equals("6") ? "selected" : "" %>>6</option>
-	                                    <option value="7" <%=vo.getBirth().split(",")[1].equals("7") ? "selected" : "" %>>7</option>
-	                                    <option value="8" <%=vo.getBirth().split(",")[1].equals("8") ? "selected" : "" %>>8</option>
-	                                    <option value="9" <%=vo.getBirth().split(",")[1].equals("9") ? "selected" : "" %>>9</option>
-	                                    <option value="10" <%=vo.getBirth().split(",")[1].equals("10") ? "selected" : "" %>>10</option>
-	                                    <option value="11" <%=vo.getBirth().split(",")[1].equals("11") ? "selected" : "" %>>11</option>
-	                                    <option value="12" <%=vo.getBirth().split(",")[1].equals("12") ? "selected" : "" %>>12</option>
-	                                </select>
-	                               	 월
-	                                <select name="birth">
-	                                    <option value="1" <%=vo.getBirth().split(",")[2].equals("1") ? "selected" : "" %>>1</option>
-	                                    <option value="2" <%=vo.getBirth().split(",")[2].equals("2") ? "selected" : "" %>>2</option>
-	                                    <option value="3" <%=vo.getBirth().split(",")[2].equals("3") ? "selected" : "" %>>3</option>
-	                                    <option value="4" <%=vo.getBirth().split(",")[2].equals("4") ? "selected" : "" %>>4</option>
-	                                    <option value="5" <%=vo.getBirth().split(",")[2].equals("5") ? "selected" : "" %>>5</option>
-	                                    <option value="6" <%=vo.getBirth().split(",")[2].equals("6") ? "selected" : "" %>>6</option>
-	                                    <option value="7" <%=vo.getBirth().split(",")[2].equals("7") ? "selected" : "" %>>7</option>
-	                                    <option value="8" <%=vo.getBirth().split(",")[2].equals("8") ? "selected" : "" %>>8</option>
-	                                    <option value="9" <%=vo.getBirth().split(",")[2].equals("9") ? "selected" : "" %>>9</option>
-	                                    <option value="10" <%=vo.getBirth().split(",")[2].equals("10") ? "selected" : "" %>>10</option>
-	                                    <option value="11" <%=vo.getBirth().split(",")[2].equals("11") ? "selected" : "" %>>11</option>
-	                                    <option value="12" <%=vo.getBirth().split(",")[2].equals("12") ? "selected" : "" %>>12</option>
-	                                    <option value="13" <%=vo.getBirth().split(",")[2].equals("13") ? "selected" : "" %>>13</option>
-	                                    <option value="14" <%=vo.getBirth().split(",")[2].equals("14") ? "selected" : "" %>>14</option>
-	                                    <option value="15" <%=vo.getBirth().split(",")[2].equals("15") ? "selected" : "" %>>15</option>
-	                                    <option value="16" <%=vo.getBirth().split(",")[2].equals("16") ? "selected" : "" %>>16</option>
-	                                    <option value="17" <%=vo.getBirth().split(",")[2].equals("17") ? "selected" : "" %>>17</option>
-	                                    <option value="18" <%=vo.getBirth().split(",")[2].equals("18") ? "selected" : "" %>>18</option>
-	                                    <option value="19" <%=vo.getBirth().split(",")[2].equals("19") ? "selected" : "" %>>19</option>
-	                                    <option value="20" <%=vo.getBirth().split(",")[2].equals("20") ? "selected" : "" %>>20</option>
-	                                    <option value="21" <%=vo.getBirth().split(",")[2].equals("21") ? "selected" : "" %>>21</option>
-	                                    <option value="22" <%=vo.getBirth().split(",")[2].equals("22") ? "selected" : "" %>>22</option>
-	                                    <option value="23" <%=vo.getBirth().split(",")[2].equals("23") ? "selected" : "" %>>23</option>
-	                                    <option value="24" <%=vo.getBirth().split(",")[2].equals("24") ? "selected" : "" %>>24</option>
-	                                    <option value="25" <%=vo.getBirth().split(",")[2].equals("25") ? "selected" : "" %>>25</option>
-	                                    <option value="26" <%=vo.getBirth().split(",")[2].equals("26") ? "selected" : "" %>>26</option>
-	                                    <option value="27" <%=vo.getBirth().split(",")[2].equals("27") ? "selected" : "" %>>27</option>
-	                                    <option value="28" <%=vo.getBirth().split(",")[2].equals("28") ? "selected" : "" %>>28</option>
-	                                    <option value="29" <%=vo.getBirth().split(",")[2].equals("29") ? "selected" : "" %>>29</option>
-	                                    <option value="30" <%=vo.getBirth().split(",")[2].equals("30") ? "selected" : "" %>>30</option>
-	                                    <option value="31" <%=vo.getBirth().split(",")[2].equals("31") ? "selected" : "" %>>31</option>
-	                                </select>
-	                     			일
+	                                <input type="text" name="birth" id="birth" value="<%=vo.getBirth()%>" readonly>
 	                            </div>
 	                        </div>
 	                        <div class="content">

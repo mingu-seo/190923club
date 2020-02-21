@@ -28,11 +28,13 @@ public class GalleryService {
 		fu.fileUpload(file, request.getRealPath("/upload/"));
 		vo.setImage(fu.fileName);
 		
-		fu.fileUpload(file2, request.getRealPath("/upload/"));
-		vo.setImage2(fu.fileName);
+		FileUtil fu2 = new FileUtil();
+		fu2.fileUpload(file2, request.getRealPath("/upload/"));
+		vo.setImage2(fu2.fileName);
 		
-		fu.fileUpload(file3, request.getRealPath("/upload/"));
-		vo.setImage3(fu.fileName);
+		FileUtil fu3 = new FileUtil();
+		fu3.fileUpload(file3, request.getRealPath("/upload/"));
+		vo.setImage3(fu3.fileName);
 		return galleryDao.galleryInsert(vo);
 	}
 	

@@ -17,6 +17,7 @@ int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
 <head>
 <title></title>
 <%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %>
+   <link rel="stylesheet" type="text/css" href="/css/board/boardmain.css">
 <link rel="stylesheet" href="/css/test/board.css"> 
 <link rel="stylesheet" href="/css/test/memberList.css">
 <script>
@@ -51,6 +52,15 @@ function drop() {
         	<%@ include file="/WEB-INF/view/board/submain/submainLeft.jsp" %>
         	<!-- 왼쪽메뉴 -->
         	<div class="visualRight">
+        		<%
+        			if(joinSpotCnt==0) {
+        		%>
+        			<div class="noMemberView"> 
+        				<div class="txt">멤버만 게시글을 볼 수 있습니다.<br> SPOT에 가입해 보세요 !</div> 
+        			</div>
+       			<%
+        			} else if(joinSpotCnt ==1){  
+       			%>
         		<div class="content">
             		<form name="frm" id="frm" action="spotMemberSleep.do" method="post">
             			<input type="hidden" name="spot_num" value="<%=spot_num%>">
@@ -131,6 +141,10 @@ function drop() {
 						</form>  
 					</div>
     			</div>
+    			
+    			<%
+        			}
+    			%>
         	</div>        	
         </div>
 		<!-- S T A R T :: footerArea-->

@@ -104,12 +104,14 @@ public class BoardController {
 	@RequestMapping("/board/submain/boardmain.do") 
 	public String boardMain(NoticeVO vo, Model model, BoardVO bVO, GalleryVO gvo, 
 			@RequestParam("spot_num") String spot_num, 
-			HttpSession session, HttpServletRequest request) {
+			HttpSession session, HttpServletRequest request, 
+			MemberVO ur) {
 		List<NoticeVO> nlist = nService.mainNoticeList(vo);
 		List<BoardVO> bList = bService.mainBoardList(bVO);
 		List<GalleryVO> glist = gService.mainGalleryList(gvo);
 		CategoryVO cate_minNum = cService.cateMin_num(Integer.parseInt(spot_num));
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		int[] listcount = joinSpotService.pageCount(ur);	// 전체 개수
 		
 		model.addAttribute("spot_vo", spotvo); //스팟 번호
 		model.addAttribute("cate_minNum", cate_minNum); //카테고리이름
@@ -117,6 +119,7 @@ public class BoardController {
 		model.addAttribute("glist", glist); //갤러리 리스트
 		model.addAttribute("bList", bList); //게시판 리스트
 		model.addAttribute("nlist", nlist); //공지사항 리스트
+		model.addAttribute("listcount", listcount[0]); // 전체 개수
 		
 		MemberVO mv = (MemberVO)session.getAttribute("sess");
 		// submainLeft 리더, 회원 값 넘겨주기

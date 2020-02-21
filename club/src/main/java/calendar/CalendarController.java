@@ -39,9 +39,11 @@ public class CalendarController {
 	public String index(Model model, 
 			@RequestParam(name="yearmonth", required=false) String yearmonth,
 			@RequestParam("spot_num") String spot_num,
-			HttpSession session, HttpServletRequest request) {
+			HttpSession session, HttpServletRequest request,
+			MemberVO vo) {
 
 		MemberVO mv = (MemberVO)session.getAttribute("sess");
+		int[] listcount = joinSpotService.pageCount(vo);	// 전체 갯수
 		// submainLeft 리더, 회원 값 넘겨주기
 		MemberVO uv = new MemberVO();					// 회원 체크(추가된부분)
 		uv.setSpot_num(Integer.parseInt(spot_num));
@@ -50,6 +52,7 @@ public class CalendarController {
 		
 		int joinSpotCnt = bService.checkJoinSpot(mv==null?0:mv.getNum(), Integer.parseInt(spot_num));
 		model.addAttribute("joinSpotCnt", joinSpotCnt); 
+		model.addAttribute("listcount", listcount[0]);
 		
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 		Calendar cal = Calendar.getInstance();

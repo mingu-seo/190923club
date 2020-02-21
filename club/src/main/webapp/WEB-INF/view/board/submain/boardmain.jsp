@@ -26,6 +26,7 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
 MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 
 int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
+int listcount = (Integer)request.getAttribute("listcount");
 %>
 
 <!DOCTYPE html>

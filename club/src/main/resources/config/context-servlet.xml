@@ -78,13 +78,13 @@
 
 	</mvc:interceptors>
 	
-	<mvc:interceptors>
+	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/member/memberList.do"/>
 			<bean class="interceptor.spotMemberInterceptor"/>
 		</mvc:interceptor>
 
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 
  	
  	<mvc:interceptors>
@@ -97,6 +97,7 @@
 			<mvc:exclude-mapping path="/member/joinForm2.do"/>
 			<mvc:exclude-mapping path="/member/joinForm3.do"/>
 			<mvc:exclude-mapping path="/member/join.do"/>
+			<mvc:exclude-mapping path="/member/memberList.do"/>  
 			<bean class="interceptor.MemberInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

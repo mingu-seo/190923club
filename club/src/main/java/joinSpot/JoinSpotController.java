@@ -49,6 +49,17 @@ public class JoinSpotController {
 	public String spotJoinForm(Model model, @RequestParam("spot_num") String spot_num,HttpSession session, HttpServletRequest request) {
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 		MemberVO mv = (MemberVO)session.getAttribute("sess");
+		// 로그인 안한유저가 가입신청할때 
+		String msg = "";
+		String url = "";
+		if(mv == null) {
+			msg = "로그인을 해주세요.";
+			url = "/member/loginFormBefore.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "member/include/alert";
+		}
+		
 		// submainLeft 리더, 회원 값 넘겨주기
 		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
 		int member_num = uv.getNum();														// 회원 체크(추가된부분)
@@ -110,7 +121,6 @@ public class JoinSpotController {
 		MemberVO searchVO = new MemberVO();
 		searchVO.setSpot_num(Integer.parseInt(spot_num));
 		MemberVO lvo = joinSpotService.spotLeader(searchVO);										// 리더 값뿌리기
-//		int memberCount = joinSpotService.count(vo);											 스팟 회원수
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);  
 		model.addAttribute("listcount", listcount[0]);
@@ -119,7 +129,6 @@ public class JoinSpotController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("joinSpotCnt", joinSpotCnt);														// 회원 체크(추가된부분)
 		model.addAttribute("lvo", lvo);														// 리더 값뿌리기
-//		model.addAttribute("memberCount", memberCount);										 스팟 회원수
 		return "member/memberList";
 	}
 	

@@ -25,15 +25,8 @@
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
-					<!-- 내용 : s -->
-					<div id="bbs">
-						<div id="blist">
-							<h1> 환영 합니다!</h1>
-						</div>
-						<!-- //blist -->
-					</div>
-					<!-- //bbs --> 
-					<!-- 내용 : e -->
+					<div class="admin_mainInfo">환영합니다!</div>
+					<div class="admin_mainCont">Hot Spot의 메인페이지, 공지사항, FAQ , 카테고리 그리고 각각의 Spot의 관리가 가능합니다!</div>
 				</div>
 				<!--//con -->
 			</div>

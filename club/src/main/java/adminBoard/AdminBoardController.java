@@ -1,5 +1,6 @@
 package adminBoard;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import board.BoardVO;
+import calendar.CalendarDAO;
+import calendar.CalendarService;
+import calendar.CalendarVO;
+import calendar.ScheduleVO;
 import category.CategoryVO;
 import file.FileVO;
 import gallery.GalleryDAO;
@@ -31,6 +36,8 @@ public class AdminBoardController {
 	@Autowired
 	GalleryDAO galleryDao;
 	
+	@Autowired
+	private CalendarDAO calendarDAO;	
 	@Autowired
 	private board.BoardService bService;
 	
@@ -54,6 +61,9 @@ public class AdminBoardController {
 	
 	@Autowired
 	private file.FileService fService;
+
+	@Autowired
+	private CalendarService calService;
 	
 	//서브메인 페이지
 	@RequestMapping("/admin/submain/submain.do")
@@ -310,4 +320,71 @@ public class AdminBoardController {
 		nService.noticeDelete(post_id);
 		return "redirect:/admin/submain/noticeList.do?spot_num="+spot_num+"&category_id="+vo.getCategory_id();
 	}
+	
+	// 달력화면 
+	@RequestMapping("/admin/submain/calendarmain.do")
+	public String adminIndex(Model model, 
+			@RequestParam(name="yearmonth", required=false) String yearmonth,
+			@RequestParam("spot_num") String spot_num,
+			HttpSession session, HttpServletRequest request) {
+
+		MemberVO uv = new MemberVO();					// 회원 체크(추가된부분)
+		uv.setSpot_num(Integer.parseInt(spot_num));
+		MemberVO lvo = joinSpotService.spotLeader(uv);										// 리더 값뿌리기
+		model.addAttribute("lvo", lvo);
+		
+		
+		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		Calendar cal = Calendar.getInstance();
+		int y = cal.get(Calendar.YEAR);
+		int m = cal.get(Calendar.MONTH)+1;
+		
+		if(yearmonth==null || "".equals(yearmonth)) {
+			yearmonth = y + "-" + ((m<10) ? "0"+m : m); 
+		}
+		List<CalendarVO> list = calendarDAO.selectCalendar(yearmonth);
+		
+		ScheduleVO svo = new ScheduleVO();
+		svo.setSpot_num(Integer.parseInt(spot_num));
+		
+		
+		for (int i=0; i<list.size(); i++) {
+			svo.setDate(list.get(i).getToday());
+			list.get(i).setSchedule(calService.scheduleList(svo));
+		}
+		
+		// 다음달
+		cal.set(Integer.parseInt(yearmonth.substring(0,4)), Integer.parseInt(yearmonth.substring(5,7))-1, 1);
+		cal.add ( cal.MONTH, + 1 );
+		y = cal.get(Calendar.YEAR);
+		m = cal.get(Calendar.MONTH)+1;
+		String nextMonth = y + "-" + ((m<10) ? "0"+m : m); 
+		
+		cal.set(Integer.parseInt(yearmonth.substring(0,4)), Integer.parseInt(yearmonth.substring(5,7))-1, 1);
+		cal.add ( cal.MONTH, - 1 );
+		y = cal.get(Calendar.YEAR);
+		m = cal.get(Calendar.MONTH)+1;
+		String prevMonth = y + "-" + ((m<10) ? "0"+m : m); 
+		
+		
+		model.addAttribute("yearmonth", yearmonth); 
+		model.addAttribute("nextMonth", nextMonth); 
+		model.addAttribute("prevMonth", prevMonth); 
+		model.addAttribute("spot_vo", spotvo);
+		model.addAttribute("calendar_list", list);
+		model.addAttribute("spot_num", spot_num);
+		
+		return "admin/submain/calendarMain";
+	}
+	
+	@RequestMapping("/admin/submain/popupContents.do")
+	public String adminPopupContents(Model model, ScheduleVO vo) {
+		ScheduleVO popCon = calendarDAO.popContents(vo);
+		model.addAttribute("popCon", popCon);
+		return "admin/submain/popupContents";
+	}
+	
+		
+	
+	
 }

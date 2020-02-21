@@ -64,7 +64,7 @@ $(function() {
 		<!-- util : s -->
 		<div class="util">
 			<ul>
-				<li class="frist"><a href="#" onclick="">Home</a></li>
+				<li class="frist"><a href="/admin/board/hotspotInfo.do">Home</a></li>
 				<li><a href="/admin/logout.do">LogOut</a></li>
 			</ul>
 		</div>
@@ -76,7 +76,6 @@ $(function() {
 					<div class="standard_left">
 					<ul>
 						<li><a href="/admin/info/infoList.do"><span>HOTSPOT 정보</span></a></li>
-						<li><a href="/admin/board/hotspotSetting.do"><span>꾸미기 설정</span></a></li>
 					</ul>
 					</div>
 				</li>
@@ -85,14 +84,14 @@ $(function() {
 					<div class="standard_left">
 					<ul>
 						<li><a href="/admin/notice/noticeList.do"><span>공지사항</span></a></li>
-						<li><a href="/admin/qna/qnaList.do"><span>Q&A</span></a></li>
+						<li><a href="/admin/qna/qnaList.do"><span>FAQ</span></a></li>
 					</ul>
 					</div>
 				</li>
 				<li><span>관리자관리</span>
 					<div class="standard_right">
 					<ul>
-						<li><a href="/admin/spot/spotList.do"><span>동아리</span></a></li>
+						<li><a href="/admin/spot/spotList.do"><span>Hot Spot</span></a></li>
 						<li><a href="/admin/category/categoryList.do"><span>카테고리</span></a></li>
 					</ul>
 					</div>

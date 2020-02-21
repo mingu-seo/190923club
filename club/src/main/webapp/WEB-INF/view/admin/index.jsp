@@ -55,19 +55,13 @@ function loginCheck() {	// 로그인 버튼
 			</div>
 			<!-- //bgBox -->
 			<div class="joinList">
-				<input type="checkbox" name="reg" id="reg"/> <label for="reg">아이디 저장</label>&nbsp;&nbsp;|&nbsp;&nbsp;
 				<a href="join.do">회원 가입</a>
 			</div>
-			<div class="joinList">
-			</div>	
 			<!-- //joinList -->
 			<input type="hidden" name="url" id="url" value="<%//=url%>"/>
 			<input type="hidden" name="param" id="param" value="<%//=param%>"/>
 		</fieldset>
 	</form>
-	</div>
-	<div class="footer">
-		Copyrights (c) 2020 <a href="#" target="_blank">SAMPLE</a>. All Rights Reserved.  
 	</div>
 </div>
 </body>

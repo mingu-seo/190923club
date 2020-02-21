@@ -102,11 +102,6 @@ public class AdminController {
 		return "admin/board/hotspotInfo";
 	}
 	
-	//hotspot 꾸미기설정
-	@RequestMapping("/admin/board/hotspotSetting.do")
-	public String hotspotSetting() {
-		return "admin/board/hotspotSetting";
-	}
 
 	//Q&A
 	@RequestMapping("/admin/board/qna.do")

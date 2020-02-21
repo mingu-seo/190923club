@@ -241,6 +241,7 @@
 		width:100%;
 		background:#f2f2f2;
 		border:1px solid gray !important;
+		cursor:pointer;
 	}
 	
 	
@@ -263,10 +264,14 @@
 		padding:5px;
 	}
 	
+	.btns:hover {
+		box-shadow: 0 0 10px gray; 
+	}
+	
 	.btns {
 		min-width: 180px;
 	    height: 44px;
-	    padding: 10 30px;
+		cursor:pointer;
 	    font-size: 14px;
 	    font-weight: 600;
 	    color: #666;

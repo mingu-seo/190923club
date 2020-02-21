@@ -49,9 +49,11 @@ public class BoardController {
 	
 	//서브메인 페이지
 	@RequestMapping("/board/submain/submain.do")
-	public String subMain(Model model, @RequestParam("spot_num") String spot_num, HttpSession session, HttpServletRequest request) {
+	public String subMain(Model model, @RequestParam("spot_num") String spot_num, HttpSession session, HttpServletRequest request, MemberVO vo) {
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 		MemberVO mv = (MemberVO)session.getAttribute("sess");
+		int[] listcount = joinSpotService.pageCount(vo);	// 전체 갯수
+		model.addAttribute("listcount", listcount[0]);
 		
 		MemberVO searchVO = new MemberVO();		// 리더 조회용 VO
 		searchVO.setSpot_num(Integer.parseInt(spot_num)); // 조회용VO에 spot_num set

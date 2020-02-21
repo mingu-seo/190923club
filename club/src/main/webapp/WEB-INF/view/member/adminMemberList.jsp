@@ -16,20 +16,8 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
-function sleep() {
-	if (confirm("선택된 회원을 휴면처리하겠습니까?")) {
-		$("#frm").attr("action", "memberSleep.do");
-		$("#frm").submit();
-	}
-}
-function wake() {
-	if (confirm("선택된 회원을 활성화하겠습니까?")) {
-		$("#frm").attr("action", "memberWake.do");
-		$("#frm").submit();
-	}
-}
 function drop() {
-	if (confirm("선택된 회원을 강제탈퇴하겠습니까?")) {
+	if (confirm("선택된 회원을 회원삭제하겠습니까?")) {
 		$("#frm").attr("action", "memberDelete.do");
 		$("#frm").submit();
 	}
@@ -116,9 +104,7 @@ function drop() {
 							</form>
 							<div class="btn">
 								<div class="btnRight">
-									<a class="btns" href="javascript:;" onclick="drop();"><strong>강제 탈퇴</strong> </a>
-									<a class="btns" href="javascript:;" onclick="sleep();"><strong>휴면</strong> </a>
-									<a class="btns" href="javascript:;" onclick="wake();"><strong>활성화</strong> </a>
+									<a class="btns" href="javascript:;" onclick="drop();"><strong>회원삭제</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->

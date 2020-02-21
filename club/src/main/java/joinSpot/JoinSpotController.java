@@ -112,7 +112,7 @@ public class JoinSpotController {
 		MemberVO lvo = joinSpotService.spotLeader(searchVO);										// 리더 값뿌리기
 //		int memberCount = joinSpotService.count(vo);											 스팟 회원수
 		model.addAttribute("spot_num", spot_num);
-		model.addAttribute("spot_vo", spotvo);
+		model.addAttribute("spot_vo", spotvo);  
 		model.addAttribute("listcount", listcount[0]);
 		model.addAttribute("totalpage", listcount[1]);
 		model.addAttribute("memberList", list);

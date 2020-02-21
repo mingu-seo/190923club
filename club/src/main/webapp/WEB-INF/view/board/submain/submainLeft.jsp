@@ -8,7 +8,7 @@
 SpotVO list = (SpotVO)request.getAttribute("spot_vo");
 MemberVO sess = (MemberVO)session.getAttribute("sess"); 
 JoinSpotVO jsvo = (JoinSpotVO)request.getAttribute("js");
-//int joinSpotCnt2 = (Integer)request.getAttribute("joinSpotCnt");
+int memberCount = (Integer)request.getAttribute("listcount");
 //int memberCount = (Integer)request.getAttribute("memberCount");
 MemberVO lvo = (MemberVO)request.getAttribute("lvo");
 %>
@@ -22,16 +22,16 @@ MemberVO lvo = (MemberVO)request.getAttribute("lvo");
 			        		<%=list.getName()%>
 			        	</div>
 			        	<div class="clubInfo"> 
-			        		멤버 명<br> 
+			        		멤버 <%=memberCount %>명<br> 
 			        		회장 <%=lvo.getId() %>
 			        	</div>
         		</div>
         		<div class="clubIntro">
-					<%=list.getContent() %>
+					<%=list.getContent() %>  
         		</div> 
         		
         		<div class="clubInfo">
-        			<%if(joinSpotCnt == 0) {%>  
+        			<%if(joinSpotCnt == 0) {%>
         				<a href="/spotJoin/spotJoinForm.do?spot_num=<%=list.getNum()%>">가입신청</a>
         			<%} %>
         		</div>

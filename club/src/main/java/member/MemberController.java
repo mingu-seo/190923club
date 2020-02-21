@@ -168,7 +168,11 @@ public class MemberController {
 		int r = memberService.mypageUpdate(vo, file, req);
 		MemberVO mv = memberService.mypageView(vo.getNum());
 		session.setAttribute("sess", mv);
-		return "redirect:/member/mypageView.do";
+		String msg = "수정되었습니다.";
+		String url = "/member/mypageView.do";
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "member/include/alert";
 	}
 	
 	

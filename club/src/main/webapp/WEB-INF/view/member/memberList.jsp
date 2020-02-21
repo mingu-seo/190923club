@@ -94,7 +94,9 @@ function drop() {
 			                        	<%} else if(memberList.get(i).getGender()==2) { %>여자<%} %>
 			                        </td>
 			                        <td class="last"><%=memberList.get(i).getTel() %></td>
-			                        <td><% if(memberList.get(i).getJoinspot_grade()==2){ %>활동중
+			                        <td>
+			                        	<%if(memberList.get(i).getJoinspot_grade()==1){ %>리더
+			                        	<%} else if(memberList.get(i).getJoinspot_grade()==2){ %>활동중
 			                        	<%} else if(memberList.get(i).getJoinspot_grade()==3) { %>휴면<%} %>
 			                        </td>
 			                    </tr>

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import ="notice.NoticeVO" %>
 <%@ page import ="reply.ReplyVO" %>
+<%@ page import ="member.MemberVO" %>
 <%@ page import="file.FileVO" %>
 <%@ page import ="java.util.HashMap" %>
 <%@ page import ="java.util.ArrayList" %>
@@ -9,6 +10,7 @@
 <%
 List<ReplyVO> list = (List<ReplyVO>)request.getAttribute("list");
 ReplyVO rVO = (ReplyVO)request.getAttribute("vo");
+MemberVO sessVO = (MemberVO)session.getAttribute("sess");//세션객체
 %>
 
 <script>
@@ -44,7 +46,7 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("vo");
 			%>
 			
 				<tr id="re_info"> 
-					<th class="repl_date">홍길동</th>
+					<th class="repl_date"><%=list.get(i).getWriter() %></th>
 					<td>
 					<% if (list.get(i).getG_lev() > 0) { %>
 					<% for (int j=0; j<list.get(i).getG_lev(); j++) { %>
@@ -54,7 +56,15 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("vo");
 					<%=list.get(i).getContents() %> <a href="#;" class="re_btn">답글</a></td> 
 					<th class="repl_date"><%=list.get(i).getRegdate() %></th>
 					<td id="repl_del">
+					<%
+						System.out.println(sessVO.getNum());
+						System.out.println(list.get(i).getMember_id());
+					if(sessVO.getNum()==list.get(i).getMember_id()) {  
+					%>
 						<input type="button" value="삭제" onclick="replDel('<%=list.get(i).getPost_id()%>','<%=list.get(i).getReply_num()%>')">
+					<%
+					}
+					%>
 					</td>
 				</tr>
 				
@@ -66,6 +76,8 @@ ReplyVO rVO = (ReplyVO)request.getAttribute("vo");
 					<form id="replyForm<%=i%>" >
 					<input type="hidden" name="board_id" value="<%=rVO.getBoard_id()%>">
 					<input type="hidden" name="post_id" value="<%=rVO.getPost_id()%>">
+					<input type="hidden" name="writer" value="<%=sessVO.getName()%>">
+					<input type="hidden" name="member_id" value="<%=sessVO.getNum()%>">
 					<input type="hidden" name="reply_num" value="<%=list.get(i).getReply_num()%>">
 					<input type="hidden" name="g_id" id="g_id" value="<%=list.get(i).getG_id()%>">
 					<input type="hidden" name="g_lev" id="g_lev" value="<%=list.get(i).getG_lev()%>">

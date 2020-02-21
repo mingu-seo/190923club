@@ -117,8 +117,9 @@ public class CalendarController {
 	}
 	
 	@RequestMapping("/calendar/popupContents.do")
-	public String popupContents(@RequestParam("spot_num") String spot_num) {
-		
+	public String popupContents(Model model, ScheduleVO vo, @RequestParam("spot_num") String spot_num) {
+		ScheduleVO popCon = calendarDAO.popContents(vo);
+		model.addAttribute("popCon", popCon);
 		return "calendar/popupContents";
 	}
 }

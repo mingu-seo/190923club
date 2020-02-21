@@ -59,6 +59,7 @@ $(function() {
 		
 	});
 });
+
 /* 
 function check() {
 	if($(".addBox").val().trim()=="") {
@@ -174,7 +175,7 @@ function check() {
 		        				<div class="boardAdd"> 
 			        				<input class="addBox" type="text" name="name" value="<%=categoryList[2].get(i).getName()%>">
 			        				<input type="hidden" name="category_ids" value="<%=categoryList[2].get(i).getCategory_id()%>">
-			        				<input class="categoryBtn deleteBtn" type="submit" value="삭제"> 
+			        				<input class="categoryBtn deleteBtn" type="submit" value="삭제">  
 		        				</div>
 		        				<% 
 		        				}

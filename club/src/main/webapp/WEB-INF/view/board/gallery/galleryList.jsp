@@ -175,8 +175,8 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
                 function getReplyList(id) {
                 	console.log("getReplyList id="+id);
                 	$.ajax({
-                		async :false,
-                		url:'/board/replyList.do',
+                		async :false, 
+                		url:'/board/replyListAjax.do',
                 		data :{
                 			'post_id':id,
                 			'board_id':1
@@ -305,7 +305,9 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 				</section>
 				</div>
 			 	<div class="boardSearch2">
-				 	<form action="/board/gallery/galleryList.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
+				 	<form action="/board/gallery/galleryList.do" method="post">
+				 	<input type="hidden" name="spot_num" value="<%=spot_num%>"> 
+			 		<input type="hidden" name="category_id" value="<%=vo.getCategory_id() %>">
 					<input type="search" name="search_word" id="boardSearch" value="${gallery.serch_word }">
 					<input id="board_search_btn" type="submit" value="검색">
 					</form>
@@ -332,7 +334,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 				</div>
                 <div class="user-information">
                     <a class="user-information-image" href="#">
-                        <img src="http://placekitten.com/70/70">
+                        <img src="/profileImg/<%=sessVO.getProfile()%>" style="height:100px; width:120px;"> 
                     </a>
                     <div class="user-information-text">
                     	<div class=paper-text2 style="font-weight: bold; font-size:20px;"></div> 

@@ -25,7 +25,7 @@
         	<div class="visualRight">
         		<div class="content">
 		            <div class="spot_info">
-        			<div class="info_title"> HOT SPOT QnA
+        			<div class="info_title"> HOT SPOT FAQ
         			</div>
 							<%
 							for (int i=0; i<list.size(); i++){

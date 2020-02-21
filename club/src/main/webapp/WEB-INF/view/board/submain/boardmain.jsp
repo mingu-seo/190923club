@@ -432,25 +432,6 @@ int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
 					<div id="replyListArea">
 					
 					</div>
-					
-					<!-- 댓글 폼 -->
-						<form action="/board/galleryReply.do?spot_num=<%=spot_vo.getNum() %>&board_id=1" method="post">
-								<input type="hidden" name="post_id" id="reply_post_id" value="">
-								<input type="hidden" name="board_id" id="reply_board_id" value="1">
-								<input type="hidden" name="reply_num" id="reply_num" value="">
-							<table>
-								<tr>
-									<td class="repForm" colspan="2">   
-										<textarea class="replyText" name="contents" placeholder="댓글을 입력하세요"></textarea>
-									</td>
-									
-									<td class="repForm_sub"> 
-										<input type="button" class="repl_btn" value="등록" onclick="replyAjax();"> 
-									</td>
-									
-								</tr>
-							</table>
-						</form> 
 				<script>
 				function replyAjax() {
 					$.ajax({

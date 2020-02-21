@@ -73,6 +73,7 @@
 			<mvc:mapping path="/admin/**"/>
 			<mvc:exclude-mapping path="/admin/index.do"/>
 			<mvc:exclude-mapping path="/admin/adminLogin.do"/>
+			<mvc:exclude-mapping path="/admin/join.do"/>
 			<bean class="interceptor.AdminInterceptor"/>
 		</mvc:interceptor>
 

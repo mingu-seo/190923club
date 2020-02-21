@@ -11,14 +11,10 @@ int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <link rel="stylesheet" type="text/css" href="/css/board/writing.css">
-<%@ include file="/WEB-INF/view/board/include/headHtml.jsp" %> 
+  <%@ include file="/WEB-INF/view/admin/include/adminspotheadHtml.jsp" %> 
 <script>
-	function popup(today) { 
-		window.open('/calendar/popup.do?spot_num=<%=request.getParameter("spot_num")%>&date='+today, 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no'); 
-	};
-	
 	function detailPopup(num) { 
-		window.open('/calendar/popupContents.do?num='+num, 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no');
+		window.open('/admin/submain/popupContents.do?num='+num, 'window팝업', 'width=500, height=500, left=600, top=400, menubar=no');
 	}
 </script>
 <style>
@@ -34,23 +30,20 @@ td {
 </head>
 <body> 
 		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/board/include/newheader.jsp" %> 
+		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 		<!-- E N D :: headerArea--> 
 <div class="wrap">
-		
 			<div class="main">
-				<%@ include file="/WEB-INF/view/board/submain/menu.jsp" %>
+     			   <%@ include file="menu.jsp" %>
 				<div class="visual">
-				
-        		<%@ include file="/WEB-INF/view/board/submain/submainLeft.jsp" %>
-        		
+        			<%@ include file="submainLeft.jsp" %>
 					<!-- 내용 : s -->
 						<div class="visualRight">
 						<div id="bwrite">
 							<div class="" style="font-size: 28px;  margin-bottom: 20px;">
-								<a href="/calendar/calendarmain.do?spot_num=<%=spot_num%>&yearmonth=${prevMonth}"><img src="/img/right-arrow.png" style="width:30px; height:30px;"></a>
+								<a href="/admin/submain/calendarmain.do?spot_num=<%=spot_num%>&yearmonth=${prevMonth}"><img src="/img/right-arrow.png" style="width:30px; height:30px;"></a>
 								<%=yearmonth %>
-								<a href="/calendar/calendarmain.do?spot_num=<%=spot_num%>&yearmonth=${nextMonth}"><img src="/img/L-arrow.png" style="width:30px; height:30px;"></a>
+								<a href="/admin/submain/calendarmain.do?spot_num=<%=spot_num%>&yearmonth=${nextMonth}"><img src="/img/L-arrow.png" style="width:30px; height:30px;"></a>
 							</div> 
 							<div style="text-align: right; color:red; margin-bottom: 5px;">
 								※ 날짜를 선택하시면 일정을 등록할 수 있습니다.
@@ -110,7 +103,7 @@ td {
 												<%=calendar_list.get(i).getSchedule().get(k).getTitle() %>
 											</div>
 										<% } %>
-											<span class='dateNumber' style="cursor: pointer;" onclick="popup('<%=today%>');"><%=date%></span>
+											<span class='dateNumber' ><%=date%></span>
 										</td>
 								<%
 											if (i == calendar_list.size()-1) {
@@ -137,5 +130,6 @@ td {
 				</div><!-- visual -->
 			</div><!-- main -->
 </div><!--//wrap -->
+
 </body>
 </html>

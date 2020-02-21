@@ -24,7 +24,7 @@ AdminQnaVO Qna= (AdminQnaVO)request.getAttribute("Qna");
         	<div class="visualRight">
         		<div class="content">
 		            <div class="spot_info">
-        			<div class="info_title"> HOT SPOT공지사항
+        			<div class="info_title"> HOT SPOT FAQ
         			</div>
         				<div class="infoView">
 							<div class="inc_tile"><%=Qna.getSubject() %></div>	

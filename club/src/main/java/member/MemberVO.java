@@ -33,8 +33,16 @@ public class MemberVO {
 	// 회원이 가입한 spot
 	private String file;
 	private String spot_name;
+	private String leader_name;
 	
 	
+	
+	public String getLeader_name() {
+		return leader_name;
+	}
+	public void setLeader_name(String leader_name) {
+		this.leader_name = leader_name;
+	}
 	public String getFile() {
 		return file;
 	}

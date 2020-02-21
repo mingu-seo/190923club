@@ -15,7 +15,7 @@
                     <a href="spotNotice.do" class=btn2>HOT SPOT 공지사항</a>
                 </div>
                 <div class="titleText1">
-                    <a href="spotQna.do" class=btn2>HOT SPOT QnA</a>
+                    <a href="spotQna.do" class=btn2>HOT SPOT FAQ</a>
                 </div>
                 <div class="titleText1">
 	                <a href="spotUselaw.do" class=btn2>이용약관</a>

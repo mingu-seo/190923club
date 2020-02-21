@@ -66,6 +66,19 @@ div#menu li div {
     margin: 0 0 0 0px;
     
 }
+.admin_mainInfo{
+	padding: 100px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 60px;
+    padding-top : 200px;
+}
+.admin_mainCont{
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+}
 
 div#menu li div.standard_left{left:0 !important;} 
 

@@ -24,6 +24,8 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 //min 
 CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
 MemberVO sessVO = (MemberVO)session.getAttribute("sess");
+
+int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
 %>
 
 <!DOCTYPE html>

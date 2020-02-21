@@ -52,8 +52,6 @@ public class JoinSpotController {
 		// submainLeft 리더, 회원 값 넘겨주기
 		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
 		int member_num = uv.getNum();														// 회원 체크(추가된부분)
-		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
-		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
 		uv.setSpot_num(Integer.parseInt(spot_num));
 		MemberVO lvo = joinSpotService.spotLeader(uv);										// 리더 값뿌리기
 		model.addAttribute("lvo", lvo);
@@ -105,9 +103,11 @@ public class JoinSpotController {
 		List<MemberVO> list = joinSpotService.spotMemberList(vo);
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
-		int member_num = uv.getNum();														// 회원 체크(추가된부분)
-		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
-		MemberVO lvo = joinSpotService.spotLeader(uv);										// 리더 값뿌리기
+		int member_num = uv==null ? 0 : uv.getNum();														// 회원 체크(추가된부분)
+		int joinSpotCnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
+		MemberVO searchVO = new MemberVO();
+		searchVO.setSpot_num(Integer.parseInt(spot_num));
+		MemberVO lvo = joinSpotService.spotLeader(searchVO);										// 리더 값뿌리기
 //		int memberCount = joinSpotService.count(vo);											 스팟 회원수
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);
@@ -115,7 +115,7 @@ public class JoinSpotController {
 		model.addAttribute("totalpage", listcount[1]);
 		model.addAttribute("memberList", list);
 		model.addAttribute("vo", vo);
-		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
+		model.addAttribute("joinSpotCnt", joinSpotCnt);														// 회원 체크(추가된부분)
 		model.addAttribute("lvo", lvo);														// 리더 값뿌리기
 //		model.addAttribute("memberCount", memberCount);										 스팟 회원수
 		return "member/memberList";

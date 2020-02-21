@@ -4,6 +4,7 @@
 <%
 List<CalendarVO> calendar_list = (List<CalendarVO>)request.getAttribute("calendar_list");
 String yearmonth = (String)request.getAttribute("yearmonth");
+int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
 %>
 <html> 
 <head>

@@ -43,15 +43,12 @@ public class CalendarController {
 
 		MemberVO mv = (MemberVO)session.getAttribute("sess");
 		// submainLeft 리더, 회원 값 넘겨주기
-		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
-		int member_num = uv.getNum();														// 회원 체크(추가된부분)
-		int cnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
-		model.addAttribute("cnt", cnt);														// 회원 체크(추가된부분)
+		MemberVO uv = new MemberVO();					// 회원 체크(추가된부분)
 		uv.setSpot_num(Integer.parseInt(spot_num));
 		MemberVO lvo = joinSpotService.spotLeader(uv);										// 리더 값뿌리기
 		model.addAttribute("lvo", lvo);
 		
-		int joinSpotCnt = bService.checkJoinSpot(mv.getNum(), Integer.parseInt(spot_num));
+		int joinSpotCnt = bService.checkJoinSpot(mv==null?0:mv.getNum(), Integer.parseInt(spot_num));
 		model.addAttribute("joinSpotCnt", joinSpotCnt); 
 		
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));

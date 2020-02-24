@@ -25,7 +25,7 @@ List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
 	                	<span class="spotuser">
 	                		회원수 : <%=spot.get(j).getMember_count() %>명  
 	                	</span>
-	                	<span class="spotleader">리더 :<%=spot.get(j).getLeader_name() %></span>
+	                	<span class="spotleader">리더 : <%=spot.get(j).getLeader_name() %></span>
 	                </a> 
 	            </div>    
            	<%
@@ -50,7 +50,7 @@ List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
 	                	<span class="spotuser">
 	                		회원수 : <%=spot.get(j).getMember_count() %>명
 	                	</span>
-	                	<span class="spotleader">리더 :<%=spot.get(j).getLeader_name() %></span>
+	                	<span class="spotleader">리더 : <%=spot.get(j).getLeader_name() %></span>
 	                </a> 
 	                
 	            </div>    

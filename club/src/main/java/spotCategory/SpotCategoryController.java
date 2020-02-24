@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import joinSpot.JoinSpotDAO;
 import joinSpot.JoinSpotService;
 import member.MemberVO;
 import spot.SpotService;
@@ -100,21 +101,23 @@ public class SpotCategoryController {
 	}
 	//유저가 보는 spotCategory 선택 뷰
 	@RequestMapping("/spot/spotList.do")
-	public String userSpotList(Model model, SpotCategoryVO vo,SpotVO spotvo, HttpServletRequest request) {
-		List<SpotCategoryVO> list = spotCategoryService.spotCategoryList(vo);
+	public String userSpotList(Model model, SpotCategoryVO catevo,SpotVO spotvo, HttpServletRequest request, MemberVO vo) {
+		List<SpotCategoryVO> list = spotCategoryService.spotCategoryList(catevo);
 		List<SpotVO> spotArticle = spotService.spotList(spotvo);
 		MemberVO jsvo = (MemberVO)request.getSession().getAttribute("sess");
 		List<MemberVO> jslist = joinSpotService.mySpotList(jsvo); 
 		model.addAttribute("spot",spotArticle);
 		model.addAttribute("spotvo",spotvo);
 		model.addAttribute("list",list);
-		model.addAttribute("vo",vo);
-		model.addAttribute("jslist",jslist);   
+		model.addAttribute("vo",catevo);
+		model.addAttribute("jslist",jslist);
+		int listcount = joinSpotService.membercount(vo);	// 전체 갯수
+		model.addAttribute("listcount", listcount);
 		return "/spot/spotList";
 	}
 	
 	@RequestMapping("/spot/spotAjax.do")
-	public String spotAjax(Model model, @RequestParam("category_num") int category_num) {
+	public String spotAjax(Model model, @RequestParam("category_num") int category_num, MemberVO vo) {
 		List<SpotVO> spotArticle = spotCategoryService.spotAjax(category_num);
 		model.addAttribute("spot",spotArticle);
 		return "/spot/spotAjax";

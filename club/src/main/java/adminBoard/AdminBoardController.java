@@ -67,11 +67,16 @@ public class AdminBoardController {
 	
 	//서브메인 페이지
 	@RequestMapping("/admin/submain/submain.do")
-	public String adminSubMain(Model model, @RequestParam("spot_num") String spot_num, HttpSession session) {
+	public String adminSubMain(Model model, @RequestParam("spot_num") String spot_num, HttpSession session, MemberVO vo) {
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 		
+		
+		MemberVO lvo = joinSpotService.spotLeader(vo);	
+		int listcount = joinSpotService.membercount(vo);
+		model.addAttribute("listcount", listcount);
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);
+		model.addAttribute("lvo", lvo);
 		return "admin/submain/submain";
 	}
 	//게시판 관리 페이지
@@ -89,7 +94,7 @@ public class AdminBoardController {
 	}
 	//게시판 메인 페이지
 	@RequestMapping("/admin/submain/boardmain.do") 
-	public String adminBoardMain(NoticeVO vo, Model model, BoardVO bVO, GalleryVO gvo, @RequestParam("spot_num") String spot_num) {
+	public String adminBoardMain(NoticeVO vo, Model model, BoardVO bVO, GalleryVO gvo, @RequestParam("spot_num") String spot_num ) {
 		List<NoticeVO> nlist = nService.mainNoticeList(vo);
 		List<BoardVO> bList = bService.mainBoardList(bVO);
 		List<GalleryVO> glist = gService.mainGalleryList(gvo);
@@ -102,7 +107,6 @@ public class AdminBoardController {
 		model.addAttribute("glist", glist); //갤러리 리스트
 		model.addAttribute("bList", bList); //게시판 리스트
 		model.addAttribute("nlist", nlist); //공지사항 리스트
-		
 		return "admin/submain/boardmain";
 	}
 	
@@ -326,13 +330,15 @@ public class AdminBoardController {
 	public String adminIndex(Model model, 
 			@RequestParam(name="yearmonth", required=false) String yearmonth,
 			@RequestParam("spot_num") String spot_num,
-			HttpSession session, HttpServletRequest request) {
+			HttpSession session, HttpServletRequest request, MemberVO vo) {
 
 		MemberVO uv = new MemberVO();					// 회원 체크(추가된부분)
 		uv.setSpot_num(Integer.parseInt(spot_num));
 		MemberVO lvo = joinSpotService.spotLeader(uv);										// 리더 값뿌리기
 		model.addAttribute("lvo", lvo);
 		
+		int listcount = joinSpotService.membercount(vo);
+		model.addAttribute("listcount", listcount);		
 		
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 		Calendar cal = Calendar.getInstance();

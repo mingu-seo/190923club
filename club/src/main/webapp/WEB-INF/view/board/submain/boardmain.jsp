@@ -114,13 +114,18 @@ int listcount = (Integer)request.getAttribute("listcount");
 	                		//images = [data.image, data.image2, data.image3];
 	                		$(".paper-text2").text(data.title);	
 	                		$(".paper-contents").text(data.contents);
+	                		$(".like_cnt").text(data.like_cnt);
 		                	$(".paper-each2").attr("src", "/upload/"+data.image);
 		                	$("#prePost").attr("onclick", "moveView("+data.post_id+", 'prev')");
 		                	$("#nextPost").attr("onclick", "moveView("+data.post_id+", 'next')");
 		                	$("#deleteHref").attr("href", "/board/gallery/galleryDelete.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&post_id="+id);
 		                	$("#detailHref").attr("href", "/board/gallery/galleryEdit.do?spot_num=<%=spot_vo.getNum()%>&board_id=1&post_id="+id);
-		               		$("#readCount").text(data.readcount);
+		               		$("#viewCnt").text(data.view); //조회수
 		               		$("#reply_post_id").val(id);
+		               		$(".post_id").val(id);
+		               		$("#date_info").text(data.regdate); // 날짜 넘겨주기
+		               		$("#writer_info").text(data.writer); // 작성자 넘겨주기  
+		               		$(".post_id").val(id); // post_id넘겨주기 
 		               		showLightBox();
 		               		getReplyList(id);
 	                	},
@@ -130,6 +135,30 @@ int listcount = (Integer)request.getAttribute("listcount");
                 	});
 	                	
                 }
+                
+                function likeAjax() { 
+            	 	$.ajax({
+            	 		async : false,
+            	 		url : '/board/likeInsert.do', 
+            	 		data : {
+            	 			'post_id' : $(".post_id").val(), 
+            	 			'board_id' : 1,
+            	 			'member_id' : $(".member_id").val(),
+            	 			'tableName' : 'gallery' 
+            	 		},
+            	 		dataType :'HTML',
+            	 		success : function(data) {
+            	 			if (data.trim() == "0") {
+            	 				$(".like_cnt").text(Number($(".like_cnt").text())+1);
+            	 			} else {
+            	 				$(".like_cnt").text(Number($(".like_cnt").text())-1);
+            	 			}
+            	 		},
+            	 		error:function(data) {
+            	 			alert("ajax실패")
+            	 		}
+            	 	});
+            	}
                 
                 function replyView(id){
                 	$.ajax({
@@ -410,7 +439,7 @@ int listcount = (Integer)request.getAttribute("listcount");
                
                 <div class="user-information">
                     <a class="user-information-image" href="#">
-                        <img src="http://placekitten.com/70/70">
+                        <img src="/profileImg/<%=sessVO.getProfile()%>" style="height:100px; width:120px;"> 
                     </a>    
                     <div class="user-information-text">
                     	<div class=paper-text2 style="font-weight: bold; font-size:20px;"></div> 
@@ -431,10 +460,10 @@ int listcount = (Integer)request.getAttribute("listcount");
                 <div class="paper-contents"></div>  
 	          	
 	          	<div class="view_repl_info"> 
-					<form id="like_form"> 
+					<form id="like_form">
 						<input type="hidden" name="post_id" class="post_id" value="">
-						<input type="hidden" name="member_id" class="member_id" value=""> 
-						<span class="view_like" onclick="likeAjax();">❤ </span> 
+						<input type="hidden" name="member_id" class="member_id" value="<%=sessVO.getNum()%>">
+						<span class="view_like" onclick="likeAjax();"><img src="/img/board/like.png" style="max-height: 30px;">&nbsp;좋아요  </span> 
 						<span class="like_cnt"></span> 
 					</form> 
 					
@@ -508,8 +537,6 @@ int listcount = (Integer)request.getAttribute("listcount");
 				</script>		  
 					</div> 
 				</div>
-				<a id="deleteHref"><input type="button" value="삭제" class="btns" ></a>
-				<a id="detailHref"><input type="button" value="수정" class="btns" ></a>
       	  </div>
          
         </div>

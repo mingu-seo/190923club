@@ -67,4 +67,9 @@ public class BoardService {
 		
 		return jsDAO.checkJoinSpot(map);
 	}
+	
+	public List<Map> union(int spot_num) {
+		
+		return boardDAO.union(spot_num);
+	}
 }

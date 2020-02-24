@@ -47,7 +47,6 @@ function drop() {
         <%@ include file="menu.jsp" %>
         <div class="visual">
         	<!-- 왼쪽메뉴 -->
-        	<%@ include file="submainLeft.jsp" %>
         	<!-- 왼쪽메뉴 -->
         	<div class="visualRight">
         		<div class="content">

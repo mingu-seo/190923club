@@ -141,9 +141,9 @@ function deleteConfirm(num) {
 									                		<%=spot.get(j).getContent()%>
 									                	</div>
 									                	<span class="spotuser">
-									                		회원수 : 00명
+									                		회원수 : <%=spot.get(j).getMember_count() %>명
 									                	</span>
-									                	<span class="spotleader">리더 : 홍길동</span>
+									                	<span class="spotleader">리더 : <%=spot.get(j).getLeader_name() %></span>
 									                </a> 
 									                
 									            </div>    
@@ -167,9 +167,9 @@ function deleteConfirm(num) {
 									                		<%=spot.get(j).getContent()%>
 									                	</div>
 									                	<span class="spotuser">
-									                		회원수 : 00명
+									                		회원수 : <%=spot.get(j).getMember_count() %>명
 									                	</span>
-									                	<span class="spotleader">리더 : 홍길동</span>
+									                	<span class="spotleader">리더 : <%=spot.get(j).getLeader_name() %></span>
 									                </a> 
 									                
 									            </div>    

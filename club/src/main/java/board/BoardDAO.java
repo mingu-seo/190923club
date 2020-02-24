@@ -1,6 +1,7 @@
 package board;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,10 @@ public class BoardDAO {
 	//보드메인 리스트
 	public List<BoardVO> mainBoardList(BoardVO vo) {
 		return sqlSession.selectList("board.main_board", vo);
+	}
+	
+	//서브메인 all
+	public List<Map> union(int spot_num) {
+		return sqlSession.selectList("board.union", spot_num);
 	}
 }

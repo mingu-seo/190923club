@@ -34,7 +34,10 @@
 	</delete>
 	
 	<select id="spotAjax" parameterType="Integer" resultType="spot.SpotVO">
-		select * from spot where category_num=#{category_num}
+		select *,    
+		(select count(*) from joinspot where spot_num=spot.num) as member_count,
+		(select name from project.member where project.member.num=spot.leader) as leader_name    
+		from spot where category_num=#{category_num}
 	</select>
 	
 </mapper>

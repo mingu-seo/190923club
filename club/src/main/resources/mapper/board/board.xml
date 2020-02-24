@@ -194,5 +194,17 @@
 		<update id="galleryCount" parameterType="Integer">
 			update project.gallery set view=view+1 where post_id=#{post_id}
 		</update>
-	
+	  
+	<!-- 서브메인 -->
+		<select id="union" parameterType="Integer" resultType="java.util.Map">
+			select board_id, member_id, writer, regdate, title, contents, view, like_cnt, spot_num, '' as image, '' as image2, '' as image3
+			from project.writing where spot_num=#{spot_num}  
+			union  
+			select board_id, member_id, writer, regdate, title, contents, view, like_cnt, spot_num, ifnull(image,'') as image, ifnull(image2,'') as image2, ifnull(image3,'') as image3
+			from project.gallery where spot_num=#{spot_num}  
+			union
+			select board_id, member_id, writer, regdate, title, contents, view, like_cnt, spot_num, '' as image, '' as image2, '' as image3
+			from project.notice where spot_num=#{spot_num} 
+			order by regdate desc;
+		</select>  
 </mapper>

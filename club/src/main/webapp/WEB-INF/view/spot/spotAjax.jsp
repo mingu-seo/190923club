@@ -51,7 +51,11 @@ List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
 	                	<span class="spotuser">
 	                		회원수 : <%=spot.get(j).getMember_count() %>명
 	                	</span>
+<<<<<<< HEAD
 	                	<span class="spotleader">리더 :<%=spot.get(j).getLeader_name() %></span>
+=======
+	                	<span class="spotleader">리더 : <%=spot.get(j).getLeader_name() %></span>
+>>>>>>> branch 'master' of https://github.com/mingu-seo/190923club.git
 	                </a> 
 	                
 	            </div>    

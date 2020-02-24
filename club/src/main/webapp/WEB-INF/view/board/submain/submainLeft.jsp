@@ -8,7 +8,7 @@
 SpotVO list = (SpotVO)request.getAttribute("spot_vo");
 MemberVO sess = (MemberVO)session.getAttribute("sess"); 
 JoinSpotVO jsvo = (JoinSpotVO)request.getAttribute("js");
-// int memberCount = (Integer)request.getAttribute("listcount");
+//int listcount = (Integer)request.getAttribute("listcount");
 //int memberCount = (Integer)request.getAttribute("memberCount");
 MemberVO lvo = (MemberVO)request.getAttribute("lvo");
 %>
@@ -22,8 +22,13 @@ MemberVO lvo = (MemberVO)request.getAttribute("lvo");
 			        		<%=list.getName()%>
 			        	</div>
 			        	<div class="clubInfo"> 
+
 			        		멤버 <%=listcount %>명<br> 
 			        		회장 <%=lvo.getId() %>
+
+			        		멤버 명<br> 
+			        		회장 <%=lvo.getName() %>
+
 			        	</div>
         		</div>
         		<div class="clubIntro">

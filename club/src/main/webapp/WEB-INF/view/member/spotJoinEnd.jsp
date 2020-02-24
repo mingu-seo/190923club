@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
+	int listcount = (Integer)request.getAttribute("listcount");
 %>
 <!DOCTYPE html>
 <html>

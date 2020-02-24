@@ -46,9 +46,11 @@ public class JoinSpotController {
 
 	// spot 가입폼
 	@RequestMapping("/spotJoin/spotJoinForm.do")
-	public String spotJoinForm(Model model, @RequestParam("spot_num") String spot_num,HttpSession session, HttpServletRequest request) {
+	public String spotJoinForm(Model model, @RequestParam("spot_num") String spot_num,HttpSession session, HttpServletRequest request, MemberVO vo) {
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 		MemberVO mv = (MemberVO)session.getAttribute("sess");
+		int[] listcount = joinSpotService.pageCount(vo);	// 전체 갯수
+		model.addAttribute("listcount", listcount[0]);
 		// 로그인 안한유저가 가입신청할때 
 		String msg = "";
 		String url = "";
@@ -90,9 +92,10 @@ public class JoinSpotController {
 	
 	// spot 가입후 페이지
 	@RequestMapping("/spotJoin/spotJoinEnd.do")
-	public String spotJoinEnd(Model model, @RequestParam("spot_num") String spot_num,HttpSession session, HttpServletRequest request) {
+	public String spotJoinEnd(Model model, @RequestParam("spot_num") String spot_num,HttpSession session, HttpServletRequest request, MemberVO vo) {
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 		MemberVO mv = (MemberVO)session.getAttribute("sess");
+		int[] listcount = joinSpotService.pageCount(vo);	// 전체 갯수
 		// submainLeft 리더, 회원 값 넘겨주기
 		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
 		int member_num = uv.getNum();														// 회원 체크(추가된부분)
@@ -105,6 +108,7 @@ public class JoinSpotController {
 		model.addAttribute("lvo", lvo);
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);
+		model.addAttribute("listcount", listcount[0]);
 		return "member/spotJoinEnd";
 	}
 	

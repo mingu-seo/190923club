@@ -79,10 +79,11 @@ public class SpotController {
 	
 	//HOT SPOT 세팅폼
 	@RequestMapping("/spot/spotSetting.do")
-	public String clubSetting(Model model,  @RequestParam("spot_num") String spot_num , HttpSession session, HttpServletRequest request) {
+	public String clubSetting(Model model,  @RequestParam("spot_num") String spot_num , HttpSession session, HttpServletRequest request, MemberVO vo) {
 		MemberVO mv = (MemberVO)session.getAttribute("sess");
 		int joinSpotCnt = bService.checkJoinSpot(mv.getNum(), Integer.parseInt(spot_num));
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+		int[] listcount = joinSpotService.pageCount(vo);	// 전체 갯수
 		
 		// submainLeft 리더, 회원 값 넘겨주기
 		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
@@ -96,6 +97,7 @@ public class SpotController {
 		model.addAttribute("joinSpotCnt", joinSpotCnt); 
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);
+		model.addAttribute("listcount", listcount[0]);
 		return "spot/spotSetting";
 	}
 	//HOT SPOT 수정 폼

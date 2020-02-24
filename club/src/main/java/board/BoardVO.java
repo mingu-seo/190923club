@@ -16,6 +16,14 @@ public class BoardVO {
 	private int spot_num;
 	private int category_id;
 	private int member_id;
+	private int comment_cnt;
+	public int getComment_cnt() {
+		return comment_cnt;
+	}
+
+	public void setComment_cnt(int comment_cnt) {
+		this.comment_cnt = comment_cnt;
+	}
 	//페이지
 	private int page; //사용자가 요청한 페이지번호
 	private int limit; //페이지당 로우수

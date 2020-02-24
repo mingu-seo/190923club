@@ -5,8 +5,8 @@
 
 	<!-- 자유게시판 리스트 -->
 		<select id="list" parameterType="board.BoardVO" resultType="board.BoardVO">
-			select * from project.writing 
-			<where>
+			select *, (select count(*) from reply where post_id=writing.post_id) as comment_cnt from project.writing 
+			<where> 
 				<if test="search_word != null and search_word != ''">
 					(title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%')
 				</if>   
@@ -119,11 +119,11 @@
 		<!-- 갤러리 조회수 -->
 		<update id="updateRead" parameterType="Integer">
 			update project.gallery set view=view+1 where post_id=#{post_id}
-		</update>
+		</update> 
 	 
 	<!-- 공지사항 리스트 -->
 		<select id="notice_list" parameterType="notice.NoticeVO" resultType="notice.NoticeVO">
-			select * from project.notice
+			select *, (select count(*) from reply where post_id=notice.post_id) as comment_cnt from project.notice
 			<where>
 				<if test="search_word != null and search_word != ''">
 					title like '%${search_word}%' or writer like '%${search_word}%' or contents like '%${search_word}%'

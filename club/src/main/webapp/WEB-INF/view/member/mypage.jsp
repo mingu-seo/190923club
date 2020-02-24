@@ -59,6 +59,9 @@ $( function() {
 	<!-- E N D :: headerArea-->  
     <div class="wrap">
         <div class="visual">
+        	<!-- 왼쪽메뉴 -->
+        	<%@ include file="mypageLeft.jsp" %>
+        	<!-- /왼쪽메뉴 -->
         	<div class="visualRight">
         		<div class="content">
             <div class="mypage">

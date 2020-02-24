@@ -17,7 +17,7 @@ public class JoinSpotService {
 	MemberDAO memberDAO;
 	
 	@Autowired
-	JoinSpotDAO joinSpotDAO;
+	JoinSpotDAO joinSpotDAO;  
 	
 	@Autowired
 	spot.SpotService spotDAO;
@@ -86,6 +86,6 @@ public class JoinSpotService {
 	
 	// spot 리더 가져오기
 	public MemberVO spotLeader(MemberVO vo){
-		return joinSpotDAO.spotLeader(vo);
+		return joinSpotDAO.spotLeader(vo);  
 	}
 }

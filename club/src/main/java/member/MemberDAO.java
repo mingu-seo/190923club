@@ -1,13 +1,11 @@
 package member;
 
-import java.util.List; 
+import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
-
-import joinSpot.JoinSpotVO;
 
 
 @Repository
@@ -70,5 +68,14 @@ public class MemberDAO {
 	// admin 페이지 회원 삭제
 	public int memberDelete(MemberVO vo) {
 		return sqlSession.delete("member.memberDelete", vo);   
+	}
+	
+	
+	// 마이페이지 내가 쓴글
+	public List<Map> mypageWritten(MemberVO searchvo) {
+		return sqlSession.selectList("member.mypageWritten", searchvo);
+	}
+	public int mypageWrittenCount(MemberVO searchvo) {
+		return sqlSession.selectOne("member.mypageWrittenCount", searchvo);
 	}
 }

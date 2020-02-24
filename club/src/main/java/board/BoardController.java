@@ -72,7 +72,10 @@ public class BoardController {
 	public String adminCategory(Model model,
 			@RequestParam("spot_num") String spot_num, 
 			CategoryVO cVO, HttpSession session, 
-			HttpServletRequest request) {
+			HttpServletRequest request,
+			MemberVO vo) {
+		
+		int[] listcount = joinSpotService.pageCount(vo);	// 전체 갯수
 		
 		//카테고리 리스트 가져오기
 		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
@@ -95,6 +98,7 @@ public class BoardController {
 		model.addAttribute("spot_vo", spotvo);
 		model.addAttribute("cVO", cVO);
 		model.addAttribute("spot_num", spot_num);
+		model.addAttribute("listcount", listcount[0]);
 		
 		
 		return "board/submain/adminCategory";

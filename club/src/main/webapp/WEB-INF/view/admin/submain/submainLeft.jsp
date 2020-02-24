@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
+<%@ page import="member.MemberVO"%>
 <%@ page import="spot.SpotVO"%>
+<%@ page import="joinSpot.JoinSpotVO"%>
 <%
 SpotVO list = (SpotVO)request.getAttribute("spot_vo");
+MemberVO lvo = (MemberVO)request.getAttribute("lvo");
 %>
 <!DOCTYPE html>
 <html>
@@ -22,8 +25,8 @@ SpotVO list = (SpotVO)request.getAttribute("spot_vo");
 			        		<%=list.getName()%>
 			        	</div>
 			        	<div class="clubInfo">
-			        		멤버 00명<br>
-			        		회장 홍길동
+			        		멤버 <%=listcount %>명<br>
+			        		회장 <%=lvo.getName() %>
 			        	</div>
         		</div>
         		<div class="clubIntro">

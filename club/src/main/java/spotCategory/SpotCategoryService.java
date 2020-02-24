@@ -18,9 +18,9 @@ public class SpotCategoryService {
 	@Autowired
 	SpotCategoryDAO spotCategoryDao;
 	
-	public  List<SpotCategoryVO> spotCategoryList(SpotCategoryVO vo){
+	public  List<SpotCategoryVO> spotCategoryList(SpotCategoryVO catevo){
 		//VO에다가 사용자가 요청한 p를 넣는 작업을 여기서함
-		List<SpotCategoryVO> list = spotCategoryDao.spotCategoryList(vo);
+		List<SpotCategoryVO> list = spotCategoryDao.spotCategoryList(catevo);
 		return list;
 	}
 	

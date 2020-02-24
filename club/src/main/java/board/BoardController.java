@@ -52,8 +52,8 @@ public class BoardController {
 	public String subMain(Model model, @RequestParam("spot_num") String spot_num, HttpSession session, HttpServletRequest request, MemberVO vo) {
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
 		MemberVO mv = (MemberVO)session.getAttribute("sess");
-		int[] listcount = joinSpotService.pageCount(vo);	// 전체 갯수
-		model.addAttribute("listcount", listcount[0]);
+		int listcount = joinSpotService.membercount(vo);	// 전체 갯수
+		model.addAttribute("listcount", listcount);
 		
 		MemberVO searchVO = new MemberVO();		// 리더 조회용 VO
 		searchVO.setSpot_num(Integer.parseInt(spot_num)); // 조회용VO에 spot_num set
@@ -111,7 +111,7 @@ public class BoardController {
 		List<GalleryVO> glist = gService.mainGalleryList(gvo);
 		CategoryVO cate_minNum = cService.cateMin_num(Integer.parseInt(spot_num));
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
-		int[] listcount = joinSpotService.pageCount(ur);	// 전체 개수
+		int listcount = joinSpotService.membercount(ur);	// 전체 개수
 		
 		model.addAttribute("spot_vo", spotvo); //스팟 번호
 		model.addAttribute("cate_minNum", cate_minNum); //카테고리이름
@@ -119,7 +119,7 @@ public class BoardController {
 		model.addAttribute("glist", glist); //갤러리 리스트
 		model.addAttribute("bList", bList); //게시판 리스트
 		model.addAttribute("nlist", nlist); //공지사항 리스트
-		model.addAttribute("listcount", listcount[0]); // 전체 개수
+		model.addAttribute("listcount", listcount); // 전체 개수
 		
 		MemberVO mv = (MemberVO)session.getAttribute("sess");
 		// submainLeft 리더, 회원 값 넘겨주기

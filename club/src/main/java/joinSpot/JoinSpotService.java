@@ -37,20 +37,26 @@ public class JoinSpotService {
 		return joinSpotDAO.spotMemberCount(vo);
 	}
 	
-	// 페이징 처리
-	public int[] pageCount(MemberVO vo) {
+	public int membercount(MemberVO vo) {
 		int listcount = joinSpotDAO.spotMemberCount(vo);	// 전체 갯수
-		int totalpage = listcount / 10;		// 총 페이지 수 
-		if(listcount % 10 > 0) totalpage++;
-		
-		int[] pagecount = new int[2];
-		pagecount[0] = listcount;
-		pagecount[1] = totalpage;
-		
-		return pagecount;
+		int membercount = listcount;
+		return membercount;
 	}
 	
 	
+	// 페이징 처리
+	public int[] pageCount(MemberVO vo) {
+	      int listcount = joinSpotDAO.spotMemberCount(vo);   // 전체 갯수
+	      int totalpage = listcount / 10;      // 총 페이지 수 
+	      if(listcount % 10 > 0) totalpage++;
+	      
+	      int[] pagecount = new int[2];
+	      pagecount[0] = listcount;
+	      pagecount[1] = totalpage;
+	      
+	      return pagecount;
+	   }
+	   
 	// spot 회원 휴면
 	public int spotMemberSleep(JoinSpotVO jv){
 		return joinSpotDAO.spotMemberSleep(jv);

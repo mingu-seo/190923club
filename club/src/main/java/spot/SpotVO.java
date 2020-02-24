@@ -16,9 +16,17 @@ public class SpotVO {
 	private String question;
 	private int leader;
 	private String leader_name;
+	private int member_count;
 	
 	
-	
+	public int getMember_count() {
+		return member_count;
+	}
+
+	public void setMember_count(int member_count) {
+		this.member_count = member_count;
+	}
+
 	public String getLeader_name() {
 		return leader_name;
 	}

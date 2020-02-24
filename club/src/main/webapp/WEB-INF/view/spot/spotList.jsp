@@ -134,10 +134,9 @@ function ajaxView(num){
            	%>
            	<div class="box2">           	
 	           	<a href="/board/submain/submain.do?spot_num=<%=jslist.get(i).getSpot_num() %>">
-	           		<img style="width:200px; height:200px;" src="/upload/images/<%=jslist.get(i).getFile() %>">
+	           		<img style="width:200px; height:160px;" src="/upload/images/<%=jslist.get(i).getFile() %>">
+		           	<%=jslist.get(i).getSpot_name() %>
 	           	</a>
-	           	<%=jslist.get(i).getSpot_num() %>
-	           	<%=jslist.get(i).getSpot_name() %>
            	</div>
            	<%
            		};

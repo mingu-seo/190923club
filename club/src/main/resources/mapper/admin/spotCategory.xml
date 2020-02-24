@@ -7,7 +7,7 @@
 		SELECT * FROM project.spotcategory
 	</select>
 	
-
+  
 	
 	<insert id="spotCategoryInsert" parameterType="spotCategory.SpotCategoryVO">
 		INSERT INTO project.spotcategory

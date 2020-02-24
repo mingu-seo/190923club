@@ -24,7 +24,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 <body>
 <div class="wrap"> 
 	<div class="popTitle" style="font-size:30px; text-align:center;">
-		일정 등록
+		일정 등록zz
 	</div>
 	<hr>
 	<div class="formDIV"><!-- 폼 감싸는 div -->
@@ -32,7 +32,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 			<input type="hidden" name="spot_num" value="<%=request.getParameter("spot_num")%>"> 
 			<input type="hidden" name="member_id" value="<%=sessVO.getNum()%>">  
 			<input type="hidden" name="date" value="<%=request.getParameter("date")%>">
-			<div class="calDate" style="text-align: right; font-size: 20px; font-weight: bold;"><%=request.getParameter("date") %></div>
+			<div class="calDate" style="text-align: right; font-size: 20px; font-weight: bold; color:lightslategray;"><%=request.getParameter("date") %></div>
 			<hr>
 			<table style="margin:0 auto;">
 				<tr>
@@ -49,8 +49,8 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 				</tr>
 			</table>
 			<div class="calBtn" style="text-align: center; margin:20px;"> 
-				<input type="submit" value="등록" style="background-color:white; width:100px; height:30px;"> 
-				<input type="button" value="수정" style="background-color:white; width:100px; height:30px;">
+				<input type="submit" value="등록" style="background-color:white; width:100px; height:30px; font-size: 16px; font-weight: bold;"> 
+				<input type="button" value="수정" style="background-color:white; width:100px; height:30px; font-size: 16px; font-weight: bold;">
 			</div> 
 	 	</form>
  	</div>

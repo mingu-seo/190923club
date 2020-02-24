@@ -68,7 +68,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체 페이지�
 								<td><%= list.get(i).getPost_id()%></td>
 								<td class="art_title">
 									<a href="/board/notice/noticeWriteView.do?spot_num=<%=spot_num %>&category_id=<%=list.get(i).getCategory_id() %>&post_id=<%=list.get(i).getPost_id()%>">
-									<%=list.get(i).getTitle() %></a>
+									<%=list.get(i).getTitle() %>&nbsp;&nbsp;<span style="color:red;">(<%=list.get(i).getComment_cnt() %>)</span></a>
 								</td>
 								<td><%=list.get(i).getWriter() %></td>
 								<td><%=util.Function.getYmd(list.get(i).getRegdate())%></td>

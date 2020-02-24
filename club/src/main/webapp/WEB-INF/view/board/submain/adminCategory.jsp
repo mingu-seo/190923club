@@ -6,6 +6,7 @@
 <%
 List<CategoryVO>[] categoryList = (List<CategoryVO>[])request.getAttribute("categoryList"); 
 int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
+int listcount = (Integer)request.getAttribute("listcount");
 %>
 <!DOCTYPE html>
 <html> 

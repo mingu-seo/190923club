@@ -192,7 +192,6 @@
 		font-size: 25px;
 	}
 	.view_like {
-		color:red;
 		cursor:pointer;
 	}
 	
@@ -202,7 +201,7 @@
 	}
 	 
 	#replyBox{
-		background-color: #f9f9f9;
+		background-color: #f9f9f9; 
 		}
 		
 	.reply{

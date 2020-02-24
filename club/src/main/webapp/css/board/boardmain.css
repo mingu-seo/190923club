@@ -119,20 +119,28 @@
 		/*submain css*/
 		 
 		.main_post_div {
-			border:1px solid black;
-			margin:40px; 
-			padding:30px;
+			background-color: whitesmoke;
+			margin: 0 40px; 
+			padding: 30px 30px 0 30px;
 		}
 		.main_post {
 			padding:80px 0 20px 0;
+		}
+		
+		.main_post p img {
+			max-height:450px;
+		}
+		
+		.main_post_click span:hover {
+			color:gray;
 		}
 		
 		.main_post_click span {
 			font-size:24px;
 			font-weight: bold;  
 			margin:70px;
-			color:white;
-			
+			color:black; 
+			cursor:pointer;
 		}
 		
 		.main_post_writer {
@@ -147,9 +155,6 @@
 			float:right;
 		}
 		
-		.main_post_click { 
-			background:pink;
-		} 
 		.contents_empty {
 			font-size: 25px;
 		}

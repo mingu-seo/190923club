@@ -127,7 +127,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 					
 					<div class="view_repl_info">
 						<form id="like_form">
-								<span class="view_like" onclick="likeAjax('<%=vo.getPost_id()%>','<%=sessVO.getNum()%>');">❤ </span> 
+								<span class="view_like" onclick="likeAjax('<%=vo.getPost_id()%>','<%=sessVO.getNum()%>');"><img src="/img/board/like.png" style="max-height: 30px;">&nbsp;좋아요  </span> 
 								<span class="like_cnt"><%=vo.getLike_cnt() %></span> 
 						</form> 
 						 

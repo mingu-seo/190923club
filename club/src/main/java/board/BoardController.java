@@ -1,6 +1,7 @@
 package board;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -61,10 +62,14 @@ public class BoardController {
 		
 		int joinSpotCnt = bService.checkJoinSpot(mv==null?0:mv.getNum(), Integer.parseInt(spot_num));
 		
-		model.addAttribute("joinSpotCnt", joinSpotCnt); 
+		model.addAttribute("joinSpotCnt", joinSpotCnt);
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);
 		model.addAttribute("lvo", lvo);														// 리더 값뿌리기
+		
+		//게시글 전체 리스트
+		List<Map> unionList = bService.union(Integer.parseInt(spot_num));
+		model.addAttribute("unionList", unionList);														
 		return "board/submain/submain";
 	}
 	//게시판 관리 페이지

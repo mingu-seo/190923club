@@ -66,7 +66,9 @@ function drop() {
             			<input type="hidden" name="spot_num" value="<%=spot_num%>">
 			            <table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 			                <colgroup>
-			                    <col class="w5" />
+				                <%if(headsess != null && headsess.getNum() == lvo.getNum()){ %>
+				                    <col class="w5" />
+			                    <%} %>
 			                    <col class="w5" />
 			                    <col class="w5" />
 			                    <col class="w4" />
@@ -78,7 +80,9 @@ function drop() {
 			                </colgroup>
 			                <thead>
 			                    <tr class="tableTitle">
-			                        <th scope="col" class="first">선택</th>
+				                    <%if(headsess != null && headsess.getNum() == lvo.getNum()){ %>
+				                        <th scope="col" class="first">선택</th>
+			                        <%} %>
 			                        <th scope="col">번호</th>
 			                        <th scope="col">사진</th> 
 			                        <th scope="col">아이디</th> 
@@ -94,7 +98,9 @@ function drop() {
 			                for (int i=0; i<memberList.size(); i++) {
 			                %>
 			                    <tr class="listCss">
-			                        <td class="first"><input type="checkbox" name="joinspot_num" id="no" value="<%=memberList.get(i).getJoinspot_num()%>"/></td>
+				                    <%if(headsess != null && headsess.getNum() == lvo.getNum()){ %>
+				                        <td class="first"><input type="checkbox" name="joinspot_num" id="no" value="<%=memberList.get(i).getJoinspot_num()%>"/></td>
+			                        <%} %>
 			                        <td><%=memberList.get(i).getJoinspot_num()%></td>
 			                        <td class="profileImg"><img src="/profileImg/<%=memberList.get(i).getProfile()%>"></td>
 			                        <td><%=memberList.get(i).getId() %></td>
@@ -123,9 +129,11 @@ function drop() {
 					<!--btn-->
 		            <div class="btn">
 						<div class="btnRight">
-							<a class="btns" href="javascript:;" onclick="drop();"><strong>강제 탈퇴</strong> </a>
-							<a class="btns" href="javascript:;" onclick="sleep();"><strong>휴면</strong> </a>
-							<a class="btns" href="javascript:;" onclick="wake();"><strong>활성화</strong> </a>
+							<%if(headsess != null && headsess.getNum() == lvo.getNum()){ %>
+								<a class="btns" href="javascript:;" onclick="drop();"><strong>강제 탈퇴</strong> </a>
+								<a class="btns" href="javascript:;" onclick="sleep();"><strong>휴면</strong> </a>
+								<a class="btns" href="javascript:;" onclick="wake();"><strong>활성화</strong> </a>
+							<%} %>
 						</div>
 						<!-- 페이징 처리 -->
 						<form name="searchForm" id="searchForm" action="memberList.do?spot_num=<%=spot_num %>" method="post">

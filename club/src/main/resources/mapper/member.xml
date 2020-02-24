@@ -80,4 +80,27 @@
 	<delete id="memberDelete" parameterType="member.MemberVO">
 		DELETE FROM project.member WHERE num=#{num} 
 	</delete>
+	
+	
+	<!-- 마이페이지 내가 쓴글 -->
+	<select id="mypageWritten" parameterType="member.MemberVO" resultType="java.util.Map">
+		select board_type, post_id, spot_name, title, contents, view, like_cnt, regdate from (
+			SELECT 1 as board_type, post_id, (select name from spot where spot.num=gallery.spot_num) as spot_name, title, contents, view, like_cnt, regdate FROM project.gallery where member_id=${num}
+			union
+			SELECT 2 as board_type, post_id, (select name from spot where spot.num=notice.spot_num) as spot_name, title, contents, view, like_cnt, regdate FROM project.notice where member_id=${num}
+			union
+			SELECT 3 as board_type, post_id, (select name from spot where spot.num=writing.spot_num) as spot_name, title, contents, view, like_cnt, regdate FROM project.writing where member_id=${num}
+			) as a
+		order by regdate desc
+		limit ${startIndex}, ${limit}   
+	</select>
+	<select id="mypageWrittenCount" parameterType="member.MemberVO" resultType="Integer">
+		select count(*) from (
+			SELECT 1 as board_type, post_id, (select name from spot where spot.num=gallery.spot_num) as spot_name, title, contents, view, like_cnt, regdate FROM project.gallery where member_id=${num}
+			union
+			SELECT 2 as board_type, post_id, (select name from spot where spot.num=notice.spot_num) as spot_name, title, contents, view, like_cnt, regdate FROM project.notice where member_id=${num}
+			union
+			SELECT 3 as board_type, post_id, (select name from spot where spot.num=writing.spot_num) as spot_name, title, contents, view, like_cnt, regdate FROM project.writing where member_id=${num}
+			) as a
+	</select>
 </mapper>

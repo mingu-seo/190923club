@@ -29,7 +29,7 @@
 	<select id="spotLeader" parameterType="member.MemberVO" resultType="member.MemberVO">
 		SELECT * FROM project.member  
 		WHERE num IN(SELECT member_num FROM project.joinspot WHERE spot_num=#{spot_num} AND grade=1);
-	</select>
+	</select>  
 
 	
 	<!-- 페이징 처리 -->

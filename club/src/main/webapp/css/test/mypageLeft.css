@@ -11,18 +11,20 @@
     height: 100px;
     width: 150px;
 }
-.titleText1 > .btn1 > a > input{
+.titleText1 > .btn1 > a{
     font-size: 30px;
     font-weight: 1000;
+    background-color: white;
 }
 .titleText2{
     margin: 0 auto;
     height: 100px;
     width: 150px;
 }
-.titleText2 > .btn2 > a > input{
+.titleText2 > .btn2 > a{
     font-size: 30px;
     font-weight: 1000;
+    background-color: white;
 }
 .btn1{
     width: 140px;

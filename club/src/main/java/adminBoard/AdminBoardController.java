@@ -2,6 +2,7 @@ package adminBoard;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -69,14 +70,14 @@ public class AdminBoardController {
 	@RequestMapping("/admin/submain/submain.do")
 	public String adminSubMain(Model model, @RequestParam("spot_num") String spot_num, HttpSession session, MemberVO vo) {
 		SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
-		
-		
 		MemberVO lvo = joinSpotService.spotLeader(vo);	
 		int listcount = joinSpotService.membercount(vo);
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);
 		model.addAttribute("lvo", lvo);
+		List<Map> unionList = bService.union(Integer.parseInt(spot_num));
+		model.addAttribute("unionList", unionList);	
 		return "admin/submain/submain";
 	}
 	//게시판 관리 페이지

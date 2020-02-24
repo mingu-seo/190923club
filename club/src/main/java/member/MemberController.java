@@ -1,6 +1,7 @@
 package member;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,7 +17,6 @@ import adminInfo.AdminInfoService;
 import adminInfo.AdminInfoVO;
 import board.BoardDAO;
 import board.BoardService;
-import joinSpot.JoinSpotVO;
 import spot.SpotService;
 import spot.SpotVO;
 import spotCategory.SpotCategoryService;
@@ -240,9 +240,21 @@ public class MemberController {
 	}
 
 	
-	// 동아리 수정(관리자)
-	@RequestMapping("/member/clubSetting.do")
-	public String clubSetting() {
-		return "member/clubSetting";
+	// 마이페이지 내가 쓴 글
+	@RequestMapping("/member/mypageWritten.do")
+	public String mypageWirtten(Model model, HttpSession session, MemberVO searchvo) {
+		MemberVO vo = (MemberVO)session.getAttribute("sess");
+		searchvo.setNum(vo.getNum());
+		
+		List<Map> list = memberService.mypageWritten(searchvo);
+		int[] rowPage = memberService.mypageWrittenCount(searchvo);
+		
+		
+		model.addAttribute("list", list);
+		model.addAttribute("totalcount", rowPage[0]);
+		model.addAttribute("totalpage", rowPage[1]);
+		model.addAttribute("vo", vo);
+		model.addAttribute("searchvo", searchvo);
+		return "member/mypageWritten";
 	}
 }

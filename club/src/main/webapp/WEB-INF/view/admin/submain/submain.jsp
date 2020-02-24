@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "spot.SpotVO" %>
+<%@ page import="java.util.*" %>
 <%
 int listcount = (Integer)request.getAttribute("listcount");
+List<Map> unionList = (List<Map>)request.getAttribute("unionList");
 %>
 <!DOCTYPE html> 
 <html>
@@ -27,27 +29,57 @@ int listcount = (Integer)request.getAttribute("listcount");
         	<!-- /왼쪽메뉴 -->
         	
         	<div class="visualRight">
-        		
+        		<%	
+        			if(unionList.isEmpty()) {
+       			%>
+       				<div class="unionListEmpty" style="margin:50px 0; font-size: 38px; font-weight: bold;">
+       					게시물이 없습니다.
+       				</div>
+       			<%
+        				}else{
+        				for (int i=0; i<unionList.size(); i++) {
+       			%>
+       			<div style="margin:50px 0;">
         		<div class="main_post_div">
         			<div class="main_post_writer">
         				<span>작성자 |</span>
-        				<span>조한빈</span>
+        				<span><%=unionList.get(i).get("writer") %></span>
         			</div>
         			<div class="main_post_info">
-        				<span>2020-01-29 18시 30분</span>
+        				<span><%=unionList.get(i).get("regdate") %></span>
         			</div>
-        			<div class="main_post">
-        				와 흥민이 인생골이다<br>
-        				<img src="/img/board/gal2.PNG">
+        			<div class="main_post"> 
+        				<% if(!"".equals(unionList.get(i).get("image"))) { //이미지가 있으면%>
+        					<img src="/upload/<%= unionList.get(i).get("image")%>" style="max-height: 450px;"><br>
+        				<%
+        				} else { 
+        					if (!"".equals(unionList.get(i).get("image2"))) {//이미지가 없고, 이미지2가 있으면 
+        				%>
+        					<img src="/upload/<%= unionList.get(i).get("image2") %>" style="max-height: 450px;"><br>
+        				<%
+        					} else {
+        						if(!"".equals(unionList.get(i).get("image3"))) { //이미지2없고, 이미지3있으면
+        				%>
+							<img src="/upload/<%= unionList.get(i).get("image3") %>" style="max-height: 450px;"><br>
+						<%
+        						}
+        					}
+        				}
+						%>        					
+        					
+        				<%=unionList.get(i).get("contents") %>
         			</div>
-        			<div class="main_post_click">
-        				<span>❤︎ 좋아요 </span>   
-        				<span>✉ 댓글작성</span>
-        				<span>☎ 공유하기</span>
+        		</div> 
+        			<div class="main_post_click" style="margin:0 40px; background-color: lightgray; height:40px;">
+        				<span><img src="/img/board/like.png" style="max-height: 30px;">&nbsp;좋아요&nbsp;<%=unionList.get(i).get("like_cnt") %> </span>   
+        				<span><img src="/img/board/comment.png" style="max-height: 30px;">&nbsp;댓글 </span>
         			</div>
         		</div>
-        		</div>
-
+        		
+        		<%
+        				}
+        			}
+        		%>
         		
         	</div>        	
         </div>

@@ -77,7 +77,8 @@ public class BoardController {
 	public String adminCategory(Model model,
 			@RequestParam("spot_num") String spot_num, 
 			CategoryVO cVO, HttpSession session, 
-			HttpServletRequest request, MemberVO vo) {
+			HttpServletRequest request,
+			MemberVO vo) {
 		
 		//카테고리 리스트 가져오기
 		List<CategoryVO>[] categoryList = cService.categoryList(cVO);

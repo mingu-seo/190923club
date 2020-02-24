@@ -124,7 +124,7 @@ public class JoinSpotController {
 		int joinSpotCnt = joinSpotService.checkJoinSpot(member_num, Integer.parseInt(spot_num));	// 회원 체크(추가된부분)
 		MemberVO searchVO = new MemberVO();
 		searchVO.setSpot_num(Integer.parseInt(spot_num));
-		MemberVO lvo = joinSpotService.spotLeader(searchVO);										// 리더 값뿌리기
+		MemberVO lvo = joinSpotService.spotLeader(searchVO);  										// 리더 값뿌리기
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("spot_vo", spotvo);  
 		model.addAttribute("listcount", listcount[0]);

@@ -1,15 +1,14 @@
 package member;
 
-import java.util.List; 
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import joinSpot.JoinSpotVO;
 import util.FileUtil;
 
 @Service
@@ -82,5 +81,22 @@ public class MemberService {
 	// admin 페이지 회원 삭제
 	public int memberDelete(MemberVO vo){
 		return memberDAO.memberDelete(vo);
+	}
+	
+	
+	// 마이페이지 내가 쓴글
+	public List<Map> mypageWritten(MemberVO searchvo) {
+		return memberDAO.mypageWritten(searchvo);
+	}
+	public int[] mypageWrittenCount(MemberVO searchvo) {
+		int listcount = memberDAO.mypageWrittenCount(searchvo);	// 전체 갯수  
+		int totalpage = listcount / 10;		// 총 페이지 수 
+		if(listcount % 10 > 0) totalpage++;
+		
+		int[] pagecount = new int[2];
+		pagecount[0] = listcount;
+		pagecount[1] = totalpage;
+		
+		return pagecount;
 	}
 }

@@ -19,22 +19,10 @@ SpotVO list = (SpotVO)request.getAttribute("spot_vo");
         <div class="mypageLeft">
             <div class="leftContent">
                 <div class="titleText1">
-                    <div class=btn1><a href=""><input type="button" value="내 정보"></a></div>
+                    <div class=btn1><a href="mypageView.do">내 정보</a></div>
                 </div>
                 <div class="titleText2">
-                    <div class=btn2><a href="/spot/spotList.do"><input type="button" value="나의 핫스팟"></a></div>
-                </div>
-                <div class="titleText3">
-                    <div class=btn2><a href=""><input type="button" value="HOT SPOT공지사항"></a></div>
-                </div>
-                <div class="titleText4">
-                    <div class=btn2><a href=""><input type="button" value="HOT SPOT QnA"></a></div>
-                </div>
-                <div class="titleText5">
-                    <div class=btn2><a href=""><input type="button" value="이용약관"></a></div>
-                </div>
-                <div class="titleText6">
-                    <div class=btn2><a href=""><input type="button" value="개인정보 처리방침"></a></div>
+                    <div class=btn2><a href="mypageWritten.do">내가 쓴글</a></div>
                 </div>
             </div>
         </div>

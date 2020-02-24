@@ -84,11 +84,11 @@
         		</div> 
         			<div class="main_post_click" style="margin:0 40px; background-color: lightgray; height:40px;">
         				<span><img src="/img/board/like.png" style="max-height: 30px;">&nbsp;좋아요&nbsp;<%=unionList.get(i).get("like_cnt") %> </span>   
-        				<span><img src="/img/board/comment.png" style="max-height: 30px;">&nbsp;댓글 </span>
+        				<span><img src="/img/board/comment.png" style="max-height: 30px;">&nbsp;댓글 <%=unionList.get(i).get("comment_cnt") %></span>
         			</div>
         		</div>
         		
-        		<%
+        		<% 
         				}
         			}
         		}

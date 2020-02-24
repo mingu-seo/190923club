@@ -23,7 +23,7 @@ List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
 	                	<span class="spotuser">
 	                		회원수 : 00명
 	                	</span>
-	                	<span class="spotleader">리더 : 홍길동</span>
+	                	<span class="spotleader">리더 : <%=spot.get(j).getLeader_name() %></span>
 	                </a> 
 	                
 	            </div>    
@@ -49,7 +49,7 @@ List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
 	                	<span class="spotuser">
 	                		회원수 : 00명
 	                	</span>
-	                	<span class="spotleader">리더 : 홍길동</span>
+	                	<span class="spotleader">리더 : <%=spot.get(j).getLeader_name() %></span>
 	                </a> 
 	                
 	            </div>    

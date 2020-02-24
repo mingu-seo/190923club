@@ -105,6 +105,9 @@ public class BoardController {
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("listcount", listcount[0]);
 		
+		int listcount = joinSpotService.membercount(vo);	// 전체 갯수
+		model.addAttribute("listcount", listcount);
+		
 		
 		return "board/submain/adminCategory";
 	}

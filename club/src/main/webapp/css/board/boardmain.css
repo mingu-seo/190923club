@@ -131,16 +131,12 @@
 			max-height:450px;
 		}
 		
-		.main_post_click span:hover {
-			color:gray;
-		}
 		
 		.main_post_click span {
 			font-size:24px;
 			font-weight: bold;  
 			margin:70px;
 			color:black; 
-			cursor:pointer;
 		}
 		
 		.main_post_writer {

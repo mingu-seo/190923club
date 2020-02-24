@@ -22,6 +22,7 @@ SpotVO spot_vo = (SpotVO)request.getAttribute("spot_vo");
 
 //min
 CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
+int listcount = (Integer)request.getAttribute("listcount");
 
 %>
 
@@ -349,7 +350,6 @@ CategoryVO cate_minNum = (CategoryVO)request.getAttribute("cate_minNum");
         <div class="visual">
 	
         	<!-- 왼쪽메뉴 -->
-        	<%@ include file="submainLeft.jsp" %>
         	<!-- /왼쪽메뉴 -->
         	
         	<div class="visualRight"> 

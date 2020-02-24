@@ -2,11 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import="spotCategory.SpotCategoryVO" %>
 <%@ page import="spot.SpotVO" %>
+<%@ page import="member.MemberVO"%>
+<%@ page import="joinSpot.JoinSpotVO"%>
 <%@ page import="java.util.List" %>
 <%
-List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
+List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");   
 			%>
-		<div class="lcontents1">
+		<div class="lcontents1">   
         	<%
 			for (int j=0; j<spot.size(); j++){
 				if(j %2 == 0){
@@ -21,9 +23,9 @@ List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
 	                		<%=spot.get(j).getContent()%>
 	                	</div>
 	                	<span class="spotuser">
-	                		회원수 : 00명
+	                		회원수 : <%=spot.get(j).getMember_count() %>명  
 	                	</span>
-	                	<span class="spotleader">리더 : <%=spot.get(j).getLeader_name() %></span>
+	                	<span class="spotleader">리더 :<%=spot.get(j).getLeader_name() %></span>
 	                </a> 
 	                
 	            </div>    
@@ -47,9 +49,13 @@ List<SpotVO> spot= (List<SpotVO>)request.getAttribute("spot");
 	                		<%=spot.get(j).getContent()%>
 	                	</div>
 	                	<span class="spotuser">
-	                		회원수 : 00명
+	                		회원수 : <%=spot.get(j).getMember_count() %>명
 	                	</span>
+<<<<<<< HEAD
+	                	<span class="spotleader">리더 :<%=spot.get(j).getLeader_name() %></span>
+=======
 	                	<span class="spotleader">리더 : <%=spot.get(j).getLeader_name() %></span>
+>>>>>>> branch 'master' of https://github.com/mingu-seo/190923club.git
 	                </a> 
 	                
 	            </div>    

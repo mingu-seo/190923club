@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="spotCategory.SpotCategoryVO" %>
 <%@ page import="spot.SpotVO" %>
-<%@ page import="spot.SpotVO" %>
 <%@ page import="member.MemberVO" %>
 <%@ page import="java.util.List" %>
+<%@ page import="joinSpot.JoinSpotVO"%>
 <%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>    
 <%
 	List<SpotCategoryVO> list= (List<SpotCategoryVO>)request.getAttribute("list");
@@ -13,6 +13,7 @@
 	SpotVO spotvo = (SpotVO)request.getAttribute("spotvo");
 	List<MemberVO> jslist = (List<MemberVO>)request.getAttribute("jslist");
 	MemberVO spotsess = (MemberVO)session.getAttribute("sess");
+	int listcount = (Integer)request.getAttribute("listcount");
 %>
 <!DOCTYPE html>
 <html>
@@ -112,7 +113,6 @@ function ajaxView(num){
 		console.log(data)
 	}
 });
-     	showLightBox();
      }
      
 </script>     
@@ -181,7 +181,7 @@ function ajaxView(num){
 	                		<%=spot.get(j).getContent()%>
 	                	</div>
 	                	<span class="spotuser">
-	                		회원수 : 00명
+	                		회원수 : <%=spot.get(j).getMember_count() %>명
 	                	</span>
 	                	<span class="spotleader">리더 : <%=spot.get(j).getLeader_name() %></span>
 	                </a> 
@@ -207,7 +207,7 @@ function ajaxView(num){
 	                		<%=spot.get(j).getContent()%>
 	                	</div>
 	                	<span class="spotuser">
-	                		회원수 : 00명
+	                		회원수 : <%=spot.get(j).getMember_count() %>명
 	                	</span>
 	                	<span class="spotleader">리더 :<%=spot.get(j).getLeader_name() %></span>
 	                </a> 

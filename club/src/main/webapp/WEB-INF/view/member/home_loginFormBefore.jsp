@@ -8,6 +8,7 @@
 	SpotVO spotvo = (SpotVO)request.getAttribute("spotvo");
 	List<AdminInfoVO> infolist = (List<AdminInfoVO>)request.getAttribute("info_article");
 	AdminInfoVO infovo = (AdminInfoVO)request.getAttribute("infovo");
+	int listcount = (Integer)request.getAttribute("listcount");
 %>    
 <!DOCTYPE html>
 <html>
@@ -115,7 +116,7 @@
 		                		<%=spot.get(j).getContent()%>
 		                	</div>
 		                	<span class="spotuser">
-		                		회원수 : 00명
+		                		회원수 : <%=spot.get(j).getMember_count() %>명
 		                	</span>
 		                	<span class="spotleader">리더 : <%=spot.get(j).getLeader_name() %></span>
 		                </a> 
@@ -141,7 +142,7 @@
 		                		<%=spot.get(j).getContent()%>
 		                	</div>
 		                	<span class="spotuser">
-		                		회원수 : 00명
+		                		회원수 : <%=spot.get(j).getMember_count() %>명
 		                	</span>
 		                	<span class="spotleader">리더 : <%=spot.get(j).getLeader_name() %></span>
 		                </a> 

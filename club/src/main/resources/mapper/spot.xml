@@ -34,9 +34,11 @@
 		DELETE FROM project.spot WHERE num=#{num}
 	</delete>
 	<select id="spotList" resultType="spot.SpotVO" parameterType="spot.SpotVO">
-		SELECT *, (select name from project.member where num = (select member_num from joinspot where grade=1 and spot_num=spot.num)) as leader_name FROM project.spot
+		SELECT *, (select name from project.member where num = (select member_num from joinspot where grade=1 and spot_num=spot.num)) as leader_name,
+		(select count(*) from joinspot where spot_num=spot.num) as member_count
+		FROM project.spot
 		<include refid="search"></include>   
-		order by rand() limit #{startIndex},#{limit}
+		order by rand() 
 	</select>
 	
 	<select id="count" resultType="integer" parameterType="spot.SpotVO">

@@ -15,8 +15,8 @@ public class SpotCategoryDAO {
 	SqlSessionTemplate sqlSession;
 	
 	// 게시글 전체 목록
-	public List<SpotCategoryVO> spotCategoryList(SpotCategoryVO vo){
-		return sqlSession.selectList("spotCategory.spotCategoryList",vo);
+	public List<SpotCategoryVO> spotCategoryList(SpotCategoryVO catevo){
+		return sqlSession.selectList("spotCategory.spotCategoryList",catevo);
 	}
 	
 

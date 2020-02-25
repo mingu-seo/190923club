@@ -439,7 +439,17 @@ int listcount = (Integer)request.getAttribute("listcount");
                
                 <div class="user-information">
                     <a class="user-information-image" href="#">
-                        <img src="/profileImg/<%=sessVO.getProfile()%>" style="height:100px; width:120px;"> 
+                       <%
+                    	if(sessVO.getProfile()==null) {
+                    	%>
+                    	<img src="/css/test/img/profile.jpeg" style="height:100px; width:120px;">
+                    	<%
+                    	}else {
+                    	%> 
+                        <img src="/profileImg/<%=sessVO.getProfile()%>" style="height:100px; width:120px;">
+                        <%
+                    	}
+                        %>  
                     </a>    
                     <div class="user-information-text">
                     	<div class=paper-text2 style="font-weight: bold; font-size:20px;"></div> 

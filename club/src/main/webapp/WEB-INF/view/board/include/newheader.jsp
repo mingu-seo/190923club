@@ -25,8 +25,8 @@
 				<li class="slide-menu"><a href="#">MyPage</a>
 					 <ul class="inner-menu">
 	                     <li class="inner-menu-item"><a href="/member/mypageView.do">내 정보</a></li>
-	                     <li class="inner-menu-item"><a href="#">내가 쓴 글</a></li>
-	                     <li class="inner-menu-item"><a href="#">공지사항</a></li>
+	                     <li class="inner-menu-item"><a href="/member/mypageWritten.do">내가 쓴 글</a></li>
+	                     <li class="inner-menu-item"><a href="/spot/spotNotice.do">공지사항</a></li>
 	                 </ul> 
                  </li>
 			</ul>

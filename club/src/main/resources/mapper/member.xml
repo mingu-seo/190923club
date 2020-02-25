@@ -45,8 +45,8 @@
 	<!-- admin 페이지 회원 리스트 -->
 	<select id="memberList" resultType="member.MemberVO" parameterType="member.MemberVO">
 		SELECT * FROM project.member 
-		ORDER BY num DESC
 		<include refid="searchword"/>
+		ORDER BY num DESC
 		limit #{startIndex}, #{limit} 
 	</select>
 	

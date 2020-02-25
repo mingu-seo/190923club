@@ -102,7 +102,8 @@ function drop() {
 				                        <td class="first"><input type="checkbox" name="joinspot_num" id="no" value="<%=memberList.get(i).getJoinspot_num()%>"/></td>
 			                        <%} %>
 			                        <td><%=memberList.get(i).getJoinspot_num()%></td>
-			                        <td class="profileImg"><img src="/profileImg/<%=memberList.get(i).getProfile()%>"></td>
+			                        <td class="profileImg"><img src="<%if(memberList.get(i).getProfile()==null){%>/css/test/img/profile.jpeg<%} else{%>
+			                        									 /profileImg/<%=memberList.get(i).getProfile()%> <%} %>"></td>
 			                        <td><%=memberList.get(i).getId() %></td>
 			                        <td><%=memberList.get(i).getName() %></td>
 			                        <td><%=memberList.get(i).getBirth() %></td>

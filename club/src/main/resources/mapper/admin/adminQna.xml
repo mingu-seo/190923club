@@ -52,7 +52,7 @@
 	</insert>	
 	
 	<select id="maxQnaNum" resultType="integer">
-		SELECT max(num) + 1 FROM project.adminqna
+		SELECT (ifnull(max(num),0)) + 1 FROM project.adminqna
 	</select>
 	
 	<select id="adminQnaView" resultType="adminQna.AdminQnaVO" parameterType="integer">

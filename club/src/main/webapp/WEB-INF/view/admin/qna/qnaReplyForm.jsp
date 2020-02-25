@@ -55,7 +55,7 @@ function save() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>Q & A - [답변]</h2>
+					<h2>F A Q - [답변]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -81,7 +81,7 @@ function save() {
 									<tr>
 										<th scope="row"><label for="subject">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="subject" class="w100" title="제목을 입력해주세요" value="Re: <%=article.getSubject()%>"/>	
+											<input type="text" id="title" name="subject" class="w100" title="제목을 입력해주세요" value="답변 : <%=article.getSubject()%>"/>	
 										</td>
 									</tr>
 									<tr>

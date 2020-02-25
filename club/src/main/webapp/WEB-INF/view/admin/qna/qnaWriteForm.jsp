@@ -71,7 +71,7 @@ function getThumbnailPrivew(html, $target) {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>Q & A - [쓰기]</h2>
+					<h2>F A Q - [쓰기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -92,7 +92,7 @@ function getThumbnailPrivew(html, $target) {
 									<tr>
 										<th scope="row"><label for="subject">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="subject" name="subject" class="w100" title="제목을 입력해주세요" />	
+											<input type="text" id="subject" name="subject" class="w100" title="제목을 입력해주세요" value="질문 : "/>	
 										</td>
 									</tr>
 									<tr>

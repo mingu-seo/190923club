@@ -52,7 +52,7 @@
 	</insert>	
 	
 	<select id="maxNoticeNum" resultType="integer">
-		SELECT max(num) + 1 FROM project.adminnotice
+		SELECT (ifnull(max(num),0)) + 1 FROM project.adminnotice
 	</select>
 	
 	<select id="adminNoticeView" resultType="adminNotice.AdminNoticeVO" parameterType="integer">
@@ -64,7 +64,7 @@
 		subject=#{subject}, content=#{content}
 		<if test="file != null">
 			, file=#{file}
-		</if>
+		</if>   
 		WHERE num=#{num}
 	</update>
 	

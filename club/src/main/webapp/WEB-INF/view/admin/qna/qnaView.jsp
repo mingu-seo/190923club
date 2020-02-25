@@ -42,7 +42,7 @@ function deleteConfirm() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>Q & A - [읽기]</h2>
+					<h2>F A Q - [읽기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">

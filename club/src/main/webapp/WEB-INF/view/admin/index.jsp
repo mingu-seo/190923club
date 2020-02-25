@@ -53,10 +53,6 @@ function loginCheck() {	// 로그인 버튼
 				<!-- //infoBox -->
 				<input type="image" src="<%=request.getContextPath()%>/img/admin/member_login_btn.gif" alt="로그인" class="loginBtn" title="" />
 			</div>
-			<!-- //bgBox -->
-			<div class="joinList">
-				<a href="join.do">회원 가입</a>
-			</div>
 			<!-- //joinList -->
 			<input type="hidden" name="url" id="url" value="<%//=url%>"/>
 			<input type="hidden" name="param" id="param" value="<%//=param%>"/>

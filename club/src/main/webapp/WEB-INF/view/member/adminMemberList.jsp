@@ -79,7 +79,10 @@ function drop() {
 			                    <tr>
 			                        <td class="first"><input type="checkbox" name="num" id="no" value="<%=memberList.get(i).getNum()%>"/></td>
 			                        <td><%=memberList.get(i).getNum()%></td>
-			                        <td class="profileImg"><img style="width: 90px; height: 90px;" src="/profileImg/<%=memberList.get(i).getProfile()%>"></td>
+			                        <td class="profileImg">
+			                        	<img style="width: 90px; height: 90px;" src="<%if(memberList.get(i).getProfile()==null){%>/css/test/img/profile.jpeg
+			                        												 <%} else{%>/profileImg/<%=memberList.get(i).getProfile()%> <%}%>">
+			                        </td>
 			                        <td><%=memberList.get(i).getId() %></td>
 			                        <td><%=memberList.get(i).getName() %></td>
 			                        <td><%=memberList.get(i).getBirth() %></td>

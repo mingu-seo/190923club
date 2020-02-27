@@ -24,7 +24,7 @@ MemberVO sessVO = (MemberVO)session.getAttribute("sess");
 <body>
 <div class="wrap"> 
 	<div class="popTitle" style="font-size:30px; text-align:center;">
-		일정 등록zz
+		일정 등록
 	</div>
 	<hr>
 	<div class="formDIV"><!-- 폼 감싸는 div -->

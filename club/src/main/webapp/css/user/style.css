@@ -97,17 +97,17 @@ div.lcontents1{
     width: 50%; 
 }
 div.lcontents1 > div.button{
-	padding: 20px;
+    margin: 20px;
+    height: 100px;
 }
 
 .img{
 	width: 20%;
-	height: 8%;
+	height: 100px;
 	float: left;
-	margin-bottom: 20px;
 }
 .spotname{
-	height: 20px;
+	height: 30px;
 	padding : 2px;
 	font-weight: bold;
 	
@@ -127,7 +127,8 @@ div.content1{
     width: 50%;
 }
 div.content1 > .button{
-	padding: 20px;
+    margin: 20px;
+	height: 100px;
 }
 
 div.circlecontainer{

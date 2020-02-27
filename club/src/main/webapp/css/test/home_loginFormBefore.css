@@ -188,7 +188,9 @@ div.content1{
     width: 50%;
 }
 div.content1 > .button{
-	padding: 20px;
+	padding-top: 20px;
+    padding-left: 20px;
+    height: 100px;
 }
 div.lcontents1{
     float: left;
@@ -196,14 +198,15 @@ div.lcontents1{
     width: 50%; 
 }
 div.lcontents1 > div.button{
-	padding: 20px;
+	padding-top: 20px;
+    padding-left: 20px;
+    height: 100px;
 }
 
 .img{
-	width: 20%;
-	height: 8%;
-	float: left;
-	margin-bottom: 20px;
+    width: 20%;
+    height: 100px;
+    float: left;
 }
 img {
 	
@@ -241,7 +244,7 @@ img {
     bottom: 10px;
 }
 .spotname{
-	height: 20px;
+	height: 30px;
 	padding : 2px;
 	font-weight: bold;
 	

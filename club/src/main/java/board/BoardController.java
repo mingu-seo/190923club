@@ -147,13 +147,19 @@ public class BoardController {
 	@RequestMapping("/board/writing/boardList.do") 
 	public String boardList(Model model, 
 			HttpServletRequest req, 
-			BoardVO vo, CategoryVO cVO, @RequestParam("spot_num") String spot_num) {
+			BoardVO vo, CategoryVO cVO, @RequestParam("spot_num") String spot_num, HttpServletRequest request) {
 			
 			List<BoardVO> list = bService.boardList(vo);
 			List<CategoryVO>[] categoryList = cService.categoryList(cVO); //Left메뉴에서 쓸 기능
 			CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
 			int[] listcount = bService.boardCount(vo); //전체 갯수와 총페이지수
 			SpotVO spotvo = spotService.spotView(Integer.parseInt(spot_num));
+			MemberVO searchVO = new MemberVO();
+			searchVO.setSpot_num(Integer.parseInt(spot_num));
+			MemberVO lvo = joinSpotService.spotLeader(searchVO);   										// 리더 값뿌리기
+			MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+			int member_num = uv==null ? 0 : uv.getNum();														// 회원 체크(추가된부분)
+			int joinSpotCnt = joinSpotService.checkJoinSpot(member_num, (Integer.parseInt(spot_num)));	// 회원 체크(추가된부분)
 			
 			model.addAttribute("list", list);
 			model.addAttribute("categoryList", categoryList);
@@ -163,6 +169,8 @@ public class BoardController {
 			model.addAttribute("spot_vo", spotvo);
 			model.addAttribute("spot_num", spot_num);
 			model.addAttribute("vo",vo);
+			model.addAttribute("lvo",lvo);
+			model.addAttribute("joinSpotCnt",joinSpotCnt);
 			
 			String msg = "";
 			String url = "";
@@ -181,15 +189,23 @@ public class BoardController {
 	
 	//자유게시판 작성페이지
 	@RequestMapping("/board/writing/boardWrite.do") 
-	public String boardWrite(Model model, BoardVO vo, CategoryVO cVO, @RequestParam("spot_num") String spot_num) {
+	public String boardWrite(Model model, BoardVO vo, CategoryVO cVO, @RequestParam("spot_num") String spot_num, HttpServletRequest request) {
 		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
 		CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
+		MemberVO searchVO = new MemberVO();
+		searchVO.setSpot_num(Integer.parseInt(spot_num));
+		MemberVO lvo = joinSpotService.spotLeader(searchVO);   										// 리더 값뿌리기
+		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+		int member_num = uv==null ? 0 : uv.getNum();														// 회원 체크(추가된부분)
+		int joinSpotCnt = joinSpotService.checkJoinSpot(member_num, (Integer.parseInt(spot_num)));	// 회원 체크(추가된부분)
 		
 		//스팟번호
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("cate_name", cate_name);
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("vo", vo);
+		model.addAttribute("lvo", lvo);
+		model.addAttribute("joinSpotCnt", joinSpotCnt);
 		return "board/writing/boardWrite";
 	}
 	//자유게시판 작성
@@ -201,10 +217,17 @@ public class BoardController {
 	}
 	//자유게시판 상세보기
 	@RequestMapping("/board/writing/boardWriteView.do") 
-	public String boardWriteView(@RequestParam("post_id")int post_id, CategoryVO cVO, Model model, @RequestParam("spot_num") String spot_num) {
+	public String boardWriteView(@RequestParam("post_id")int post_id, CategoryVO cVO, Model model, @RequestParam("spot_num") String spot_num, HttpServletRequest request) {
 		BoardVO vo = bService.boardView(post_id);
 		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
 		CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
+		
+		MemberVO searchVO = new MemberVO();
+		searchVO.setSpot_num(Integer.parseInt(spot_num));
+		MemberVO lvo = joinSpotService.spotLeader(searchVO);   										// 리더 값뿌리기
+		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+		int member_num = uv==null ? 0 : uv.getNum();														// 회원 체크(추가된부분)
+		int joinSpotCnt = joinSpotService.checkJoinSpot(member_num, (Integer.parseInt(spot_num)));	// 회원 체크(추가된부분)
 		
 		ReplyVO rv = new ReplyVO();
 		rv.setBoard_id(vo.getBoard_id());
@@ -218,6 +241,8 @@ public class BoardController {
 		model.addAttribute("cate_name", cate_name);
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("rList", rList);
+		model.addAttribute("lvo", lvo);
+		model.addAttribute("joinSpotCnt", joinSpotCnt);
 	
 		return "board/writing/boardWriteView";
 	}

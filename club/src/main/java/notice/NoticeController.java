@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import category.CategoryVO;
 import file.FileVO;
+import joinSpot.JoinSpotService;
+import member.MemberVO;
 import reply.ReplyService;
 import reply.ReplyVO;
 
@@ -32,25 +34,37 @@ public class NoticeController {
 	@Autowired
 	private category.CategoryService cService;
 	
+	@Autowired
+	private JoinSpotService joinSpotService;
+	
 	
 	
 	
 	//공지사항 목록 페이지
 	@RequestMapping("/board/notice/noticeList.do") 
-	public String noticeList(NoticeVO vo, Model model, CategoryVO cVO, @RequestParam("spot_num") String spot_num) {
+	public String noticeList(NoticeVO vo, Model model, CategoryVO cVO, @RequestParam("spot_num") String spot_num, HttpServletRequest request) {
 		
 		List<NoticeVO> list = nService.noticeList(vo);
 		CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
 		int[] listcount = nService.noticeCount(vo); //전체 갯수와 총페이지수
 		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
-		model.addAttribute("categoryList", categoryList);
 		
+		MemberVO searchVO = new MemberVO();
+		searchVO.setSpot_num(Integer.parseInt(spot_num));
+		MemberVO lvo = joinSpotService.spotLeader(searchVO);   										// 리더 값뿌리기
+		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+		int member_num = uv==null ? 0 : uv.getNum();														// 회원 체크(추가된부분)
+		int joinSpotCnt = joinSpotService.checkJoinSpot(member_num, (Integer.parseInt(spot_num)));	// 회원 체크(추가된부분)
+		
+		model.addAttribute("categoryList", categoryList);		
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("listcount", listcount[0]);
 		model.addAttribute("totalpage", listcount[1]);
 		model.addAttribute("list", list);
 		model.addAttribute("cate_name", cate_name);
 		model.addAttribute("vo",vo);
+		model.addAttribute("lvo",lvo);
+		model.addAttribute("joinSpotCnt",joinSpotCnt);
 		
 		//더보기 클릭했을 때 카테고리가 없으면 alert창 띄우고 리턴
 		String msg = "";
@@ -67,14 +81,23 @@ public class NoticeController {
 	}
 	//공지사항 작성페이지
 	@RequestMapping("/board/notice/noticeWrite.do")
-	public String noticeWrite(Model model, CategoryVO cVO, NoticeVO vo, @RequestParam("spot_num") String spot_num) {
+	public String noticeWrite(Model model, CategoryVO cVO, NoticeVO vo, @RequestParam("spot_num") String spot_num, HttpServletRequest request) {
 		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
 		CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
+		
+		MemberVO searchVO = new MemberVO();
+		searchVO.setSpot_num(Integer.parseInt(spot_num));
+		MemberVO lvo = joinSpotService.spotLeader(searchVO);   										// 리더 값뿌리기
+		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+		int member_num = uv==null ? 0 : uv.getNum();														// 회원 체크(추가된부분)
+		int joinSpotCnt = joinSpotService.checkJoinSpot(member_num, (Integer.parseInt(spot_num)));	// 회원 체크(추가된부분)
 		
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("spot_num", spot_num);
 		model.addAttribute("cate_name", cate_name);
 		model.addAttribute("vo", vo);
+		model.addAttribute("lvo", lvo);
+		model.addAttribute("joinSpotCnt", joinSpotCnt);
 		return "board/notice/noticeWrite";
 	}
 	
@@ -97,12 +120,19 @@ public class NoticeController {
 	}
 	//공지사항 상세보기 페이지
 	@RequestMapping("/board/notice/noticeWriteView.do") 
-	public String noticeWriteView(Model model, NoticeVO vo, CategoryVO cVO, @RequestParam("spot_num")String spot_num) {
+	public String noticeWriteView(Model model, NoticeVO vo, CategoryVO cVO, @RequestParam("spot_num")String spot_num, HttpServletRequest request) {
 		NoticeVO nvo = nService.noticeView(vo);
 		CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
 		
 		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
 		model.addAttribute("categoryList", categoryList);
+		
+		MemberVO searchVO = new MemberVO();
+		searchVO.setSpot_num(Integer.parseInt(spot_num));
+		MemberVO lvo = joinSpotService.spotLeader(searchVO);   										// 리더 값뿌리기
+		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+		int member_num = uv==null ? 0 : uv.getNum();														// 회원 체크(추가된부분)
+		int joinSpotCnt = joinSpotService.checkJoinSpot(member_num, (Integer.parseInt(spot_num)));	// 회원 체크(추가된부분)
 		
 		//댓글
 		ReplyVO rv = new ReplyVO();
@@ -124,6 +154,8 @@ public class NoticeController {
 		model.addAttribute("rList", rList);
 		model.addAttribute("cate_name", cate_name);
 		model.addAttribute("spot_num", spot_num);
+		model.addAttribute("lvo", lvo);
+		model.addAttribute("joinSpotCnt", joinSpotCnt);
 		
 		return "board/notice/noticeWriteView";
 	}	

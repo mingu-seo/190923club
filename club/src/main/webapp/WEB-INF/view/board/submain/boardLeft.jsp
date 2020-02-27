@@ -1,3 +1,4 @@
+<%@page import="member.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="spot.*" %>
@@ -7,6 +8,9 @@
 <%
 String board_type = request.getParameter("board_type");
 List<CategoryVO>[] categoryList = (List<CategoryVO>[])request.getAttribute("categoryList");  
+MemberVO lvo = (MemberVO)request.getAttribute("lvo");
+MemberVO sess = (MemberVO)session.getAttribute("sess");
+int joinSpotCnt = (Integer)request.getAttribute("joinSpotCnt");
 %>
 <style>
 	.menu_on {
@@ -78,12 +82,16 @@ List<CategoryVO>[] categoryList = (List<CategoryVO>[])request.getAttribute("cate
 	        		</div>
         		
 	        		<div class="clubInfo">
-	        		가입신청
+	        		<%if(joinSpotCnt == 0) {%>
+	        			가입신청
+	        		<%} %>
 	        		</div>
 	        		
 	        		<div class="clubInfo">
-	        		동아리 설정
-	        		<a href=""><img src="/img/board/set.png"></a>
+	        		<%if(sess != null && (sess.getNum() == lvo.getNum())) { %>
+		        		동아리 설정
+		        		<a href=""><img src="/img/board/set.png"></a>
+		        	<%} %>
 	        		</div>
 	        		
 	</div>

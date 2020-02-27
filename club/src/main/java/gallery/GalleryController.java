@@ -3,6 +3,7 @@ package gallery;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import category.CategoryVO;
+import joinSpot.JoinSpotService;
+import member.MemberVO;
 import spot.SpotService;
 import spot.SpotVO;
 
@@ -31,17 +34,28 @@ public class GalleryController {
 		@Autowired
 		private category.CategoryService cService;
 		
+		@Autowired
+		private JoinSpotService joinSpotService;
+		
 		//갤러리 목록 페이지
 		@RequestMapping("/board/gallery/galleryList.do") 
-		public String galleryList(Model model, GalleryVO vo, @RequestParam("spot_num") int num, CategoryVO cVO) {
+		public String galleryList(Model model, GalleryVO vo, @RequestParam("spot_num") int num, CategoryVO cVO, HttpSession sess, HttpServletRequest request) {
 				List<GalleryVO> list = galleryDao.galleryList(vo);
 				List<CategoryVO>[] categoryList = cService.categoryList(cVO); //Left메뉴에서 쓸 기능
 				CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
+				MemberVO searchVO = new MemberVO();
+				searchVO.setSpot_num(num);
+				MemberVO lvo = joinSpotService.spotLeader(searchVO);   										// 리더 값뿌리기
+				MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+				int member_num = uv==null ? 0 : uv.getNum();														// 회원 체크(추가된부분)
+				int joinSpotCnt = joinSpotService.checkJoinSpot(member_num, num);	// 회원 체크(추가된부분)
 				
 				model.addAttribute("categoryList", categoryList);
 				model.addAttribute("cate_name", cate_name);
 				model.addAttribute("list", list); 
 				model.addAttribute("vo", vo); 
+				model.addAttribute("lvo", lvo); 
+				model.addAttribute("joinSpotCnt", joinSpotCnt); 
 				//스팟번호
 				SpotVO spot_vo = spotService.spotView(num);
 				model.addAttribute("spot_vo", spot_vo);
@@ -65,14 +79,23 @@ public class GalleryController {
 		
 		//갤러리 작성페이지
 		@RequestMapping("/board/gallery/galleryWrite.do") 
-		public String galleryWrite(Model model,GalleryVO vo, @RequestParam("spot_num") int num, CategoryVO cVO) {
+		public String galleryWrite(Model model,GalleryVO vo, @RequestParam("spot_num") int num, CategoryVO cVO, HttpSession sess, HttpServletRequest request) {
 			List<CategoryVO>[] categoryList = cService.categoryList(cVO); //Left메뉴에서 쓸 기능
 			CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
+			MemberVO searchVO = new MemberVO();
+			searchVO.setSpot_num(num);
+			MemberVO lvo = joinSpotService.spotLeader(searchVO);   										// 리더 값뿌리기
+			MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+			int member_num = uv==null ? 0 : uv.getNum();														// 회원 체크(추가된부분)
+			int joinSpotCnt = joinSpotService.checkJoinSpot(member_num, num);	// 회원 체크(추가된부분)
+			
 			
 			model.addAttribute("categoryList", categoryList);
 			model.addAttribute("vo", vo);
 			model.addAttribute("cate_name", cate_name);
 			model.addAttribute("spot_num", num+"");
+			model.addAttribute("lvo", lvo);
+			model.addAttribute("joinSpotCnt", joinSpotCnt);
 			return "board/gallery/galleryWrite";
 		}
 		

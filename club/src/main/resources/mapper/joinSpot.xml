@@ -19,8 +19,8 @@
 			id, profile, project.member.name, birth, gender, tel 
 		FROM project.member JOIN project.joinSpot 
 		ON project.member.num = project.joinSpot.member_num AND joinspot.spot_num=#{spot_num}
-		ORDER BY member_num DESC
 		<include refid="searchword"/>
+		ORDER BY member_num DESC  
 		limit #{startIndex}, #{limit}
 	</select>    
 	

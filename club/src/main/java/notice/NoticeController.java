@@ -120,12 +120,19 @@ public class NoticeController {
 	}
 	//공지사항 상세보기 페이지
 	@RequestMapping("/board/notice/noticeWriteView.do") 
-	public String noticeWriteView(Model model, NoticeVO vo, CategoryVO cVO, @RequestParam("spot_num")String spot_num) {
+	public String noticeWriteView(Model model, NoticeVO vo, CategoryVO cVO, @RequestParam("spot_num")String spot_num, HttpServletRequest request) {
 		NoticeVO nvo = nService.noticeView(vo);
 		CategoryVO cate_name = cService.cateName_select(cVO.getCategory_id());
 		
 		List<CategoryVO>[] categoryList = cService.categoryList(cVO);
 		model.addAttribute("categoryList", categoryList);
+		
+		MemberVO searchVO = new MemberVO();
+		searchVO.setSpot_num(Integer.parseInt(spot_num));
+		MemberVO lvo = joinSpotService.spotLeader(searchVO);   										// 리더 값뿌리기
+		MemberVO uv = (MemberVO)request.getSession().getAttribute("sess");					// 회원 체크(추가된부분)
+		int member_num = uv==null ? 0 : uv.getNum();														// 회원 체크(추가된부분)
+		int joinSpotCnt = joinSpotService.checkJoinSpot(member_num, (Integer.parseInt(spot_num)));	// 회원 체크(추가된부분)
 		
 		//댓글
 		ReplyVO rv = new ReplyVO();
@@ -147,6 +154,8 @@ public class NoticeController {
 		model.addAttribute("rList", rList);
 		model.addAttribute("cate_name", cate_name);
 		model.addAttribute("spot_num", spot_num);
+		model.addAttribute("lvo", lvo);
+		model.addAttribute("joinSpotCnt", joinSpotCnt);
 		
 		return "board/notice/noticeWriteView";
 	}	
